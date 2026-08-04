@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>START Berlin — Berlin's student entrepreneurship network</title>
+<meta name="description" content="START Berlin is Berlin's largest student-run entrepreneurship non-profit. 500 members, 1,000 alumni, part of the 15-chapter START Network. Applications for the next batch are open.">
+<link rel="icon" href="assets/img/favicon-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Draft-only banner. Delete before anything ships. -->
+<div class="ph-banner">
+  <span>DRAFT v2 — everything <b style="border-bottom:2px dotted #fff">dotted</b> is a placeholder awaiting Phase 2 input from the Departments. See CONTENT-TODO.md.</span>
+  <button id="ph-toggle">hide placeholders</button>
+</div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="nav__logo" href="#top"><img src="assets/img/logo-start-white.png" alt="START Berlin"></a>
+    <ul class="nav__links">
+      <li><a href="#what">What you get</a></li>
+      <li><a href="#journey">Your journey</a></li>
+      <li><a href="#dates">Key dates</a></li>
+      <li><a href="#" aria-disabled="true" title="Planned page — not built in this draft">Members</a></li>
+      <li><a href="#" aria-disabled="true" title="Planned page — not built in this draft">Events</a></li>
+      <li><a href="#" aria-disabled="true" title="Planned page — not built in this draft">Partners</a></li>
+      <li><a class="btn btn--primary btn--sm" data-apply href="#">Apply</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ========================= 1 · HERO ========================= -->
+<section class="hero" id="top">
+  <div class="hero__media">
+    <img src="assets/img/hero-rtss-crowd.jpg" alt="START Berlin members at Road to START Summit" fetchpriority="high">
+  </div>
+  <div class="wrap hero__inner">
+    <p class="hero__kicker" id="hero-kicker"></p>
+    <h1>Berlin's student entrepreneurship network.</h1>
+    <p class="hero__sub">500 members. Since 2013. You get a seat in a real team, a network that outlasts your degree, and a year to prove what you can build.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" data-apply href="#" id="hero-deadline">Apply</a>
+      <a class="btn btn--ghost" href="#journey">How it works ↓</a>
+    </div>
+    <p class="hero__cost" id="hero-cost"></p>
+    <div class="hero__stats" id="hero-stats"></div>
+  </div>
+</section>
+
+<!-- ================== 2 · WHAT START IS / 3 DIMENSIONS ================== -->
+<section class="sec sec--paper" id="what">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow">What you actually get</p>
+      <h2 class="section-title">Three things a lecture hall can't hand you.</h2>
+      <p class="section-lede">START Berlin is the student-run initiative at the intersection of entrepreneurship, technology and innovation in Berlin. Every member sits in a department and runs real work — here's what that's worth, in the three terms people actually join for.</p>
+    </div>
+    <div class="dims" id="dims"></div>
+  </div>
+</section>
+
+<!-- ========================= 3 · NUMBERS ========================= -->
+<section class="sec sec--navy on-dark">
+  <div class="wrap">
+    <div class="sec__head" style="text-align:center">
+      <p class="eyebrow eyebrow--light">Where we are today</p>
+      <h2 class="section-title" style="margin-inline:auto">Not a new club.</h2>
+    </div>
+    <div class="numbers" id="numbers"></div>
+    <p class="numbers__note">Figures maintained by Operations &amp; Digital. Planned: live sync from the Cockpit — this section reads from a single data object built for that swap.</p>
+  </div>
+</section>
+
+<!-- ========================= 4 · TESTIMONIALS ========================= -->
+<section class="sec sec--paper" id="voices">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow">Words of former starties</p>
+      <h2 class="section-title">What people did with it afterwards.</h2>
+      <p class="section-lede">Why they joined, what they moved at START, and what came of it — across all three dimensions. Weighted toward alumni, because the point is what happens after.</p>
+    </div>
+    <div class="quotes">
+      <div class="quotes__track" id="quotes-track" tabindex="0" aria-label="Testimonials, scrollable"></div>
+      <div class="quotes__controls">
+        <button id="q-prev" aria-label="Previous testimonial">←</button>
+        <button id="q-next" aria-label="Next testimonial">→</button>
+        <button class="quotes__auto" id="q-auto" style="border:0;background:none;cursor:pointer"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= 5 · JOURNEY ========================= -->
+<section class="sec sec--navy on-dark" id="journey">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow eyebrow--light">Application to alumni</p>
+      <h2 class="section-title">Your year, phase by phase.</h2>
+      <p class="section-lede">What is expected of you and what you get, at every point. Open a phase to see the detail — including the bits people are usually nervous to ask about.</p>
+    </div>
+    <div class="journey" id="journey-steps"></div>
+  </div>
+</section>
+
+<!-- ========================= 6 · KEY DATES ========================= -->
+<section class="sec" id="dates">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow">This cycle</p>
+      <h2 class="section-title">Dates to keep free.</h2>
+      <p class="section-lede">Two info sessions with the Chapter Lead before you decide. If you apply, you get the full START Sprint dates by email straight away so you can block them.</p>
+    </div>
+    <div class="events" id="events"></div>
+  </div>
+</section>
+
+<!-- ========================= 7 · START GLOBAL ========================= -->
+<section class="sec sec--navy on-dark" id="global">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="eyebrow eyebrow--light">Startie here, Startie everywhere</p>
+      <h2 class="section-title">One of <span id="chapter-count"></span> chapters. Berlin is the biggest.</h2>
+      <p class="section-lede">START chapters are independent student organisations across Europe and South America, tied together by START Global in St. Gallen — the people behind START Summit and the START Hackathon. Join in Berlin, and you're in the network everywhere.</p>
+    </div>
+    <div class="map" id="map">
+      <svg viewBox="0 0 100 50" preserveAspectRatio="none" aria-hidden="true">
+        <g fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="0.15">
+          <path d="M0 12 H100 M0 20 H100 M0 25 H100 M0 32 H100 M0 40 H100"/>
+          <path d="M10 0 V50 M25 0 V50 M40 0 V50 M50 0 V50 M60 0 V50 M75 0 V50 M90 0 V50"/>
+        </g>
+      </svg>
+      <p class="map__legend">Stylised — not to scale. Per-chapter member counts and cross-chapter links are planned as a shared module with the other chapters.</p>
+    </div>
+    <div class="chapter-list" id="chapter-list"></div>
+  </div>
+</section>
+
+<!-- ========================= 8 · CLOSING CTA ========================= -->
+<section class="sec sec--paper">
+  <div class="wrap close-cta">
+    <p class="eyebrow">One application, one year, one network</p>
+    <h2>Twenty-five minutes now,<br>or wait for the next batch.</h2>
+    <a class="btn btn--primary" data-apply href="#" id="close-deadline">Apply</a>
+    <p class="close-cta__cost" id="close-cost"></p>
+
+    <div class="newsletter">
+      <p>Not ready yet? Get a reminder when applications open again, plus upcoming public events.</p>
+      <a class="btn btn--dark btn--sm" data-newsletter href="#" target="_blank" rel="noopener">Join the talent pool</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <img src="assets/img/logo-start-white.png" alt="START Berlin" style="height:28px;width:auto;margin-bottom:1rem">
+        <p style="font-size:.9rem;margin:0;max-width:30ch">Berlin's largest student-run entrepreneurship non-profit. Part of the START Network.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="#what">What you get</a></li>
+          <li><a href="#journey">Your journey</a></li>
+          <li><a href="#dates">Key dates</a></li>
+          <li><a href="#" aria-disabled="true">Members by batch</a></li>
+          <li><a href="#" aria-disabled="true">Events</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Partners</h4>
+        <ul>
+          <li><a href="#" aria-disabled="true">Become a partner</a></li>
+          <li><a href="#" aria-disabled="true">Our partners</a></li>
+          <li><a href="../website-raw/legal/legal-notice.html">Legal notice</a></li>
+          <li><a href="../website-raw/legal/privacy.html">Privacy policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Supported by</h4>
+        <div class="footer__logos" id="partner-logos"></div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© START Berlin e.V.</span>
+      <span>Draft v2 — internal review only, not published.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
