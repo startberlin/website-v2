@@ -1,0 +1,42 @@
+[
+	{
+		"id": "politics-meets-founders",
+		"title": "Politics Meets Founders",
+		"description": "Our panel with CMS on politics, business and young founders.",
+		"date": "2026-09-26",
+		"url": "https://www.linkedin.com/posts/start-berlin-e-v-_startberlin-cms-gr%C3%BCnderszene-activity-7509560195417620485-uKwQ",
+		"image": "../assets/news/politics-meets-founders.jpg"
+	},
+	{
+		"id": "asia-berlin-masterclass",
+		"title": "Build Global, Start in Berlin",
+		"description": "AsiaBerlin Masterclass on 2 October at NLND Berlin.",
+		"date": "2026-09-07",
+		"url": "https://www.linkedin.com/posts/start-berlin-e-v-_your-campus-is-not-the-ceiling-the-best-activity-7502726243352543234-EbcY",
+		"image": "../assets/news/asia-berlin-masterclass.jpg"
+	},
+	{
+		"id": "berlin-stadt-der-gruender",
+		"title": "Berlin: Stadt der Gründer?",
+		"description": "A political panel on making Berlin Europe's founder capital.",
+		"date": "2026-09-07",
+		"url": "https://www.linkedin.com/posts/start-berlin-e-v-_berlin-stadt-der-gr%C3%BCnder-berlin-is-activity-7502726668801818624-HrCD",
+		"image": "../assets/news/berlin-stadt-der-gruender.jpg"
+	},
+	{
+		"id": "start-berlin-x-quota",
+		"title": "START Berlin × Quota",
+		"description": "Partnering with Europe's largest scouting network for GTM operators.",
+		"date": "2026-08-26",
+		"url": "https://www.linkedin.com/posts/start-berlin-e-v-_building-the-bridge-into-the-ecosystem-is-activity-7498319214026481664-7-28",
+		"image": "../assets/news/start-berlin-x-quota.jpg"
+	},
+	{
+		"id": "yc-playbook-ontora",
+		"title": "Inside the YC Playbook",
+		"description": "Ontora's co-founders on how they got into Y Combinator.",
+		"date": "2026-08-03",
+		"url": "https://www.linkedin.com/posts/start-berlin-e-v-_yc-playbook-with-ontora-activity-7490009700327919616-G2sd",
+		"image": "../assets/news/yc-playbook-ontora.jpg"
+	}
+]

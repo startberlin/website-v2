@@ -1,0 +1,87 @@
+{
+	"source": "https://cockpit.start-berlin.com/org-chart",
+	"seasons": [
+		{
+			"label": "26/27",
+			"snapshotDate": "2026-09-27",
+			"board": [
+				{ "name": "Antonia Hill", "role": "President" },
+				{ "name": "Julia Palm", "role": "Vice President" },
+				{ "name": "Kari-Pele Streithoff", "role": "Head of Finance" }
+			],
+			"departments": [
+				{
+					"name": "Partnerships",
+					"members": [
+						{ "name": "Tobias Burger", "role": "Head of Partnerships", "board": true },
+						{ "name": "Alisa Adamska", "batch": 10 },
+						{ "name": "Arne Zalikowski", "batch": 10 },
+						{ "name": "Alberto Greene", "batch": 9 },
+						{ "name": "Gabriela Galindo", "batch": 9 },
+						{ "name": "Paul Steinau", "batch": 10 },
+						{ "name": "Ramin von Maydell", "batch": 10 },
+						{ "name": "Viktor Gandl", "batch": 10 },
+						{ "name": "Oliwier Arning", "batch": 9 }
+					]
+				},
+				{
+					"name": "Operations & Digital",
+					"members": [
+						{ "name": "Jannik Schaefer", "role": "Head of Operations & Digital", "board": true },
+						{ "name": "Álvaro Torres", "role": "Co-Lead of Operations & Digital" },
+						{ "name": "Jonathan Kubala", "batch": 10 },
+						{ "name": "Hubert Tomaszczak", "batch": 8 },
+						{ "name": "Leonie Sophie Bender", "batch": 10 },
+						{ "name": "Leander Neubronner", "batch": 10 },
+						{ "name": "Vicky Zhou", "batch": 9 },
+						{ "name": "Bo Ehrich", "batch": 10 },
+						{ "name": "Julius Liebl" },
+						{ "name": "Jannis Metrikat", "batch": 9 }
+					]
+				},
+				{
+					"name": "People",
+					"members": [
+						{ "name": "Anna Brinkkötter", "role": "Head of People", "board": true },
+						{ "name": "Robin Lahser", "batch": 10 },
+						{ "name": "Nikolaos Magklis", "batch": 10 },
+						{ "name": "Seoyoung Park", "batch": 10 },
+						{ "name": "Cedrick Manzi", "batch": 10 },
+						{ "name": "Marta Kielpinski", "batch": 10 },
+						{ "name": "Kalina Petrykowska", "batch": 9 }
+					]
+				},
+				{
+					"name": "Growth",
+					"members": [
+						{ "name": "Rhema Tamunoiyowuna", "role": "Head of Growth", "board": true },
+						{ "name": "Julia Krysztofowicz", "batch": 10 },
+						{ "name": "Mohammed Al-Alimi", "batch": 8 },
+						{ "name": "Sarah Rahabi", "batch": 10 },
+						{ "name": "Lilly Vannahme", "batch": 10 },
+						{ "name": "Daria Jochmann", "batch": 10 },
+						{ "name": "Darya Kablash", "batch": 9 },
+						{ "name": "Nikolas Wollenberg", "batch": 9 }
+					]
+				},
+				{
+					"name": "Events",
+					"members": [
+						{ "name": "Rocco Yohji Matthew Krippendorff", "role": "Head of Events", "board": true },
+						{ "name": "Lotta Kneller", "batch": 9 },
+						{ "name": "Philipp Donie", "batch": 8 },
+						{ "name": "Antonia Wittrin", "batch": 7 },
+						{ "name": "Alexander Berner", "batch": 9 },
+						{ "name": "Linhchi Bui", "batch": 10 },
+						{ "name": "Benjamin Kapell", "batch": 10 },
+						{ "name": "Leonardo Bressan", "batch": 10 },
+						{ "name": "Alice Doudou Zhai", "batch": 10 },
+						{ "name": "Sohalia Mathur", "batch": 8 },
+						{ "name": "Giuseppe Montagner", "batch": 9 },
+						{ "name": "Georgios Zelenitsas", "batch": 9 }
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,43 @@
+:root {
+	--color-dark-blue: #00002c;
+	--color-accent: #02c3de;
+	--color-white: #fff;
+	--font-sans: 'Avenir Next', 'Avenir Next LT Pro', Avenir, system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	min-height: 100%;
+}
+
+body {
+	background: var(--color-dark-blue);
+	color: var(--color-white);
+	font-family: var(--font-sans);
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+[hidden] {
+	display: none !important;
+}

@@ -1,0 +1,140 @@
+---
+interface Props {
+	name: string;
+	role?: string;
+	batch?: number;
+	// Label for the chip: the department name, or "Board".
+	group: string;
+}
+
+const { name, role, batch, group } = Astro.props;
+
+// First and last name, so "Rocco Yohji Matthew Krippendorff" becomes "RK".
+const parts = name.split(/\s+/);
+const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
+const search = [name, role, group, batch && `batch #${batch}`].filter(Boolean).join(' ').toLowerCase();
+---
+
+<article class="card" data-member data-search={search}>
+	<div class="card__top">
+		<div class="card__avatar" aria-hidden="true">{initials}</div>
+	</div>
+	<div class="card__body">
+		<h3 class="card__name">{name}</h3>
+		<p class="card__role">{role ?? 'Member'}</p>
+		{batch && <p class="card__batch">Batch #{batch}</p>}
+		<div class="card__footer">
+			<span class="card__chip">{group}</span>
+		</div>
+	</div>
+</article>
+
+<style>
+	.card {
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		background: rgb(255 255 255 / 0.03);
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 0.75rem;
+		transition: all 200ms;
+	}
+
+	.card:hover {
+		border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+		transform: translateY(-2px);
+	}
+
+	.card__top {
+		display: flex;
+		justify-content: center;
+		padding: 1.5rem 1rem 1.25rem;
+		background: rgb(255 255 255 / 0.03);
+	}
+
+	.card__avatar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 6rem;
+		height: 6rem;
+		border-radius: 9999px;
+		background: radial-gradient(
+			circle at 30% 25%,
+			color-mix(in srgb, var(--color-accent) 35%, transparent),
+			color-mix(in srgb, var(--color-accent) 8%, transparent) 70%
+		);
+		border: 1px solid rgb(255 255 255 / 0.1);
+		font-size: 1.75rem;
+		font-weight: 900;
+		letter-spacing: 0.025em;
+		transition: all 200ms;
+	}
+
+	.card:hover .card__avatar {
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+	}
+
+	.card__body {
+		display: flex;
+		flex-grow: 1;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.25rem;
+		padding: 1rem 0.75rem 1.25rem;
+		text-align: center;
+	}
+
+	.card__name {
+		margin: 0;
+		font-size: 0.9375rem;
+		line-height: 1.25rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.025em;
+	}
+
+	.card__role {
+		margin: 0;
+		font-size: 0.8125rem;
+		line-height: 1.25rem;
+		color: rgb(255 255 255 / 0.7);
+	}
+
+	.card__batch {
+		margin: 0;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		color: rgb(255 255 255 / 0.45);
+	}
+
+	/* Pinned to the bottom so chips line up across a row of cards. */
+	.card__footer {
+		margin-top: auto;
+		padding-top: 0.75rem;
+	}
+
+	.card__chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		padding: 0.125rem 0.625rem;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+		border-radius: 9999px;
+		font-size: 0.6875rem;
+		line-height: 1rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-accent);
+	}
+
+	.card__chip::before {
+		content: '';
+		width: 0.3125rem;
+		height: 0.3125rem;
+		border-radius: 9999px;
+		background: currentColor;
+	}
+</style>

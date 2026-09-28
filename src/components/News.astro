@@ -1,0 +1,374 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('news')).sort(
+	(a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+// On phones only the first few cards show until "Show more" is pressed.
+const mobileLimit = 3;
+
+const socials = [
+	{
+		label: 'LinkedIn',
+		href: 'https://www.linkedin.com/company/start-berlin-e-v-/',
+		icon: 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z',
+	},
+	{
+		label: 'Instagram',
+		href: 'https://www.instagram.com/start_berlin/',
+		icon: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z',
+	},
+];
+---
+
+<section class="news" data-news>
+	<div class="news__sticky" data-news-sticky>
+		<div class="news__header">
+			<h2 class="news__title">Latest News</h2>
+			<div class="news__socials">
+				{
+					socials.map((social) => (
+						<a href={social.href} target="_blank" rel="noopener" class="news__social">
+							<svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+								<path d={social.icon} />
+							</svg>
+							<span>{social.label}</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+
+		<div class="news__viewport" data-news-viewport>
+			<div class="news__track" data-news-track>
+				{
+					posts.map((post, index) => (
+						<a
+							href={post.data.url}
+							target="_blank"
+							rel="noopener"
+							class="news__card"
+							style={post.data.image && `--ratio: ${post.data.image.width} / ${post.data.image.height}`}
+							data-extra={index >= mobileLimit ? '' : undefined}
+						>
+							{post.data.image ? (
+								<Image
+									src={post.data.image}
+									alt={post.data.title}
+									widths={[480, 960]}
+									sizes="(max-width: 767px) 100vw, 480px"
+									class="news__image"
+								/>
+							) : (
+								<div class="news__placeholder" />
+							)}
+							<div class="news__shade" />
+							<div class="news__text">
+								<div class="news__card-title">{post.data.title}</div>
+								<p class="news__card-description">{post.data.description}</p>
+							</div>
+							<div class="news__external">
+								<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+									/>
+								</svg>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</div>
+
+		{
+			posts.length > mobileLimit && (
+				<button class="news__more" data-news-more>
+					Show more
+				</button>
+			)
+		}
+	</div>
+</section>
+
+<script>
+	// Desktop: the section is pinned while vertical scrolling slides the cards
+	// sideways. The section is made taller by exactly the horizontal overflow so
+	// the last card arrives as the pin releases.
+	const section = document.querySelector<HTMLElement>('[data-news]');
+
+	if (section) {
+		const sticky = section.querySelector<HTMLElement>('[data-news-sticky]')!;
+		const viewport = section.querySelector<HTMLElement>('[data-news-viewport]')!;
+		const track = section.querySelector<HTMLElement>('[data-news-track]')!;
+		const desktop = window.matchMedia('(min-width: 768px)');
+		const headerHeight = 80;
+		let frame = 0;
+
+		const overflow = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+
+		const update = () => {
+			const distance = overflow();
+			if (!desktop.matches || distance === 0) {
+				track.style.transform = '';
+				return;
+			}
+			const start = section.getBoundingClientRect().top + window.scrollY - headerHeight;
+			// Near the bottom of the page there may be less scroll left than the
+			// pinned range, so finish the slide within whatever is reachable.
+			const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+			const range = Math.min(section.offsetHeight - sticky.offsetHeight, maxScroll - start);
+			const progress = range > 0 ? Math.min(1, Math.max(0, (window.scrollY - start) / range)) : 0;
+			track.style.transform = `translateX(-${progress * distance}px)`;
+		};
+
+		const resize = () => {
+			section.style.height = desktop.matches ? `${sticky.offsetHeight + overflow()}px` : '';
+			update();
+		};
+
+		window.addEventListener(
+			'scroll',
+			() => {
+				if (frame) return;
+				frame = requestAnimationFrame(() => {
+					frame = 0;
+					update();
+				});
+			},
+			{ passive: true },
+		);
+		new ResizeObserver(resize).observe(viewport);
+		desktop.addEventListener('change', resize);
+		resize();
+
+		section.querySelector('[data-news-more]')?.addEventListener('click', (event) => {
+			section.classList.add('news--expanded');
+			(event.currentTarget as HTMLElement).remove();
+		});
+	}
+</script>
+
+<style>
+	.news {
+		position: relative;
+		padding-inline: 1rem;
+	}
+
+	.news__sticky {
+		max-width: 80rem;
+		margin-inline: auto;
+		padding-block: 7rem;
+	}
+
+	.news__header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		gap: 1rem 1.5rem;
+		margin-bottom: 3rem;
+	}
+
+	.news__title {
+		margin: 0;
+		font-size: 3rem;
+		font-weight: 900;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	.news__socials {
+		display: flex;
+		gap: 0.75rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.news__social {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.625rem 1.25rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		line-height: 1.25rem;
+		background: rgb(255 255 255 / 0.05);
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 9999px;
+		transition: all 300ms;
+	}
+
+	.news__social svg {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.news__social:hover {
+		color: var(--color-accent);
+		background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+		border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+	}
+
+	.news__track {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.news__card {
+		position: relative;
+		display: block;
+		/* Each card keeps its post image's proportions; 4:5 when there is no image. */
+		aspect-ratio: var(--ratio, 4 / 5);
+		overflow: hidden;
+		border-radius: 1rem;
+	}
+
+	.news__card[data-extra] {
+		display: none;
+	}
+
+	.news--expanded .news__card[data-extra] {
+		display: block;
+	}
+
+	.news__image,
+	.news__placeholder {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 500ms;
+	}
+
+	.news__placeholder {
+		background: linear-gradient(
+			to bottom right,
+			color-mix(in srgb, var(--color-accent) 30%, transparent),
+			rgb(59 7 100 / 0.5)
+		);
+	}
+
+	.news__card:hover .news__image {
+		transform: scale(1.05);
+	}
+
+	.news__shade {
+		position: absolute;
+		inset: 0;
+		/* Stronger than Munich's fade: most post images are graphics with their own
+		   text near the bottom, which would otherwise clash with the card title. */
+		background: linear-gradient(to top, rgb(0 0 0 / 0.9), rgb(0 0 0 / 0.65) 25%, transparent 55%);
+	}
+
+	.news__text {
+		position: absolute;
+		right: 1.5rem;
+		bottom: 1.5rem;
+		left: 1.5rem;
+	}
+
+	.news__card-title {
+		margin-bottom: 0.25rem;
+		font-size: 1.25rem;
+		font-weight: 700;
+		line-height: 1.75rem;
+	}
+
+	.news__card-description {
+		margin: 0;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		color: rgb(255 255 255 / 0.7);
+	}
+
+	.news__external {
+		position: absolute;
+		top: 1.5rem;
+		right: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		background: rgb(255 255 255 / 0.2);
+		border-radius: 9999px;
+		backdrop-filter: blur(4px);
+		opacity: 0;
+		transition: opacity 150ms;
+	}
+
+	.news__external svg {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	.news__card:hover .news__external {
+		opacity: 1;
+	}
+
+	.news__more {
+		width: 100%;
+		margin-top: 1.5rem;
+		padding-block: 1rem;
+		font-weight: 500;
+		color: rgb(255 255 255 / 0.7);
+		border: 1px solid rgb(255 255 255 / 0.2);
+		border-radius: 1rem;
+		transition: all 300ms;
+	}
+
+	.news__more:hover {
+		color: var(--color-white);
+		border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+	}
+
+	@media (min-width: 640px) {
+		.news {
+			padding-inline: 1.5rem;
+		}
+
+		.news__title {
+			font-size: 3.75rem;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.news__sticky {
+			position: sticky;
+			top: 5rem;
+		}
+
+		.news__viewport {
+			overflow: hidden;
+		}
+
+		.news__track {
+			flex-direction: row;
+			width: max-content;
+			will-change: transform;
+		}
+
+		.news__card,
+		.news__card[data-extra] {
+			display: block;
+			/* Same height for every card; the width follows the image. */
+			width: auto;
+			height: 475px;
+			flex-shrink: 0;
+		}
+
+		.news__more {
+			display: none;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.news {
+			padding-inline: 2rem;
+		}
+	}
+</style>

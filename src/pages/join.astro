@@ -1,0 +1,956 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import groupPhoto from '../assets/hero/hero-1.jpg';
+import teamPhoto from '../assets/hero/hero-3.jpg';
+import audiencePhoto from '../assets/hero/hero-4.jpg';
+import teamFourPhoto from '../assets/join/team-four.jpg';
+import teamLiftingPhoto from '../assets/join/team-lifting.jpg';
+
+// Flip when a round opens: swaps the status pill and points the main CTA at the
+// application form instead of the talent pool.
+const applicationsOpen = false;
+
+const links = {
+	apply: 'https://forms.start-berlin.com/apply',
+	talentPool: 'https://forms.start-berlin.com/talent-pool',
+	contact: 'https://forms.start-berlin.com/contact',
+};
+
+const primaryCta = applicationsOpen
+	? { label: 'Apply now', href: links.apply }
+	: { label: 'Join the talent pool', href: links.talentPool };
+
+const stats = [
+	{ value: '500+', label: 'Members in Berlin' },
+	{ value: '15+', label: 'Nationalities' },
+	{ value: '5', label: 'Departments' },
+];
+
+const benefits = [
+	'A network of talented members and potential co-founders',
+	'Direct contact with, and insights into, the most successful startups in Berlin',
+	'Contact to investors, mentors, startups and industry experts',
+	'Workshops with industry experts on topics such as legal, sales and entrepreneurship',
+	'Access to the international START network with partners across Europe and Latin America',
+	'An extensive network of START Berlin partners and alumni',
+];
+
+const requirements = [
+	'You are enrolled at a university',
+	'You have a burning passion for entrepreneurship',
+	'You want to become a founder, get into venture capital, meet prospective co-founders or learn more about the ecosystem',
+	'You commit to being an active member of our community for one entire year',
+	'You are based in Berlin for at least the next 6 months',
+];
+
+// Add a `date` to each step once the next round's timeline is fixed.
+const steps: { title: string; text: string; date?: string }[] = [
+	{
+		title: 'Apply',
+		text: 'Complete a short application questionnaire and upload your CV. You will receive an email confirming that we have received your application.',
+	},
+	{
+		title: 'Interview',
+		text: 'After an initial screening of the written applications, selected candidates are invited to a short interview with START members.',
+	},
+	{
+		title: 'Onboarding',
+		text: 'Your first event as an official STARTie. You meet the whole team and get to know each other. Onboarding is mandatory for new members.',
+	},
+];
+
+const departments = [
+	{
+		name: 'Events',
+		text: 'Plans and runs all START Berlin events, from workshops to conferences and seminars, creating valuable experiences for attendees and partners.',
+	},
+	{
+		name: 'Growth',
+		text: 'Owns promotion and branding: growth strategy, marketing materials and our social media channels.',
+	},
+	{
+		name: 'Operations & Digital',
+		text: 'Runs the internal engine: our website, Slack, Notion and Google Drive, plus the workflows and databases for members, startups and VCs.',
+	},
+	{
+		name: 'Community',
+		text: 'Recruits, retains and develops the team. Runs interviews, supports personal development and organises community events.',
+	},
+	{
+		name: 'Partnerships',
+		text: 'Finds, negotiates and manages partnerships with organisations, institutions and businesses for long-lasting impact.',
+	},
+];
+
+const testimonials = [
+	{
+		quote:
+			'START was the best learning environment I’ve ever been in. At 23, I led a team, made mistakes, and actually learned how to get things done, not just alone, but with others.',
+		name: 'Mahir Isikli',
+		role: 'President 23/24',
+		linkedin: 'https://www.linkedin.com/in/mahir-isikli/',
+	},
+	{
+		quote:
+			'START Berlin changed everything. I found a community of driven, like-minded people who inspired me to grow both personally and professionally. START opened doors I didn’t know existed.',
+		name: 'Anouar Springer',
+		role: 'Head of Partnerships 23/24',
+		linkedin: 'https://www.linkedin.com/in/anouar-springer/',
+	},
+	{
+		quote:
+			'START Berlin gave me so much value, not just during my time as a member, but long after. Through the community, I landed my first job and built lasting friendships here in Berlin.',
+		name: 'Polina Shcheglova',
+		role: 'Member 19/20',
+	},
+];
+
+const initials = (name: string) =>
+	name
+		.split(/\s+/)
+		.map((part) => part[0])
+		.join('')
+		.toUpperCase();
+---
+
+<Layout title="How to Join | START Berlin">
+	<section class="hero">
+		<Image
+			src={groupPhoto}
+			alt=""
+			widths={[640, 1080, 1600, 2400]}
+			sizes="100vw"
+			loading="eager"
+			fetchpriority="high"
+			class="hero__image"
+		/>
+		<div class="hero__shade hero__shade--left"></div>
+		<div class="hero__shade hero__shade--bottom"></div>
+
+		<div class="hero__content">
+			<p class:list={['status', { 'status--open': applicationsOpen }]}>
+				<span class="status__dot"></span>
+				{applicationsOpen ? 'Applications are open' : 'Applications are closed'}
+			</p>
+			<h1 class="hero__title">
+				<span>How to join</span>
+				<span class="accent">START Berlin</span>
+			</h1>
+			<p class="hero__text">
+				Become part of Berlin’s leading student entrepreneurship network and take your first step
+				toward building the future.
+			</p>
+			<div class="actions">
+				<a href={primaryCta.href} class="button button--primary">{primaryCta.label}</a>
+				<a href="#process" class="button button--ghost">See the process</a>
+			</div>
+		</div>
+	</section>
+
+	<div class="stats">
+		{
+			stats.map((stat) => (
+				<div class="stat">
+					<p class="stat__value">{stat.value}</p>
+					<p class="stat__label">{stat.label}</p>
+				</div>
+			))
+		}
+	</div>
+
+	<section class="section split">
+		<div class="split__text">
+			<p class="eyebrow">Why you should apply</p>
+			<h2 class="heading">Dive into Berlin’s <span class="accent">startup ecosystem</span></h2>
+			<p class="lead">
+				Whether you’re just starting out or looking to take your venture to the next level, at START
+				Berlin you dive deep into a vibrant ecosystem of innovation, collaboration and growth. Explore
+				our network, connect with industry experts and learn from peers to sharpen your skills and bring
+				your ideas to life.
+			</p>
+			<ul class="benefits">
+				{
+					benefits.map((benefit) => (
+						<li class="benefits__item">
+							<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+							</svg>
+							{benefit}
+						</li>
+					))
+				}
+			</ul>
+			<p class="fee">
+				To provide these benefits and keep the organisation financially sustainable, active members pay
+				a membership fee of <strong>€40 per semester</strong>.
+			</p>
+		</div>
+		<div class="split__media">
+			<Image src={teamFourPhoto} alt="Four START Berlin members in team shirts" widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 40vw, 100vw" class="photo" />
+		</div>
+	</section>
+
+	<section class="section split split--reverse">
+		<div class="split__text">
+			<p class="eyebrow">Who we are looking for</p>
+			<h2 class="heading">Is this <span class="accent">you?</span></h2>
+			<p class="lead">We look forward to your application if:</p>
+			<ul class="checklist">
+				{
+					requirements.map((requirement) => (
+						<li class="checklist__item">
+							<span class="checklist__icon" aria-hidden="true">
+								<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+								</svg>
+							</span>
+							{requirement}
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<div class="split__media">
+			<Image src={teamLiftingPhoto} alt="START Berlin members lifting a teammate and laughing" widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 40vw, 100vw" class="photo photo--landscape" />
+		</div>
+	</section>
+
+	<section class="section" id="process">
+		<div class="section__head">
+			<p class="eyebrow">Application process</p>
+			<h2 class="heading">Your path to <span class="accent">START Berlin</span></h2>
+		</div>
+		<ol class="steps">
+			{
+				steps.map((step, index) => (
+					<li class="step">
+						<span class="step__number">{String(index + 1).padStart(2, '0')}</span>
+						<h3 class="step__title">{step.title}</h3>
+						{step.date && <p class="step__date">{step.date}</p>}
+						<p class="step__text">{step.text}</p>
+					</li>
+				))
+			}
+		</ol>
+		<p class="note">
+			We share the dates for interviews and onboarding with each application round. Please block the
+			onboarding in your calendar as soon as you know it, and we strongly encourage you to join the
+			network trip as well.
+		</p>
+	</section>
+
+	<section class="banner">
+		<Image src={audiencePhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="banner__image" />
+		<div class="banner__shade"></div>
+		<div class="banner__content">
+			<p class="eyebrow">Want to get to know us?</p>
+			<h2 class="heading">Meet us <span class="accent">in person</span></h2>
+			<p class="lead">
+				Around every application round we host online and in-person info events. Drop by, ask your
+				questions and meet current members before you apply.
+			</p>
+			<div class="actions">
+				<a href="/events" class="button button--primary">See upcoming events</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__head">
+			<p class="eyebrow">About START Berlin</p>
+			<h2 class="heading">Our <span class="accent">departments</span></h2>
+			<p class="lead">
+				Every member is part of a department. Together they drive the organisation’s success and its
+				impact on the Berlin startup ecosystem.
+			</p>
+		</div>
+		<div class="departments">
+			{
+				departments.map((department) => (
+					<article class="department">
+						<h3 class="department__name">{department.name}</h3>
+						<p class="department__text">{department.text}</p>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__head">
+			<p class="eyebrow">Words of former STARTies</p>
+			<h2 class="heading">What our <span class="accent">alumni</span> say</h2>
+		</div>
+		<div class="quotes">
+			{
+				testimonials.map((testimonial) => (
+					<figure class="quote">
+						<blockquote class="quote__text">“{testimonial.quote}”</blockquote>
+						<figcaption class="quote__author">
+							<span class="quote__avatar" aria-hidden="true">{initials(testimonial.name)}</span>
+							<span>
+								{testimonial.linkedin ? (
+									<a href={testimonial.linkedin} target="_blank" rel="noopener noreferrer" class="quote__name">
+										{testimonial.name}
+									</a>
+								) : (
+									<span class="quote__name">{testimonial.name}</span>
+								)}
+								<span class="quote__role">{testimonial.role}</span>
+							</span>
+						</figcaption>
+					</figure>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="closing">
+		<Image src={teamPhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="closing__image" />
+		<div class="closing__shade"></div>
+		<div class="closing__grid">
+			<div class="closing__card">
+				<p class="eyebrow">Stay up to date</p>
+				<h2 class="closing__title">Join our talent pool</h2>
+				<p class="closing__text">
+					Get a reminder when applications open again, hear about upcoming events and stay up to date
+					with START Berlin.
+				</p>
+				<a href={links.talentPool} class="button button--primary">Sign up</a>
+			</div>
+			<div class="closing__card">
+				<p class="eyebrow">Any questions left?</p>
+				<h2 class="closing__title">Get in touch</h2>
+				<p class="closing__text">
+					Unsure about the application process, your eligibility or what START Berlin is all about?
+					Just reach out.
+				</p>
+				<a href={links.contact} class="button button--ghost">Contact us</a>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.accent {
+		color: var(--color-accent);
+	}
+
+	/* Hero */
+
+	.hero {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		min-height: calc(85vh - 5rem);
+		min-height: calc(85svh - 5rem);
+		overflow: hidden;
+	}
+
+	.hero__image,
+	.banner__image,
+	.closing__image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.hero__shade {
+		position: absolute;
+		inset: 0;
+	}
+
+	.hero__shade--left {
+		background: linear-gradient(to right, rgb(0 0 44 / 0.9), rgb(0 0 44 / 0.6) 45%, transparent);
+	}
+
+	.hero__shade--bottom {
+		background: linear-gradient(to top, var(--color-dark-blue), transparent 40%);
+	}
+
+	.hero__content {
+		position: relative;
+		width: 100%;
+		max-width: 80rem;
+		margin-inline: auto;
+		padding: 4rem 1rem 3rem;
+	}
+
+	.status {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin: 0 0 1.5rem;
+		padding: 0.375rem 1rem;
+		border: 1px solid rgb(255 255 255 / 0.2);
+		border-radius: 9999px;
+		background: rgb(0 0 44 / 0.5);
+		backdrop-filter: blur(8px);
+		font-size: 0.75rem;
+		line-height: 1rem;
+		font-weight: 700;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: rgb(255 255 255 / 0.8);
+	}
+
+	.status__dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 9999px;
+		background: rgb(255 255 255 / 0.4);
+	}
+
+	.status--open {
+		border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+		color: var(--color-accent);
+	}
+
+	.status--open .status__dot {
+		background: var(--color-accent);
+		box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 25%, transparent);
+	}
+
+	.hero__title {
+		display: flex;
+		flex-direction: column;
+		margin: 0 0 1.5rem;
+		font-size: clamp(3rem, 8vw, 6.5rem);
+		font-weight: 900;
+		line-height: 0.9;
+		letter-spacing: -0.025em;
+		text-transform: uppercase;
+		animation: rise-in 1000ms 200ms both;
+	}
+
+	.hero__text {
+		max-width: 34rem;
+		margin: 0 0 2rem;
+		font-size: 1.125rem;
+		line-height: 1.625;
+		color: rgb(229 231 235);
+		animation: rise-in 1000ms 400ms both;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.875rem 1.5rem;
+		border-radius: 0.25rem;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		font-weight: 700;
+		letter-spacing: 0.025em;
+		text-transform: uppercase;
+		transition: all 300ms;
+	}
+
+	.button--primary {
+		background: var(--color-white);
+		color: var(--color-dark-blue);
+	}
+
+	.button--primary:hover {
+		background: var(--color-accent);
+	}
+
+	.button--ghost {
+		border: 1px solid rgb(255 255 255 / 0.4);
+	}
+
+	.button--ghost:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+	}
+
+	/* Stats */
+
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		max-width: 80rem;
+		margin-inline: auto;
+		padding: 0 1rem;
+	}
+
+	.stat {
+		padding: 1.5rem 0.5rem;
+		text-align: center;
+		border-block: 1px solid rgb(255 255 255 / 0.1);
+	}
+
+	.stat + .stat {
+		border-left: 1px solid rgb(255 255 255 / 0.1);
+	}
+
+	.stat__value {
+		margin: 0;
+		font-size: clamp(1.75rem, 5vw, 3rem);
+		font-weight: 900;
+		line-height: 1;
+		color: var(--color-accent);
+	}
+
+	.stat__label {
+		margin: 0.5rem 0 0;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: rgb(255 255 255 / 0.6);
+	}
+
+	/* Shared section type */
+
+	.section {
+		max-width: 80rem;
+		margin-inline: auto;
+		padding: 5rem 1rem;
+	}
+
+	.section__head {
+		max-width: 44rem;
+		margin-bottom: 3rem;
+	}
+
+	.eyebrow {
+		margin: 0 0 1rem;
+		font-size: 0.8125rem;
+		line-height: 1.25rem;
+		font-weight: 700;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: var(--color-accent);
+	}
+
+	.heading {
+		margin: 0 0 1.5rem;
+		font-size: clamp(2.25rem, 5vw, 3.75rem);
+		font-weight: 900;
+		line-height: 0.95;
+		letter-spacing: -0.025em;
+		text-transform: uppercase;
+	}
+
+	.lead {
+		margin: 0 0 1.5rem;
+		font-size: 1.0625rem;
+		line-height: 1.7;
+		color: rgb(255 255 255 / 0.75);
+	}
+
+	/* Text + photo */
+
+	.split {
+		display: grid;
+		gap: 3rem;
+		align-items: center;
+	}
+
+	.photo {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 0.75rem;
+	}
+
+	/* Keeps the whole group in frame; a portrait crop cuts off the person being lifted. */
+	.photo--landscape {
+		aspect-ratio: 3 / 2;
+	}
+
+	.benefits,
+	.checklist {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		margin: 0 0 1.5rem;
+		padding: 0;
+		list-style: none;
+	}
+
+	.benefits__item {
+		display: flex;
+		gap: 0.75rem;
+		padding: 0.875rem 1rem;
+		background: rgb(255 255 255 / 0.03);
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 0.5rem;
+		line-height: 1.5;
+		transition: border-color 200ms;
+	}
+
+	.benefits__item:hover {
+		border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+	}
+
+	.benefits__item svg {
+		flex-shrink: 0;
+		width: 1rem;
+		height: 1rem;
+		margin-top: 0.25rem;
+		color: var(--color-accent);
+	}
+
+	.fee {
+		margin: 0;
+		padding-left: 1rem;
+		border-left: 2px solid var(--color-accent);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		color: rgb(255 255 255 / 0.7);
+	}
+
+	.fee strong {
+		color: var(--color-white);
+	}
+
+	.checklist__item {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+		font-size: 1.0625rem;
+		line-height: 1.5;
+	}
+
+	.checklist__icon {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: 1.75rem;
+		height: 1.75rem;
+		border-radius: 9999px;
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+	}
+
+	.checklist__icon svg {
+		width: 0.875rem;
+		height: 0.875rem;
+	}
+
+	/* Steps */
+
+	.steps {
+		display: grid;
+		gap: 1rem;
+		margin: 0 0 2rem;
+		padding: 0;
+		list-style: none;
+	}
+
+	.step {
+		position: relative;
+		padding: 2rem 1.5rem;
+		background: rgb(255 255 255 / 0.03);
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 0.75rem;
+		transition: all 200ms;
+	}
+
+	.step:hover {
+		border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+		transform: translateY(-2px);
+	}
+
+	.step__number {
+		display: block;
+		margin-bottom: 1.5rem;
+		font-size: 3.5rem;
+		font-weight: 900;
+		line-height: 1;
+		-webkit-text-stroke: 1.5px var(--color-accent);
+		-webkit-text-fill-color: transparent;
+	}
+
+	.step__title {
+		margin: 0 0 0.75rem;
+		font-size: 1.5rem;
+		font-weight: 900;
+		text-transform: uppercase;
+		letter-spacing: 0.025em;
+	}
+
+	.step__date {
+		margin: 0 0 0.75rem;
+		font-size: 0.8125rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-accent);
+	}
+
+	.step__text {
+		margin: 0;
+		line-height: 1.6;
+		color: rgb(255 255 255 / 0.75);
+	}
+
+	.note {
+		max-width: 44rem;
+		margin: 0;
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		color: rgb(255 255 255 / 0.6);
+	}
+
+	/* Full-bleed photo bands */
+
+	.banner,
+	.closing {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.banner__shade {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to right, rgb(0 0 44 / 0.95), rgb(0 0 44 / 0.75) 50%, rgb(0 0 44 / 0.3));
+	}
+
+	.banner__content {
+		position: relative;
+		max-width: 80rem;
+		margin-inline: auto;
+		padding: 6rem 1rem;
+	}
+
+	.banner__content .lead {
+		max-width: 32rem;
+	}
+
+	/* Departments */
+
+	.departments {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.department {
+		padding: 1.75rem 1.5rem;
+		background: rgb(255 255 255 / 0.03);
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-top: 2px solid var(--color-accent);
+		border-radius: 0.75rem;
+	}
+
+	.department__name {
+		margin: 0 0 0.75rem;
+		font-size: 1.125rem;
+		font-weight: 900;
+		letter-spacing: 0.025em;
+		text-transform: uppercase;
+	}
+
+	.department__text {
+		margin: 0;
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		color: rgb(255 255 255 / 0.7);
+	}
+
+	/* Testimonials */
+
+	.quotes {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.quote {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 2rem;
+		margin: 0;
+		padding: 2rem 1.5rem;
+		background: rgb(255 255 255 / 0.03);
+		border: 1px solid rgb(255 255 255 / 0.1);
+		border-radius: 0.75rem;
+	}
+
+	.quote__text {
+		margin: 0;
+		font-size: 1.0625rem;
+		line-height: 1.65;
+	}
+
+	.quote__author {
+		display: flex;
+		align-items: center;
+		gap: 0.875rem;
+	}
+
+	.quote__avatar {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 9999px;
+		background: radial-gradient(
+			circle at 30% 25%,
+			color-mix(in srgb, var(--color-accent) 35%, transparent),
+			color-mix(in srgb, var(--color-accent) 8%, transparent) 70%
+		);
+		border: 1px solid rgb(255 255 255 / 0.1);
+		font-weight: 900;
+	}
+
+	.quote__name {
+		display: block;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.025em;
+		transition: color 150ms;
+	}
+
+	a.quote__name:hover {
+		color: var(--color-accent);
+	}
+
+	.quote__role {
+		display: block;
+		font-size: 0.875rem;
+		color: rgb(255 255 255 / 0.6);
+	}
+
+	/* Closing CTAs */
+
+	.closing__shade {
+		position: absolute;
+		inset: 0;
+		background: rgb(0 0 44 / 0.8);
+	}
+
+	.closing__grid {
+		position: relative;
+		display: grid;
+		gap: 1rem;
+		max-width: 80rem;
+		margin-inline: auto;
+		padding: 6rem 1rem;
+	}
+
+	.closing__card {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 2.5rem 2rem;
+		background: rgb(0 0 44 / 0.6);
+		backdrop-filter: blur(12px);
+		border: 1px solid rgb(255 255 255 / 0.15);
+		border-radius: 0.75rem;
+	}
+
+	.closing__title {
+		margin: 0 0 1rem;
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		font-weight: 900;
+		line-height: 1;
+		letter-spacing: -0.025em;
+		text-transform: uppercase;
+	}
+
+	.closing__text {
+		flex-grow: 1;
+		margin: 0 0 2rem;
+		line-height: 1.6;
+		color: rgb(255 255 255 / 0.75);
+	}
+
+	@media (min-width: 640px) {
+		.hero__content,
+		.stats,
+		.section,
+		.banner__content,
+		.closing__grid {
+			padding-inline: 1.5rem;
+		}
+
+		.hero__text {
+			font-size: 1.25rem;
+		}
+
+		.departments,
+		.closing__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.hero__content,
+		.stats,
+		.section,
+		.banner__content,
+		.closing__grid {
+			padding-inline: 2rem;
+		}
+
+		.hero__content {
+			padding-bottom: 5rem;
+		}
+
+		.section {
+			padding-block: 7rem;
+		}
+
+		.split {
+			grid-template-columns: 7fr 5fr;
+			gap: 5rem;
+		}
+
+		.split--reverse {
+			grid-template-columns: 5fr 7fr;
+		}
+
+		.split--reverse .split__media {
+			order: -1;
+		}
+
+		.steps,
+		.quotes {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		/* Six columns so the last two of five cards sit centered under the first three. */
+		.departments {
+			grid-template-columns: repeat(6, 1fr);
+		}
+
+		.department {
+			grid-column: span 2;
+		}
+
+		.department:nth-child(4) {
+			grid-column: 2 / span 2;
+		}
+	}
+
+	@keyframes rise-in {
+		from {
+			opacity: 0;
+			transform: translateY(2rem);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero__title,
+		.hero__text {
+			animation: none;
+		}
+	}
+</style>

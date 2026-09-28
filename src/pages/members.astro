@@ -1,0 +1,474 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MemberCard from '../components/MemberCard.astro';
+// Snapshot of the Cockpit org chart. Cockpit has no public endpoint yet; once it
+// does, fetch the same shape here instead of importing the file.
+import team from '../data/team.json';
+
+interface Member {
+	name: string;
+	role?: string;
+	batch?: number;
+	// Department heads sit on the board and are listed in both places.
+	board?: boolean;
+}
+
+interface Season {
+	// Newest first; the first season is shown by default.
+	label: string;
+	board: Member[];
+	departments: { name: string; members: Member[] }[];
+}
+
+const slugify = (value: string) =>
+	value
+		.toLowerCase()
+		.replace(/&/g, 'and')
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '');
+
+const seasons = (team.seasons as Season[]).map((season) => {
+	const sections = [
+		{
+			id: 'board',
+			name: 'Board',
+			members: [
+				...season.board,
+				...season.departments.flatMap((department) => department.members.filter((member) => member.board)),
+			],
+		},
+		...season.departments.map((department) => ({
+			id: slugify(department.name),
+			name: department.name,
+			members: department.members,
+		})),
+	];
+	const people = new Set(sections.flatMap((section) => section.members.map((member) => member.name)));
+	return { id: slugify(season.label), label: season.label, sections, count: people.size };
+});
+
+// Every department that appears in any season, in first-seen order.
+const departments = [
+	...new Map(seasons.flatMap((season) => season.sections.map((section) => [section.id, section.name]))),
+];
+---
+
+<Layout title="Our Members | START Berlin">
+	<section class="intro">
+		<div class="intro__blob"></div>
+		<p class="intro__pill"><strong data-member-count>{seasons[0].count}</strong> members</p>
+		<h1 class="intro__title">Meet the <span class="intro__title--accent">team</span></h1>
+	</section>
+
+	<div class="filters">
+		<div class="filters__inner">
+			<label class="search">
+				<span class="visually-hidden">Search members</span>
+				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+				</svg>
+				<input type="search" placeholder="Search by name, role…" autocomplete="off" data-member-search />
+			</label>
+
+			<div class="timeline" role="tablist" aria-label="Season">
+				{
+					seasons.map((season, index) => (
+						<button
+							class="timeline__season"
+							role="tab"
+							aria-selected={index === 0 ? 'true' : 'false'}
+							aria-controls={`season-${season.id}`}
+							data-season-tab={season.id}
+						>
+							{season.label}
+						</button>
+					))
+				}
+			</div>
+
+			<label class="select">
+				<span class="visually-hidden">Filter by department</span>
+				<select data-member-department>
+					<option value="">All departments</option>
+					{departments.map(([id, name]) => <option value={id}>{name}</option>)}
+				</select>
+				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+				</svg>
+			</label>
+		</div>
+	</div>
+
+	<div class="groups">
+		{
+			seasons.map((season, index) => (
+				<div
+					class="season"
+					id={`season-${season.id}`}
+					role="tabpanel"
+					data-season={season.id}
+					data-count={season.count}
+					hidden={index > 0}
+				>
+					{season.sections.map((section) => (
+						<section class="group" data-member-group={section.id}>
+							<h2 class="group__label">{section.name}</h2>
+							<div class="group__grid">
+								{section.members.map((member) => (
+									<MemberCard name={member.name} role={member.role} batch={member.batch} group={section.name} />
+								))}
+							</div>
+						</section>
+					))}
+				</div>
+			))
+		}
+
+		<p class="empty" data-member-empty hidden>No members match your search.</p>
+	</div>
+</Layout>
+
+<script>
+	const search = document.querySelector<HTMLInputElement>('[data-member-search]')!;
+	const department = document.querySelector<HTMLSelectElement>('[data-member-department]')!;
+	const tabs = document.querySelectorAll<HTMLElement>('[data-season-tab]');
+	const panels = document.querySelectorAll<HTMLElement>('[data-season]');
+	const count = document.querySelector<HTMLElement>('[data-member-count]')!;
+	const empty = document.querySelector<HTMLElement>('[data-member-empty]')!;
+
+	const showSeason = (id: string) => {
+		const panel = [...panels].find((candidate) => candidate.dataset.season === id);
+		if (!panel) return;
+
+		panels.forEach((candidate) => (candidate.hidden = candidate !== panel));
+		tabs.forEach((tab) => tab.setAttribute('aria-selected', String(tab.dataset.seasonTab === id)));
+		count.textContent = panel.dataset.count!;
+		applyFilters();
+	};
+
+	const applyFilters = () => {
+		const panel = [...panels].find((candidate) => !candidate.hidden)!;
+		const query = search.value.trim().toLowerCase();
+		let anyVisible = false;
+
+		panel.querySelectorAll<HTMLElement>('[data-member-group]').forEach((group) => {
+			const groupSelected = !department.value || department.value === group.dataset.memberGroup;
+			let groupVisible = false;
+
+			group.querySelectorAll<HTMLElement>('[data-member]').forEach((card) => {
+				const match = groupSelected && card.dataset.search!.includes(query);
+				card.hidden = !match;
+				groupVisible ||= match;
+			});
+
+			group.hidden = !groupVisible;
+			anyVisible ||= groupVisible;
+		});
+
+		empty.hidden = anyVisible;
+	};
+
+	tabs.forEach((tab) =>
+		tab.addEventListener('click', () => {
+			const id = tab.dataset.seasonTab!;
+			showSeason(id);
+			// Keeps the season in the URL so a link opens the same team.
+			const url = new URL(location.href);
+			if (id === tabs[0].dataset.seasonTab) url.searchParams.delete('season');
+			else url.searchParams.set('season', id);
+			history.replaceState(null, '', url);
+		}),
+	);
+	search.addEventListener('input', applyFilters);
+	department.addEventListener('change', applyFilters);
+
+	// Also covers field values the browser restores on reload without firing input events.
+	showSeason(new URLSearchParams(location.search).get('season') ?? tabs[0].dataset.seasonTab!);
+</script>
+
+<style>
+	.intro {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 5rem 1rem 3.5rem;
+		overflow: hidden;
+		text-align: center;
+	}
+
+	.intro__blob {
+		position: absolute;
+		top: -8rem;
+		left: 50%;
+		width: 600px;
+		height: 400px;
+		border-radius: 9999px;
+		background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+		filter: blur(120px);
+		transform: translateX(-50%);
+		pointer-events: none;
+	}
+
+	.intro__pill {
+		position: relative;
+		margin: 0 0 1.5rem;
+		padding: 0.375rem 1rem;
+		border: 1px solid rgb(255 255 255 / 0.15);
+		border-radius: 9999px;
+		font-size: 0.75rem;
+		line-height: 1rem;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: rgb(255 255 255 / 0.7);
+	}
+
+	.intro__pill strong {
+		color: var(--color-white);
+	}
+
+	.intro__title {
+		position: relative;
+		margin: 0 0 1.5rem;
+		font-size: clamp(3rem, 7vw, 5.5rem);
+		font-weight: 900;
+		line-height: 0.9;
+		letter-spacing: -0.025em;
+		text-transform: uppercase;
+		animation: rise-in 1000ms 200ms both;
+	}
+
+	.intro__title--accent {
+		color: var(--color-accent);
+	}
+
+	.filters {
+		position: sticky;
+		top: 5rem;
+		z-index: 40;
+		background: rgb(0 0 44 / 0.9);
+		backdrop-filter: blur(12px);
+		border-block: 1px solid rgb(255 255 255 / 0.1);
+	}
+
+	.filters__inner {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		max-width: 80rem;
+		margin-inline: auto;
+		padding: 1rem;
+	}
+
+	.search,
+	.select {
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+
+	.search {
+		flex-grow: 1;
+	}
+
+	.search svg,
+	.select svg {
+		position: absolute;
+		width: 1rem;
+		height: 1rem;
+		color: rgb(255 255 255 / 0.5);
+		pointer-events: none;
+	}
+
+	.search svg {
+		left: 0.875rem;
+	}
+
+	.select svg {
+		right: 0.875rem;
+	}
+
+	.search input,
+	.select select {
+		width: 100%;
+		height: 2.75rem;
+		background: rgb(255 255 255 / 0.05);
+		border: 1px solid rgb(255 255 255 / 0.15);
+		border-radius: 0.5rem;
+		color: var(--color-white);
+		font: inherit;
+		font-size: 0.9375rem;
+		transition: border-color 150ms;
+	}
+
+	.search input {
+		padding: 0 1rem 0 2.5rem;
+	}
+
+	.search input::placeholder {
+		color: rgb(255 255 255 / 0.4);
+	}
+
+	.select select {
+		padding: 0 2.5rem 0 1rem;
+		appearance: none;
+		cursor: pointer;
+	}
+
+	.select option {
+		background: var(--color-dark-blue);
+	}
+
+	.search input:focus,
+	.select select:focus {
+		outline: none;
+		border-color: var(--color-accent);
+	}
+
+	.timeline {
+		display: flex;
+		flex-shrink: 0;
+		align-self: flex-start;
+		gap: 0.25rem;
+		max-width: 100%;
+		padding: 0.25rem;
+		overflow-x: auto;
+		background: rgb(255 255 255 / 0.05);
+		border: 1px solid rgb(255 255 255 / 0.15);
+		border-radius: 0.5rem;
+		scrollbar-width: none;
+	}
+
+	.timeline__season {
+		flex-shrink: 0;
+		padding: 0 0.875rem;
+		height: 2.125rem;
+		border-radius: 0.375rem;
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: rgb(255 255 255 / 0.5);
+		transition: all 150ms;
+	}
+
+	.timeline__season:hover {
+		color: var(--color-white);
+	}
+
+	.timeline__season[aria-selected='true'] {
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+	}
+
+	.groups {
+		max-width: 80rem;
+		margin-inline: auto;
+		padding: 3rem 1rem 6rem;
+	}
+
+	.season {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+
+	/* Centered label between two hairlines. */
+	.group__label {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		margin: 0 0 2rem;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+		font-weight: 700;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: rgb(255 255 255 / 0.6);
+	}
+
+	.group__label::before,
+	.group__label::after {
+		content: '';
+		flex-grow: 1;
+		border-top: 1px solid rgb(255 255 255 / 0.1);
+	}
+
+	/* Flex instead of grid so a short last row (like the board) sits centered. */
+	.group__grid {
+		--columns: 2;
+		--gap: 0.75rem;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--gap);
+	}
+
+	.group__grid > :global(*) {
+		flex: 0 0 calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns));
+	}
+
+	.empty {
+		margin: 0;
+		padding-block: 4rem;
+		text-align: center;
+		color: rgb(255 255 255 / 0.6);
+	}
+
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	@media (min-width: 640px) {
+		.intro {
+			padding-inline: 1.5rem;
+		}
+
+		.filters__inner {
+			flex-direction: row;
+			padding-inline: 1.5rem;
+		}
+
+		.select {
+			flex-shrink: 0;
+			width: 15rem;
+		}
+
+		.groups {
+			padding-inline: 1.5rem;
+		}
+
+		.group__grid {
+			--columns: 3;
+			--gap: 1rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.filters__inner,
+		.groups {
+			padding-inline: 2rem;
+		}
+
+		.group__grid {
+			--columns: 5;
+			--gap: 1.25rem;
+		}
+	}
+
+	@keyframes rise-in {
+		from {
+			opacity: 0;
+			transform: translateY(2rem);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.intro__title {
+			animation: none;
+		}
+	}
+</style>

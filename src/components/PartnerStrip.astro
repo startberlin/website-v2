@@ -1,0 +1,161 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+// Every file in src/assets/partners is shown; add a name here when the
+// filename doesn't read well as alt text.
+const names: Record<string, string> = {
+	'bits-and-pretzels': 'Bits & Pretzels',
+	'code-university': 'CODE University of Applied Sciences',
+	ewor: 'EWOR',
+	ey: 'EY',
+	'fomo-berlin': 'FOMO Berlin',
+	'humboldt-university': 'Humboldt-Universität zu Berlin',
+	koro: 'KoRo',
+	lanch: 'LANCH',
+	lexmea: 'LexMea',
+	sap: 'SAP',
+	'university-of-st-gallen': 'Universität St.Gallen',
+};
+
+// Optical size corrections in px (default 48): compact square marks need more
+// height to read at the same weight as wide wordmarks, heavy ones less.
+const heights: Record<string, number> = {
+	earlybird: 36,
+	'humboldt-university': 60,
+	lakestar: 60,
+};
+
+const partners = Object.entries(
+	import.meta.glob<{ default: ImageMetadata }>('../assets/partners/*.{svg,png,jpg,jpeg,webp}', {
+		eager: true,
+	}),
+)
+	.map(([path, module]) => {
+		const slug = path.split('/').pop()!.replace(/\.\w+$/, '');
+		const fallback = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+		return { name: names[slug] ?? fallback, logo: module.default, height: heights[slug] ?? 48 };
+	})
+	.sort((a, b) => a.name.localeCompare(b.name));
+
+// Alternate partners between the two rows so both stay roughly the same length.
+const rows = [
+	partners.filter((_, index) => index % 2 === 0),
+	partners.filter((_, index) => index % 2 === 1),
+];
+---
+
+<a href="/partners" class="partners">
+	<div class="partners__rows">
+		{
+			rows.map((row, rowIndex) => (
+				<div class="partners__row">
+					<div
+						class:list={['partners__track', { 'partners__track--reverse': rowIndex === 1 }]}
+						style={`--duration: ${row.length * 3}s`}
+					>
+						{[...row, ...row].map((partner, index) => (
+							<div class="partners__logo" aria-hidden={index >= row.length ? 'true' : undefined}>
+								<Image
+									src={partner.logo}
+									alt={index < row.length ? partner.name : ''}
+									height={partner.height * 2}
+									style={`height: ${partner.height}px`}
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+			))
+		}
+	</div>
+</a>
+
+<style>
+	.partners {
+		display: block;
+		padding-bottom: 4rem;
+		overflow: hidden;
+	}
+
+	.partners__rows {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	/* Fade the logos out at both edges. */
+	.partners__rows::before,
+	.partners__rows::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		z-index: 10;
+		width: 8rem;
+		pointer-events: none;
+	}
+
+	.partners__rows::before {
+		left: 0;
+		background: linear-gradient(to right, var(--color-dark-blue), transparent);
+	}
+
+	.partners__rows::after {
+		right: 0;
+		background: linear-gradient(to left, var(--color-dark-blue), transparent);
+	}
+
+	.partners__track {
+		display: flex;
+		width: max-content;
+		animation: scroll var(--duration) linear infinite;
+	}
+
+	.partners__track--reverse {
+		animation-direction: reverse;
+	}
+
+	.partners__track:hover {
+		animation-play-state: paused;
+	}
+
+	.partners__logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 60px;
+		margin-inline: 2.25rem;
+		opacity: 0.8;
+		transition: all 200ms;
+	}
+
+	.partners__logo:hover {
+		opacity: 1;
+		transform: translateY(-1px);
+	}
+
+	.partners__logo img {
+		width: auto;
+		max-width: 200px;
+		object-fit: contain;
+		/* Render every logo as a white silhouette. */
+		filter: brightness(0) invert(1);
+	}
+
+	@keyframes scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.partners__track {
+			animation: none;
+		}
+	}
+</style>
