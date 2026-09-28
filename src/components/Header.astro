@@ -2,8 +2,8 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 
-// Navigation structure mirrors startmunich.de. Labels and links are placeholders
-// until the START Berlin pages exist.
+// Navigation structure mirrors startmunich.de. Entries whose START Berlin page
+// doesn't exist yet are left out until it does.
 interface NavLink {
 	label: string;
 	href: string;
@@ -23,39 +23,11 @@ const nav: NavEntry[] = [
 	{ label: 'Home', href: '/' },
 	{
 		label: 'Community',
-		items: [
-			{ label: 'About Us', href: '/about-us' },
-			{ label: 'Member Journey', href: '/member-journey' },
-			{ label: 'Our Members', href: '/members' },
-			{ label: 'Our Jobs', href: '/jobs' },
-		],
-	},
-	{ label: 'Our Startups', href: '/startups' },
-	{
-		label: 'Events',
-		items: [{ label: 'All Events', href: '/events' }],
-		secondary: [
-			{ label: 'Europe Embodied', href: 'https://europe-embodied.com/', newTab: true },
-			{ label: 'Munich Hacking Legal', href: 'https://www.hacking-legal.org/', newTab: true },
-			{ label: 'Isar Unfiltered', href: 'https://www.isarunfiltered.eu', newTab: true },
-			{ label: 'Road to START Summit', href: '/eventpage/rtss', newTab: true },
-			{ label: 'Start Hack Munich', href: '/eventpage/rtsh', newTab: true },
-			{ label: 'START Labs', href: '/labs', newTab: true },
-		],
-	},
-	{
-		label: 'Partners',
-		items: [
-			{ label: 'For Partners', href: '/for-partners' },
-			{ label: 'Our Partners', href: '/partners' },
-		],
+		items: [{ label: 'Our Members', href: '/members' }],
 	},
 ];
 
-const ctas: NavLink[] = [
-	{ label: 'Apply Now', href: '/join' },
-	{ label: 'Jobs', href: '/jobs' },
-];
+const ctas: NavLink[] = [{ label: 'Apply Now', href: '/join' }];
 
 const isGroup = (entry: NavEntry): entry is NavGroup => 'items' in entry;
 const linkAttrs = (link: NavLink) =>
