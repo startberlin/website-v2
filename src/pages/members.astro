@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/icons/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import MemberCard from '../components/MemberCard.astro';
 // Snapshot of the Cockpit org chart. Cockpit has no public endpoint yet; once it
@@ -64,9 +65,7 @@ const departments = [
 		<div class="filters__inner">
 			<label class="search">
 				<span class="visually-hidden">Search members</span>
-				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-				</svg>
+				<Icon name="search" />
 				<input type="search" placeholder="Search by name, role…" autocomplete="off" data-member-search />
 			</label>
 
@@ -92,9 +91,7 @@ const departments = [
 					<option value="">All departments</option>
 					{departments.map(([id, name]) => <option value={id}>{name}</option>)}
 				</select>
-				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-				</svg>
+				<Icon name="chevron-down" />
 			</label>
 		</div>
 	</div>

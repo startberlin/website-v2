@@ -1,0 +1,137 @@
+---
+import JobboardLayout from '../../../layouts/JobboardLayout.astro';
+import Icon from '../../../components/icons/Icon.astro';
+import { getJob, CockpitError, publicSiteUrl } from '../../../lib/jobboard/api';
+import {
+	displayDate, employmentLabels, isActive, jobHref, jobPath, jobPosting,
+	remoteLabels, safeJsonLd, salaryLabel, seniorityLabels, sourceFrom, sourceHref,
+} from '../../../lib/jobboard/public-utils';
+import type { PublicJob } from '../../../lib/jobboard/contracts';
+
+export const prerender = false;
+Astro.response.headers.set('Cache-Control', 'no-store');
+const { id = '', slug = '' } = Astro.params;
+const source = sourceFrom(Astro.url.searchParams.get('source'));
+let job: PublicJob | undefined;
+let origin: string | undefined;
+let missing = false;
+try {
+	origin = publicSiteUrl(Astro.url.origin);
+	job = await getJob(id);
+} catch (error) {
+	missing = error instanceof CockpitError && error.code === 'not_found';
+	Astro.response.status = missing ? 404 : 503;
+}
+if (job && slug !== job.slug) return Astro.redirect(jobHref(job, source), 308);
+const active = job ? isActive(job) : false;
+const canonical = job && origin ? new URL(jobPath(job), origin).href : undefined;
+const structured = job && origin ? jobPosting(job, origin) : null;
+const title = job ? `${job.content.title} at ${job.company.name} | START Berlin` : 'Job listing | START Berlin';
+---
+
+<JobboardLayout title={title} description={job?.content.description.slice(0, 160)} canonical={canonical} robots={active ? undefined : 'noindex, follow'}>
+	{structured && <script slot="head" type="application/ld+json" is:inline set:html={safeJsonLd(structured)} />}
+	<a class="jb-link jb-back" href={sourceHref('/jobs', source)}><Icon name="arrow-left" size={18} /> All jobs</a>
+	{job ? (
+		<>
+			{!active && <section class="jb-status" role="status"><h2>This role is no longer open.</h2><p>Browse the current listings for other roles.</p><a class="jb-link" href="/jobs">See open jobs</a></section>}
+			<header class="jb-detail-heading">
+				<p class="jb-kicker jb-detail-company"><span class="jb-detail-company-icon"><Icon name="company" size={24} /></span>{job.company.name}</p>
+				<h1>{job.content.title}</h1>
+				<p>{job.content.locations.join(' · ')} · {remoteLabels[job.content.remoteMode]}</p>
+			</header>
+			<div class="jb-detail-grid">
+				<article class="jb-description">
+					<h2>About the role</h2>
+					{job.content.description.split(/\n\s*\n/).map((paragraph) => <p>{paragraph}</p>)}
+					{job.company.description && <section class="jb-company"><h2>About {job.company.name}</h2><p>{job.company.description}</p><a class="jb-link" href={job.company.website} target="_blank" rel="noopener noreferrer">Company website <Icon name="external-link" size={18} /></a></section>}
+					<section class="jb-sharing" aria-label="Share this role" data-role-url={canonical} data-role-title={`${job.content.title} at ${job.company.name}`}>
+						<h2>Share this role</h2>
+						<div>
+							<a class="jb-link jb-share-action" href={sourceHref(`/jobs/share/${encodeURIComponent(job.id)}/whatsapp`, 'whatsapp')} target="_blank" rel="noopener noreferrer" aria-label="Share this role on WhatsApp"><Icon name="whatsapp" size={20} /> WhatsApp</a>
+							<a class="jb-link jb-share-action" href={sourceHref(`/jobs/share/${encodeURIComponent(job.id)}/linkedin`, 'linkedin')} target="_blank" rel="noopener noreferrer" aria-label="Share this role on LinkedIn"><Icon name="linkedin" size={20} /> LinkedIn</a>
+							<button class="jb-link jb-share-action" type="button" data-share-action="share" aria-label="Share this role"><Icon name="share" size={20} /> Share</button>
+							<button class="jb-link jb-share-action" type="button" data-share-action="copy" aria-label="Copy the link to this role"><Icon name="copy" size={20} /> Copy link</button>
+						</div>
+						<p class="jb-share-status" data-role-share-status aria-live="polite" aria-atomic="true"></p>
+					</section>
+				</article>
+				<aside class="jb-facts" aria-label="Role details">
+					<h2>The details</h2>
+					<dl>
+						<div><dt>Role type</dt><dd>{employmentLabels[job.content.employmentType]}</dd></div>
+						<div><dt>Experience</dt><dd>{seniorityLabels[job.content.seniority]}</dd></div>
+						<div><dt>Compensation</dt><dd>{salaryLabel(job.content)}</dd></div>
+						<div><dt>Languages</dt><dd>{job.content.languages.join(', ')}</dd></div>
+						<div><dt>Eligible countries</dt><dd>{job.content.countryCodes.join(', ')}</dd></div>
+						{job.content.weeklyHours !== null && <div><dt>Hours per week</dt><dd>{job.content.weeklyHours}</dd></div>}
+						{job.content.internshipDurationMonths !== null && <div><dt>Duration</dt><dd>{job.content.internshipDurationMonths} months</dd></div>}
+						<div><dt>Published</dt><dd><time datetime={job.publishedAt}>{displayDate(job.publishedAt)}</time></dd></div>
+						<div><dt>{active ? 'Open until' : 'Listing end date'}</dt><dd><time datetime={job.expiresAt}>{displayDate(job.expiresAt)}</time></dd></div>
+					</dl>
+					{active ? <><a class="jb-button" href={sourceHref(`/jobs/apply/${encodeURIComponent(job.id)}`, source)}>Apply for this role <Icon name="arrow-up-right" size={18} /></a><p class="jb-apply-note">Continue to the employer's application page.</p></> : <p class="jb-apply-note">Applications through this listing are closed.</p>}
+				</aside>
+			</div>
+		</>
+	) : (
+		<section class="jb-status" role="status"><h1>{missing ? 'This listing could not be found.' : 'This role could not be loaded.'}</h1><p>{missing ? 'Browse the current openings.' : 'Please try again shortly.'}</p><a class="jb-button" href={missing ? '/jobs' : Astro.url.pathname}>{missing ? 'All jobs' : 'Try again'}</a></section>
+	)}
+</JobboardLayout>
+
+<script>
+	import { copyRoleLink, shareRole } from '../../../lib/jobboard/share';
+
+	document.querySelectorAll<HTMLElement>('[data-role-url]').forEach((section) => {
+		const buttons = section.querySelectorAll<HTMLButtonElement>('[data-share-action]');
+		const status = section.querySelector<HTMLElement>('[data-role-share-status]');
+		let busy = false;
+		buttons.forEach((button) => {
+			button.addEventListener('click', async () => {
+				const url = section.dataset.roleUrl;
+				if (busy || !url) return;
+				busy = true;
+				section.setAttribute('aria-busy', 'true');
+				buttons.forEach((control) => { control.disabled = true; });
+				try {
+					const copying = button.dataset.shareAction === 'copy';
+					const result = copying
+						? await copyRoleLink(url, navigator)
+						: await shareRole({ title: section.dataset.roleTitle ?? document.title, url }, navigator);
+					if (status && result !== 'cancelled') {
+						status.textContent = result === 'copied' ? 'Link copied.'
+							: result === 'shared' ? 'Share options opened.'
+								: `${copying ? 'Could not copy the link.' : 'Could not share this role.'} Copy the page address instead.`;
+					}
+				} finally {
+					busy = false;
+					section.removeAttribute('aria-busy');
+					buttons.forEach((control) => { control.disabled = false; });
+				}
+			});
+		});
+	});
+</script>
+
+<style>
+	.jb-back { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 2.5rem; }
+	.jb-detail-heading { padding-block: 1.5rem 3rem; }
+	.jb-detail-heading .jb-detail-company { display: flex; align-items: center; gap: .875rem; }
+	.jb-detail-company-icon { display: inline-flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; flex-shrink: 0; border: 1px solid var(--jb-line); border-radius: .625rem; color: var(--color-accent); background: var(--jb-surface); }
+	.jb-detail-heading h1 { max-width: 52rem; margin: .75rem 0 1rem; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; font-weight: 800; letter-spacing: -.035em; }
+	.jb-detail-heading > p:last-child { color: rgb(255 255 255 / .75); }
+	.jb-detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: 4rem; }
+	.jb-description { min-width: 0; }
+	.jb-description h2, .jb-facts h2 { font-size: 1.125rem; margin: 0 0 1.5rem; }
+	.jb-description p { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.8; color: rgb(255 255 255 / .8); margin: 0 0 1.5rem; }
+	.jb-company, .jb-sharing { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgb(255 255 255 / .15); }
+	.jb-sharing > div { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+	.jb-share-action { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding-block: .5rem; }
+	.jb-share-action:disabled { opacity: .55; cursor: wait; }
+	.jb-sharing .jb-share-status { font-size: .875rem; min-height: 1.5em; margin-top: 1rem; }
+	.jb-facts { border-top: 1px solid rgb(255 255 255 / .15); padding-top: 1.5rem; }
+	.jb-facts dl { display: grid; gap: 1.25rem; margin: 0 0 2rem; }
+	.jb-facts dt { font-size: .8125rem; color: rgb(255 255 255 / .65); }
+	.jb-facts dd { margin: .375rem 0 0; overflow-wrap: anywhere; }
+	.jb-apply-note { font-size: .8125rem; line-height: 1.6; color: rgb(255 255 255 / .7); }
+	@media (max-width: 800px) { .jb-detail-grid { grid-template-columns: 1fr; gap: 2.5rem; } .jb-facts dl { grid-template-columns: repeat(2, minmax(0, 1fr)); } .jb-detail-heading { padding-bottom: 2rem; } }
+</style>

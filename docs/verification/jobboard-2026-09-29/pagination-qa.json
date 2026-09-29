@@ -1,0 +1,60 @@
+{
+  "runtime": "Built website v2 at http://127.0.0.1:4392/jobs, fixture API on 4391; no database records changed",
+  "fictionalRoles": 237,
+  "firstPage": {
+    "roles": 25,
+    "range": [
+      1,
+      25
+    ],
+    "previousDisabled": true
+  },
+  "nextPage": {
+    "urlPage": 2,
+    "roles": 25,
+    "firstRole": 26
+  },
+  "lastPage": {
+    "urlPage": 10,
+    "roles": 12,
+    "range": [
+      226,
+      237
+    ],
+    "nextDisabled": true
+  },
+  "reloadPreservesPage": true,
+  "browserBackRestoresPage": true,
+  "roleFilterResetsPage": {
+    "type": "working_student",
+    "rolesTotal": 118,
+    "page": 1,
+    "rolesVisible": 25
+  },
+  "clearFiltersResetsPage": true,
+  "outOfRangePage999": "Safely displays clamped page 10, with 12 roles and disabled Next; raw URL remains page=999 until navigation",
+  "desktopWidth": 1374,
+  "mobileWidth": 360,
+  "noHorizontalOverflow": true,
+  "oneVisibleAriaCurrentPerWidth": true,
+  "mobileControlTarget": "44 x 44 CSS px",
+  "hover": "Source CSS confirmed: enabled buttons use cyan --color-accent background/border on hover. Native pointer hover not exercised.",
+  "browserConsoleErrorsOrWarnings": 0,
+  "viewportReset": true,
+  "temporaryQaTabClosed": true,
+  "mainPreviewUntouched": true,
+  "screenshots": [
+    "pagination-desktop.png",
+    "pagination-mobile.png"
+  ],
+  "testSuite": {
+    "passed": 47,
+    "failed": 0
+  },
+  "astroCheck": {
+    "errors": 0,
+    "warnings": 0,
+    "existingDeprecationHints": 3
+  },
+  "build": "passed, separate .astro/jobboard-build output"
+}

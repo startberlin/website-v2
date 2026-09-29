@@ -1,0 +1,18 @@
+---
+import JobboardLayout from '../../layouts/JobboardLayout.astro';
+import { SubmissionForm } from '../../components/jobboard/SubmissionForm';
+
+export const prerender = false;
+Astro.response.headers.set('Cache-Control', 'no-store');
+---
+
+<JobboardLayout title="Post a role | START Berlin" robots="noindex, follow">
+	<header class="jb-intro">
+		<div>
+			<h1 class="jb-page-heading">Post a role</h1>
+			<p class="jb-intro-text">Share an opening with the START network. We will review your role and contact you to agree on publication terms.</p>
+		</div>
+		<a class="jb-link" href="/jobs">All jobs <span aria-hidden="true">↗</span></a>
+	</header>
+	<SubmissionForm client:load />
+</JobboardLayout>

@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/icons/Icon.astro';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import groupPhoto from '../assets/hero/hero-1.jpg';
@@ -173,9 +174,7 @@ const initials = (name: string) =>
 				{
 					benefits.map((benefit) => (
 						<li class="benefits__item">
-							<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-							</svg>
+							<Icon name="chevron-right" />
 							{benefit}
 						</li>
 					))
@@ -201,9 +200,7 @@ const initials = (name: string) =>
 					requirements.map((requirement) => (
 						<li class="checklist__item">
 							<span class="checklist__icon" aria-hidden="true">
-								<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-								</svg>
+								<Icon name="check" stroke-width={3} />
 							</span>
 							{requirement}
 						</li>

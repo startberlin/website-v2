@@ -1,0 +1,31 @@
+---
+import JobboardLayout from '../../layouts/JobboardLayout.astro';
+export const prerender = false;
+---
+
+<JobboardLayout title="Jobboard privacy | START Berlin" robots="noindex, follow">
+	<header class="jb-intro"><div><p class="jb-kicker">START BERLIN</p><h1 class="jb-page-heading">Jobboard privacy</h1><p class="jb-intro-text">How this jobboard handles listings and submissions.</p></div></header>
+	<article class="jb-privacy">
+		<h2>Who operates this jobboard</h2>
+		<p>START Berlin e.V., Luisenstraße 53, c/o HU-Gründerhaus, 10117 Berlin, Germany. For questions about your data, contact <a href="mailto:vorstand@start-berlin.com">vorstand@start-berlin.com</a>. Our <a href="https://www.start-berlin.com/legal/legal-notice.html">legal notice</a> and <a href="https://www.start-berlin.com/legal/privacy.html">general privacy information</a> provide further details.</p>
+		<h2>Browsing roles</h2>
+		<p>You can browse without a START account. This jobboard uses no analytics cookies, browser storage identifiers or advertising trackers. Optional request measurement is disabled in this integration.</p>
+		<p>The hosting provider processes requests needed to serve the website. Hosting and security logs are separate from jobboard analytics. See START's <a href="https://www.start-berlin.com/legal/privacy.html">general privacy information</a> for further details.</p>
+		<h2>Submitting a role</h2>
+		<p>We store the company and job details you submit, your contact details and your permission to publish. START uses this information to review the role and communicate with you about publication terms, including any agreed referral-based fee. Submissions remain private until reviewed; your contact details are excluded from published job listings.</p>
+		<p>Submissions use temporary rate controls and a hidden field to reduce automated abuse. These controls are separate from analytics. Contact START to request access, correction or deletion of your submission data.</p>
+		<p>The server processes connection data to deliver pages and protect the service. Submission controls retain a hashed network address in temporary memory for up to 15 minutes. Our stated basis for delivery and abuse prevention is legitimate interest under Article 6(1)(f) GDPR. Contact details are used to review company enquiries and coordinate publication under the same basis; where you personally request a contract, Article 6(1)(b) GDPR applies. START deletes information when no longer needed, unless retention is legally required.</p>
+		<h2>Applications and sharing</h2>
+		<p>Applying takes you to the employer's approved application destination. That provider's privacy information applies there. This jobboard does not collect candidate documents or track whether you complete an application.</p>
+		<p>WhatsApp and LinkedIn sharing links take you to those services. Copying a link does not send a sharing event.</p>
+		<h2>Your choices and rights</h2>
+		<p>You may request access, correction, deletion, restriction or portability where applicable, and object to processing based on legitimate interests. Contact <a href="mailto:vorstand@start-berlin.com">vorstand@start-berlin.com</a>. You can also complain to the <a href="https://www.datenschutz-berlin.de/">Berlin Commissioner for Data Protection and Freedom of Information</a>.</p>
+	</article>
+</JobboardLayout>
+
+<style>
+	.jb-privacy { max-width: 48rem; }
+	.jb-privacy h2 { font-size: 1.25rem; margin: 2.5rem 0 1rem; }
+	.jb-privacy p { font-size: 1rem; line-height: 1.8; color: rgb(255 255 255 / .8); }
+	.jb-privacy a { color: var(--color-accent); text-decoration: underline; text-underline-offset: .2em; }
+</style>

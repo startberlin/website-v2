@@ -1,0 +1,35 @@
+---
+import JobboardLayout from '../../layouts/JobboardLayout.astro';
+import JobboardHero from '../../components/jobboard/JobboardHero.astro';
+import { JobBrowserIsland } from '../../components/jobboard/JobBrowserIsland';
+import { summarizeJob } from '../../components/jobboard/JobRow';
+import { getJobs, publicSiteUrl } from '../../lib/jobboard/api';
+import { isActive, sourceFrom } from '../../lib/jobboard/public-utils';
+import type { PublicJob } from '../../lib/jobboard/contracts';
+
+export const prerender = false;
+Astro.response.headers.set('Cache-Control', 'no-store');
+let jobs: PublicJob[] | null = null;
+let canonical: string | undefined;
+try {
+	canonical = new URL('/jobs', publicSiteUrl(Astro.url.origin)).href;
+	jobs = (await getJobs()).filter((job) => isActive(job))
+		.sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+} catch {
+	Astro.response.status = 503;
+}
+const source = sourceFrom(Astro.url.searchParams.get('source'));
+---
+
+<JobboardLayout canonical={canonical} robots={jobs === null ? 'noindex, nofollow' : undefined}>
+	<JobboardHero slot="hero" />
+	{jobs === null ? (
+		<section class="jb-status" role="status">
+			<h2>Jobs could not be loaded.</h2>
+			<p>Please try again shortly.</p>
+			<a class="jb-button" href="/jobs">Try again</a>
+		</section>
+	) : (
+		<JobBrowserIsland jobs={jobs.map(summarizeJob)} initialSource={source} serverSearch={Astro.url.search} client:load />
+	)}
+</JobboardLayout>

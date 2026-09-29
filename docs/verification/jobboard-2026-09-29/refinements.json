@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-29",
+  "branch": "feature/jobboard-integration",
+  "tests": {
+    "passed": 47,
+    "failed": 0
+  },
+  "astroCheck": {
+    "errors": 0,
+    "warnings": 0,
+    "existingDeprecationHints": 3
+  },
+  "build": "passed, separate .astro/jobboard-build output",
+  "contract": "Cockpit, standalone public and website v2 API v1 match exactly",
+  "jobsWidths": [
+    1280,
+    768,
+    360
+  ],
+  "countryPicker": {
+    "desktop": "passed",
+    "mobileCssWidth": 360,
+    "checks": [
+      "name search",
+      "multiple selections",
+      "removable chips",
+      "keyboard open",
+      "Escape focus return",
+      "empty-country validation",
+      "long-name fit"
+    ],
+    "consoleErrors": 0
+  },
+  "backendCommercialAgreementEnforcement": false,
+  "externalSharesSent": false,
+  "preview": "running, website v2 4321, local Cockpit 3011",
+  "screenshots": [
+    "hero-and-filters.jpg",
+    "country-picker.jpg",
+    "pagination-desktop.png",
+    "pagination-mobile.png"
+  ],
+  "pagination": {
+    "pageSize": 25,
+    "urlState": true,
+    "filterReset": true,
+    "fixtureRoles": 237,
+    "evidence": "pagination-qa.json"
+  }
+}
