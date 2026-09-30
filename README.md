@@ -1,6 +1,6 @@
 # START Berlin website v2
 
-Work in progress on `feature/jobboard-integration`, based on the existing Astro website. The branch integrates the public Jobboard at `/jobs` with Cockpit's editorial backend. Local verification does not establish production deployment or release readiness.
+Development continues on `main`, based on the existing Astro website. The Cockpit-backed Jobboard and member-directory improvements were merged through [PR #1](https://github.com/startberlin/website-v2/pull/1) on 30 September 2026. The source now includes shared photo heroes and researched member profiles. See [implementation notes and verification](docs/members-and-heroes.md). Production configuration remains part of the release scope below.
 
 Home, Members and Join remain prerendered. Jobboard listings and details render on demand through the Node adapter. Employer submissions go into Cockpit's private review queue. The public website has no database connection and keeps service keys on the server. Shared Astro/React icons are used across the website.
 
