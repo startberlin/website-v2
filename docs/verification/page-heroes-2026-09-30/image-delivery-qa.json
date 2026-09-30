@@ -1,0 +1,71 @@
+{
+  "variants": [
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1080&h=492&f=webp",
+      "status": 200,
+      "bytes": 61992,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1600&h=729&f=webp",
+      "status": 200,
+      "bytes": 112300,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=2400&h=1093&f=webp",
+      "status": 200,
+      "bytes": 224032,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=640&h=291&f=webp",
+      "status": 200,
+      "bytes": 28156,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=1080&h=670&f=webp",
+      "status": 200,
+      "bytes": 51620,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=1600&h=992&f=webp",
+      "status": 200,
+      "bytes": 92338,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=2400&h=1488&f=webp",
+      "status": 200,
+      "bytes": 193742,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=640&h=397&f=webp",
+      "status": 200,
+      "bytes": 25552,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fjobboard%2Fcompany-visit.webp%3ForigWidth%3D1200%26origHeight%3D900%26origFormat%3Dwebp&w=1080&h=810&f=webp",
+      "status": 200,
+      "bytes": 66022,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fjobboard%2Fcompany-visit.webp%3ForigWidth%3D1200%26origHeight%3D900%26origFormat%3Dwebp&w=1200&h=900&f=webp",
+      "status": 200,
+      "bytes": 103038,
+      "contentType": "image/webp"
+    },
+    {
+      "url": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fjobboard%2Fcompany-visit.webp%3ForigWidth%3D1200%26origHeight%3D900%26origFormat%3Dwebp&w=640&h=480&f=webp",
+      "status": 200,
+      "bytes": 31506,
+      "contentType": "image/webp"
+    }
+  ],
+  "passed": true
+}

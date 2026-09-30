@@ -1,0 +1,466 @@
+{
+  "date": "2026-09-30",
+  "pages": {
+    "members": [
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 360,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=640&h=397&f=webp",
+        "imageNaturalWidth": 320,
+        "liveCount": "45 members",
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Meet the team",
+        "titleClipped": false,
+        "titleFont": "40px",
+        "viewport": {
+          "height": 900,
+          "width": 320
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 360,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=640&h=397&f=webp",
+        "imageNaturalWidth": 360,
+        "liveCount": "45 members",
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Meet the team",
+        "titleClipped": false,
+        "titleFont": "40px",
+        "viewport": {
+          "height": 900,
+          "width": 360
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 360,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=640&h=397&f=webp",
+        "imageNaturalWidth": 390,
+        "liveCount": "45 members",
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Meet the team",
+        "titleClipped": false,
+        "titleFont": "40px",
+        "viewport": {
+          "height": 900,
+          "width": 390
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 400,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=1600&h=992&f=webp",
+        "imageNaturalWidth": 768,
+        "liveCount": "45 members",
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Meet the team",
+        "titleClipped": false,
+        "titleFont": "53.7727px",
+        "viewport": {
+          "height": 900,
+          "width": 768
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 400,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=1600&h=992&f=webp",
+        "imageNaturalWidth": 1280,
+        "liveCount": "45 members",
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Meet the team",
+        "titleClipped": false,
+        "titleFont": "88px",
+        "viewport": {
+          "height": 900,
+          "width": 1280
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 400,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-3.jpg%3ForigWidth%3D2400%26origHeight%3D1488%26origFormat%3Djpg&w=1600&h=992&f=webp",
+        "imageNaturalWidth": 1440,
+        "liveCount": "45 members",
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Meet the team",
+        "titleClipped": false,
+        "titleFont": "88px",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      }
+    ],
+    "home": [
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 820,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1600&h=729&f=webp",
+        "imageNaturalWidth": 320,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Student-led.Founder-minded.",
+        "titleClipped": false,
+        "titleFont": "32px",
+        "viewport": {
+          "height": 900,
+          "width": 320
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 820,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1600&h=729&f=webp",
+        "imageNaturalWidth": 360,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Student-led.Founder-minded.",
+        "titleClipped": false,
+        "titleFont": "32px",
+        "viewport": {
+          "height": 900,
+          "width": 360
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 820,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1600&h=729&f=webp",
+        "imageNaturalWidth": 390,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Student-led.Founder-minded.",
+        "titleClipped": false,
+        "titleFont": "32px",
+        "viewport": {
+          "height": 900,
+          "width": 390
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 820,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1600&h=729&f=webp",
+        "imageNaturalWidth": 768,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Student-led.Founder-minded.",
+        "titleClipped": false,
+        "titleFont": "57.6136px",
+        "viewport": {
+          "height": 900,
+          "width": 768
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 820,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1600&h=729&f=webp",
+        "imageNaturalWidth": 1280,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Student-led.Founder-minded.",
+        "titleClipped": false,
+        "titleFont": "96px",
+        "viewport": {
+          "height": 900,
+          "width": 1280
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 820,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1600&h=729&f=webp",
+        "imageNaturalWidth": 1440,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Student-led.Founder-minded.",
+        "titleClipped": false,
+        "titleFont": "104px",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      }
+    ],
+    "join": [
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 479.382080078125,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=640&h=291&f=webp",
+        "imageNaturalWidth": 320,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "How to joinSTART Berlin",
+        "titleClipped": false,
+        "titleFont": "40px",
+        "viewport": {
+          "height": 900,
+          "width": 320
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 452.9829406738281,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=640&h=291&f=webp",
+        "imageNaturalWidth": 360,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "How to joinSTART Berlin",
+        "titleClipped": false,
+        "titleFont": "40px",
+        "viewport": {
+          "height": 900,
+          "width": 360
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 452.9829406738281,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=640&h=291&f=webp",
+        "imageNaturalWidth": 390,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "How to joinSTART Berlin",
+        "titleClipped": false,
+        "titleFont": "40px",
+        "viewport": {
+          "height": 900,
+          "width": 390
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 436.0582275390625,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1080&h=492&f=webp",
+        "imageNaturalWidth": 639,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "How to joinSTART Berlin",
+        "titleClipped": false,
+        "titleFont": "44.7364px",
+        "viewport": {
+          "height": 900,
+          "width": 639
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 400.5965881347656,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1080&h=492&f=webp",
+        "imageNaturalWidth": 640,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "How to joinSTART Berlin",
+        "titleClipped": false,
+        "titleFont": "44.8px",
+        "viewport": {
+          "height": 900,
+          "width": 640
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 418.5369262695313,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1080&h=492&f=webp",
+        "imageNaturalWidth": 768,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "How to joinSTART Berlin",
+        "titleClipped": false,
+        "titleFont": "53.7727px",
+        "viewport": {
+          "height": 900,
+          "width": 768
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 486.9886169433594,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1600&h=729&f=webp",
+        "imageNaturalWidth": 1280,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "How to joinSTART Berlin",
+        "titleClipped": false,
+        "titleFont": "88px",
+        "viewport": {
+          "height": 900,
+          "width": 1280
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 486.9886169433594,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fhero%2Fhero-1.jpg%3ForigWidth%3D2400%26origHeight%3D1093%26origFormat%3Djpg&w=1600&h=729&f=webp",
+        "imageNaturalWidth": 1440,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "How to joinSTART Berlin",
+        "titleClipped": false,
+        "titleFont": "88px",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      }
+    ],
+    "jobs": [
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 360,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fjobboard%2Fcompany-visit.webp%3ForigWidth%3D1200%26origHeight%3D900%26origFormat%3Dwebp&w=640&h=480&f=webp",
+        "imageNaturalWidth": 320,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Jobs",
+        "titleClipped": false,
+        "titleFont": "40px",
+        "viewport": {
+          "height": 900,
+          "width": 320
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 360,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fjobboard%2Fcompany-visit.webp%3ForigWidth%3D1200%26origHeight%3D900%26origFormat%3Dwebp&w=640&h=480&f=webp",
+        "imageNaturalWidth": 360,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Jobs",
+        "titleClipped": false,
+        "titleFont": "40px",
+        "viewport": {
+          "height": 900,
+          "width": 360
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 360,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fjobboard%2Fcompany-visit.webp%3ForigWidth%3D1200%26origHeight%3D900%26origFormat%3Dwebp&w=640&h=480&f=webp",
+        "imageNaturalWidth": 390,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Jobs",
+        "titleClipped": false,
+        "titleFont": "40px",
+        "viewport": {
+          "height": 900,
+          "width": 390
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 400,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fjobboard%2Fcompany-visit.webp%3ForigWidth%3D1200%26origHeight%3D900%26origFormat%3Dwebp&w=1200&h=900&f=webp",
+        "imageNaturalWidth": 768,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Jobs",
+        "titleClipped": false,
+        "titleFont": "53.7727px",
+        "viewport": {
+          "height": 900,
+          "width": 768
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 400,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fjobboard%2Fcompany-visit.webp%3ForigWidth%3D1200%26origHeight%3D900%26origFormat%3Dwebp&w=1200&h=900&f=webp",
+        "imageNaturalWidth": 1280,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Jobs",
+        "titleClipped": false,
+        "titleFont": "88px",
+        "viewport": {
+          "height": 900,
+          "width": 1280
+        }
+      },
+      {
+        "copyOverflow": false,
+        "heroCount": 1,
+        "heroHeight": 400,
+        "heroImageLoaded": true,
+        "imageCurrentSrc": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fjobboard%2Fcompany-visit.webp%3ForigWidth%3D1200%26origHeight%3D900%26origFormat%3Dwebp&w=1200&h=900&f=webp",
+        "imageNaturalWidth": 1440,
+        "memberCountInHero": false,
+        "pageOverflow": false,
+        "title": "Jobs",
+        "titleClipped": false,
+        "titleFont": "88px",
+        "viewport": {
+          "height": 900,
+          "width": 1440
+        }
+      }
+    ]
+  },
+  "jobListValidation": {
+    "state": "API unavailable",
+    "reason": "COCKPIT_API_URL and JOBBOARD_READ_API_KEY absent from local preview environment",
+    "heroVerified": true
+  }
+}

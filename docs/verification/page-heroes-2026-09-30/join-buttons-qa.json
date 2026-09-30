@@ -1,0 +1,194 @@
+[
+  {
+    "buttons": [
+      {
+        "height": 50,
+        "href": "https://forms.start-berlin.com/talent-pool",
+        "text": "Join the talent pool",
+        "width": 288.0113525390625,
+        "x": 15.994318008422852,
+        "y": 415.390625
+      },
+      {
+        "height": 50,
+        "href": "#process",
+        "text": "See the process",
+        "width": 288.0113525390625,
+        "x": 15.994318008422852,
+        "y": 477.3863525390625
+      }
+    ],
+    "mobile": true,
+    "overflow": false,
+    "statsClipped": false,
+    "viewport": 320
+  },
+  {
+    "buttons": [
+      {
+        "height": 50,
+        "href": "https://forms.start-berlin.com/talent-pool",
+        "text": "Join the talent pool",
+        "width": 328.0113525390625,
+        "x": 15.994318008422852,
+        "y": 388.991455078125
+      },
+      {
+        "height": 50,
+        "href": "#process",
+        "text": "See the process",
+        "width": 328.0113525390625,
+        "x": 15.994318008422852,
+        "y": 450.9872131347656
+      }
+    ],
+    "mobile": true,
+    "overflow": false,
+    "statsClipped": false,
+    "viewport": 360
+  },
+  {
+    "buttons": [
+      {
+        "height": 50,
+        "href": "https://forms.start-berlin.com/talent-pool",
+        "text": "Join the talent pool",
+        "width": 358.0113525390625,
+        "x": 15.994318008422852,
+        "y": 388.991455078125
+      },
+      {
+        "height": 50,
+        "href": "#process",
+        "text": "See the process",
+        "width": 358.0113525390625,
+        "x": 15.994318008422852,
+        "y": 450.9872131347656
+      }
+    ],
+    "mobile": true,
+    "overflow": false,
+    "statsClipped": false,
+    "viewport": 390
+  },
+  {
+    "buttons": [
+      {
+        "height": 50,
+        "href": "https://forms.start-berlin.com/talent-pool",
+        "text": "Join the talent pool",
+        "width": 511.9957275390625,
+        "x": 15.994318008422852,
+        "y": 372.0667419433594
+      },
+      {
+        "height": 50,
+        "href": "#process",
+        "text": "See the process",
+        "width": 511.9957275390625,
+        "x": 15.994318008422852,
+        "y": 434.0624694824219
+      }
+    ],
+    "mobile": true,
+    "overflow": false,
+    "statsClipped": false,
+    "viewport": 639
+  },
+  {
+    "buttons": [
+      {
+        "height": 49.815338134765625,
+        "href": "https://forms.start-berlin.com/talent-pool",
+        "text": "Join the talent pool",
+        "width": 219.3607940673828,
+        "x": 23.998579025268555,
+        "y": 386.78265380859375
+      },
+      {
+        "height": 49.815338134765625,
+        "href": "#process",
+        "text": "See the process",
+        "width": 179.2755584716797,
+        "x": 255.3551025390625,
+        "y": 386.78265380859375
+      }
+    ],
+    "mobile": false,
+    "overflow": false,
+    "statsClipped": false,
+    "viewport": 640
+  },
+  {
+    "buttons": [
+      {
+        "height": 49.815338134765625,
+        "href": "https://forms.start-berlin.com/talent-pool",
+        "text": "Join the talent pool",
+        "width": 219.3607940673828,
+        "x": 23.998579025268555,
+        "y": 404.7229919433594
+      },
+      {
+        "height": 49.815338134765625,
+        "href": "#process",
+        "text": "See the process",
+        "width": 179.2755584716797,
+        "x": 255.3551025390625,
+        "y": 404.7229919433594
+      }
+    ],
+    "mobile": false,
+    "overflow": false,
+    "statsClipped": false,
+    "viewport": 768
+  },
+  {
+    "buttons": [
+      {
+        "height": 49.815338134765625,
+        "href": "https://forms.start-berlin.com/talent-pool",
+        "text": "Join the talent pool",
+        "width": 219.3607940673828,
+        "x": 31.995737075805664,
+        "y": 473.1747131347656
+      },
+      {
+        "height": 49.815338134765625,
+        "href": "#process",
+        "text": "See the process",
+        "width": 179.2755584716797,
+        "x": 263.3522644042969,
+        "y": 473.1747131347656
+      }
+    ],
+    "mobile": false,
+    "overflow": false,
+    "statsClipped": false,
+    "viewport": 1280
+  },
+  {
+    "buttons": [
+      {
+        "height": 49.815338134765625,
+        "href": "https://forms.start-berlin.com/talent-pool",
+        "text": "Join the talent pool",
+        "width": 219.3607940673828,
+        "x": 111.99573516845705,
+        "y": 473.1747131347656
+      },
+      {
+        "height": 49.815338134765625,
+        "href": "#process",
+        "text": "See the process",
+        "width": 179.2755584716797,
+        "x": 343.3522644042969,
+        "y": 473.1747131347656
+      }
+    ],
+    "mobile": false,
+    "overflow": false,
+    "statsClipped": false,
+    "viewport": 1440
+  }
+]

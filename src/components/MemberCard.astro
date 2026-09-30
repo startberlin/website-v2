@@ -1,31 +1,55 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './icons/Icon.astro';
+import { memberLinkedinUrl } from '../lib/member-profiles';
+
 interface Props {
 	name: string;
 	role?: string;
 	batch?: number;
 	// Label for the chip: the department name, or "Board".
 	group: string;
+	linkedin?: string;
+	portrait?: ImageMetadata;
 }
 
-const { name, role, batch, group } = Astro.props;
+const { name, role, batch, group, linkedin, portrait } = Astro.props;
+const linkedinUrl = linkedin ? memberLinkedinUrl(linkedin, name) : undefined;
+const roleLabel = role ?? 'Member';
+const lastSpace = roleLabel.lastIndexOf(' ');
+const rolePrefix = roleLabel.slice(0, lastSpace + 1);
+const roleLastWord = roleLabel.slice(lastSpace + 1);
 
 // First and last name, so "Rocco Yohji Matthew Krippendorff" becomes "RK".
 const parts = name.split(/\s+/);
 const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
-const search = [name, role, group, batch && `batch #${batch}`].filter(Boolean).join(' ').toLowerCase();
+const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boolean).join(' ').toLowerCase();
 ---
 
 <article class="card" data-member data-search={search}>
 	<div class="card__top">
-		<div class="card__avatar" aria-hidden="true">{initials}</div>
+		<div class="card__portrait-wrap">
+			<div class="card__avatar">
+				{portrait ? (
+					<Image src={portrait} alt={`Portrait of ${name}`} width={96} height={96} widths={[96, 192]} sizes="96px" format="webp" loading="lazy" decoding="async" class="card__portrait" />
+				) : <span aria-hidden="true">{initials}</span>}
+			</div>
+			<div class="card__badge-row">
+				<span class="card__chip">{group}</span>
+			</div>
+		</div>
 	</div>
 	<div class="card__body">
 		<h3 class="card__name">{name}</h3>
-		<p class="card__role">{role ?? 'Member'}</p>
+		<p class="card__role">
+			{rolePrefix}<span class="card__role-tail">{roleLastWord}{' '}{linkedinUrl && (
+				<a class="card__linkedin" href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} on LinkedIn (opens in a new tab)`} title="View LinkedIn profile">
+					<Icon name="linkedin" size={14} />
+				</a>
+			)}</span>
+		</p>
 		{batch && <p class="card__batch">Batch #{batch}</p>}
-		<div class="card__footer">
-			<span class="card__chip">{group}</span>
-		</div>
 	</div>
 </article>
 
@@ -37,7 +61,7 @@ const search = [name, role, group, batch && `batch #${batch}`].filter(Boolean).j
 		background: rgb(255 255 255 / 0.03);
 		border: 1px solid rgb(255 255 255 / 0.1);
 		border-radius: 0.75rem;
-		transition: all 200ms;
+		transition: border-color 200ms, transform 200ms;
 	}
 
 	.card:hover {
@@ -47,9 +71,28 @@ const search = [name, role, group, batch && `batch #${batch}`].filter(Boolean).j
 
 	.card__top {
 		display: flex;
-		justify-content: center;
-		padding: 1.5rem 1rem 1.25rem;
+		flex-direction: column;
+		align-items: center;
+		padding: 1.5rem 0.75rem 1.75rem;
 		background: rgb(255 255 255 / 0.03);
+	}
+
+	.card__portrait-wrap {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	/* Centre one- and two-line badges on the portrait's bottom edge. */
+	.card__badge-row {
+		position: absolute;
+		inset-inline: 0;
+		top: calc(100% - 1.3125rem);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 2.625rem;
 	}
 
 	.card__avatar {
@@ -58,6 +101,8 @@ const search = [name, role, group, batch && `batch #${batch}`].filter(Boolean).j
 		justify-content: center;
 		width: 6rem;
 		height: 6rem;
+		overflow: hidden;
+		flex-shrink: 0;
 		border-radius: 9999px;
 		background: radial-gradient(
 			circle at 30% 25%,
@@ -68,7 +113,13 @@ const search = [name, role, group, batch && `batch #${batch}`].filter(Boolean).j
 		font-size: 1.75rem;
 		font-weight: 900;
 		letter-spacing: 0.025em;
-		transition: all 200ms;
+		transition: background-color 200ms, color 200ms;
+	}
+
+	.card__avatar :global(.card__portrait) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.card:hover .card__avatar {
@@ -93,13 +144,18 @@ const search = [name, role, group, batch && `batch #${batch}`].filter(Boolean).j
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.025em;
+		overflow-wrap: anywhere;
+		text-wrap: balance;
 	}
 
 	.card__role {
 		margin: 0;
+		max-width: calc(100% + 1.5rem);
+		padding-inline: 0.75rem;
 		font-size: 0.8125rem;
 		line-height: 1.25rem;
 		color: rgb(255 255 255 / 0.7);
+		overflow-wrap: anywhere;
 	}
 
 	.card__batch {
@@ -109,32 +165,73 @@ const search = [name, role, group, batch && `batch #${batch}`].filter(Boolean).j
 		color: rgb(255 255 255 / 0.45);
 	}
 
-	/* Pinned to the bottom so chips line up across a row of cards. */
-	.card__footer {
-		margin-top: auto;
-		padding-top: 0.75rem;
+	.card__role-tail {
+		white-space: nowrap;
 	}
 
 	.card__chip {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.375rem;
-		padding: 0.125rem 0.625rem;
-		border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+		min-width: 0;
+		max-width: 100%;
+		padding: 0.25rem 0.625rem;
+		border: 1px solid rgb(255 255 255 / 0.12);
 		border-radius: 9999px;
+		background: color-mix(in srgb, var(--color-dark-blue) 95%, white);
 		font-size: 0.6875rem;
 		line-height: 1rem;
 		font-weight: 700;
 		text-transform: uppercase;
-		letter-spacing: 0.05em;
+		letter-spacing: 0.025em;
+		color: rgb(255 255 255 / 0.65);
+		text-align: center;
+		text-wrap: balance;
+	}
+
+	.card__linkedin {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.75rem;
+		height: 2.75rem;
+		/* Keep the touch target while the small icon fits into the role text. */
+		margin: -0.75rem;
+		margin-inline-start: -0.625rem;
+		vertical-align: middle;
+		flex-shrink: 0;
+		border-radius: 0.25rem;
+		color: rgb(255 255 255 / 0.55);
+		touch-action: manipulation;
+		transition: color 150ms;
+	}
+
+	.card__linkedin:hover {
 		color: var(--color-accent);
 	}
 
-	.card__chip::before {
-		content: '';
-		width: 0.3125rem;
-		height: 0.3125rem;
-		border-radius: 9999px;
-		background: currentColor;
+	.card__linkedin:focus-visible {
+		outline: none;
+	}
+
+	.card__linkedin:focus-visible :global(svg) {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 4px;
+	}
+
+	@media (max-width: 359px) {
+		.card__chip {
+			font-size: 0.625rem;
+			letter-spacing: 0.02em;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.card,
+		.card__avatar,
+		.card__linkedin {
+			transition: none;
+		}
+
+		.card:hover {
+			transform: none;
+		}
 	}
 </style>
