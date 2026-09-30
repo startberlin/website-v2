@@ -4,6 +4,7 @@
 		{
 			"label": "26/27",
 			"snapshotDate": "2026-09-27",
+			"rosterUpdatedAt": "2026-09-30",
 			"board": [
 				{ "name": "Antonia Hill", "role": "President" },
 				{ "name": "Julia Palm", "role": "Vice President" },
@@ -18,7 +19,6 @@
 						{ "name": "Arne Zalikowski", "batch": 10 },
 						{ "name": "Alberto Greene", "batch": 9 },
 						{ "name": "Gabriela Galindo", "batch": 9 },
-						{ "name": "Paul Steinau", "batch": 10 },
 						{ "name": "Ramin von Maydell", "batch": 10 },
 						{ "name": "Viktor Gandl", "batch": 10 },
 						{ "name": "Oliwier Arning", "batch": 9 }
@@ -34,7 +34,6 @@
 						{ "name": "Leonie Sophie Bender", "batch": 10 },
 						{ "name": "Leander Neubronner", "batch": 10 },
 						{ "name": "Vicky Zhou", "batch": 9 },
-						{ "name": "Bo Ehrich", "batch": 10 },
 						{ "name": "Julius Liebl" },
 						{ "name": "Jannis Metrikat", "batch": 9 }
 					]
@@ -46,9 +45,7 @@
 						{ "name": "Robin Lahser", "batch": 10 },
 						{ "name": "Nikolaos Magklis", "batch": 10 },
 						{ "name": "Seoyoung Park", "batch": 10 },
-						{ "name": "Cedrick Manzi", "batch": 10 },
-						{ "name": "Marta Kielpinski", "batch": 10 },
-						{ "name": "Kalina Petrykowska", "batch": 9 }
+						{ "name": "Cedrick Manzi", "batch": 10 }
 					]
 				},
 				{

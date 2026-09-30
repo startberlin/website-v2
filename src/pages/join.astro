@@ -1,6 +1,8 @@
 ---
+import Icon from '../components/icons/Icon.astro';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
 import groupPhoto from '../assets/hero/hero-1.jpg';
 import teamPhoto from '../assets/hero/hero-3.jpg';
 import audiencePhoto from '../assets/hero/hero-4.jpg';
@@ -115,38 +117,24 @@ const initials = (name: string) =>
 ---
 
 <Layout title="How to Join | START Berlin">
-	<section class="hero">
-		<Image
-			src={groupPhoto}
-			alt=""
-			widths={[640, 1080, 1600, 2400]}
-			sizes="100vw"
-			loading="eager"
-			fetchpriority="high"
-			class="hero__image"
-		/>
-		<div class="hero__shade hero__shade--left"></div>
-		<div class="hero__shade hero__shade--bottom"></div>
-
-		<div class="hero__content">
-			<p class:list={['status', { 'status--open': applicationsOpen }]}>
+	<PageHero image={groupPhoto} alt="START Berlin members posing together for a group photo.">
+			<p slot="status" class:list={['status', { 'status--open': applicationsOpen }]}>
 				<span class="status__dot"></span>
 				{applicationsOpen ? 'Applications are open' : 'Applications are closed'}
 			</p>
-			<h1 class="hero__title">
-				<span>How to join</span>
-				<span class="accent">START Berlin</span>
-			</h1>
-			<p class="hero__text">
+			<Fragment slot="title">
+				<span data-hero-line>How to join</span>
+				<span data-hero-line data-hero-accent>START Berlin</span>
+			</Fragment>
+			<Fragment slot="description">
 				Become part of Berlin’s leading student entrepreneurship network and take your first step
 				toward building the future.
-			</p>
-			<div class="actions">
+			</Fragment>
+			<div slot="actions" class="actions actions--hero">
 				<a href={primaryCta.href} class="button button--primary">{primaryCta.label}</a>
 				<a href="#process" class="button button--ghost">See the process</a>
 			</div>
-		</div>
-	</section>
+	</PageHero>
 
 	<div class="stats">
 		{
@@ -173,9 +161,7 @@ const initials = (name: string) =>
 				{
 					benefits.map((benefit) => (
 						<li class="benefits__item">
-							<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-							</svg>
+							<Icon name="chevron-right" />
 							{benefit}
 						</li>
 					))
@@ -201,9 +187,7 @@ const initials = (name: string) =>
 					requirements.map((requirement) => (
 						<li class="checklist__item">
 							<span class="checklist__icon" aria-hidden="true">
-								<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-								</svg>
+								<Icon name="check" stroke-width={3} />
 							</span>
 							{requirement}
 						</li>
@@ -337,18 +321,6 @@ const initials = (name: string) =>
 		color: var(--color-accent);
 	}
 
-	/* Hero */
-
-	.hero {
-		position: relative;
-		display: flex;
-		align-items: flex-end;
-		min-height: calc(85vh - 5rem);
-		min-height: calc(85svh - 5rem);
-		overflow: hidden;
-	}
-
-	.hero__image,
 	.banner__image,
 	.closing__image {
 		position: absolute;
@@ -356,27 +328,6 @@ const initials = (name: string) =>
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-	}
-
-	.hero__shade {
-		position: absolute;
-		inset: 0;
-	}
-
-	.hero__shade--left {
-		background: linear-gradient(to right, rgb(0 0 44 / 0.9), rgb(0 0 44 / 0.6) 45%, transparent);
-	}
-
-	.hero__shade--bottom {
-		background: linear-gradient(to top, var(--color-dark-blue), transparent 40%);
-	}
-
-	.hero__content {
-		position: relative;
-		width: 100%;
-		max-width: 80rem;
-		margin-inline: auto;
-		padding: 4rem 1rem 3rem;
 	}
 
 	.status {
@@ -414,31 +365,11 @@ const initials = (name: string) =>
 		box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 25%, transparent);
 	}
 
-	.hero__title {
-		display: flex;
-		flex-direction: column;
-		margin: 0 0 1.5rem;
-		font-size: clamp(3rem, 8vw, 6.5rem);
-		font-weight: 900;
-		line-height: 0.9;
-		letter-spacing: -0.025em;
-		text-transform: uppercase;
-		animation: rise-in 1000ms 200ms both;
-	}
-
-	.hero__text {
-		max-width: 34rem;
-		margin: 0 0 2rem;
-		font-size: 1.125rem;
-		line-height: 1.625;
-		color: rgb(229 231 235);
-		animation: rise-in 1000ms 400ms both;
-	}
-
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.75rem;
+		margin-top: 2rem;
 	}
 
 	.button {
@@ -477,13 +408,14 @@ const initials = (name: string) =>
 
 	.stats {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		max-width: 80rem;
 		margin-inline: auto;
 		padding: 0 1rem;
 	}
 
 	.stat {
+		min-width: 0;
 		padding: 1.5rem 0.5rem;
 		text-align: center;
 		border-block: 1px solid rgb(255 255 255 / 0.1);
@@ -873,16 +805,11 @@ const initials = (name: string) =>
 	}
 
 	@media (min-width: 640px) {
-		.hero__content,
 		.stats,
 		.section,
 		.banner__content,
 		.closing__grid {
 			padding-inline: 1.5rem;
-		}
-
-		.hero__text {
-			font-size: 1.25rem;
 		}
 
 		.departments,
@@ -891,17 +818,23 @@ const initials = (name: string) =>
 		}
 	}
 
+	@media (max-width: 639.98px) {
+		.actions--hero { display: grid; grid-template-columns: minmax(0, 1fr); }
+		.actions--hero .button { width: 100%; min-height: 3.125rem; }
+		.stat { padding-inline: 0.25rem; }
+		.stat__label { letter-spacing: 0.05em; }
+	}
+
+	@media (max-width: 359px) {
+		.stat__label { font-size: 0.6875rem; }
+	}
+
 	@media (min-width: 1024px) {
-		.hero__content,
 		.stats,
 		.section,
 		.banner__content,
 		.closing__grid {
 			padding-inline: 2rem;
-		}
-
-		.hero__content {
-			padding-bottom: 5rem;
 		}
 
 		.section {
@@ -940,17 +873,4 @@ const initials = (name: string) =>
 		}
 	}
 
-	@keyframes rise-in {
-		from {
-			opacity: 0;
-			transform: translateY(2rem);
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.hero__title,
-		.hero__text {
-			animation: none;
-		}
-	}
 </style>

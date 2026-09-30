@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { getIcon, type IconName } from '../../lib/icons';
+
+interface Props extends Omit<HTMLAttributes<'svg'>, 'viewBox' | 'role' | 'aria-label' | 'aria-hidden' | 'focusable'> {
+	name: IconName;
+	size?: number | string;
+	label?: string;
+}
+
+const { name, size = 24, label, ...attributes } = Astro.props;
+const icon = getIcon(name);
+---
+
+<svg
+	{...attributes}
+	xmlns="http://www.w3.org/2000/svg"
+	width={size}
+	height={size}
+	viewBox={icon.viewBox}
+	fill={icon.fill}
+	stroke={icon.stroke}
+	stroke-width={attributes['stroke-width'] ?? icon.strokeWidth}
+	stroke-linecap="round"
+	stroke-linejoin="round"
+	aria-hidden={label ? undefined : 'true'}
+	aria-label={label}
+	role={label ? 'img' : undefined}
+	focusable="false"
+>
+	{icon.paths.map((d) => <path d={d} />)}
+</svg>

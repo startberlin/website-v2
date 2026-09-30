@@ -1,9 +1,22 @@
 ---
+import Icon from '../components/icons/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import MemberCard from '../components/MemberCard.astro';
-// Snapshot of the Cockpit org chart. Cockpit has no public endpoint yet; once it
-// does, fetch the same shape here instead of importing the file.
+import PageHero from '../components/PageHero.astro';
+import teamPhoto from '../assets/hero/hero-3.jpg';
+import type { ImageMetadata } from 'astro';
+import { memberProfiles } from '../lib/member-profiles';
+// Maintained Cockpit roster snapshot. Season roles stay separate from the
+// shared portraits and public profile links.
 import team from '../data/team.json';
+
+const portraits = import.meta.glob<{ default: ImageMetadata }>('../assets/members/*.webp', { eager: true });
+const profileFor = (name: string) => {
+	const profile = memberProfiles[name];
+	const portrait = profile?.portrait ? portraits[`../assets/members/${profile.portrait}`]?.default : undefined;
+	if (profile?.portrait && !portrait) throw new Error(`Missing portrait for ${name}`);
+	return { linkedin: profile?.linkedin, portrait };
+};
 
 interface Member {
 	name: string;
@@ -54,20 +67,17 @@ const departments = [
 ---
 
 <Layout title="Our Members | START Berlin">
-	<section class="intro">
-		<div class="intro__blob"></div>
-		<p class="intro__pill"><strong data-member-count>{seasons[0].count}</strong> members</p>
-		<h1 class="intro__title">Meet the <span class="intro__title--accent">team</span></h1>
-	</section>
+	<PageHero image={teamPhoto} alt="START Berlin team posing together in START shirts." imagePosition="50% 10%" mobileImagePosition="58% 35%">
+		<Fragment slot="title"><span data-hero-line>Meet the</span> <span data-hero-line data-hero-accent>team</span></Fragment>
+		<Fragment slot="description">The people behind START Berlin. Get to know our board and departments.</Fragment>
+	</PageHero>
 
 	<div class="filters">
 		<div class="filters__inner">
 			<label class="search">
 				<span class="visually-hidden">Search members</span>
-				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-				</svg>
-				<input type="search" placeholder="Search by name, role…" autocomplete="off" data-member-search />
+				<Icon name="search" />
+				<input type="search" name="member-search" placeholder="Search by name or role" autocomplete="off" data-member-search />
 			</label>
 
 			<div class="timeline" role="tablist" aria-label="Season">
@@ -78,6 +88,8 @@ const departments = [
 							role="tab"
 							aria-selected={index === 0 ? 'true' : 'false'}
 							aria-controls={`season-${season.id}`}
+							id={`tab-${season.id}`}
+							tabindex={index === 0 ? 0 : -1}
 							data-season-tab={season.id}
 						>
 							{season.label}
@@ -92,20 +104,22 @@ const departments = [
 					<option value="">All departments</option>
 					{departments.map(([id, name]) => <option value={id}>{name}</option>)}
 				</select>
-				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-				</svg>
+				<Icon name="chevron-down" />
 			</label>
 		</div>
 	</div>
 
 	<div class="groups">
+		<p class="directory-count" aria-live="polite" aria-atomic="true">
+			<span data-member-count>{seasons[0].count}</span> <span data-member-count-label>members</span><span data-member-count-filter hidden> matching your filters</span>
+		</p>
 		{
 			seasons.map((season, index) => (
 				<div
 					class="season"
 					id={`season-${season.id}`}
 					role="tabpanel"
+					aria-labelledby={`tab-${season.id}`}
 					data-season={season.id}
 					data-count={season.count}
 					hidden={index > 0}
@@ -115,7 +129,7 @@ const departments = [
 							<h2 class="group__label">{section.name}</h2>
 							<div class="group__grid">
 								{section.members.map((member) => (
-									<MemberCard name={member.name} role={member.role} batch={member.batch} group={section.name} />
+									<MemberCard name={member.name} role={member.role} batch={member.batch} group={section.name} {...profileFor(member.name)} />
 								))}
 							</div>
 						</section>
@@ -124,7 +138,7 @@ const departments = [
 			))
 		}
 
-		<p class="empty" data-member-empty hidden>No members match your search.</p>
+		<p class="empty" role="status" aria-live="polite" data-member-empty hidden>No members match your search.</p>
 	</div>
 </Layout>
 
@@ -134,6 +148,8 @@ const departments = [
 	const tabs = document.querySelectorAll<HTMLElement>('[data-season-tab]');
 	const panels = document.querySelectorAll<HTMLElement>('[data-season]');
 	const count = document.querySelector<HTMLElement>('[data-member-count]')!;
+	const countLabel = document.querySelector<HTMLElement>('[data-member-count-label]')!;
+	const countFilter = document.querySelector<HTMLElement>('[data-member-count-filter]')!;
 	const empty = document.querySelector<HTMLElement>('[data-member-empty]')!;
 
 	const showSeason = (id: string) => {
@@ -141,14 +157,18 @@ const departments = [
 		if (!panel) return;
 
 		panels.forEach((candidate) => (candidate.hidden = candidate !== panel));
-		tabs.forEach((tab) => tab.setAttribute('aria-selected', String(tab.dataset.seasonTab === id)));
-		count.textContent = panel.dataset.count!;
+		tabs.forEach((tab) => {
+			const selected = tab.dataset.seasonTab === id;
+			tab.setAttribute('aria-selected', String(selected));
+			tab.tabIndex = selected ? 0 : -1;
+		});
 		applyFilters();
 	};
 
 	const applyFilters = () => {
 		const panel = [...panels].find((candidate) => !candidate.hidden)!;
 		const query = search.value.trim().toLowerCase();
+		const visibleNames = new Set<string>();
 		let anyVisible = false;
 
 		panel.querySelectorAll<HTMLElement>('[data-member-group]').forEach((group) => {
@@ -158,6 +178,7 @@ const departments = [
 			group.querySelectorAll<HTMLElement>('[data-member]').forEach((card) => {
 				const match = groupSelected && card.dataset.search!.includes(query);
 				card.hidden = !match;
+				if (match) visibleNames.add(card.querySelector<HTMLHeadingElement>('.card__name')!.textContent!.trim());
 				groupVisible ||= match;
 			});
 
@@ -166,6 +187,9 @@ const departments = [
 		});
 
 		empty.hidden = anyVisible;
+		count.textContent = String(visibleNames.size);
+		countLabel.textContent = visibleNames.size === 1 ? 'member' : 'members';
+		countFilter.hidden = !query && !department.value;
 	};
 
 	tabs.forEach((tab) =>
@@ -183,64 +207,13 @@ const departments = [
 	department.addEventListener('change', applyFilters);
 
 	// Also covers field values the browser restores on reload without firing input events.
-	showSeason(new URLSearchParams(location.search).get('season') ?? tabs[0].dataset.seasonTab!);
+	const initialSeason = new URLSearchParams(location.search).get('season');
+	showSeason([...panels].some((panel) => panel.dataset.season === initialSeason) ? initialSeason! : tabs[0].dataset.seasonTab!);
 </script>
 
 <style>
-	.intro {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 5rem 1rem 3.5rem;
-		overflow: hidden;
-		text-align: center;
-	}
-
-	.intro__blob {
-		position: absolute;
-		top: -8rem;
-		left: 50%;
-		width: 600px;
-		height: 400px;
-		border-radius: 9999px;
-		background: color-mix(in srgb, var(--color-accent) 15%, transparent);
-		filter: blur(120px);
-		transform: translateX(-50%);
-		pointer-events: none;
-	}
-
-	.intro__pill {
-		position: relative;
-		margin: 0 0 1.5rem;
-		padding: 0.375rem 1rem;
-		border: 1px solid rgb(255 255 255 / 0.15);
-		border-radius: 9999px;
-		font-size: 0.75rem;
-		line-height: 1rem;
-		letter-spacing: 0.2em;
-		text-transform: uppercase;
-		color: rgb(255 255 255 / 0.7);
-	}
-
-	.intro__pill strong {
-		color: var(--color-white);
-	}
-
-	.intro__title {
-		position: relative;
-		margin: 0 0 1.5rem;
-		font-size: clamp(3rem, 7vw, 5.5rem);
-		font-weight: 900;
-		line-height: 0.9;
-		letter-spacing: -0.025em;
-		text-transform: uppercase;
-		animation: rise-in 1000ms 200ms both;
-	}
-
-	.intro__title--accent {
-		color: var(--color-accent);
-	}
+	.directory-count { margin: 0 0 2rem; color: rgb(255 255 255 / 0.6); font-size: 0.9375rem; line-height: 1.5rem; }
+	.directory-count [data-member-count] { color: var(--color-white); font-weight: 700; }
 
 	.filters {
 		position: sticky;
@@ -269,6 +242,7 @@ const departments = [
 
 	.search {
 		flex-grow: 1;
+		min-width: 0;
 	}
 
 	.search svg,
@@ -297,7 +271,7 @@ const departments = [
 		border-radius: 0.5rem;
 		color: var(--color-white);
 		font: inherit;
-		font-size: 0.9375rem;
+		font-size: 1rem;
 		transition: border-color 150ms;
 	}
 
@@ -321,8 +295,14 @@ const departments = [
 
 	.search input:focus,
 	.select select:focus {
-		outline: none;
 		border-color: var(--color-accent);
+	}
+
+	.search input:focus-visible,
+	.select select:focus-visible,
+	.timeline__season:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 3px;
 	}
 
 	.timeline {
@@ -342,12 +322,12 @@ const departments = [
 	.timeline__season {
 		flex-shrink: 0;
 		padding: 0 0.875rem;
-		height: 2.125rem;
+		min-height: 2.75rem;
 		border-radius: 0.375rem;
 		font-size: 0.875rem;
 		font-weight: 700;
 		color: rgb(255 255 255 / 0.5);
-		transition: all 150ms;
+		transition: background-color 150ms, color 150ms;
 	}
 
 	.timeline__season:hover {
@@ -383,6 +363,8 @@ const departments = [
 		letter-spacing: 0.2em;
 		text-transform: uppercase;
 		color: rgb(255 255 255 / 0.6);
+		text-align: center;
+		overflow-wrap: anywhere;
 	}
 
 	.group__label::before,
@@ -404,6 +386,7 @@ const departments = [
 
 	.group__grid > :global(*) {
 		flex: 0 0 calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns));
+		min-width: 0;
 	}
 
 	.empty {
@@ -423,10 +406,6 @@ const departments = [
 	}
 
 	@media (min-width: 640px) {
-		.intro {
-			padding-inline: 1.5rem;
-		}
-
 		.filters__inner {
 			flex-direction: row;
 			padding-inline: 1.5rem;
@@ -459,16 +438,4 @@ const departments = [
 		}
 	}
 
-	@keyframes rise-in {
-		from {
-			opacity: 0;
-			transform: translateY(2rem);
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.intro__title {
-			animation: none;
-		}
-	}
 </style>

@@ -1,0 +1,665 @@
+{
+  "date": "2026-09-30",
+  "selectedVariant": "B - badge centred on portrait bottom edge",
+  "breakpoints": [
+    {
+      "viewport": {
+        "height": 900,
+        "width": 320
+      },
+      "members": "45",
+      "visibleCards": 50,
+      "removedMembersAbsent": true,
+      "pageOverflow": false,
+      "failures": [],
+      "badgesCentered": true,
+      "badgesCrossPortraitBottom": true,
+      "overlapRange": [
+        12.91130828857422,
+        20.91619110107422
+      ],
+      "minimumGapToName": 23.089290618896484,
+      "linkedinLinksByRole": 49,
+      "examples": [
+        {
+          "label": "Board",
+          "badgeWidth": 59.46022415161133,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Partnerships",
+          "badgeWidth": 99.26846313476562,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Operations & Digital",
+          "badgeWidth": 112.19459533691406,
+          "badgeHeight": 41.81818008422851,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "People",
+          "badgeWidth": 61.73295211791992,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Growth",
+          "badgeWidth": 69.55255126953125,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Events",
+          "badgeWidth": 61.60511016845703,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 360
+      },
+      "members": "45",
+      "visibleCards": 50,
+      "removedMembersAbsent": true,
+      "pageOverflow": false,
+      "failures": [],
+      "badgesCentered": true,
+      "badgesCrossPortraitBottom": true,
+      "overlapRange": [
+        12.91179656982422,
+        20.91619110107422
+      ],
+      "minimumGapToName": 23.089290618896484,
+      "linkedinLinksByRole": 49,
+      "examples": [
+        {
+          "label": "Board",
+          "badgeWidth": 63.50141906738281,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Partnerships",
+          "badgeWidth": 107.67755126953124,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Operations & Digital",
+          "badgeWidth": 132.19459533691406,
+          "badgeHeight": 41.81818008422851,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "People",
+          "badgeWidth": 66.05113220214844,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Growth",
+          "badgeWidth": 74.65198516845703,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Events",
+          "badgeWidth": 65.90908813476562,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 390
+      },
+      "members": "45",
+      "visibleCards": 50,
+      "removedMembersAbsent": true,
+      "pageOverflow": false,
+      "failures": [],
+      "badgesCentered": true,
+      "badgesCrossPortraitBottom": true,
+      "overlapRange": [
+        12.91179656982422,
+        20.91619110107422
+      ],
+      "minimumGapToName": 23.089290618896484,
+      "linkedinLinksByRole": 49,
+      "examples": [
+        {
+          "label": "Board",
+          "badgeWidth": 63.50141906738281,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Partnerships",
+          "badgeWidth": 107.67755126953124,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Operations & Digital",
+          "badgeWidth": 147.19459533691406,
+          "badgeHeight": 41.81818008422851,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "People",
+          "badgeWidth": 66.05113220214844,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Growth",
+          "badgeWidth": 74.65198516845703,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Events",
+          "badgeWidth": 65.90908813476562,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 768
+      },
+      "members": "45",
+      "visibleCards": 50,
+      "removedMembersAbsent": true,
+      "pageOverflow": false,
+      "failures": [],
+      "badgesCentered": true,
+      "badgesCrossPortraitBottom": true,
+      "overlapRange": [
+        12.91179656982422,
+        12.91228485107422
+      ],
+      "minimumGapToName": 31.086559295654297,
+      "linkedinLinksByRole": 49,
+      "examples": [
+        {
+          "label": "Board",
+          "badgeWidth": 63.50141906738281,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Partnerships",
+          "badgeWidth": 107.67755126953124,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Operations & Digital",
+          "badgeWidth": 157.0880584716797,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "People",
+          "badgeWidth": 66.05113220214844,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Growth",
+          "badgeWidth": 74.65198516845703,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Events",
+          "badgeWidth": 65.90908813476562,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 1280
+      },
+      "members": "45",
+      "visibleCards": 50,
+      "removedMembersAbsent": true,
+      "pageOverflow": false,
+      "failures": [],
+      "badgesCentered": true,
+      "badgesCrossPortraitBottom": true,
+      "overlapRange": [
+        12.91179656982422,
+        12.91204071044922
+      ],
+      "minimumGapToName": 31.086559295654297,
+      "linkedinLinksByRole": 49,
+      "examples": [
+        {
+          "label": "Board",
+          "badgeWidth": 63.50141906738281,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Partnerships",
+          "badgeWidth": 107.67755126953124,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Operations & Digital",
+          "badgeWidth": 157.0880584716797,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "People",
+          "badgeWidth": 66.05113220214844,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Growth",
+          "badgeWidth": 74.65198516845703,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Events",
+          "badgeWidth": 65.90908813476562,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      },
+      "members": "45",
+      "visibleCards": 50,
+      "removedMembersAbsent": true,
+      "pageOverflow": false,
+      "failures": [],
+      "badgesCentered": true,
+      "badgesCrossPortraitBottom": true,
+      "overlapRange": [
+        12.91179656982422,
+        12.91204071044922
+      ],
+      "minimumGapToName": 31.086559295654297,
+      "linkedinLinksByRole": 49,
+      "examples": [
+        {
+          "label": "Board",
+          "badgeWidth": 63.50141906738281,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Partnerships",
+          "badgeWidth": 107.67755126953124,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Operations & Digital",
+          "badgeWidth": 157.0880584716797,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "People",
+          "badgeWidth": 66.05113220214844,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Growth",
+          "badgeWidth": 74.65198516845703,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        },
+        {
+          "label": "Events",
+          "badgeWidth": 65.90908813476562,
+          "badgeHeight": 25.816761016845703,
+          "portraitSize": [
+            95.99431610107422,
+            95.99431610107422
+          ],
+          "linkTouchSize": [
+            43.99857711791992,
+            43.99857711791992
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "count": "45 members",
+      "department": "",
+      "empty": false,
+      "query": "",
+      "visibleCards": 50
+    },
+    {
+      "count": "1 member matching your filters",
+      "department": "",
+      "empty": false,
+      "query": "Jannik",
+      "visibleCards": 2
+    },
+    {
+      "count": "36 members matching your filters",
+      "department": "",
+      "empty": false,
+      "query": "Member",
+      "visibleCards": 36
+    },
+    {
+      "count": "6 members matching your filters",
+      "department": "",
+      "empty": false,
+      "query": "Head of",
+      "visibleCards": 11
+    },
+    {
+      "count": "0 members matching your filters",
+      "department": "",
+      "empty": true,
+      "query": "Marta",
+      "visibleCards": 0
+    },
+    {
+      "count": "0 members matching your filters",
+      "department": "",
+      "empty": true,
+      "query": "Kalina",
+      "visibleCards": 0
+    },
+    {
+      "count": "5 members matching your filters",
+      "department": "people",
+      "empty": false,
+      "query": "",
+      "visibleCards": 5
+    },
+    {
+      "count": "8 members matching your filters",
+      "department": "partnerships",
+      "empty": false,
+      "query": "",
+      "visibleCards": 8
+    },
+    {
+      "count": "45 members",
+      "department": "",
+      "empty": false,
+      "query": "",
+      "visibleCards": 50
+    }
+  ]
+}

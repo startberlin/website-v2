@@ -1,0 +1,23 @@
+{
+  "passed": 18,
+  "checks": [
+    "route /",
+    "route /members",
+    "route /join",
+    "route /jobs",
+    "route /jobs/submit",
+    "route /jobs/privacy",
+    "draft not public",
+    "approved detail, structured data and private-field isolation",
+    "canonical slug redirect",
+    "approved apply redirect only",
+    "sharing uses v2 origin",
+    "active sitemap",
+    "closed detail remains readable without apply or JobPosting",
+    "application rechecks lifecycle",
+    "closed sitemap exclusion",
+    "same-origin submission reaches Cockpit and retries deduplicate",
+    "cross-origin submission rejected",
+    "oversized submission rejected"
+  ]
+}

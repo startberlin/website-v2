@@ -1,4 +1,5 @@
 ---
+import Icon from './icons/Icon.astro';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 
@@ -27,7 +28,10 @@ const nav: NavEntry[] = [
 	},
 ];
 
-const ctas: NavLink[] = [{ label: 'Apply Now', href: '/join' }];
+const ctas: NavLink[] = [
+	{ label: 'Apply Now', href: '/join' },
+	{ label: 'Jobs', href: '/jobs' },
+];
 
 const isGroup = (entry: NavEntry): entry is NavGroup => 'items' in entry;
 const linkAttrs = (link: NavLink) =>
@@ -47,25 +51,19 @@ const linkAttrs = (link: NavLink) =>
 						<div class="dropdown" data-dropdown>
 							<button class="nav__link dropdown__toggle" aria-expanded="false" aria-haspopup="menu">
 								<span>{entry.label}</span>
-								<svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-								</svg>
+								<Icon name="chevron-down" class="chevron" />
 							</button>
 							<div class="dropdown__panel" data-dropdown-panel hidden>
 								{entry.items.map((item) => (
 									<a href={item.href} {...linkAttrs(item)} class="dropdown__item">
-										<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-										</svg>
+										<Icon name="chevron-right" />
 										{item.label}
 									</a>
 								))}
 								{entry.secondary && <div class="dropdown__divider" />}
 								{entry.secondary?.map((item) => (
 									<a href={item.href} {...linkAttrs(item)} class="dropdown__item dropdown__item--secondary">
-										<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-										</svg>
+										<Icon name="chevron-right" />
 										{item.label}
 									</a>
 								))}
@@ -85,9 +83,7 @@ const linkAttrs = (link: NavLink) =>
 		</div>
 
 		<button class="menu-button" aria-label="Open menu" aria-expanded="false" data-menu-open>
-			<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-			</svg>
+			<Icon name="menu" />
 		</button>
 	</div>
 
@@ -97,9 +93,7 @@ const linkAttrs = (link: NavLink) =>
 				<Image src={logo} alt="START Berlin" class="logo__image" loading="eager" />
 			</a>
 			<button class="menu-button" aria-label="Close menu" data-menu-close>
-				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-				</svg>
+				<Icon name="close" />
 			</button>
 		</div>
 
@@ -110,9 +104,7 @@ const linkAttrs = (link: NavLink) =>
 						<div class="mobile-menu__group">
 							<button class="mobile-menu__link mobile-menu__toggle" aria-expanded="false" data-accordion>
 								<span>{entry.label}</span>
-								<svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-								</svg>
+								<Icon name="chevron-down" class="chevron" />
 							</button>
 							<div class="mobile-menu__sublinks" hidden>
 								{entry.items.map((item) => (
@@ -161,7 +153,7 @@ const linkAttrs = (link: NavLink) =>
 			toggle.setAttribute('aria-expanded', String(open));
 		};
 
-		toggle.addEventListener('click', () => setOpen(panel.hidden));
+		toggle.addEventListener('click', () => setOpen(Boolean(panel.hidden)));
 
 		// The short delay lets the pointer cross the gap between button and panel.
 		dropdown.addEventListener('mouseenter', () => canHover.matches && setOpen(true));
@@ -182,14 +174,50 @@ const linkAttrs = (link: NavLink) =>
 
 	const mobileMenu = document.querySelector<HTMLElement>('[data-mobile-menu]')!;
 	const menuOpen = document.querySelector<HTMLElement>('[data-menu-open]')!;
+	const menuClose = mobileMenu.querySelector<HTMLElement>('[data-menu-close]')!;
+	const pageMain = document.querySelector<HTMLElement>('main');
+	const originalOverflow = document.body.style.overflow;
 
 	const setMenuOpen = (open: boolean) => {
 		mobileMenu.hidden = !open;
 		menuOpen.setAttribute('aria-expanded', String(open));
+		if (pageMain) pageMain.inert = open;
+		document.body.style.overflow = open ? 'hidden' : originalOverflow;
+		if (open) menuClose.focus();
+		else menuOpen.focus();
 	};
 
 	menuOpen.addEventListener('click', () => setMenuOpen(true));
 	mobileMenu.querySelector('[data-menu-close]')!.addEventListener('click', () => setMenuOpen(false));
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape') {
+			if (!mobileMenu.hidden) setMenuOpen(false);
+			document.querySelectorAll<HTMLElement>('[data-dropdown]').forEach((dropdown) => {
+				const panel = dropdown.querySelector<HTMLElement>('[data-dropdown-panel]')!;
+				if (!panel.hidden) {
+					panel.hidden = true;
+					const toggle = dropdown.querySelector('button')!;
+					toggle.setAttribute('aria-expanded', 'false');
+					if (dropdown.contains(document.activeElement)) toggle.focus();
+				}
+			});
+		}
+		if (event.key !== 'Tab' || mobileMenu.hidden) return;
+		const controls = [...mobileMenu.querySelectorAll<HTMLElement>('a[href], button')]
+			.filter((element) => element.getClientRects().length > 0);
+		const first = controls[0];
+		const last = controls.at(-1);
+		if (event.shiftKey && document.activeElement === first) {
+			event.preventDefault();
+			last?.focus();
+		} else if (!event.shiftKey && document.activeElement === last) {
+			event.preventDefault();
+			first?.focus();
+		}
+	});
+	window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
+		if (event.matches && !mobileMenu.hidden) setMenuOpen(false);
+	});
 	mobileMenu.addEventListener('click', (event) => {
 		if ((event.target as Element).closest('a')) setMenuOpen(false);
 	});
@@ -357,6 +385,15 @@ const linkAttrs = (link: NavLink) =>
 	.cta:hover {
 		background: var(--color-accent);
 		color: var(--color-dark-blue);
+	}
+
+	.cta:focus-visible,
+	.nav__link:focus-visible,
+	.menu-button:focus-visible,
+	.mobile-menu a:focus-visible,
+	.mobile-menu button:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 4px;
 	}
 
 	.menu-button {

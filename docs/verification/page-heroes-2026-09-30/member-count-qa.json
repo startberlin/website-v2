@@ -1,0 +1,65 @@
+[
+  {
+    "count": "45 members",
+    "department": "",
+    "empty": false,
+    "query": "",
+    "visibleCards": 50
+  },
+  {
+    "count": "1 member matching your filters",
+    "department": "",
+    "empty": false,
+    "query": "Jannik",
+    "visibleCards": 2
+  },
+  {
+    "count": "36 members matching your filters",
+    "department": "",
+    "empty": false,
+    "query": "Member",
+    "visibleCards": 36
+  },
+  {
+    "count": "6 members matching your filters",
+    "department": "",
+    "empty": false,
+    "query": "Head of",
+    "visibleCards": 11
+  },
+  {
+    "count": "0 members matching your filters",
+    "department": "",
+    "empty": true,
+    "query": "Marta",
+    "visibleCards": 0
+  },
+  {
+    "count": "0 members matching your filters",
+    "department": "",
+    "empty": true,
+    "query": "Kalina",
+    "visibleCards": 0
+  },
+  {
+    "count": "5 members matching your filters",
+    "department": "people",
+    "empty": false,
+    "query": "",
+    "visibleCards": 5
+  },
+  {
+    "count": "8 members matching your filters",
+    "department": "partnerships",
+    "empty": false,
+    "query": "",
+    "visibleCards": 8
+  },
+  {
+    "count": "45 members",
+    "department": "",
+    "empty": false,
+    "query": "",
+    "visibleCards": 50
+  }
+]

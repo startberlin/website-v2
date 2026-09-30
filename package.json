@@ -8,13 +8,34 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "start": "node ./dist/server/entry.mjs",
+    "typecheck": "astro check",
+    "test:jobboard": "node --import tsx --test src/lib/jobboard/*.test.ts",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.3.5"
+    "@astrojs/node": "11.1.6",
+    "@astrojs/react": "7.0.0",
+    "@hookform/resolvers": "5.2.2",
+    "astro": "7.3.5",
+    "nuqs": "2.10.1",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-hook-form": "7.75.0",
+    "sharp": "0.35.5",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@types/node": "26.6.3",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
   },
   "allowScripts": {
-    "esbuild": true
+    "esbuild": true,
+    "sharp": true
   }
 }

@@ -1,43 +1,47 @@
-# Astro Starter Kit: Minimal
+# START Berlin website v2
+
+Work in progress on `feature/jobboard-integration`, based on the existing Astro website. The branch integrates the public Jobboard at `/jobs` with Cockpit's editorial backend. Local verification does not establish production deployment or release readiness.
+
+Home, Members and Join remain prerendered. Jobboard listings and details render on demand through the Node adapter. Employer submissions go into Cockpit's private review queue. The public website has no database connection and keeps service keys on the server. Shared Astro/React icons are used across the website.
+
+## Local setup
+
+Use Node.js 22.12 or newer. Install with the pinned pnpm lockfile, then create a private local configuration:
 
 ```sh
-npm create astro@latest -- --template minimal
+pnpm install --frozen-lockfile
+cp .env.example .env
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Set `COCKPIT_API_URL` to the running Cockpit API prefix. Set distinct `JOBBOARD_READ_API_KEY` and `JOBBOARD_SUBMIT_API_KEY` values matching Cockpit, each at least 32 characters. Set `PUBLIC_SITE_URL` to the website's exact origin, without `/jobs`. Keep request metrics disabled. Never expose these keys through `PUBLIC_` variables or client code.
 
-## 🚀 Project Structure
+The server reads runtime environment variables. Start development with the local file explicitly loaded:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+node --env-file=.env node_modules/astro/bin/astro.mjs dev --background --host 127.0.0.1
+pnpm exec astro dev status
+pnpm exec astro dev logs
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Open `http://127.0.0.1:4321/jobs`. Check the existing background-server status before starting another process. Use `CI=true` for unattended pnpm commands. Keep npm and pnpm lockfiles coherent and use one package manager per installed dependency tree.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Checks and built-server preview
 
-Any static assets, like images, can be placed in the `public/` directory.
+```sh
+pnpm run typecheck
+pnpm run test:jobboard
+pnpm exec astro build --outDir .astro/jobboard-build
+HOST=127.0.0.1 PORT=4337 node --env-file=.env .astro/jobboard-build/server/entry.mjs
+```
 
-## 🧞 Commands
+The separate verification output preserves the tracked upstream `dist/`. Serve the generated Node entrypoint with its client assets; uploading static HTML alone does not provide the live Jobboard routes. Production variables must be supplied by the host. Built output does not automatically load `.env`.
 
-All commands are run from the root of the project, from a terminal:
+## Scope and release requirements
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Navigation pairs `Apply Now` (`/join`) with `Jobs` (`/jobs`). The Jobboard includes filters with 25-role URL pagination, canonical detail pages, employer submissions, application/share redirects and an active-role sitemap. A separate footer is intentionally absent pending the website-wide footer. See the [approved plan and implementation update](docs/plans/2026-09-29-jobboard-integration.md) and [local verification evidence](docs/verification/jobboard-2026-09-29/browser.md).
 
-## 👀 Want to learn more?
+Release Newsletter in Cockpit before Jobboard. Newsletter owns migrations `0058` through `0060`; Jobboard follows with `0061`. The public migration requires no database-provider reconfiguration. Keep the standalone public project until the deployed v2 flow passes acceptance.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Production API credentials and hosting remain to be configured. The Node adapter is portable; selecting Vercel requires its official Astro adapter and a fresh deployment check. General website legal/privacy pages remain part of the relaunch scope. Request analytics are disabled.
+
+START plans to agree compensation with each company before publication; a referral arrangement remains a possibility. Staff follow up manually using the private Cockpit contact, record agreed terms, then review and publish the draft. Pricing is not settled. Commercial agreement enforcement and billing are not implemented.

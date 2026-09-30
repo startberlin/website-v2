@@ -1,0 +1,98 @@
+.jobboard .jb-pagination {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+.jobboard .jb-pagination__range {
+	margin: 0;
+	color: var(--jb-muted);
+	font-size: 0.8125rem;
+	line-height: 1.5;
+}
+
+.jobboard .jb-pagination__controls {
+	display: flex;
+	align-items: center;
+	gap: 0.375rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.jobboard .jb-pagination__button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.75rem;
+	min-height: 2.75rem;
+	padding: 0.375rem;
+	border: 1px solid var(--jb-line);
+	border-radius: 0.25rem;
+	background: transparent;
+	color: var(--color-white);
+	font: inherit;
+	font-size: 0.875rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	line-height: 1;
+	transition: background 150ms, border-color 150ms, color 150ms;
+}
+
+.jobboard .jb-pagination__button:not(:disabled):hover,
+.jobboard .jb-pagination__button[aria-current="page"] {
+	border-color: var(--color-accent);
+	background: var(--color-accent);
+	color: var(--color-dark-blue);
+}
+
+.jobboard .jb-pagination__button:focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 4px;
+}
+
+.jobboard .jb-pagination__button:disabled {
+	opacity: 0.35;
+	cursor: default;
+}
+
+.jobboard .jb-pagination__gap {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.5rem;
+	min-height: 2.75rem;
+	color: var(--jb-muted);
+	line-height: 1;
+}
+
+.jobboard .jb-pagination__mobile-only {
+	display: none;
+}
+
+@media (max-width: 639px) {
+	.jobboard .jb-pagination {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.jobboard .jb-pagination__controls {
+		justify-content: center;
+		gap: 0.25rem;
+	}
+
+	.jobboard .jb-pagination__desktop-only {
+		display: none;
+	}
+
+	.jobboard .jb-pagination__mobile-only {
+		display: list-item;
+	}
+
+	.jobboard .jb-pagination__gap {
+		width: 1rem;
+	}
+}
