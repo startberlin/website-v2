@@ -32,7 +32,7 @@ const hasHero = Astro.slots.has('hero');
 	<div class:list={['jobboard', { 'jobboard--hero': hasHero }]}>
 		<a class="jb-skip" href="#jobboard-content">Skip to jobs content</a>
 		<slot name="hero" />
-		<div class="jb-page" id="jobboard-content">
+		<div class="jb-page page-container" id="jobboard-content">
 			<slot />
 		</div>
 	</div>

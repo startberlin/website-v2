@@ -27,6 +27,7 @@ Check the existing server and port before starting one. Use `astro dev logs` and
 
 - Reuse layouts, PageHero, MemberCard and the shared icon registry. Extend with props or slots instead of copying components.
 - Define colours, type sizes and radii in `src/styles/tokens.css`. Use `src/styles/primitives.css` for native buttons, fields and focus.
+- Use `.page-container` for consistent content width and horizontal edges on every route. Keep narrower reading/form limits inside it.
 - Keep page layout in scoped Astro CSS. Keep React limited to interactive Jobs islands.
 - Update the styleguide alongside intentional design changes. Public UI copy stays English.
 

@@ -37,7 +37,7 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 ---
 
 <section class="network">
-	<div class="network__inner">
+	<div class="network__inner page-container">
 		<h2 class="network__title">The START Network</h2>
 
 		<div class="network__grid">
@@ -98,12 +98,7 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 	.network {
 		position: relative;
 		overflow: hidden;
-		padding: var(--space-28) var(--page-gutter);
-	}
-
-	.network__inner {
-		max-width: var(--layout-page);
-		margin-inline: auto;
+		padding-block: var(--space-28);
 	}
 
 	.network__title {

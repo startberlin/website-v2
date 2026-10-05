@@ -16,6 +16,7 @@
 
 .jobboard .jb-pagination__controls {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	gap: 0.375rem;
 	margin: 0;

@@ -73,7 +73,7 @@ const departments = [
 	</PageHero>
 
 	<div class="filters">
-		<div class="filters__inner">
+		<div class="filters__inner page-container">
 			<label class="search">
 				<span class="visually-hidden">Search members</span>
 				<Icon name="search" />
@@ -109,7 +109,7 @@ const departments = [
 		</div>
 	</div>
 
-	<div class="groups">
+	<div class="groups page-container">
 		<p class="directory-count" aria-live="polite" aria-atomic="true">
 			<span data-member-count>{seasons[0].count}</span> <span data-member-count-label>members</span><span data-member-count-filter hidden> matching your filters</span>
 		</p>
@@ -228,9 +228,7 @@ const departments = [
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-3);
-		max-width: var(--layout-page);
-		margin-inline: auto;
-		padding: var(--space-4) var(--page-gutter);
+		padding-block: var(--space-4);
 	}
 
 	.search,
@@ -328,9 +326,7 @@ const departments = [
 	}
 
 	.groups {
-		max-width: var(--layout-page);
-		margin-inline: auto;
-		padding: var(--space-12) var(--page-gutter) var(--space-24);
+		padding-block: var(--space-12) var(--space-24);
 	}
 
 	.season {
@@ -374,7 +370,8 @@ const departments = [
 
 	.group__grid > :global(*) {
 		flex: 0 0 calc((100% - (var(--columns) - 1) * var(--gap)) / var(--columns));
-		min-width: 0;
+		/* Reduce the column count when enlarged text needs wider cards. */
+		min-width: min(100%, 8rem);
 	}
 
 	.empty {

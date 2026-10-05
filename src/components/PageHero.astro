@@ -7,7 +7,6 @@ interface Props {
 	alt?: string;
 	imagePosition?: string;
 	mobileImagePosition?: string;
-	contentWidth?: string;
 	landing?: boolean;
 }
 
@@ -16,7 +15,6 @@ const {
 	alt = '',
 	imagePosition = '50% 50%',
 	mobileImagePosition = imagePosition,
-	contentWidth = 'var(--layout-page)',
 	landing = false,
 } = Astro.props;
 // Reuse the original resolution rather than generating enlarged image files.
@@ -25,7 +23,7 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 
 <section
 	class:list={['page-hero', { 'page-hero--landing': landing }]}
-	style={`--hero-image-position: ${imagePosition}; --hero-mobile-image-position: ${mobileImagePosition}; --hero-content-width: ${contentWidth};`}
+	style={`--hero-image-position: ${imagePosition}; --hero-mobile-image-position: ${mobileImagePosition};`}
 	data-page-hero
 >
 	{image ? (
@@ -33,7 +31,7 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 	) : <slot name="background" />}
 	<div class="page-hero__shade page-hero__shade--left" aria-hidden="true"></div>
 	<div class="page-hero__shade page-hero__shade--bottom" aria-hidden="true"></div>
-	<div class="page-hero__content">
+	<div class="page-hero__content page-container">
 		<div class="page-hero__copy">
 			<slot name="status" />
 			<h1 class="page-hero__title"><slot name="title" /></h1>
@@ -86,10 +84,7 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 		align-items: end;
 		justify-content: space-between;
 		gap: var(--space-6) var(--space-8);
-		width: 100%;
-		max-width: var(--hero-content-width);
-		margin-inline: auto;
-		padding: var(--space-12) var(--page-gutter) var(--space-8);
+		padding-block: var(--space-12) var(--space-8);
 	}
 
 	.page-hero__copy { min-width: 0; max-width: 100%; }
@@ -117,7 +112,7 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 		.page-hero { min-height: 25rem; }
 		.page-hero--landing { min-height: calc(100svh - var(--header-height)); }
 		.page-hero__image { object-position: var(--hero-image-position); }
-		.page-hero__content { padding: var(--space-14) var(--page-gutter) 2.75rem; }
+		.page-hero__content { padding-block: var(--space-14) 2.75rem; }
 		.page-hero__text { font-size: var(--text-lg); }
 	}
 

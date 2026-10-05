@@ -136,7 +136,7 @@ const initials = (name: string) =>
 			</div>
 	</PageHero>
 
-	<div class="stats">
+	<div class="stats page-container">
 		{
 			stats.map((stat) => (
 				<div class="stat">
@@ -147,7 +147,7 @@ const initials = (name: string) =>
 		}
 	</div>
 
-	<section class="section split">
+	<section class="section page-container split">
 		<div class="split__text">
 			<p class="eyebrow">Why you should apply</p>
 			<h2 class="heading">Dive into Berlin’s <span class="accent">startup ecosystem</span></h2>
@@ -177,7 +177,7 @@ const initials = (name: string) =>
 		</div>
 	</section>
 
-	<section class="section split split--reverse">
+	<section class="section page-container split split--reverse">
 		<div class="split__text">
 			<p class="eyebrow">Who we are looking for</p>
 			<h2 class="heading">Is this <span class="accent">you?</span></h2>
@@ -200,7 +200,7 @@ const initials = (name: string) =>
 		</div>
 	</section>
 
-	<section class="section" id="process">
+	<section class="section page-container" id="process">
 		<div class="section__head">
 			<p class="eyebrow">Application process</p>
 			<h2 class="heading">Your path to <span class="accent">START Berlin</span></h2>
@@ -227,7 +227,7 @@ const initials = (name: string) =>
 	<section class="banner">
 		<Image src={audiencePhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="banner__image" />
 		<div class="banner__shade"></div>
-		<div class="banner__content">
+		<div class="banner__content page-container">
 			<p class="eyebrow">Want to get to know us?</p>
 			<h2 class="heading">Meet us <span class="accent">in person</span></h2>
 			<p class="lead">
@@ -240,7 +240,7 @@ const initials = (name: string) =>
 		</div>
 	</section>
 
-	<section class="section">
+	<section class="section page-container">
 		<div class="section__head">
 			<p class="eyebrow">About START Berlin</p>
 			<h2 class="heading">Our <span class="accent">departments</span></h2>
@@ -261,7 +261,7 @@ const initials = (name: string) =>
 		</div>
 	</section>
 
-	<section class="section">
+	<section class="section page-container">
 		<div class="section__head">
 			<p class="eyebrow">Words of former STARTies</p>
 			<h2 class="heading">What our <span class="accent">alumni</span> say</h2>
@@ -293,7 +293,7 @@ const initials = (name: string) =>
 	<section class="closing">
 		<Image src={teamPhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="closing__image" />
 		<div class="closing__shade"></div>
-		<div class="closing__grid">
+		<div class="closing__grid page-container">
 			<div class="closing__card">
 				<p class="eyebrow">Stay up to date</p>
 				<h2 class="closing__title">Join our talent pool</h2>
@@ -376,10 +376,8 @@ const initials = (name: string) =>
 
 	.stats {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		max-width: var(--layout-page);
-		margin-inline: auto;
-		padding: 0 var(--page-gutter);
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 5.5rem), 1fr));
+		padding: 0;
 	}
 
 	.stat {
@@ -413,9 +411,7 @@ const initials = (name: string) =>
 	/* Shared section type */
 
 	.section {
-		max-width: var(--layout-page);
-		margin-inline: auto;
-		padding: var(--space-20) var(--page-gutter);
+		padding-block: var(--space-20);
 	}
 
 	.section__head {
@@ -623,9 +619,7 @@ const initials = (name: string) =>
 
 	.banner__content {
 		position: relative;
-		max-width: var(--layout-page);
-		margin-inline: auto;
-		padding: var(--space-24) var(--page-gutter);
+		padding-block: var(--space-24);
 	}
 
 	.banner__content .lead {
@@ -736,9 +730,7 @@ const initials = (name: string) =>
 		position: relative;
 		display: grid;
 		gap: var(--space-4);
-		max-width: var(--layout-page);
-		margin-inline: auto;
-		padding: var(--space-24) var(--page-gutter);
+		padding-block: var(--space-24);
 	}
 
 	.closing__card {

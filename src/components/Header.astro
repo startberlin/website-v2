@@ -39,7 +39,7 @@ const linkAttrs = (link: NavLink) =>
 ---
 
 <nav class="nav">
-	<div class="nav__bar">
+	<div class="nav__bar page-container">
 		<a href="/" class="logo">
 			<Image src={logo} alt="START Berlin" class="logo__image" loading="eager" />
 		</a>
@@ -88,7 +88,7 @@ const linkAttrs = (link: NavLink) =>
 	</div>
 
 	<div class="mobile-menu" data-mobile-menu hidden>
-		<div class="mobile-menu__bar">
+		<div class="mobile-menu__bar page-container">
 			<a href="/" class="logo">
 				<Image src={logo} alt="START Berlin" class="logo__image" loading="eager" />
 			</a>
@@ -97,7 +97,7 @@ const linkAttrs = (link: NavLink) =>
 			</button>
 		</div>
 
-		<div class="mobile-menu__body">
+		<div class="mobile-menu__body page-container">
 			{
 				nav.map((entry) =>
 					isGroup(entry) ? (
@@ -246,11 +246,11 @@ const linkAttrs = (link: NavLink) =>
 		align-items: center;
 		justify-content: space-between;
 		height: var(--header-height);
-		padding-inline: var(--space-10);
 	}
 
 	.logo {
 		display: flex;
+		min-width: 0;
 		align-items: center;
 		transition: opacity var(--duration-fast);
 	}
@@ -261,7 +261,9 @@ const linkAttrs = (link: NavLink) =>
 
 	.logo__image {
 		width: auto;
+		max-width: 100%;
 		height: 3rem;
+		object-fit: contain;
 	}
 
 	.nav__links {
@@ -424,7 +426,6 @@ const linkAttrs = (link: NavLink) =>
 		align-items: center;
 		justify-content: space-between;
 		height: var(--header-height);
-		padding-inline: var(--space-10);
 	}
 
 	.mobile-menu__body {
@@ -432,7 +433,7 @@ const linkAttrs = (link: NavLink) =>
 		flex-grow: 1;
 		flex-direction: column;
 		gap: var(--space-1);
-		padding: var(--space-6) var(--space-10);
+		padding-block: var(--space-6);
 		border-top: var(--border-width) solid var(--border-subtle);
 	}
 
@@ -513,10 +514,6 @@ const linkAttrs = (link: NavLink) =>
 	}
 
 	@media (min-width: 1024px) {
-		.nav__bar {
-			padding-inline: var(--space-20);
-		}
-
 		.nav__links,
 		.cta-group--desktop {
 			display: flex;

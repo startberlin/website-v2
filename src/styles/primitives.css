@@ -1,3 +1,10 @@
+/* Shared page edges; inner reading/form widths remain component-specific. */
+.page-container {
+	width: calc(100% - 2 * var(--page-gutter));
+	max-width: var(--layout-page);
+	margin-inline: auto;
+}
+
 /* Shared native controls. Legacy selectors are migration aliases, not forks. */
 .button,
 .jobboard .jb-button {

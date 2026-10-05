@@ -26,7 +26,7 @@ const socials = [
 ---
 
 <section class="news" data-news>
-	<div class="news__sticky" data-news-sticky>
+	<div class="news__sticky page-container" data-news-sticky>
 		<div class="news__header">
 			<h2 class="news__title">Latest News</h2>
 			<div class="news__socials">
@@ -149,12 +149,9 @@ const socials = [
 <style>
 	.news {
 		position: relative;
-		padding-inline: var(--page-gutter);
 	}
 
 	.news__sticky {
-		max-width: var(--layout-page);
-		margin-inline: auto;
 		padding-block: var(--space-28);
 	}
 
@@ -176,6 +173,7 @@ const socials = [
 
 	.news__socials {
 		display: flex;
+		flex-wrap: wrap;
 		gap: var(--space-3);
 		margin-bottom: var(--space-1);
 	}

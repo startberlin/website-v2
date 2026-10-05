@@ -52,7 +52,7 @@ Use `--font-sans`, the existing Avenir stack. No webfonts are bundled; device fa
 
 Use the `--text-*` scale: 16 px for body/inputs, 14 px for labels/buttons and at least 12 px for new metadata. Use central `--type-*` tokens for display headings. Existing compact text sizes remain specific exceptions. Use `rem` and preserve browser zoom.
 
-Use `--space-*` for the 4-px spacing rhythm. Containers use `--layout-page` (80 rem) or `--layout-jobs` (76 rem). Standard gutters come from `--page-gutter`: 16 px, 24 px at 640, 32 px at 1024. The News layout also changes at 768 px. Use these literal breakpoints in media queries.
+Use `.page-container` for every page-content region, including navigation, heroes and footer. All routes share `--layout-page`: at most 80 rem of usable content, centred with `--page-gutter` margins of 16 px, 24 px from 640 and 32 px from 1024. Never add another horizontal inset or page-specific width. Reading/form limits stay inside this container; background images may span the viewport. Use `--space-*` for the 4-px spacing rhythm.
 
 Allow long text to wrap. Keep `min-width: 0` on flexible children. Avoid fixed card heights and page-wide overflow hiding. Keep optical badge positioning and photo crops local and documented.
 
@@ -76,7 +76,7 @@ Every component must look correct and remain accessible across device sizes. Tes
 | Tablet | 768, 1024 |
 | Desktop | 1280, 1440, 1920 |
 
-Check portrait and landscape on phones/tablets. Resize between sample widths and test both sides of affected breakpoints. At every size, verify readable text, correct image crops and usable controls without clipping, overlap or horizontal page overflow.
+Check portrait and landscape on phones/tablets. Resize between sample widths and test both sides of affected breakpoints. At every size, verify matching left/right content edges across routes, readable text and usable controls without clipping, overlap or horizontal page overflow. Check image crops.
 
 Run `check:design` and the checks in [AGENTS.md](../AGENTS.md). Combine automated checks with manual visual, keyboard and screen-reader checks. Fix failures before completion and record the tested widths, states and results.
 

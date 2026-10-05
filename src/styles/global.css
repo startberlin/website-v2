@@ -17,6 +17,7 @@ body {
 	background: var(--color-dark-blue);
 	color: var(--color-white);
 	font-family: var(--font-sans);
+	overflow-wrap: anywhere;
 	-webkit-font-smoothing: antialiased;
 }
 
