@@ -1,0 +1,10 @@
+{
+  "legacy_hosting": "Webflow copy retained; reconcile against the selected V2 host and services before release",
+  "odr_platform": {
+    "status": "closed",
+    "closed_on": "2025-07-20",
+    "source": "https://consumer-redress.ec.europa.eu/site-relocation_en",
+    "legacy_copy": "preserved at user request; update before release"
+  },
+  "donate": "Visible disabled placeholder; no payment destination or flow configured"
+}

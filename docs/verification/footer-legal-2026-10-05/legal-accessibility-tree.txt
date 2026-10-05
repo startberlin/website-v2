@@ -1,0 +1,63 @@
+Browser tab: 5, Title: "Legal Notice | START Berlin", URL: "http://127.0.0.1:4338/legal-notice".
+1 AXWebArea Legal Notice | START Berlin, URL: 127.0.0.1:4338/legal-notice
+	2 container
+		3 link Description: START Berlin, Value: 127.0.0.1:4338/
+		4 link Description: HOME, Value: 127.0.0.1:4338/
+		5 pop up button (collapsed) COMMUNITY, Secondary Actions: Expand
+		6 link Description: APPLY NOW, Value: 127.0.0.1:4338/join
+		7 link Description: JOBS, Value: 127.0.0.1:4338/jobs
+	8 container LEGAL NOTICE
+		9 heading LEGAL NOTICE, Value: 1, ID: legal-title
+			10 text LEGAL NOTICE
+		11 container
+			12 text START Berlin e.V.
+			13 text Luisenstraße 53
+			14 text c/o HU-Gründerhaus
+			15 text 10117 Berlin Register of associations (Vereinsregister): VR 32262 B
+			16 text Register court (Registergericht): Amtsgericht Charlottenburg, Berlin
+			17 heading REPRESENTED BY, Value: 2
+				18 text REPRESENTED BY
+			19 text Antonia Hill
+			20 text Julia Palm
+			21 text Kari-Pele Streithoff
+		22 container
+			23 heading CONTACT, Value: 2
+				24 text CONTACT
+			25 text E-Mail: 
+			26 link Description: vorstand@start-berlin.com, Value: mailto:vorstand@start-berlin.com
+		27 container
+			28 heading VAT ID (UMSATZSTEUER-ID), Value: 2
+				29 text VAT ID (UMSATZSTEUER-ID)
+			30 text Sales tax identification number according to § 27 a sales tax law: DE299418810
+		31 container
+			32 heading EDITORIALLY RESPONSIBLE, Value: 2
+				33 text EDITORIALLY RESPONSIBLE
+			34 text Antonia Hill
+			35 text Julia Palm
+			36 text Kari-Pele Streithoff
+		37 container
+			38 heading EU DISPUTE RESOLUTION, Value: 2
+				39 text EU DISPUTE RESOLUTION
+			40 text The European Commission provides a platform for online dispute resolution (OS): 
+			41 link Description: https://ec.europa.eu/consumers/odr/, Value: ec.europa.eu/consumers/odr/
+			42 text . You can find our e-mail address in the legal notice above.
+		43 container
+			44 heading CONSUMER DISPUTE RESOLUTION/ UNIVERSAL ARBITRATION BOARD, Value: 2
+				45 text CONSUMER DISPUTE RESOLUTION/ UNIVERSAL ARBITRATION BOARD
+			46 text We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.
+		47 container
+			48 text Source: 
+			49 link Description: https://www.e-recht24.de, Value: e-recht24.de/
+	50 container
+		51 button (disabled) DONATE
+		52 text Coming soon
+		53 container Legal
+			54 link Description: LEGAL NOTICE, Value: 127.0.0.1:4338/legal-notice
+			55 link Description: PRIVACY POLICY, Value: 127.0.0.1:4338/privacy-policy
+		56 container START Berlin social media
+			57 link Description: START Berlin on Instagram, Value: instagram.com/start_berlin
+			58 link Description: START Berlin on LinkedIn, Value: linkedin.com/company/start-berlin-e-v-
+			59 link Description: START Berlin on TikTok, Value: tiktok.com/@start_berlin
+		60 text © 2026 START Berlin. All rights reserved.
+
+The focused UI element is 1 AXWebArea Legal Notice | START Berlin, URL: 127.0.0.1:4338/legal-notice

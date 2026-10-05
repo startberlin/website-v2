@@ -1,0 +1,18 @@
+{
+  "decorativeIcons": true,
+  "donationDescription": "Coming soon",
+  "donationDescriptionId": "footer-donation-status",
+  "donationDisabled": true,
+  "footerTag": "FOOTER",
+  "headingCount": 1,
+  "mainCount": 1,
+  "navLabels": [
+    "Legal",
+    "START Berlin social media"
+  ],
+  "socialNames": [
+    "START Berlin on Instagram",
+    "START Berlin on LinkedIn",
+    "START Berlin on TikTok"
+  ]
+}

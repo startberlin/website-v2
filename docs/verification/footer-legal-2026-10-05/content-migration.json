@@ -1,0 +1,27 @@
+[
+  {
+    "source": "website-raw/legal/legal-notice.html",
+    "sha256": "37a0a2b9472eea753b43041302c3f20eced2bba363c2f31315c414b9ed878026",
+    "target": "src/pages/legal-notice.astro",
+    "normalized_content_matches": true,
+    "blocks": 15,
+    "links": [
+      "mailto:vorstand@start-berlin.com",
+      "https://ec.europa.eu/consumers/odr/",
+      "https://www.e-recht24.de"
+    ]
+  },
+  {
+    "source": "website-raw/legal/privacy.html",
+    "sha256": "52f992ac2e26829a49353b96c2db92f84fb001f1e350dddce5071d1e2056f2f9",
+    "target": "src/pages/privacy-policy.astro",
+    "normalized_content_matches": true,
+    "blocks": 87,
+    "links": [
+      "https://webflow.com/legal/eu-privacy-policy",
+      "https://www.dataprivacyframework.gov/participant/6365",
+      "mailto:vorstand@start-berlin.com",
+      "https://www.e-recht24.de"
+    ]
+  }
+]

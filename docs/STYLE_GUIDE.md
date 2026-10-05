@@ -4,9 +4,11 @@
 
 | Component | Use |
 | --- | --- |
-| [Layout](../src/layouts/Layout.astro) | Every page's HTML shell, global styles and Header. One `main` per page. |
+| [Layout](../src/layouts/Layout.astro) | Every page's HTML shell, global styles, Header and Footer. One `main` per page; the footer is outside it and sits at the bottom on short pages. |
+| [Footer](../src/components/Footer.astro) | Site-wide legal and legacy Berlin social links. Optional `donationUrl`; without it Donate is disabled with no secondary status text. Three areas in a wrapping row from 768 px, stacked below. Enlarged text may wrap the row. Mobile navigation makes the footer inert. |
+| [LegalLayout](../src/layouts/LegalLayout.astro) | `title` and a content slot. One H1; semantic H2/H3/H4 for the migrated text. Uses the shared page container. Long URLs wrap. |
 | [PageHero](../src/components/PageHero.astro) | Photo hero with one `h1`. Use `title`, `description`, `actions` and `aside` slots; pass crop positions as props. Home and Jobs extend it. |
-| [MemberCard](../src/components/MemberCard.astro) | Member presentation. Preserve the badge on the portrait edge and the LinkedIn touch target. |
+| [MemberCard](../src/components/MemberCard.astro) | Member presentation. Preserve the badge on the portrait edge. Optional LinkedIn and START email links share a centered row below the role, with 18-px icons and separate 44-px touch targets. Contact links wrap at enlarged text sizes and use shared focus styles. The directory keeps an 8-rem minimum card width and a scroll offset below its sticky filters for keyboard focus. |
 | [Icons](../src/components/icons/) | Astro/React wrappers share `src/lib/icons.ts`. Add icons there. |
 | [JobboardLayout](../src/layouts/JobboardLayout.astro) | Jobs shell and metadata. Reuse the existing CountryPicker and pagination. |
 
@@ -50,7 +52,7 @@ Existing `jb-button` and field selectors are aliases of these primitives. Join's
 
 Use `--font-sans`, the existing Avenir stack. No webfonts are bundled; device fallback must be checked before claiming identical typography.
 
-Use the `--text-*` scale: 16 px for body/inputs, 14 px for labels/buttons and at least 12 px for new metadata. Use central `--type-*` tokens for display headings. Existing compact text sizes remain specific exceptions. Use `rem` and preserve browser zoom.
+Use the `--text-*` scale: 16 px for body/inputs, 14 px for labels/buttons and at least 12 px for new metadata. Use central `--type-*` tokens for display headings. `--type-legal-title` follows the START Munich reference at 36 px, then 48 px from 768. Footer labels use `--tracking-wide` at 0.1 em. Legal body copy uses the existing 18-px `--text-lg` role. Existing compact text sizes remain specific exceptions. Use `rem` and preserve browser zoom.
 
 Use `.page-container` for every page-content region, including navigation, heroes and footer. All routes share `--layout-page`: at most 80 rem of usable content, centred with `--page-gutter` margins of 16 px, 24 px from 640 and 32 px from 1024. Never add another horizontal inset or page-specific width. Reading/form limits stay inside this container; background images may span the viewport. Use `--space-*` for the 4-px spacing rhythm.
 

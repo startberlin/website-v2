@@ -1,0 +1,245 @@
+{
+  "desktop": {
+    "overflow": false,
+    "variants": [
+      {
+        "cards": [
+          {
+            "cardWidth": 183.3309631347656,
+            "label": "Board",
+            "labelClipped": false,
+            "labelHeight": 16.001419067382812,
+            "labelToPortrait": 24.992904663085938,
+            "labelWidth": 41.6832389831543
+          },
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Partnerships",
+            "labelClipped": false,
+            "labelHeight": 16.001419067382812,
+            "labelToPortrait": 24.992904663085938,
+            "labelWidth": 85.859375
+          },
+          {
+            "cardWidth": 183.3309631347656,
+            "label": "Operations & Digital",
+            "labelClipped": false,
+            "labelHeight": 16.001419067382812,
+            "labelToPortrait": 24.992904663085938,
+            "labelWidth": 135.26988220214844
+          },
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Growth",
+            "labelClipped": false,
+            "labelHeight": 16.001419067382812,
+            "labelToPortrait": 24.992904663085938,
+            "labelWidth": 52.83380508422851
+          }
+        ],
+        "variant": "A · Schlichtes Label"
+      },
+      {
+        "cards": [
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Board",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 63.50141906738281
+          },
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Partnerships",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 107.67755126953124
+          },
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Operations & Digital",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 157.0880584716797
+          },
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Growth",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 74.65198516845703
+          }
+        ],
+        "variant": "B · Dezentes Badge"
+      },
+      {
+        "cards": [
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Board",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 63.50141906738281
+          },
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Partnerships",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 107.67755126953124
+          },
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Operations & Digital",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 157.0880584716797
+          },
+          {
+            "cardWidth": 183.3380584716797,
+            "label": "Growth",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 74.65198516845703
+          }
+        ],
+        "variant": "C · Badge links"
+      }
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 1280
+    }
+  },
+  "mobile": {
+    "overflow": false,
+    "variants": [
+      {
+        "cards": [
+          {
+            "cardWidth": 173.00425720214844,
+            "label": "Board",
+            "labelClipped": false,
+            "labelHeight": 16.001419067382812,
+            "labelToPortrait": 24.992889404296875,
+            "labelWidth": 41.6832389831543
+          },
+          {
+            "cardWidth": 173.0113525390625,
+            "label": "Partnerships",
+            "labelClipped": false,
+            "labelHeight": 16.001419067382812,
+            "labelToPortrait": 24.992889404296875,
+            "labelWidth": 85.859375
+          },
+          {
+            "cardWidth": 173.00425720214844,
+            "label": "Operations & Digital",
+            "labelClipped": false,
+            "labelHeight": 16.001419067382812,
+            "labelToPortrait": 24.992843627929688,
+            "labelWidth": 135.26988220214844
+          },
+          {
+            "cardWidth": 173.0113525390625,
+            "label": "Growth",
+            "labelClipped": false,
+            "labelHeight": 16.001419067382812,
+            "labelToPortrait": 24.992843627929688,
+            "labelWidth": 52.83380508422851
+          }
+        ],
+        "variant": "A · Schlichtes Label",
+        "y": 111.44175720214844
+      },
+      {
+        "cards": [
+          {
+            "cardWidth": 173.00425720214844,
+            "label": "Board",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 63.50141906738281
+          },
+          {
+            "cardWidth": 173.0113525390625,
+            "label": "Partnerships",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 107.67755126953124
+          },
+          {
+            "cardWidth": 173.00425720214844,
+            "label": "Operations & Digital",
+            "labelClipped": false,
+            "labelHeight": 41.81818008422851,
+            "labelToPortrait": 12.088069915771484,
+            "labelWidth": 147.19459533691406
+          },
+          {
+            "cardWidth": 173.0113525390625,
+            "label": "Growth",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 74.65198516845703
+          }
+        ],
+        "variant": "B · Dezentes Badge",
+        "y": 838.0397338867188
+      },
+      {
+        "cards": [
+          {
+            "cardWidth": 173.00425720214844,
+            "label": "Board",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 63.50141906738281
+          },
+          {
+            "cardWidth": 173.0113525390625,
+            "label": "Partnerships",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 107.67755126953124
+          },
+          {
+            "cardWidth": 173.00425720214844,
+            "label": "Operations & Digital",
+            "labelClipped": false,
+            "labelHeight": 41.81818008422851,
+            "labelToPortrait": 12.088069915771484,
+            "labelWidth": 147.19459533691406
+          },
+          {
+            "cardWidth": 173.0113525390625,
+            "label": "Growth",
+            "labelClipped": false,
+            "labelHeight": 25.816761016845703,
+            "labelToPortrait": 20.085216522216797,
+            "labelWidth": 74.65198516845703
+          }
+        ],
+        "variant": "C · Badge links",
+        "y": 1564.6376953125
+      }
+    ],
+    "viewport": {
+      "height": 900,
+      "width": 390
+    }
+  }
+}

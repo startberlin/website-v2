@@ -1,0 +1,24 @@
+$ astro check
+18:52:20 [content] Syncing content
+18:52:20 [content] Synced content
+18:52:20 [types] Generated 175ms
+18:52:20 [check] Getting diagnostics for Astro files in /Users/jannik/Developer/start_website/website-v2...
+[96msrc/content.config.ts[0m:[93m14[0m:[93m20[0m - [93mwarning[0m[90m ts(6385): [0m'(params?: string | { pattern?: RegExp | undefined; normalize?: boolean | undefined; abort?: boolean | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.
+
+[7m14[0m    url: z.string().url(),
+[7m  [0m [93m                   ~~~[0m
+
+[96msrc/lib/jobboard/contracts.ts[0m:[93m117[0m:[93m27[0m - [93mwarning[0m[90m ts(6385): [0m'(params?: unknown): ZodNumber' is deprecated.
+
+[7m117[0m     salaryMax: z.number().finite().positive().nullable(),
+[7m   [0m [93m                          ~~~~~~[0m
+[96msrc/lib/jobboard/contracts.ts[0m:[93m116[0m:[93m27[0m - [93mwarning[0m[90m ts(6385): [0m'(params?: unknown): ZodNumber' is deprecated.
+
+[7m116[0m     salaryMin: z.number().finite().positive().nullable(),
+[7m   [0m [93m                          ~~~~~~[0m
+
+Result (59 files): 
+- 0 errors
+- 0 warnings
+- 3 hints
+

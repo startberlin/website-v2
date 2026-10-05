@@ -1,0 +1,212 @@
+{
+  "desktop": {
+    "overflow": false,
+    "variants": [
+      {
+        "cards": [
+          {
+            "badgeCentreOffset": -12.006406784057615,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 43.0894889831543,
+            "label": "Board",
+            "overlap": 24.91478729248047
+          },
+          {
+            "badgeCentreOffset": -12.006406784057615,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 43.0894889831543,
+            "label": "Partnerships",
+            "overlap": 24.91478729248047
+          },
+          {
+            "badgeCentreOffset": -12.006406784057615,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 43.0894889831543,
+            "label": "Operations & Digital",
+            "overlap": 24.91478729248047
+          },
+          {
+            "badgeCentreOffset": -12.006406784057615,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 43.0894889831543,
+            "label": "Growth",
+            "overlap": 24.91478729248047
+          }
+        ],
+        "variant": "A · Weiter im Foto"
+      },
+      {
+        "cards": [
+          {
+            "badgeCentreOffset": -0.0035686492919921875,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 31.086650848388672,
+            "label": "Board",
+            "overlap": 12.911949157714844
+          },
+          {
+            "badgeCentreOffset": -0.0035686492919921875,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 31.086650848388672,
+            "label": "Partnerships",
+            "overlap": 12.911949157714844
+          },
+          {
+            "badgeCentreOffset": -0.0035381317138671875,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 31.086620330810547,
+            "label": "Operations & Digital",
+            "overlap": 12.91191864013672
+          },
+          {
+            "badgeCentreOffset": -0.0035381317138671875,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 31.086620330810547,
+            "label": "Growth",
+            "overlap": 12.91191864013672
+          }
+        ],
+        "variant": "B · Am unteren Bildrand"
+      },
+      {
+        "cards": [
+          {
+            "badgeCentreOffset": 6.992189407348633,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 24.090892791748047,
+            "label": "Board",
+            "overlap": 5.916191101074219
+          },
+          {
+            "badgeCentreOffset": 6.992189407348633,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 24.090892791748047,
+            "label": "Partnerships",
+            "overlap": 5.916191101074219
+          },
+          {
+            "badgeCentreOffset": 6.992189407348633,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 24.090892791748047,
+            "label": "Operations & Digital",
+            "overlap": 5.916191101074219
+          },
+          {
+            "badgeCentreOffset": 6.992189407348633,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 24.090892791748047,
+            "label": "Growth",
+            "overlap": 5.916191101074219
+          }
+        ],
+        "variant": "C · Weiter unter dem Foto"
+      }
+    ],
+    "width": 1280
+  },
+  "mobile": {
+    "overflow": false,
+    "variants": [
+      {
+        "cards": [
+          {
+            "badgeCentreOffset": -12.006376266479492,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 43.0894889831543,
+            "label": "Board",
+            "overlap": 24.914756774902344
+          },
+          {
+            "badgeCentreOffset": -12.006376266479492,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 43.0894889831543,
+            "label": "Partnerships",
+            "overlap": 24.914756774902344
+          },
+          {
+            "badgeCentreOffset": -12.00990867614746,
+            "badgeHeight": 41.81818008422851,
+            "gapToName": 35.092342376708984,
+            "label": "Operations & Digital",
+            "overlap": 32.91899871826172
+          },
+          {
+            "badgeCentreOffset": -12.006345748901367,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 43.0894889831543,
+            "label": "Growth",
+            "overlap": 24.91472625732422
+          }
+        ],
+        "variant": "A · Weiter im Foto"
+      },
+      {
+        "cards": [
+          {
+            "badgeCentreOffset": -0.0035381317138671875,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 31.086559295654297,
+            "label": "Board",
+            "overlap": 12.91191864013672
+          },
+          {
+            "badgeCentreOffset": -0.0035381317138671875,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 31.086559295654297,
+            "label": "Partnerships",
+            "overlap": 12.91191864013672
+          },
+          {
+            "badgeCentreOffset": -0.0071010589599609375,
+            "badgeHeight": 41.81818008422851,
+            "gapToName": 23.089412689208984,
+            "label": "Operations & Digital",
+            "overlap": 20.91619110107422
+          },
+          {
+            "badgeCentreOffset": -0.0035381317138671875,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 31.086559295654297,
+            "label": "Growth",
+            "overlap": 12.91191864013672
+          }
+        ],
+        "variant": "B · Am unteren Bildrand"
+      },
+      {
+        "cards": [
+          {
+            "badgeCentreOffset": 6.992189407348633,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 24.090953826904297,
+            "label": "Board",
+            "overlap": 5.916191101074219
+          },
+          {
+            "badgeCentreOffset": 6.992189407348633,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 24.090953826904297,
+            "label": "Partnerships",
+            "overlap": 5.916191101074219
+          },
+          {
+            "badgeCentreOffset": 6.988626480102539,
+            "badgeHeight": 41.81818008422851,
+            "gapToName": 16.093685150146484,
+            "label": "Operations & Digital",
+            "overlap": 13.92046356201172
+          },
+          {
+            "badgeCentreOffset": 6.992311477661133,
+            "badgeHeight": 25.816761016845703,
+            "gapToName": 24.090709686279297,
+            "label": "Growth",
+            "overlap": 5.916069030761719
+          }
+        ],
+        "variant": "C · Weiter unter dem Foto"
+      }
+    ],
+    "width": 320
+  }
+}

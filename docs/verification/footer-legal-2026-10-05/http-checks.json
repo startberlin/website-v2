@@ -1,0 +1,83 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "expected_status": 200,
+    "footer_count": 1,
+    "pass": true
+  },
+  {
+    "route": "/members",
+    "status": 200,
+    "expected_status": 200,
+    "footer_count": 1,
+    "pass": true
+  },
+  {
+    "route": "/join",
+    "status": 200,
+    "expected_status": 200,
+    "footer_count": 1,
+    "pass": true
+  },
+  {
+    "route": "/jobs",
+    "status": 503,
+    "expected_status": 503,
+    "footer_count": 1,
+    "pass": true
+  },
+  {
+    "route": "/jobs/submit",
+    "status": 200,
+    "expected_status": 200,
+    "footer_count": 1,
+    "pass": true
+  },
+  {
+    "route": "/jobs/privacy",
+    "status": 200,
+    "expected_status": 200,
+    "footer_count": 1,
+    "pass": true
+  },
+  {
+    "route": "/legal-notice",
+    "status": 200,
+    "expected_status": 200,
+    "footer_count": 1,
+    "pass": true,
+    "legacy_content_matches": true
+  },
+  {
+    "route": "/privacy-policy",
+    "status": 200,
+    "expected_status": 200,
+    "footer_count": 1,
+    "pass": true,
+    "legacy_content_matches": true
+  },
+  {
+    "route": "/jobs/unconfigured-role/footer-check",
+    "status": 503,
+    "expected_status": 503,
+    "footer_count": 1,
+    "pass": true
+  },
+  {
+    "route": "/legal/legal-notice.html",
+    "status": 301,
+    "location": "/legal-notice",
+    "final_status": 200,
+    "final_url": "http://127.0.0.1:4338/legal-notice",
+    "pass": true
+  },
+  {
+    "route": "/legal/privacy.html",
+    "status": 301,
+    "location": "/privacy-policy",
+    "final_status": 200,
+    "final_url": "http://127.0.0.1:4338/privacy-policy",
+    "pass": true
+  }
+]

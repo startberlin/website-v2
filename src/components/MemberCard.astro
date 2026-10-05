@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Icon from './icons/Icon.astro';
-import { memberLinkedinUrl } from '../lib/member-profiles';
+import { memberEmailUrl, memberLinkedinUrl } from '../lib/member-profiles';
 
 interface Props {
 	name: string;
@@ -11,15 +11,14 @@ interface Props {
 	// Label for the chip: the department name, or "Board".
 	group: string;
 	linkedin?: string;
+	email?: string;
 	portrait?: ImageMetadata;
 }
 
-const { name, role, batch, group, linkedin, portrait } = Astro.props;
+const { name, role, batch, group, linkedin, email, portrait } = Astro.props;
 const linkedinUrl = linkedin ? memberLinkedinUrl(linkedin, name) : undefined;
+const emailUrl = email ? memberEmailUrl(email, name) : undefined;
 const roleLabel = role ?? 'Member';
-const lastSpace = roleLabel.lastIndexOf(' ');
-const rolePrefix = roleLabel.slice(0, lastSpace + 1);
-const roleLastWord = roleLabel.slice(lastSpace + 1);
 
 // First and last name, so "Rocco Yohji Matthew Krippendorff" becomes "RK".
 const parts = name.split(/\s+/);
@@ -42,13 +41,21 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	</div>
 	<div class="card__body">
 		<h3 class="card__name">{name}</h3>
-		<p class="card__role">
-			{rolePrefix}<span class="card__role-tail">{roleLastWord}{' '}{linkedinUrl && (
-				<a class="card__linkedin" href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} on LinkedIn (opens in a new tab)`} title="View LinkedIn profile">
-					<Icon name="linkedin" size={14} />
-				</a>
-			)}</span>
-		</p>
+		<p class="card__role">{roleLabel}</p>
+		{(linkedinUrl || emailUrl) && (
+			<div class="card__contacts">
+				{linkedinUrl && (
+					<a class="card__contact" href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} on LinkedIn (opens in a new tab)`} title="View LinkedIn profile">
+						<Icon name="linkedin" size={18} />
+					</a>
+				)}
+				{emailUrl && (
+					<a class="card__contact" href={emailUrl} aria-label={`Email ${name} at ${email}`} title={`Email ${email}`}>
+						<Icon name="mail" size={18} />
+					</a>
+				)}
+			</div>
+		)}
 		{batch && <p class="card__batch">Batch #{batch}</p>}
 	</div>
 </article>
@@ -161,10 +168,6 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		color: var(--text-subtle);
 	}
 
-	.card__role-tail {
-		white-space: nowrap;
-	}
-
 	.card__chip {
 		min-width: 0;
 		max-width: 100%;
@@ -182,16 +185,22 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		text-wrap: balance;
 	}
 
-	.card__linkedin {
+	.card__contacts {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-1);
+		max-width: 100%;
+		margin-top: var(--space-1);
+	}
+
+	.card__contact {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		width: var(--target-min);
 		height: var(--target-min);
-		/* Keep the touch target while the small icon fits into the role text. */
-		margin: -0.75rem;
-		margin-inline-start: -0.625rem;
-		vertical-align: middle;
 		flex-shrink: 0;
 		border-radius: var(--radius-control);
 		color: var(--text-subtle);
@@ -199,17 +208,9 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		transition: color var(--duration-fast);
 	}
 
-	.card__linkedin:hover {
+	.card__contact:hover,
+	.card__contact:focus-visible {
 		color: var(--color-accent);
-	}
-
-	.card__linkedin:focus-visible {
-		outline: none;
-	}
-
-	.card__linkedin:focus-visible :global(svg) {
-		outline: var(--focus-width) solid var(--color-accent);
-		outline-offset: var(--focus-offset);
 	}
 
 	@media (max-width: 359px) {
@@ -222,7 +223,7 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	@media (prefers-reduced-motion: reduce) {
 		.card,
 		.card__avatar,
-		.card__linkedin {
+		.card__contact {
 			transition: none;
 		}
 

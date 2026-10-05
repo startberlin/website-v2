@@ -1,11 +1,19 @@
 import profiles from '../data/member-profiles.json';
 
 export interface MemberProfile {
-	linkedin: string;
+	linkedin?: string;
+	email?: string;
 	portrait?: string;
 }
 
 export const memberProfiles: Record<string, MemberProfile> = profiles;
+
+export function memberEmailUrl(email: string, name: string): string {
+	if (!/^[a-z0-9][a-z0-9._+-]*@start-berlin\.com$/i.test(email)) {
+		throw new Error(`Invalid START email for ${name}`);
+	}
+	return `mailto:${email}`;
+}
 
 export function memberSlug(name: string): string {
 	return name.toLowerCase()

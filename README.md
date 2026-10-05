@@ -42,10 +42,10 @@ The separate verification output preserves the tracked upstream `dist/`. Serve t
 
 ## Scope and release requirements
 
-Navigation pairs `Apply Now` (`/join`) with `Jobs` (`/jobs`). The Jobboard includes filters with 25-role URL pagination, canonical detail pages, employer submissions, application/share redirects and an active-role sitemap. A separate footer is intentionally absent pending the website-wide footer. See the [approved plan and implementation update](docs/plans/2026-09-29-jobboard-integration.md) and [local verification evidence](docs/verification/jobboard-2026-09-29/browser.md).
+Navigation pairs `Apply Now` (`/join`) with `Jobs` (`/jobs`). The Jobboard includes filters with 25-role URL pagination, canonical detail pages, employer submissions, application/share redirects and an active-role sitemap. The shared website footer appears on all pages, including Jobs. It links to `/legal-notice` and `/privacy-policy`, which preserve the legacy Berlin texts in the START Munich layout. Legacy `/legal/*.html` URLs redirect to these pages. Donate is present but disabled until a donation destination is provided. See the [approved plan and implementation update](docs/plans/2026-09-29-jobboard-integration.md) and [local verification evidence](docs/verification/jobboard-2026-09-29/browser.md).
 
 Release Newsletter in Cockpit before Jobboard. Newsletter owns migrations `0058` through `0060`; Jobboard follows with `0061`. The public migration requires no database-provider reconfiguration. Keep the standalone public project until the deployed v2 flow passes acceptance.
 
-Production API credentials and hosting remain to be configured. The Node adapter is portable; selecting Vercel requires its official Astro adapter and a fresh deployment check. General website legal/privacy pages remain part of the relaunch scope. Request analytics are disabled.
+Production API credentials and hosting remain to be configured. The Node adapter is portable; selecting Vercel requires its official Astro adapter and a fresh deployment check. Before release, reconcile the migrated legal/privacy text with the actual hosting and services; the legacy privacy policy still names Webflow. Request analytics are disabled.
 
 START plans to agree compensation with each company before publication; a referral arrangement remains a possibility. Staff follow up manually using the private Cockpit contact, record agreed terms, then review and publish the draft. Pricing is not settled. Commercial agreement enforcement and billing are not implemented.

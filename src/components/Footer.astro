@@ -1,0 +1,121 @@
+---
+import Icon from './icons/Icon.astro';
+
+interface Props {
+	donationUrl?: string;
+}
+
+const { donationUrl } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/+$/, '');
+const legalLinks = [
+	{ label: 'Legal Notice', href: '/legal-notice' },
+	{ label: 'Privacy Policy', href: '/privacy-policy' },
+];
+const socials = [
+	{ label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/start_berlin' },
+	{ label: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/company/start-berlin-e-v-' },
+	{ label: 'TikTok', icon: 'tiktok', href: 'https://www.tiktok.com/@start_berlin' },
+] as const;
+---
+
+<footer class="footer">
+	<div class="page-container">
+		<div class="footer__row">
+			<div class="footer__donation" id="footer-donation-status">
+				{donationUrl ? (
+					<a class="footer__text-link" href={donationUrl} target="_blank" rel="noopener noreferrer">Donate</a>
+				) : (
+					<button class="footer__text-link" type="button" disabled>Donate</button>
+				)}
+			</div>
+			<nav class="footer__legal" aria-label="Legal">
+				{legalLinks.map(({ label, href }) => (
+					<a class="footer__text-link" href={href} aria-current={currentPath === href ? 'page' : undefined}>{label}</a>
+				))}
+			</nav>
+			<nav class="footer__socials" aria-label="START Berlin social media">
+				{socials.map(({ label, icon, href }) => (
+					<a class="footer__social-link" href={href} target="_blank" rel="noopener noreferrer" aria-label={`START Berlin on ${label}`}>
+						<Icon name={icon} />
+					</a>
+				))}
+			</nav>
+		</div>
+		<p class="footer__copyright">© {new Date().getFullYear()} START Berlin. All rights reserved.</p>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		padding-block: var(--space-10) var(--space-4);
+		background: var(--color-dark-blue);
+	}
+	.footer__row {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-6);
+	}
+	.footer__row > * { min-width: 0; max-width: 100%; }
+	.footer__donation {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.footer__text-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--target-min);
+		max-width: 100%;
+		color: var(--color-white);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-bold);
+		line-height: var(--leading-ui);
+		letter-spacing: var(--tracking-wide);
+		text-transform: uppercase;
+		text-align: center;
+		transition: color var(--duration-fast);
+	}
+	.footer__text-link:disabled { cursor: not-allowed; }
+	.footer__text-link[href]:hover,
+	.footer__text-link[href]:focus-visible,
+	.footer__text-link[aria-current='page'],
+	.footer__social-link:hover,
+	.footer__social-link:focus-visible {
+		color: var(--color-accent);
+	}
+	.footer__legal {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-2) var(--space-6);
+	}
+	.footer__socials { display: flex; gap: var(--space-1); }
+	.footer__social-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--target-min);
+		height: var(--target-min);
+		transition: color var(--duration-fast);
+	}
+	.footer__copyright {
+		margin: var(--space-4) 0 0;
+		color: var(--text-subtle);
+		font-size: var(--text-sm);
+		line-height: var(--leading-copy);
+		text-align: center;
+	}
+	@media (min-width: 768px) {
+		.footer__row {
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
+		.footer__donation { align-items: flex-start; }
+		.footer__legal { gap: var(--space-8); }
+		.footer__copyright { text-align: left; }
+	}
+</style>

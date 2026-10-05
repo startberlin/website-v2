@@ -1,0 +1,16 @@
+{
+  "verifiedDate": "2026-10-05",
+  "source": "Cockpit > Admin > People > Members > START Email",
+  "members": 45,
+  "verifiedAddresses": 45,
+  "detailHeadingsMatched": 45,
+  "missingAddresses": 0,
+  "duplicateAddresses": 0,
+  "existingLinkedInProfilesPreserved": 44,
+  "portraitsPreserved": 43,
+  "renderedCards": 50,
+  "renderedMailLinks": 50,
+  "renderedLinkedInLinks": 49,
+  "runtimeAddressMismatches": 0,
+  "profileSourceSha256": "edf2926db3293eeed09408487ea37785169057ee8a450be14ef575ba1ffdd32c"
+}

@@ -1,0 +1,957 @@
+{
+  "viewports": [
+    {
+      "brokenLoadedImages": [],
+      "clippedText": [],
+      "columns": "2",
+      "height": 900,
+      "memberCount": "47",
+      "minTouchTarget": 44,
+      "scrollWidth": 320,
+      "touchTargetViolations": 0,
+      "visibleCards": 52,
+      "width": 320
+    },
+    {
+      "brokenLoadedImages": [],
+      "clippedText": [],
+      "columns": "2",
+      "height": 900,
+      "memberCount": "47",
+      "minTouchTarget": 44,
+      "scrollWidth": 360,
+      "touchTargetViolations": 0,
+      "visibleCards": 52,
+      "width": 360
+    },
+    {
+      "brokenLoadedImages": [],
+      "clippedText": [],
+      "columns": "2",
+      "height": 900,
+      "memberCount": "47",
+      "minTouchTarget": 44,
+      "scrollWidth": 390,
+      "touchTargetViolations": 0,
+      "visibleCards": 52,
+      "width": 390
+    },
+    {
+      "brokenLoadedImages": [],
+      "clippedText": [],
+      "columns": "3",
+      "height": 900,
+      "memberCount": "47",
+      "minTouchTarget": 44,
+      "scrollWidth": 768,
+      "touchTargetViolations": 0,
+      "visibleCards": 52,
+      "width": 768
+    },
+    {
+      "brokenLoadedImages": [],
+      "clippedText": [],
+      "columns": "5",
+      "height": 900,
+      "memberCount": "47",
+      "minTouchTarget": 44,
+      "scrollWidth": 1280,
+      "touchTargetViolations": 0,
+      "visibleCards": 52,
+      "width": 1280
+    },
+    {
+      "brokenLoadedImages": [],
+      "clippedText": [],
+      "columns": "5",
+      "height": 900,
+      "memberCount": "47",
+      "minTouchTarget": 44,
+      "scrollWidth": 1440,
+      "touchTargetViolations": 0,
+      "visibleCards": 52,
+      "width": 1440
+    }
+  ],
+  "interactions": [
+    {
+      "label": "name-search",
+      "emptyVisible": false,
+      "visibleNames": [
+        "Leonie Sophie Bender"
+      ]
+    },
+    {
+      "label": "combined-empty",
+      "emptyVisible": true,
+      "visibleNames": []
+    },
+    {
+      "label": "events-filter",
+      "emptyVisible": false,
+      "visibleNames": [
+        "Rocco Yohji Matthew Krippendorff",
+        "Lotta Kneller",
+        "Philipp Donie",
+        "Antonia Wittrin",
+        "Alexander Berner",
+        "Linhchi Bui",
+        "Benjamin Kapell",
+        "Leonardo Bressan",
+        "Alice Doudou Zhai",
+        "Sohalia Mathur",
+        "Giuseppe Montagner",
+        "Georgios Zelenitsas"
+      ]
+    },
+    {
+      "label": "operations-filter",
+      "emptyVisible": false,
+      "visibleNames": [
+        "Jannik Schaefer",
+        "Álvaro Torres",
+        "Jonathan Kubala",
+        "Hubert Tomaszczak",
+        "Leonie Sophie Bender",
+        "Leander Neubronner",
+        "Vicky Zhou",
+        "Julius Liebl",
+        "Jannis Metrikat"
+      ]
+    },
+    {
+      "label": "shared-board-department-profile",
+      "emptyVisible": false,
+      "visibleNames": [
+        "Jannik Schaefer",
+        "Jannik Schaefer"
+      ]
+    },
+    {
+      "label": "Paul Steinau",
+      "emptyVisible": true,
+      "visibleNames": []
+    },
+    {
+      "label": "Bo Ehrich",
+      "emptyVisible": true,
+      "visibleNames": []
+    },
+    {
+      "label": "Daria",
+      "emptyVisible": false,
+      "visibleNames": [
+        "Daria Jochmann"
+      ]
+    },
+    {
+      "label": "Seoyoung",
+      "emptyVisible": false,
+      "visibleNames": [
+        "Seoyoung Park"
+      ]
+    },
+    {
+      "label": "unknown-season-fallback",
+      "emptyVisible": false,
+      "visibleNames": [
+        "Antonia Hill",
+        "Julia Palm",
+        "Kari-Pele Streithoff",
+        "Tobias Burger",
+        "Jannik Schaefer",
+        "Anna Brinkkötter",
+        "Rhema Tamunoiyowuna",
+        "Rocco Yohji Matthew Krippendorff",
+        "Tobias Burger",
+        "Alisa Adamska",
+        "Arne Zalikowski",
+        "Alberto Greene",
+        "Gabriela Galindo",
+        "Ramin von Maydell",
+        "Viktor Gandl",
+        "Oliwier Arning",
+        "Jannik Schaefer",
+        "Álvaro Torres",
+        "Jonathan Kubala",
+        "Hubert Tomaszczak",
+        "Leonie Sophie Bender",
+        "Leander Neubronner",
+        "Vicky Zhou",
+        "Julius Liebl",
+        "Jannis Metrikat",
+        "Anna Brinkkötter",
+        "Robin Lahser",
+        "Nikolaos Magklis",
+        "Seoyoung Park",
+        "Cedrick Manzi",
+        "Marta Kielpinski",
+        "Kalina Petrykowska",
+        "Rhema Tamunoiyowuna",
+        "Julia Krysztofowicz",
+        "Mohammed Al-Alimi",
+        "Sarah Rahabi",
+        "Lilly Vannahme",
+        "Daria Jochmann",
+        "Darya Kablash",
+        "Nikolas Wollenberg",
+        "Rocco Yohji Matthew Krippendorff",
+        "Lotta Kneller",
+        "Philipp Donie",
+        "Antonia Wittrin",
+        "Alexander Berner",
+        "Linhchi Bui",
+        "Benjamin Kapell",
+        "Leonardo Bressan",
+        "Alice Doudou Zhai",
+        "Sohalia Mathur",
+        "Giuseppe Montagner",
+        "Georgios Zelenitsas"
+      ]
+    }
+  ],
+  "fallbacks": [
+    {
+      "linkedin": false,
+      "name": "Seoyoung Park"
+    },
+    {
+      "linkedin": true,
+      "name": "Daria Jochmann"
+    }
+  ],
+  "keyboardFocus": {
+    "label": "Jannik Schaefer on LinkedIn (opens in a new tab)",
+    "outline": "1.81818px",
+    "outlineStyle": "solid"
+  },
+  "resources": {
+    "images": [
+      {
+        "alt": "Portrait of Antonia Hill",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fantonia-hill.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fantonia-hill.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fantonia-hill.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Julia Palm",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjulia-palm.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjulia-palm.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjulia-palm.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Kari-Pele Streithoff",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fkari-pele-streithoff.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fkari-pele-streithoff.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fkari-pele-streithoff.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Tobias Burger",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Ftobias-burger.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Ftobias-burger.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Ftobias-burger.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Jannik Schaefer",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjannik-schaefer.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjannik-schaefer.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjannik-schaefer.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Anna Brinkkötter",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fanna-brinkkoetter.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fanna-brinkkoetter.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fanna-brinkkoetter.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Rhema Tamunoiyowuna",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frhema-tamunoiyowuna.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frhema-tamunoiyowuna.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frhema-tamunoiyowuna.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Rocco Yohji Matthew Krippendorff",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frocco-yohji-matthew-krippendorff.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frocco-yohji-matthew-krippendorff.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frocco-yohji-matthew-krippendorff.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Tobias Burger",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Ftobias-burger.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Ftobias-burger.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Ftobias-burger.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Alisa Adamska",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falisa-adamska.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falisa-adamska.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falisa-adamska.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Arne Zalikowski",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Farne-zalikowski.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Farne-zalikowski.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Farne-zalikowski.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Alberto Greene",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falberto-greene.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falberto-greene.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falberto-greene.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Gabriela Galindo",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fgabriela-galindo.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fgabriela-galindo.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fgabriela-galindo.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Ramin von Maydell",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Framin-von-maydell.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Framin-von-maydell.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Framin-von-maydell.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Viktor Gandl",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fviktor-gandl.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fviktor-gandl.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fviktor-gandl.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Oliwier Arning",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Foliwier-arning.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Foliwier-arning.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Foliwier-arning.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Jannik Schaefer",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjannik-schaefer.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjannik-schaefer.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjannik-schaefer.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Álvaro Torres",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falvaro-torres.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falvaro-torres.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falvaro-torres.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Jonathan Kubala",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjonathan-kubala.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjonathan-kubala.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjonathan-kubala.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Hubert Tomaszczak",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fhubert-tomaszczak.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fhubert-tomaszczak.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fhubert-tomaszczak.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Leonie Sophie Bender",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fleonie-sophie-bender.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fleonie-sophie-bender.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fleonie-sophie-bender.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Leander Neubronner",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fleander-neubronner.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fleander-neubronner.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fleander-neubronner.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Vicky Zhou",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fvicky-zhou.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fvicky-zhou.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fvicky-zhou.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Julius Liebl",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjulius-liebl.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjulius-liebl.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjulius-liebl.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Jannis Metrikat",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjannis-metrikat.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjannis-metrikat.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjannis-metrikat.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Anna Brinkkötter",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fanna-brinkkoetter.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fanna-brinkkoetter.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fanna-brinkkoetter.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Robin Lahser",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frobin-lahser.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frobin-lahser.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frobin-lahser.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Nikolaos Magklis",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fnikolaos-magklis.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fnikolaos-magklis.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fnikolaos-magklis.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Cedrick Manzi",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fcedrick-manzi.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fcedrick-manzi.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fcedrick-manzi.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Marta Kielpinski",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fmarta-kielpinski.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fmarta-kielpinski.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fmarta-kielpinski.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Kalina Petrykowska",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fkalina-petrykowska.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fkalina-petrykowska.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fkalina-petrykowska.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Rhema Tamunoiyowuna",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frhema-tamunoiyowuna.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frhema-tamunoiyowuna.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frhema-tamunoiyowuna.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Julia Krysztofowicz",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjulia-krysztofowicz.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjulia-krysztofowicz.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fjulia-krysztofowicz.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Mohammed Al-Alimi",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fmohammed-al-alimi.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fmohammed-al-alimi.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fmohammed-al-alimi.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Sarah Rahabi",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fsarah-rahabi.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fsarah-rahabi.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fsarah-rahabi.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Lilly Vannahme",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Flilly-vannahme.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Flilly-vannahme.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Flilly-vannahme.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Darya Kablash",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fdarya-kablash.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fdarya-kablash.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fdarya-kablash.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Nikolas Wollenberg",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fnikolas-wollenberg.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fnikolas-wollenberg.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fnikolas-wollenberg.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Rocco Yohji Matthew Krippendorff",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frocco-yohji-matthew-krippendorff.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frocco-yohji-matthew-krippendorff.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Frocco-yohji-matthew-krippendorff.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Lotta Kneller",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Flotta-kneller.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Flotta-kneller.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Flotta-kneller.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Philipp Donie",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fphilipp-donie.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fphilipp-donie.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fphilipp-donie.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Antonia Wittrin",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fantonia-wittrin.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fantonia-wittrin.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fantonia-wittrin.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Alexander Berner",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falexander-berner.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falexander-berner.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falexander-berner.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Linhchi Bui",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Flinhchi-bui.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Flinhchi-bui.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Flinhchi-bui.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Benjamin Kapell",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fbenjamin-kapell.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fbenjamin-kapell.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fbenjamin-kapell.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Leonardo Bressan",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fleonardo-bressan.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fleonardo-bressan.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fleonardo-bressan.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Alice Doudou Zhai",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falice-doudou-zhai.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falice-doudou-zhai.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Falice-doudou-zhai.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Sohalia Mathur",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fsohalia-mathur.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fsohalia-mathur.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fsohalia-mathur.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Giuseppe Montagner",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fgiuseppe-montagner.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fgiuseppe-montagner.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fgiuseppe-montagner.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      },
+      {
+        "alt": "Portrait of Georgios Zelenitsas",
+        "height": 94,
+        "loading": "lazy",
+        "src": "http://127.0.0.1:4321/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fgeorgios-zelenitsas.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp",
+        "srcset": "/_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fgeorgios-zelenitsas.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=96&h=96&f=webp 96w, /_image?href=%2F%40fs%2FUsers%2Fjannik%2FDeveloper%2Fstart_website%2Fwebsite-v2%2Fsrc%2Fassets%2Fmembers%2Fgeorgios-zelenitsas.webp%3ForigWidth%3D256%26origHeight%3D256%26origFormat%3Dwebp&w=192&h=192&f=webp 192w",
+        "width": 94
+      }
+    ],
+    "links": [
+      {
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "label": "Antonia Hill on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "label": "Julia Palm on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "label": "Kari-Pele Streithoff on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "label": "Tobias Burger on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "label": "Jannik Schaefer on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "label": "Anna Brinkkötter on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "label": "Rhema Tamunoiyowuna on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "label": "Rocco Yohji Matthew Krippendorff on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "label": "Tobias Burger on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/alisa-adamska/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=alisa-adamska",
+        "label": "Alisa Adamska on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/arnezalikowski/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=arne-zalikowski",
+        "label": "Arne Zalikowski on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/alberto-greene/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=alberto-greene",
+        "label": "Alberto Greene on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/gabriela-galindo-594b25226/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=gabriela-galindo",
+        "label": "Gabriela Galindo on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/ramin-von-maydell-24252029b/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=ramin-von-maydell",
+        "label": "Ramin von Maydell on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/viktor-gandl-307655277/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=viktor-gandl",
+        "label": "Viktor Gandl on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/oliwierarning/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=oliwier-arning",
+        "label": "Oliwier Arning on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "label": "Jannik Schaefer on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/alvaro-torres-b19050237/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=alvaro-torres",
+        "label": "Álvaro Torres on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/jonathan-kubala/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jonathan-kubala",
+        "label": "Jonathan Kubala on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/hubert-tomaszczak-84b9412a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=hubert-tomaszczak",
+        "label": "Hubert Tomaszczak on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/leonie-sophie-bender-471475358/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=leonie-sophie-bender",
+        "label": "Leonie Sophie Bender on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/leander-neubronner/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=leander-neubronner",
+        "label": "Leander Neubronner on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/vicky-jingyi-zhou/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=vicky-zhou",
+        "label": "Vicky Zhou on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/julius-liebl-3134372b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julius-liebl",
+        "label": "Julius Liebl on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/jmetrikat/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannis-metrikat",
+        "label": "Jannis Metrikat on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "label": "Anna Brinkkötter on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/robin-lahser/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=robin-lahser",
+        "label": "Robin Lahser on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/nikolaos-magklis/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=nikolaos-magklis",
+        "label": "Nikolaos Magklis on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/manzi-cedrick/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=cedrick-manzi",
+        "label": "Cedrick Manzi on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/marta-k-78090a278/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=marta-kielpinski",
+        "label": "Marta Kielpinski on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/kalina-petrykowska/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kalina-petrykowska",
+        "label": "Kalina Petrykowska on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "label": "Rhema Tamunoiyowuna on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/julia-krysztofowicz/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-krysztofowicz",
+        "label": "Julia Krysztofowicz on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/mohammedal-alimi/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=mohammed-al-alimi",
+        "label": "Mohammed Al-Alimi on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/sarahrahabi/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=sarah-rahabi",
+        "label": "Sarah Rahabi on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/lilly-vannahme/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=lilly-vannahme",
+        "label": "Lilly Vannahme on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/daria-jochmann-0b12693a8/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=daria-jochmann",
+        "label": "Daria Jochmann on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/darya-kablash-37288a254/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=darya-kablash",
+        "label": "Darya Kablash on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/nikolas-wollenberg-804529248/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=nikolas-wollenberg",
+        "label": "Nikolas Wollenberg on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "label": "Rocco Yohji Matthew Krippendorff on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/lotta-kneller-130098395/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=lotta-kneller",
+        "label": "Lotta Kneller on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/philipp-donie-aa327933a/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=philipp-donie",
+        "label": "Philipp Donie on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/antoniawittrin/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-wittrin",
+        "label": "Antonia Wittrin on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/alexander-berner/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=alexander-berner",
+        "label": "Alexander Berner on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/linhchi-bui-807936224/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=linhchi-bui",
+        "label": "Linhchi Bui on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/benjamin-kapell-10438a112/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=benjamin-kapell",
+        "label": "Benjamin Kapell on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/leonardo-bressan-profile/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=leonardo-bressan",
+        "label": "Leonardo Bressan on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/alice-dd-zhai/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=alice-doudou-zhai",
+        "label": "Alice Doudou Zhai on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/sohalia-mathur/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=sohalia-mathur",
+        "label": "Sohalia Mathur on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/giuseppe-montagner/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=giuseppe-montagner",
+        "label": "Giuseppe Montagner on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      },
+      {
+        "href": "https://www.linkedin.com/in/giorgoszelenitsas/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=georgios-zelenitsas",
+        "label": "Georgios Zelenitsas on LinkedIn (opens in a new tab)",
+        "rel": "noopener noreferrer",
+        "target": "_blank"
+      }
+    ]
+  },
+  "iconPlacement": {
+    "allInRole": true,
+    "footerLinks": 0,
+    "iconSizes": [
+      "14"
+    ]
+  },
+  "hover": {
+    "background": "rgba(0, 0, 0, 0)",
+    "color": "rgb(2, 195, 222)",
+    "hovered": true
+  },
+  "mobileMenu": {
+    "closed": true,
+    "expanded": "false",
+    "focus": "Open menu"
+  }
+}

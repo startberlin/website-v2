@@ -1,0 +1,142 @@
+[
+  {
+    "name": "legal",
+    "width": 320,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 320
+    },
+    "pass": true
+  },
+  {
+    "name": "privacy",
+    "width": 320,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 320
+    },
+    "pass": true
+  },
+  {
+    "name": "legal",
+    "width": 390,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 390
+    },
+    "pass": true
+  },
+  {
+    "name": "privacy",
+    "width": 390,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 390
+    },
+    "pass": true
+  },
+  {
+    "name": "legal",
+    "width": 768,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 768
+    },
+    "pass": true
+  },
+  {
+    "name": "privacy",
+    "width": 768,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 768
+    },
+    "pass": true
+  },
+  {
+    "name": "legal",
+    "width": 1024,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 1024
+    },
+    "pass": true
+  },
+  {
+    "name": "privacy",
+    "width": 1024,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 1024
+    },
+    "pass": true
+  },
+  {
+    "name": "legal",
+    "width": 1280,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 1280
+    },
+    "pass": true
+  },
+  {
+    "name": "privacy",
+    "width": 1280,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 1280
+    },
+    "pass": true
+  },
+  {
+    "name": "legal",
+    "width": 1440,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 1440
+    },
+    "pass": true
+  },
+  {
+    "name": "privacy",
+    "width": 1440,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 1440
+    },
+    "pass": true
+  },
+  {
+    "name": "legal",
+    "width": 1920,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 1920
+    },
+    "pass": true
+  },
+  {
+    "name": "privacy",
+    "width": 1920,
+    "state": {
+      "overflow": 0,
+      "rootFont": "32px",
+      "width": 1920
+    },
+    "pass": true
+  }
+]

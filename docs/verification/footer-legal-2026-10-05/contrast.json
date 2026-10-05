@@ -1,0 +1,51 @@
+[
+  {
+    "color": "rgba(255, 255, 255, 0.6)",
+    "fontSize": "14px",
+    "selector": "footer .footer__copyright",
+    "ratio": 7.23,
+    "pass": true
+  },
+  {
+    "color": "rgba(255, 255, 255, 0.7)",
+    "fontSize": "12px",
+    "selector": "footer .footer__status",
+    "ratio": 9.72,
+    "pass": true
+  },
+  {
+    "color": "rgb(255, 255, 255)",
+    "fontSize": "14px",
+    "selector": "footer .footer__text-link",
+    "ratio": 20.26,
+    "pass": true
+  },
+  {
+    "color": "rgb(255, 255, 255)",
+    "fontSize": "16px",
+    "selector": "footer .footer__social-link",
+    "ratio": 20.26,
+    "pass": true
+  },
+  {
+    "color": "rgb(255, 255, 255)",
+    "fontSize": "48px",
+    "selector": ".legal-page h1",
+    "ratio": 20.26,
+    "pass": true
+  },
+  {
+    "color": "rgba(255, 255, 255, 0.86)",
+    "fontSize": "18px",
+    "selector": ".legal-page p",
+    "ratio": 14.74,
+    "pass": true
+  },
+  {
+    "color": "rgb(2, 195, 222)",
+    "fontSize": "18px",
+    "selector": ".legal-page a",
+    "ratio": 9.52,
+    "pass": true
+  }
+]

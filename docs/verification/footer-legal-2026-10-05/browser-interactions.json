@@ -1,0 +1,85 @@
+[
+  {
+    "check": "footer keyboard focus",
+    "state": {
+      "focusVisible": true,
+      "href": "/privacy-policy",
+      "outline": "rgb(2, 195, 222) solid 2px"
+    }
+  },
+  {
+    "check": "keyboard privacy navigation",
+    "url": "http://127.0.0.1:4338/privacy-policy",
+    "current": "/privacy-policy"
+  },
+  {
+    "check": "general privacy to jobs privacy",
+    "url": "http://127.0.0.1:4338/jobs/privacy",
+    "localLinks": [
+      "/legal-notice",
+      "/privacy-policy",
+      "/privacy-policy"
+    ]
+  },
+  {
+    "check": "jobs privacy to legal notice",
+    "url": "http://127.0.0.1:4338/legal-notice"
+  },
+  {
+    "check": "donate disabled and labelled",
+    "enabled": false,
+    "label": "Coming soon"
+  },
+  {
+    "check": "reduced motion CSS rule",
+    "rules": [
+      "@media (prefers-reduced-motion: reduce) {\n  *, ::before, ::after { transition: none !important; }\n}",
+      "@media (prefers-reduced-motion: reduce) {\n  .dropdown__panel[data-astro-cid-nen7h5rs] { animation: auto ease 0s 1 normal none running none; }\n}"
+    ]
+  },
+  {
+    "check": "mobile menu inert attributes",
+    "state": {
+      "focused": "Close menu",
+      "footerInert": true,
+      "mainInert": true,
+      "overflow": "hidden"
+    },
+    "pass": true
+  },
+  {
+    "check": "mobile backwards wrap",
+    "state": {
+      "href": "/jobs",
+      "insideMenu": true
+    },
+    "pass": true
+  },
+  {
+    "check": "mobile forwards wrap",
+    "state": {
+      "href": "/",
+      "insideMenu": true
+    },
+    "pass": true
+  },
+  {
+    "check": "Escape clears inert attributes",
+    "state": {
+      "focused": "Open menu",
+      "footerInert": false,
+      "mainInert": false
+    },
+    "pass": true
+  },
+  {
+    "check": "desktop resize clears inert attributes",
+    "state": {
+      "footerInert": false,
+      "mainInert": false,
+      "menuHidden": true,
+      "overflow": ""
+    },
+    "pass": true
+  }
+]
