@@ -1,0 +1,139 @@
+/* START Berlin V2. Usage and exceptions: docs/STYLE_GUIDE.md. */
+:root {
+	/* Brand primitives. V2 cyan differs from the legacy site's cyan. */
+	--color-dark-blue: #00002c;
+	--color-accent: #02c3de;
+	--color-white: #ffffff;
+	--color-error: #ffb1b1;
+
+	/* Semantic roles on the dark background. */
+	--text-primary: var(--color-white);
+	--text-copy: rgb(255 255 255 / 0.86);
+	--text-muted: rgb(255 255 255 / 0.7);
+	--text-subtle: rgb(255 255 255 / 0.6);
+	--surface-card: rgb(255 255 255 / 0.03);
+	--surface-control: rgb(255 255 255 / 0.05);
+	--surface-floating: color-mix(in srgb, var(--color-dark-blue) 95%, var(--color-white));
+	--surface-sticky: rgb(0 0 44 / 0.9);
+	--surface-photo-card: rgb(0 0 44 / 0.6);
+	--surface-status: rgb(0 0 44 / 0.5);
+	--surface-photo-shade: rgb(0 0 44 / 0.8);
+	--surface-image-action: rgb(255 255 255 / 0.2);
+	--border-subtle: rgb(255 255 255 / 0.1);
+	--border-default: rgb(255 255 255 / 0.15);
+	--border-strong: rgb(255 255 255 / 0.2);
+	--border-control: rgb(255 255 255 / 0.4);
+	--border-error: rgb(255 177 177 / 0.4);
+	--border-accent: color-mix(in srgb, var(--color-accent) 60%, transparent);
+	--border-accent-soft: color-mix(in srgb, var(--color-accent) 50%, transparent);
+	--surface-accent: color-mix(in srgb, var(--color-accent) 10%, transparent);
+
+	/* Approved image treatments and decorative network lettering. */
+	--gradient-hero: linear-gradient(to right, rgb(0 0 44 / 0.94), rgb(0 0 44 / 0.65) 55%, rgb(0 0 44 / 0.2));
+	--gradient-photo-band: linear-gradient(to right, rgb(0 0 44 / 0.95), rgb(0 0 44 / 0.75) 50%, rgb(0 0 44 / 0.3));
+	--gradient-news-shade: linear-gradient(to top, rgb(0 0 0 / 0.9), rgb(0 0 0 / 0.65) 25%, transparent 55%);
+	--gradient-placeholder: linear-gradient(to bottom right, color-mix(in srgb, var(--color-accent) 30%, transparent), var(--color-dark-blue));
+	--gradient-avatar: radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--color-accent) 35%, transparent), color-mix(in srgb, var(--color-accent) 8%, transparent) 70%);
+	--gradient-network-silver: linear-gradient(to right, rgb(156 163 175), rgb(229 231 235));
+	--gradient-network-grey: linear-gradient(to right, rgb(107 114 128), rgb(209 213 219));
+
+	/* Font availability depends on the device. No font binaries are bundled. */
+	--font-sans: "Avenir Next", "Avenir Next LT Pro", Avenir, system-ui, sans-serif;
+	--weight-regular: 400;
+	--weight-medium: 500;
+	--weight-semibold: 600;
+	--weight-bold: 700;
+	--weight-heavy: 800;
+	--weight-display: 900;
+	--text-xs: 0.75rem;
+	--text-sm: 0.875rem;
+	--text-base: 1rem;
+	--text-lg: 1.125rem;
+	--text-xl: 1.25rem;
+	--text-2xl: 1.5rem;
+	--text-3xl: 1.75rem;
+	--text-4xl: 2rem;
+	/* Existing compact editorial roles. Do not use these for form inputs. */
+	--text-caption: 0.8125rem;
+	--text-compact: 0.9375rem;
+	--text-lead: 1.0625rem;
+	--text-status-title: 1.375rem;
+	--text-badge: 0.6875rem;
+	--text-badge-small: 0.625rem;
+	--type-hero: clamp(2.5rem, 7vw, 5.5rem);
+	--type-hero-landing: clamp(2rem, 7.5vw, 6.5rem);
+	--type-section: clamp(2.25rem, 5vw, 3.75rem);
+	--type-home-section: 3rem;
+	--type-home-section-wide: 3.75rem;
+	--type-legal-title: 2.25rem;
+	--type-network-city-wide: 4.5rem;
+	--type-stat: clamp(1.75rem, 5vw, 3rem);
+	--type-closing-title: clamp(1.75rem, 4vw, 2.5rem);
+	--type-step-number: 3.5rem;
+	--type-job-page: clamp(2.75rem, 5.5vw, 4rem);
+	--type-job-detail: clamp(2rem, 4vw, 3.5rem);
+	--type-job-row: clamp(1.0625rem, 1.8vw, 1.3125rem);
+	--leading-copy: 1.65;
+	--leading-ui: 1.4;
+	--tracking-label: 0.025em;
+	--tracking-wide: 0.1em;
+	--tracking-eyebrow: 0.2em;
+
+	/* Four-pixel layout rhythm; optical adjustments stay local and explained. */
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-5: 1.25rem;
+	--space-6: 1.5rem;
+	--space-7: 1.75rem;
+	--space-8: 2rem;
+	--space-10: 2.5rem;
+	--space-12: 3rem;
+	--space-14: 3.5rem;
+	--space-16: 4rem;
+	--space-20: 5rem;
+	--space-24: 6rem;
+	--space-28: 7rem;
+	--layout-page: 80rem;
+	--layout-jobs: 76rem;
+	--layout-reading: 44rem;
+	--page-gutter: var(--space-4);
+	--header-height: 5rem;
+	--target-min: 2.75rem;
+	--target-hero-mobile: 3.125rem;
+
+	/* Radius is determined by purpose, never by the page. */
+	--radius-control: 0.25rem;
+	--radius-field: 0.5rem;
+	--radius-card: 0.75rem;
+	--radius-media: 1rem;
+	--radius-pill: 9999px;
+	--border-width: 1px;
+	--border-width-accent: 2px;
+	--focus-width: 2px;
+	--focus-offset: 4px;
+	--shadow-dropdown: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+	--z-decoration: 10;
+	--z-filters: 40;
+	--z-navigation: 50;
+	--z-skip-link: 60;
+	--duration-fast: 150ms;
+	--duration-ui: 200ms;
+	--duration-panel: 300ms;
+	--duration-image: 500ms;
+	--duration-slideshow: 2000ms;
+}
+
+/* CSS custom properties cannot be used as media-query conditions. */
+@media (min-width: 640px) {
+	:root { --page-gutter: var(--space-6); }
+}
+
+@media (min-width: 1024px) {
+	:root { --page-gutter: var(--space-8); }
+}
+
+@media (min-width: 768px) {
+	:root { --type-legal-title: 3rem; }
+}

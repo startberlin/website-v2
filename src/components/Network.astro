@@ -98,18 +98,18 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 	.network {
 		position: relative;
 		overflow: hidden;
-		padding: 7rem 1rem;
+		padding: var(--space-28) var(--page-gutter);
 	}
 
 	.network__inner {
-		max-width: 80rem;
+		max-width: var(--layout-page);
 		margin-inline: auto;
 	}
 
 	.network__title {
-		margin: 0 0 2.5rem;
-		font-size: 3rem;
-		font-weight: 900;
+		margin: 0 0 var(--space-10);
+		font-size: var(--type-home-section);
+		font-weight: var(--weight-display);
 		line-height: 1;
 		text-transform: uppercase;
 	}
@@ -118,7 +118,7 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 		display: grid;
 		grid-template-columns: 1fr;
 		align-items: center;
-		gap: 4rem;
+		gap: var(--space-16);
 	}
 
 	.network__info {
@@ -127,10 +127,10 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 
 	.network__text {
 		max-width: 28rem;
-		margin: 0 0 4rem;
-		font-size: 1.125rem;
+		margin: 0 0 var(--space-16);
+		font-size: var(--text-lg);
 		line-height: 1.625;
-		color: rgb(209 213 219);
+		color: var(--text-copy);
 	}
 
 	.network__globe {
@@ -145,9 +145,9 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 
 	.network__stats {
 		position: relative;
-		z-index: 10;
+		z-index: var(--z-decoration);
 		display: flex;
-		gap: 2rem;
+		gap: var(--space-8);
 		margin: 0;
 	}
 
@@ -158,15 +158,15 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 
 	.network__stat-value {
 		margin: 0;
-		font-size: 3rem;
-		font-weight: 900;
+		font-size: var(--type-home-section);
+		font-weight: var(--weight-display);
 		line-height: 1;
 	}
 
 	.network__stat-label {
-		font-size: 0.875rem;
+		font-size: var(--text-sm);
 		line-height: 1.25rem;
-		color: rgb(156 163 175);
+		color: var(--text-subtle);
 	}
 
 	.network__cities {
@@ -182,8 +182,8 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 		position: absolute;
 		right: 0;
 		left: 0;
-		z-index: 10;
-		height: 5rem;
+		z-index: var(--z-decoration);
+		height: var(--header-height);
 		pointer-events: none;
 	}
 
@@ -198,7 +198,7 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 	}
 
 	.network__city-list {
-		margin: 3rem 0 0;
+		margin: var(--space-12) 0 0;
 		padding: 0;
 		list-style: none;
 		text-align: right;
@@ -206,8 +206,8 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 	}
 
 	.network__city {
-		font-size: 3rem;
-		font-weight: 900;
+		font-size: var(--type-home-section);
+		font-weight: var(--weight-display);
 		line-height: 1.2;
 		text-transform: uppercase;
 	}
@@ -228,11 +228,11 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 	}
 
 	.network__city--silver {
-		background-image: linear-gradient(to right, rgb(156 163 175), rgb(229 231 235));
+		background-image: var(--gradient-network-silver);
 	}
 
 	.network__city--grey {
-		background-image: linear-gradient(to right, rgb(107 114 128), rgb(209 213 219));
+		background-image: var(--gradient-network-grey);
 	}
 
 	@keyframes scroll-up {
@@ -245,32 +245,24 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 	}
 
 	@media (min-width: 640px) {
-		.network {
-			padding-inline: 1.5rem;
-		}
-
 		.network__title,
 		.network__stat-value,
 		.network__city {
-			font-size: 3.75rem;
+			font-size: var(--type-home-section-wide);
 		}
 
 		.network__stats {
-			gap: 4rem;
+			gap: var(--space-16);
 		}
 	}
 
 	@media (min-width: 1024px) {
-		.network {
-			padding-inline: 2rem;
-		}
-
 		.network__grid {
 			grid-template-columns: 1fr 1fr;
 		}
 
 		.network__city {
-			font-size: 4.5rem;
+			font-size: var(--type-network-city-wide);
 		}
 	}
 

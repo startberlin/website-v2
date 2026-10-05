@@ -1,9 +1,5 @@
-:root {
-	--color-dark-blue: #00002c;
-	--color-accent: #02c3de;
-	--color-white: #fff;
-	--font-sans: 'Avenir Next', 'Avenir Next LT Pro', Avenir, system-ui, sans-serif;
-}
+@import './tokens.css';
+@import './primitives.css';
 
 *,
 *::before,

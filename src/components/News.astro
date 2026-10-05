@@ -99,7 +99,7 @@ const socials = [
 		const viewport = section.querySelector<HTMLElement>('[data-news-viewport]')!;
 		const track = section.querySelector<HTMLElement>('[data-news-track]')!;
 		const desktop = window.matchMedia('(min-width: 768px)');
-		const headerHeight = 80;
+		const headerHeight = document.querySelector<HTMLElement>('.nav')?.offsetHeight ?? 0;
 		let frame = 0;
 
 		const overflow = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
@@ -149,49 +149,49 @@ const socials = [
 <style>
 	.news {
 		position: relative;
-		padding-inline: 1rem;
+		padding-inline: var(--page-gutter);
 	}
 
 	.news__sticky {
-		max-width: 80rem;
+		max-width: var(--layout-page);
 		margin-inline: auto;
-		padding-block: 7rem;
+		padding-block: var(--space-28);
 	}
 
 	.news__header {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: flex-end;
-		gap: 1rem 1.5rem;
-		margin-bottom: 3rem;
+		gap: var(--space-4) var(--space-6);
+		margin-bottom: var(--space-12);
 	}
 
 	.news__title {
 		margin: 0;
-		font-size: 3rem;
-		font-weight: 900;
+		font-size: var(--type-home-section);
+		font-weight: var(--weight-display);
 		line-height: 1;
 		text-transform: uppercase;
 	}
 
 	.news__socials {
 		display: flex;
-		gap: 0.75rem;
-		margin-bottom: 0.25rem;
+		gap: var(--space-3);
+		margin-bottom: var(--space-1);
 	}
 
 	.news__social {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.625rem 1.25rem;
-		font-size: 0.875rem;
-		font-weight: 500;
+		gap: var(--space-2);
+		padding: 0.625rem var(--space-5);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-medium);
 		line-height: 1.25rem;
-		background: rgb(255 255 255 / 0.05);
-		border: 1px solid rgb(255 255 255 / 0.1);
-		border-radius: 9999px;
-		transition: all 300ms;
+		background: var(--surface-control);
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-pill);
+		transition: background-color var(--duration-panel), border-color var(--duration-panel), color var(--duration-panel);
 	}
 
 	.news__social svg {
@@ -201,14 +201,14 @@ const socials = [
 
 	.news__social:hover {
 		color: var(--color-accent);
-		background: color-mix(in srgb, var(--color-accent) 10%, transparent);
-		border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+		background: var(--surface-accent);
+		border-color: var(--border-accent-soft);
 	}
 
 	.news__track {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
+		gap: var(--space-6);
 	}
 
 	.news__card {
@@ -217,7 +217,7 @@ const socials = [
 		/* Each card keeps its post image's proportions; 4:5 when there is no image. */
 		aspect-ratio: var(--ratio, 4 / 5);
 		overflow: hidden;
-		border-radius: 1rem;
+		border-radius: var(--radius-media);
 	}
 
 	.news__card[data-extra] {
@@ -235,15 +235,11 @@ const socials = [
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		transition: transform 500ms;
+		transition: transform var(--duration-image);
 	}
 
 	.news__placeholder {
-		background: linear-gradient(
-			to bottom right,
-			color-mix(in srgb, var(--color-accent) 30%, transparent),
-			rgb(59 7 100 / 0.5)
-		);
+		background: var(--gradient-placeholder);
 	}
 
 	.news__card:hover .news__image {
@@ -255,7 +251,7 @@ const socials = [
 		inset: 0;
 		/* Stronger than Munich's fade: most post images are graphics with their own
 		   text near the bottom, which would otherwise clash with the card title. */
-		background: linear-gradient(to top, rgb(0 0 0 / 0.9), rgb(0 0 0 / 0.65) 25%, transparent 55%);
+		background: var(--gradient-news-shade);
 	}
 
 	.news__text {
@@ -266,17 +262,17 @@ const socials = [
 	}
 
 	.news__card-title {
-		margin-bottom: 0.25rem;
-		font-size: 1.25rem;
-		font-weight: 700;
+		margin-bottom: var(--space-1);
+		font-size: var(--text-xl);
+		font-weight: var(--weight-bold);
 		line-height: 1.75rem;
 	}
 
 	.news__card-description {
 		margin: 0;
-		font-size: 0.875rem;
+		font-size: var(--text-sm);
 		line-height: 1.25rem;
-		color: rgb(255 255 255 / 0.7);
+		color: var(--text-muted);
 	}
 
 	.news__external {
@@ -288,11 +284,11 @@ const socials = [
 		justify-content: center;
 		width: 2rem;
 		height: 2rem;
-		background: rgb(255 255 255 / 0.2);
-		border-radius: 9999px;
+		background: var(--surface-image-action);
+		border-radius: var(--radius-pill);
 		backdrop-filter: blur(4px);
 		opacity: 0;
-		transition: opacity 150ms;
+		transition: opacity var(--duration-fast);
 	}
 
 	.news__external svg {
@@ -306,34 +302,30 @@ const socials = [
 
 	.news__more {
 		width: 100%;
-		margin-top: 1.5rem;
-		padding-block: 1rem;
-		font-weight: 500;
-		color: rgb(255 255 255 / 0.7);
-		border: 1px solid rgb(255 255 255 / 0.2);
-		border-radius: 1rem;
-		transition: all 300ms;
+		margin-top: var(--space-6);
+		padding-block: var(--space-4);
+		font-weight: var(--weight-medium);
+		color: var(--text-muted);
+		border: var(--border-width) solid var(--border-strong);
+		border-radius: var(--radius-control);
+		transition: background-color var(--duration-panel), border-color var(--duration-panel), color var(--duration-panel);
 	}
 
 	.news__more:hover {
 		color: var(--color-white);
-		border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+		border-color: var(--border-accent-soft);
 	}
 
 	@media (min-width: 640px) {
-		.news {
-			padding-inline: 1.5rem;
-		}
-
 		.news__title {
-			font-size: 3.75rem;
+			font-size: var(--type-home-section-wide);
 		}
 	}
 
 	@media (min-width: 768px) {
 		.news__sticky {
 			position: sticky;
-			top: 5rem;
+			top: var(--header-height);
 		}
 
 		.news__viewport {
@@ -360,9 +352,4 @@ const socials = [
 		}
 	}
 
-	@media (min-width: 1024px) {
-		.news {
-			padding-inline: 2rem;
-		}
-	}
 </style>

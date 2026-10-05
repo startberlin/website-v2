@@ -212,25 +212,25 @@ const departments = [
 </script>
 
 <style>
-	.directory-count { margin: 0 0 2rem; color: rgb(255 255 255 / 0.6); font-size: 0.9375rem; line-height: 1.5rem; }
-	.directory-count [data-member-count] { color: var(--color-white); font-weight: 700; }
+	.directory-count { margin: 0 0 var(--space-8); color: var(--text-subtle); font-size: var(--text-compact); line-height: 1.5rem; }
+	.directory-count [data-member-count] { color: var(--color-white); font-weight: var(--weight-bold); }
 
 	.filters {
 		position: sticky;
-		top: 5rem;
-		z-index: 40;
-		background: rgb(0 0 44 / 0.9);
+		top: var(--header-height);
+		z-index: var(--z-filters);
+		background: var(--surface-sticky);
 		backdrop-filter: blur(12px);
-		border-block: 1px solid rgb(255 255 255 / 0.1);
+		border-block: var(--border-width) solid var(--border-subtle);
 	}
 
 	.filters__inner {
 		display: flex;
 		flex-direction: column;
-		gap: 0.75rem;
-		max-width: 80rem;
+		gap: var(--space-3);
+		max-width: var(--layout-page);
 		margin-inline: auto;
-		padding: 1rem;
+		padding: var(--space-4) var(--page-gutter);
 	}
 
 	.search,
@@ -250,7 +250,7 @@ const departments = [
 		position: absolute;
 		width: 1rem;
 		height: 1rem;
-		color: rgb(255 255 255 / 0.5);
+		color: var(--text-subtle);
 		pointer-events: none;
 	}
 
@@ -264,27 +264,15 @@ const departments = [
 
 	.search input,
 	.select select {
-		width: 100%;
-		height: 2.75rem;
-		background: rgb(255 255 255 / 0.05);
-		border: 1px solid rgb(255 255 255 / 0.15);
-		border-radius: 0.5rem;
-		color: var(--color-white);
-		font: inherit;
-		font-size: 1rem;
-		transition: border-color 150ms;
+		height: var(--target-min);
 	}
 
 	.search input {
-		padding: 0 1rem 0 2.5rem;
-	}
-
-	.search input::placeholder {
-		color: rgb(255 255 255 / 0.4);
+		padding: 0 var(--space-4) 0 var(--space-10);
 	}
 
 	.select select {
-		padding: 0 2.5rem 0 1rem;
+		padding: 0 var(--space-10) 0 var(--space-4);
 		appearance: none;
 		cursor: pointer;
 	}
@@ -301,33 +289,33 @@ const departments = [
 	.search input:focus-visible,
 	.select select:focus-visible,
 	.timeline__season:focus-visible {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 3px;
+		outline: var(--focus-width) solid var(--color-accent);
+		outline-offset: var(--focus-offset);
 	}
 
 	.timeline {
 		display: flex;
 		flex-shrink: 0;
 		align-self: flex-start;
-		gap: 0.25rem;
+		gap: var(--space-1);
 		max-width: 100%;
-		padding: 0.25rem;
+		padding: var(--space-1);
 		overflow-x: auto;
-		background: rgb(255 255 255 / 0.05);
-		border: 1px solid rgb(255 255 255 / 0.15);
-		border-radius: 0.5rem;
+		background: var(--surface-control);
+		border: var(--border-width) solid var(--border-default);
+		border-radius: var(--radius-field);
 		scrollbar-width: none;
 	}
 
 	.timeline__season {
 		flex-shrink: 0;
 		padding: 0 0.875rem;
-		min-height: 2.75rem;
-		border-radius: 0.375rem;
-		font-size: 0.875rem;
-		font-weight: 700;
-		color: rgb(255 255 255 / 0.5);
-		transition: background-color 150ms, color 150ms;
+		min-height: var(--target-min);
+		border-radius: var(--radius-control);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-bold);
+		color: var(--text-subtle);
+		transition: background-color var(--duration-fast), color var(--duration-fast);
 	}
 
 	.timeline__season:hover {
@@ -340,29 +328,29 @@ const departments = [
 	}
 
 	.groups {
-		max-width: 80rem;
+		max-width: var(--layout-page);
 		margin-inline: auto;
-		padding: 3rem 1rem 6rem;
+		padding: var(--space-12) var(--page-gutter) var(--space-24);
 	}
 
 	.season {
 		display: flex;
 		flex-direction: column;
-		gap: 4rem;
+		gap: var(--space-16);
 	}
 
 	/* Centered label between two hairlines. */
 	.group__label {
 		display: flex;
 		align-items: center;
-		gap: 1.5rem;
-		margin: 0 0 2rem;
-		font-size: 0.875rem;
+		gap: var(--space-6);
+		margin: 0 0 var(--space-8);
+		font-size: var(--text-sm);
 		line-height: 1.25rem;
-		font-weight: 700;
-		letter-spacing: 0.2em;
+		font-weight: var(--weight-bold);
+		letter-spacing: var(--tracking-eyebrow);
 		text-transform: uppercase;
-		color: rgb(255 255 255 / 0.6);
+		color: var(--text-subtle);
 		text-align: center;
 		overflow-wrap: anywhere;
 	}
@@ -371,13 +359,13 @@ const departments = [
 	.group__label::after {
 		content: '';
 		flex-grow: 1;
-		border-top: 1px solid rgb(255 255 255 / 0.1);
+		border-top: var(--border-width) solid var(--border-subtle);
 	}
 
 	/* Flex instead of grid so a short last row (like the board) sits centered. */
 	.group__grid {
 		--columns: 2;
-		--gap: 0.75rem;
+		--gap: var(--space-3);
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
@@ -391,24 +379,14 @@ const departments = [
 
 	.empty {
 		margin: 0;
-		padding-block: 4rem;
+		padding-block: var(--space-16);
 		text-align: center;
-		color: rgb(255 255 255 / 0.6);
-	}
-
-	.visually-hidden {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		overflow: hidden;
-		clip-path: inset(50%);
-		white-space: nowrap;
+		color: var(--text-subtle);
 	}
 
 	@media (min-width: 640px) {
 		.filters__inner {
 			flex-direction: row;
-			padding-inline: 1.5rem;
 		}
 
 		.select {
@@ -416,25 +394,16 @@ const departments = [
 			width: 15rem;
 		}
 
-		.groups {
-			padding-inline: 1.5rem;
-		}
-
 		.group__grid {
 			--columns: 3;
-			--gap: 1rem;
+			--gap: var(--space-4);
 		}
 	}
 
 	@media (min-width: 1024px) {
-		.filters__inner,
-		.groups {
-			padding-inline: 2rem;
-		}
-
 		.group__grid {
 			--columns: 5;
-			--gap: 1.25rem;
+			--gap: var(--space-5);
 		}
 	}
 

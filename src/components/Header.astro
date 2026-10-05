@@ -176,12 +176,14 @@ const linkAttrs = (link: NavLink) =>
 	const menuOpen = document.querySelector<HTMLElement>('[data-menu-open]')!;
 	const menuClose = mobileMenu.querySelector<HTMLElement>('[data-menu-close]')!;
 	const pageMain = document.querySelector<HTMLElement>('main');
+	const pageFooter = document.querySelector<HTMLElement>('footer');
 	const originalOverflow = document.body.style.overflow;
 
 	const setMenuOpen = (open: boolean) => {
 		mobileMenu.hidden = !open;
 		menuOpen.setAttribute('aria-expanded', String(open));
 		if (pageMain) pageMain.inert = open;
+		if (pageFooter) pageFooter.inert = open;
 		document.body.style.overflow = open ? 'hidden' : originalOverflow;
 		if (open) menuClose.focus();
 		else menuOpen.focus();
@@ -235,7 +237,7 @@ const linkAttrs = (link: NavLink) =>
 	.nav {
 		position: sticky;
 		top: 0;
-		z-index: 50;
+		z-index: var(--z-navigation);
 		background: var(--color-dark-blue);
 	}
 
@@ -243,14 +245,14 @@ const linkAttrs = (link: NavLink) =>
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		height: 5rem;
-		padding-inline: 2.5rem;
+		height: var(--header-height);
+		padding-inline: var(--space-10);
 	}
 
 	.logo {
 		display: flex;
 		align-items: center;
-		transition: opacity 150ms;
+		transition: opacity var(--duration-fast);
 	}
 
 	.logo:hover {
@@ -265,19 +267,19 @@ const linkAttrs = (link: NavLink) =>
 	.nav__links {
 		display: none;
 		align-items: center;
-		gap: 2rem;
+		gap: var(--space-8);
 	}
 
 	.nav__link {
 		display: flex;
 		align-items: center;
-		gap: 0.25rem;
-		font-size: 1rem;
+		gap: var(--space-1);
+		font-size: var(--text-base);
 		line-height: 1.5rem;
-		font-weight: 700;
+		font-weight: var(--weight-bold);
 		text-transform: uppercase;
-		letter-spacing: 0.025em;
-		transition: color 150ms;
+		letter-spacing: var(--tracking-label);
+		transition: color var(--duration-fast);
 	}
 
 	.nav__link:hover {
@@ -287,7 +289,7 @@ const linkAttrs = (link: NavLink) =>
 	.chevron {
 		width: 1rem;
 		height: 1rem;
-		transition: transform 150ms;
+		transition: transform var(--duration-fast);
 	}
 
 	[aria-expanded='true'] > .chevron {
@@ -303,24 +305,24 @@ const linkAttrs = (link: NavLink) =>
 		top: 100%;
 		left: 0;
 		width: 16rem;
-		margin-top: 0.75rem;
-		padding-block: 0.5rem;
+		margin-top: var(--space-3);
+		padding-block: var(--space-2);
 		overflow: hidden;
 		background: var(--color-dark-blue);
-		border: 1px solid rgb(255 255 255 / 0.2);
-		border-radius: 0.75rem;
-		box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-		animation: fade-in 300ms ease-out;
+		border: var(--border-width) solid var(--border-strong);
+		border-radius: var(--radius-card);
+		box-shadow: var(--shadow-dropdown);
+		animation: fade-in var(--duration-panel) ease-out;
 	}
 
 	.dropdown__item {
 		display: flex;
 		align-items: center;
-		padding: 0.875rem 1.5rem;
-		font-size: 1rem;
+		padding: 0.875rem var(--space-6);
+		font-size: var(--text-base);
 		line-height: 1.5rem;
-		font-weight: 700;
-		transition: all 200ms;
+		font-weight: var(--weight-bold);
+		transition: background-color var(--duration-ui), color var(--duration-ui);
 	}
 
 	.dropdown__item:hover {
@@ -331,9 +333,9 @@ const linkAttrs = (link: NavLink) =>
 	.dropdown__item svg {
 		width: 1rem;
 		height: 1rem;
-		margin-right: 0.75rem;
+		margin-right: var(--space-3);
 		flex-shrink: 0;
-		transition: transform 150ms;
+		transition: transform var(--duration-fast);
 	}
 
 	.dropdown__item:hover svg {
@@ -342,10 +344,10 @@ const linkAttrs = (link: NavLink) =>
 
 	.dropdown__item--secondary {
 		padding-block: 0.625rem;
-		font-size: 0.875rem;
+		font-size: var(--text-sm);
 		line-height: 1.25rem;
-		font-weight: 600;
-		color: rgb(255 255 255 / 0.7);
+		font-weight: var(--weight-semibold);
+		color: var(--text-muted);
 	}
 
 	.dropdown__item--secondary svg {
@@ -354,15 +356,15 @@ const linkAttrs = (link: NavLink) =>
 	}
 
 	.dropdown__divider {
-		margin: 0.25rem 1rem;
-		border-top: 1px solid rgb(255 255 255 / 0.15);
+		margin: var(--space-1) var(--space-4);
+		border-top: var(--border-width) solid var(--border-default);
 	}
 
 	.cta-group {
 		display: flex;
 		gap: 2px;
 		overflow: hidden;
-		border-radius: 0.25rem;
+		border-radius: var(--radius-control);
 		background: var(--color-dark-blue);
 	}
 
@@ -371,15 +373,15 @@ const linkAttrs = (link: NavLink) =>
 	}
 
 	.cta {
-		padding: 0.375rem 1rem;
+		padding: 0.375rem var(--space-4);
 		background: var(--color-white);
 		color: var(--color-dark-blue);
-		font-size: 0.875rem;
+		font-size: var(--text-sm);
 		line-height: 1.25rem;
-		font-weight: 700;
+		font-weight: var(--weight-bold);
 		text-transform: uppercase;
-		letter-spacing: 0.025em;
-		transition: all 300ms;
+		letter-spacing: var(--tracking-label);
+		transition: background-color var(--duration-panel), color var(--duration-panel);
 	}
 
 	.cta:hover {
@@ -392,12 +394,12 @@ const linkAttrs = (link: NavLink) =>
 	.menu-button:focus-visible,
 	.mobile-menu a:focus-visible,
 	.mobile-menu button:focus-visible {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 4px;
+		outline: var(--focus-width) solid var(--color-accent);
+		outline-offset: var(--focus-offset);
 	}
 
 	.menu-button {
-		padding: 0.5rem;
+		padding: var(--space-2);
 		line-height: 0;
 	}
 
@@ -409,7 +411,7 @@ const linkAttrs = (link: NavLink) =>
 	.mobile-menu {
 		position: fixed;
 		inset: 0;
-		z-index: 50;
+		z-index: var(--z-navigation);
 		display: flex;
 		flex-direction: column;
 		overflow-y: auto;
@@ -421,33 +423,33 @@ const linkAttrs = (link: NavLink) =>
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: space-between;
-		height: 5rem;
-		padding-inline: 2.5rem;
+		height: var(--header-height);
+		padding-inline: var(--space-10);
 	}
 
 	.mobile-menu__body {
 		display: flex;
 		flex-grow: 1;
 		flex-direction: column;
-		gap: 0.25rem;
-		padding: 1.5rem 2.5rem;
-		border-top: 1px solid rgb(255 255 255 / 0.1);
+		gap: var(--space-1);
+		padding: var(--space-6) var(--space-10);
+		border-top: var(--border-width) solid var(--border-subtle);
 	}
 
 	.mobile-menu__link,
 	.mobile-menu__group {
-		border-bottom: 1px solid rgb(255 255 255 / 0.1);
+		border-bottom: var(--border-width) solid var(--border-subtle);
 	}
 
 	.mobile-menu__link {
 		display: block;
-		padding-block: 1rem;
-		font-size: 1.125rem;
+		padding-block: var(--space-4);
+		font-size: var(--text-lg);
 		line-height: 1.75rem;
-		font-weight: 700;
+		font-weight: var(--weight-bold);
 		text-transform: uppercase;
-		letter-spacing: 0.025em;
-		transition: color 150ms;
+		letter-spacing: var(--tracking-label);
+		transition: color var(--duration-fast);
 	}
 
 	.mobile-menu__link:hover {
@@ -471,17 +473,17 @@ const linkAttrs = (link: NavLink) =>
 	.mobile-menu__sublinks {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
-		padding-bottom: 0.75rem;
+		gap: var(--space-1);
+		padding-bottom: var(--space-3);
 	}
 
 	.mobile-menu__sublink {
-		padding: 0.625rem 0 0.625rem 1rem;
-		font-size: 1rem;
+		padding: 0.625rem 0 0.625rem var(--space-4);
+		font-size: var(--text-base);
 		line-height: 1.5rem;
-		font-weight: 600;
-		color: rgb(255 255 255 / 0.8);
-		transition: color 150ms;
+		font-weight: var(--weight-semibold);
+		color: var(--text-copy);
+		transition: color var(--duration-fast);
 	}
 
 	.mobile-menu__sublink:hover {
@@ -489,30 +491,30 @@ const linkAttrs = (link: NavLink) =>
 	}
 
 	.mobile-menu__sublink--secondary {
-		padding-block: 0.5rem;
-		font-size: 0.875rem;
+		padding-block: var(--space-2);
+		font-size: var(--text-sm);
 		line-height: 1.25rem;
-		font-weight: 500;
-		color: rgb(255 255 255 / 0.5);
+		font-weight: var(--weight-medium);
+		color: var(--text-subtle);
 	}
 
 	.cta-group--mobile {
-		margin-top: 2.5rem;
+		margin-top: var(--space-10);
 	}
 
 	.cta-group--mobile .cta {
 		flex: 1;
-		padding: 1rem 1.5rem;
+		padding: var(--space-4) var(--space-6);
 		text-align: center;
-		font-size: 1rem;
+		font-size: var(--text-base);
 		line-height: 1.5rem;
-		font-weight: 900;
+		font-weight: var(--weight-display);
 		letter-spacing: normal;
 	}
 
 	@media (min-width: 1024px) {
 		.nav__bar {
-			padding-inline: 5rem;
+			padding-inline: var(--space-20);
 		}
 
 		.nav__links,
@@ -533,5 +535,9 @@ const linkAttrs = (link: NavLink) =>
 		to {
 			opacity: 1;
 		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.dropdown__panel { animation: none; }
 	}
 </style>

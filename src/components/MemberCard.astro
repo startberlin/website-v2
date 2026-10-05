@@ -58,14 +58,14 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
-		background: rgb(255 255 255 / 0.03);
-		border: 1px solid rgb(255 255 255 / 0.1);
-		border-radius: 0.75rem;
-		transition: border-color 200ms, transform 200ms;
+		background: var(--surface-card);
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		transition: border-color var(--duration-ui), transform var(--duration-ui);
 	}
 
 	.card:hover {
-		border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+		border-color: var(--border-accent);
 		transform: translateY(-2px);
 	}
 
@@ -73,8 +73,8 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 1.5rem 0.75rem 1.75rem;
-		background: rgb(255 255 255 / 0.03);
+		padding: var(--space-6) var(--space-3) var(--space-7);
+		background: var(--surface-card);
 	}
 
 	.card__portrait-wrap {
@@ -103,17 +103,13 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		height: 6rem;
 		overflow: hidden;
 		flex-shrink: 0;
-		border-radius: 9999px;
-		background: radial-gradient(
-			circle at 30% 25%,
-			color-mix(in srgb, var(--color-accent) 35%, transparent),
-			color-mix(in srgb, var(--color-accent) 8%, transparent) 70%
-		);
-		border: 1px solid rgb(255 255 255 / 0.1);
-		font-size: 1.75rem;
-		font-weight: 900;
-		letter-spacing: 0.025em;
-		transition: background-color 200ms, color 200ms;
+		border-radius: var(--radius-pill);
+		background: var(--gradient-avatar);
+		border: var(--border-width) solid var(--border-subtle);
+		font-size: var(--text-3xl);
+		font-weight: var(--weight-display);
+		letter-spacing: var(--tracking-label);
+		transition: background-color var(--duration-ui), color var(--duration-ui);
 	}
 
 	.card__avatar :global(.card__portrait) {
@@ -132,18 +128,18 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		flex-grow: 1;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.25rem;
-		padding: 1rem 0.75rem 1.25rem;
+		gap: var(--space-1);
+		padding: var(--space-4) var(--space-3) var(--space-5);
 		text-align: center;
 	}
 
 	.card__name {
 		margin: 0;
-		font-size: 0.9375rem;
+		font-size: var(--text-compact);
 		line-height: 1.25rem;
-		font-weight: 700;
+		font-weight: var(--weight-bold);
 		text-transform: uppercase;
-		letter-spacing: 0.025em;
+		letter-spacing: var(--tracking-label);
 		overflow-wrap: anywhere;
 		text-wrap: balance;
 	}
@@ -151,18 +147,18 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	.card__role {
 		margin: 0;
 		max-width: calc(100% + 1.5rem);
-		padding-inline: 0.75rem;
-		font-size: 0.8125rem;
+		padding-inline: var(--space-3);
+		font-size: var(--text-caption);
 		line-height: 1.25rem;
-		color: rgb(255 255 255 / 0.7);
+		color: var(--text-muted);
 		overflow-wrap: anywhere;
 	}
 
 	.card__batch {
 		margin: 0;
-		font-size: 0.75rem;
+		font-size: var(--text-xs);
 		line-height: 1rem;
-		color: rgb(255 255 255 / 0.45);
+		color: var(--text-subtle);
 	}
 
 	.card__role-tail {
@@ -172,16 +168,16 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	.card__chip {
 		min-width: 0;
 		max-width: 100%;
-		padding: 0.25rem 0.625rem;
-		border: 1px solid rgb(255 255 255 / 0.12);
-		border-radius: 9999px;
-		background: color-mix(in srgb, var(--color-dark-blue) 95%, white);
-		font-size: 0.6875rem;
+		padding: var(--space-1) 0.625rem;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-pill);
+		background: var(--surface-floating);
+		font-size: var(--text-badge);
 		line-height: 1rem;
-		font-weight: 700;
+		font-weight: var(--weight-bold);
 		text-transform: uppercase;
-		letter-spacing: 0.025em;
-		color: rgb(255 255 255 / 0.65);
+		letter-spacing: var(--tracking-label);
+		color: var(--text-muted);
 		text-align: center;
 		text-wrap: balance;
 	}
@@ -190,17 +186,17 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 2.75rem;
-		height: 2.75rem;
+		width: var(--target-min);
+		height: var(--target-min);
 		/* Keep the touch target while the small icon fits into the role text. */
 		margin: -0.75rem;
 		margin-inline-start: -0.625rem;
 		vertical-align: middle;
 		flex-shrink: 0;
-		border-radius: 0.25rem;
-		color: rgb(255 255 255 / 0.55);
+		border-radius: var(--radius-control);
+		color: var(--text-subtle);
 		touch-action: manipulation;
-		transition: color 150ms;
+		transition: color var(--duration-fast);
 	}
 
 	.card__linkedin:hover {
@@ -212,13 +208,13 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	}
 
 	.card__linkedin:focus-visible :global(svg) {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 4px;
+		outline: var(--focus-width) solid var(--color-accent);
+		outline-offset: var(--focus-offset);
 	}
 
 	@media (max-width: 359px) {
 		.card__chip {
-			font-size: 0.625rem;
+			font-size: var(--text-badge-small);
 			letter-spacing: 0.02em;
 		}
 	}

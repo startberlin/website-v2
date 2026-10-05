@@ -1,20 +1,20 @@
 .jobboard {
-	--jb-muted: rgb(255 255 255 / 0.66);
-	--jb-line: rgb(255 255 255 / 0.15);
-	--jb-surface: rgb(255 255 255 / 0.05);
-	--jb-error: #ffb1b1;
+	--jb-muted: var(--text-muted);
+	--jb-line: var(--border-default);
+	--jb-surface: var(--surface-control);
+	--jb-error: var(--color-error);
 	color: var(--color-white);
 }
 
 .jobboard .jb-page {
 	width: 100%;
-	max-width: 76rem;
+	max-width: var(--layout-jobs);
 	margin-inline: auto;
-	padding: 3.5rem 1.25rem 5rem;
+	padding: var(--space-14) var(--space-5) var(--space-20);
 }
 
 .jobboard--hero .jb-page {
-	padding-top: 2.5rem;
+	padding-top: var(--space-10);
 }
 
 .jobboard .jb-intro {
@@ -22,16 +22,16 @@
 	flex-wrap: wrap;
 	align-items: end;
 	justify-content: space-between;
-	gap: 1.5rem;
-	margin-bottom: 2.5rem;
+	gap: var(--space-6);
+	margin-bottom: var(--space-10);
 }
 
 .jobboard .jb-kicker,
 .jobboard .jb-eyebrow {
 	margin: 0 0 0.875rem;
 	color: var(--color-accent);
-	font-size: 0.75rem;
-	font-weight: 700;
+	font-size: var(--text-xs);
+	font-weight: var(--weight-bold);
 	letter-spacing: 0.16em;
 	line-height: 1.4;
 	text-transform: uppercase;
@@ -40,8 +40,8 @@
 .jobboard .jb-page-heading {
 	margin: 0;
 	max-width: 18ch;
-	font-size: clamp(2.75rem, 5.5vw, 4rem);
-	font-weight: 900;
+	font-size: var(--type-job-page);
+	font-weight: var(--weight-display);
 	letter-spacing: -0.03em;
 	line-height: 1.04;
 	text-transform: uppercase;
@@ -49,10 +49,10 @@
 }
 
 .jobboard .jb-intro-text {
-	margin: 1rem 0 0;
+	margin: var(--space-4) 0 0;
 	max-width: 40rem;
 	color: var(--jb-muted);
-	font-size: 1rem;
+	font-size: var(--text-base);
 	line-height: 1.65;
 }
 
@@ -62,11 +62,11 @@
 	align-items: center;
 	gap: 0.6rem;
 	color: var(--color-white);
-	font-size: 0.875rem;
-	font-weight: 700;
+	font-size: var(--text-sm);
+	font-weight: var(--weight-bold);
 	line-height: 1.5;
 	text-underline-offset: 0.25rem;
-	transition: color 150ms;
+	transition: color var(--duration-fast);
 }
 
 .jobboard .jb-link:hover,
@@ -76,40 +76,6 @@
 
 .jobboard .jb-text-button {
 	text-decoration: underline;
-}
-
-.jobboard .jb-button {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.75rem;
-	min-height: 2.75rem;
-	padding: 0.7rem 1.25rem;
-	border: 1px solid transparent;
-	border-radius: 0.25rem;
-	background: var(--color-white);
-	color: var(--color-dark-blue);
-	font-size: 0.875rem;
-	font-weight: 700;
-	line-height: 1.4;
-	text-align: center;
-	transition: background 150ms, color 150ms, border-color 150ms;
-}
-
-.jobboard .jb-button:hover {
-	background: var(--color-accent);
-}
-
-.jobboard .jb-button-outline {
-	border-color: var(--jb-line);
-	background: transparent;
-	color: var(--color-white);
-}
-
-.jobboard .jb-button-outline:hover {
-	border-color: var(--color-accent);
-	background: var(--jb-surface);
-	color: var(--color-accent);
 }
 
 .jobboard button:disabled {
@@ -122,29 +88,29 @@
 .jobboard input:focus-visible,
 .jobboard select:focus-visible,
 .jobboard textarea:focus-visible {
-	outline: 2px solid var(--color-accent);
-	outline-offset: 4px;
+	outline: var(--focus-width) solid var(--color-accent);
+	outline-offset: var(--focus-offset);
 }
 
 .jobboard .jb-filters {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 1rem 0.75rem;
-	padding: 1.25rem 0;
-	border-block: 1px solid var(--jb-line);
+	gap: var(--space-4) var(--space-3);
+	padding: var(--space-5) 0;
+	border-block: var(--border-width) solid var(--jb-line);
 }
 
 .jobboard .jb-filter-field {
 	display: flex;
 	min-width: 0;
 	flex-direction: column;
-	gap: 0.5rem;
+	gap: var(--space-2);
 }
 
 .jobboard .jb-filter-field > span {
 	color: var(--jb-muted);
-	font-size: 0.75rem;
-	font-weight: 600;
+	font-size: var(--text-xs);
+	font-weight: var(--weight-semibold);
 	line-height: 1.4;
 }
 
@@ -158,24 +124,12 @@
 .jobboard .jb-field input,
 .jobboard .jb-field select,
 .jobboard .jb-field textarea {
-	width: 100%;
-	min-width: 0;
-	min-height: 2.75rem;
-	padding: 0.7rem 0.8rem;
-	border: 1px solid var(--jb-line);
-	border-radius: 0.375rem;
-	background: var(--jb-surface);
-	color: var(--color-white);
-	font: inherit;
-	font-size: 0.9375rem;
-	line-height: 1.4;
-	color-scheme: dark;
-	transition: border-color 150ms;
+	padding: var(--space-3) 0.875rem;
 }
 
 .jobboard .jb-filter-field select,
 .jobboard .jb-field select {
-	padding-right: 1.75rem;
+	padding-right: var(--space-7);
 	cursor: pointer;
 }
 
@@ -187,7 +141,7 @@
 
 .jobboard input::placeholder,
 .jobboard textarea::placeholder {
-	color: rgb(255 255 255 / 0.45);
+	color: var(--text-subtle);
 	opacity: 1;
 }
 
@@ -213,33 +167,33 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 1rem;
+	gap: var(--space-4);
 	min-height: 4rem;
 }
 
 .jobboard .jb-results-count {
-	scroll-margin-top: 7rem;
+	scroll-margin-top: var(--space-28);
 	margin: 0;
 	color: var(--jb-muted);
-	font-size: 0.875rem;
+	font-size: var(--text-sm);
 	line-height: 1.5;
 }
 
 .jobboard .jb-job-row {
-	border-bottom: 1px solid var(--jb-line);
+	border-bottom: var(--border-width) solid var(--jb-line);
 }
 
 .jobboard .jb-job-row:first-child {
-	border-top: 1px solid var(--jb-line);
+	border-top: var(--border-width) solid var(--jb-line);
 }
 
 .jobboard .jb-job-row-link {
 	display: grid;
 	grid-template-columns: 2.5rem minmax(0, 1fr) 1.25rem;
-	gap: 1rem;
+	gap: var(--space-4);
 	align-items: start;
 	padding: 1.6rem 0;
-	transition: background 150ms;
+	transition: background var(--duration-fast);
 }
 
 .jobboard .jb-company-icon {
@@ -248,27 +202,27 @@
 	justify-content: center;
 	width: 2.5rem;
 	height: 2.5rem;
-	border: 1px solid var(--jb-line);
-	border-radius: 0.25rem;
+	border: var(--border-width) solid var(--jb-line);
+	border-radius: var(--radius-control);
 	color: var(--color-white);
-	font-size: 1rem;
-	font-weight: 700;
+	font-size: var(--text-base);
+	font-weight: var(--weight-bold);
 }
 
 .jobboard .jb-company-name {
 	margin: 0 0 0.3rem;
 	color: var(--jb-muted);
-	font-size: 0.8125rem;
+	font-size: var(--text-caption);
 	line-height: 1.5;
 }
 
 .jobboard .jb-job-row-main h3 {
 	margin: 0;
-	font-size: clamp(1.0625rem, 1.8vw, 1.3125rem);
-	font-weight: 700;
+	font-size: var(--type-job-row);
+	font-weight: var(--weight-bold);
 	line-height: 1.35;
 	overflow-wrap: anywhere;
-	transition: color 150ms;
+	transition: color var(--duration-fast);
 }
 
 .jobboard .jb-job-row-link:hover h3 {
@@ -278,10 +232,10 @@
 .jobboard .jb-job-meta {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.25rem 1rem;
+	gap: var(--space-1) var(--space-4);
 	margin: 0.65rem 0 0;
 	color: var(--jb-muted);
-	font-size: 0.8125rem;
+	font-size: var(--text-caption);
 	line-height: 1.55;
 }
 
@@ -289,8 +243,8 @@
 	display: flex;
 	grid-column: 2;
 	flex-wrap: wrap;
-	gap: 0.35rem 1rem;
-	font-size: 0.8125rem;
+	gap: 0.35rem var(--space-4);
+	font-size: var(--text-caption);
 	line-height: 1.5;
 	color: var(--jb-muted);
 }
@@ -303,9 +257,9 @@
 	grid-row: 1;
 	grid-column: 3;
 	color: var(--color-accent);
-	font-size: 1.35rem;
+	font-size: var(--text-xl);
 	line-height: 1.7;
-	transition: transform 150ms;
+	transition: transform var(--duration-fast);
 }
 
 .jobboard .jb-job-row-link:hover .jb-row-arrow {
@@ -314,20 +268,20 @@
 
 .jobboard .jb-empty-state,
 .jobboard .jb-status {
-	padding: 3rem 0;
-	border-block: 1px solid var(--jb-line);
+	padding: var(--space-12) 0;
+	border-block: var(--border-width) solid var(--jb-line);
 }
 
 .jobboard .jb-empty-state h2,
 .jobboard .jb-status h2 {
-	margin: 0 0 0.75rem;
-	font-size: 1.375rem;
+	margin: 0 0 var(--space-3);
+	font-size: var(--text-status-title);
 	line-height: 1.4;
 }
 
 .jobboard .jb-empty-state p,
 .jobboard .jb-status p {
-	margin: 0 0 1.5rem;
+	margin: 0 0 var(--space-6);
 	max-width: 36rem;
 	color: var(--jb-muted);
 	line-height: 1.7;
@@ -336,23 +290,23 @@
 
 .jobboard .jb-submission-form {
 	max-width: 52rem;
-	margin-top: 2.5rem;
+	margin-top: var(--space-10);
 }
 
 .jobboard .jb-submission-form fieldset {
 	min-width: 0;
-	margin: 0 0 3rem;
+	margin: 0 0 var(--space-12);
 	padding: 0;
 	border: 0;
 }
 
 .jobboard .jb-submission-form legend {
 	width: 100%;
-	margin-bottom: 1.25rem;
-	padding: 0 0 1rem;
-	border-bottom: 1px solid var(--jb-line);
-	font-size: 1.125rem;
-	font-weight: 700;
+	margin-bottom: var(--space-5);
+	padding: 0 0 var(--space-4);
+	border-bottom: var(--border-width) solid var(--jb-line);
+	font-size: var(--text-lg);
+	font-weight: var(--weight-bold);
 	line-height: 1.5;
 }
 
@@ -360,7 +314,7 @@
 .jobboard .jb-form-grid {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
-	gap: 1.5rem;
+	gap: var(--space-6);
 }
 
 .jobboard .jb-field {
@@ -372,17 +326,17 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	gap: 0.5rem;
-	margin-bottom: 0.5rem;
-	font-size: 0.875rem;
-	font-weight: 600;
+	gap: var(--space-2);
+	margin-bottom: var(--space-2);
+	font-size: var(--text-sm);
+	font-weight: var(--weight-semibold);
 	line-height: 1.4;
 }
 
 .jobboard .jb-field label span {
 	color: var(--jb-muted);
-	font-size: 0.75rem;
-	font-weight: 400;
+	font-size: var(--text-xs);
+	font-weight: var(--weight-regular);
 }
 
 .jobboard .jb-field textarea {
@@ -395,19 +349,19 @@
 .jobboard .jb-privacy-note {
 	margin: 0.625rem 0 0;
 	color: var(--jb-muted);
-	font-size: 0.8125rem;
+	font-size: var(--text-caption);
 	line-height: 1.65;
 }
 
 .jobboard .jb-fieldset-note {
-	margin: 0 0 1.5rem;
+	margin: 0 0 var(--space-6);
 }
 
 .jobboard .jb-field-error,
 .jobboard .jb-form-error {
 	margin: 0.625rem 0 0;
 	color: var(--jb-error);
-	font-size: 0.8125rem;
+	font-size: var(--text-caption);
 	line-height: 1.65;
 }
 
@@ -416,10 +370,10 @@
 }
 
 .jobboard .jb-form-error {
-	margin: 1rem 0;
-	padding: 1rem;
-	border: 1px solid rgb(255 177 177 / 0.4);
-	border-radius: 0.25rem;
+	margin: var(--space-4) 0;
+	padding: var(--space-4);
+	border: var(--border-width) solid var(--border-error);
+	border-radius: var(--radius-control);
 }
 
 .jobboard .jb-honey-field {
@@ -432,15 +386,15 @@
 }
 
 .jobboard .jb-submission-confirm {
-	padding-top: 1.75rem;
-	border-top: 1px solid var(--jb-line);
+	padding-top: var(--space-7);
+	border-top: var(--border-width) solid var(--jb-line);
 }
 
 .jobboard .jb-check-label {
 	display: flex;
 	align-items: start;
 	gap: 0.875rem;
-	font-size: 0.875rem;
+	font-size: var(--text-sm);
 	line-height: 1.65;
 }
 
@@ -453,7 +407,7 @@
 }
 
 .jobboard .jb-privacy-note {
-	margin: 1rem 0 1.75rem;
+	margin: var(--space-4) 0 var(--space-7);
 }
 
 .jobboard .jb-privacy-note a {
@@ -464,37 +418,37 @@
 
 .jobboard .jb-submission-success {
 	max-width: 42rem;
-	padding: 2.5rem 0;
-	border-block: 1px solid var(--jb-line);
+	padding: var(--space-10) 0;
+	border-block: var(--border-width) solid var(--jb-line);
 }
 
 .jobboard .jb-success-mark {
 	display: inline-block;
-	margin-bottom: 1.5rem;
+	margin-bottom: var(--space-6);
 	color: var(--color-accent);
-	font-size: 2rem;
+	font-size: var(--text-4xl);
 }
 
 .jobboard .jb-submission-success h2 {
-	margin: 0 0 1rem;
-	font-size: 1.75rem;
+	margin: 0 0 var(--space-4);
+	font-size: var(--text-3xl);
 	line-height: 1.35;
 }
 
 .jobboard .jb-submission-success > p:not(.jb-eyebrow) {
-	margin: 0 0 1.75rem;
+	margin: 0 0 var(--space-7);
 	color: var(--jb-muted);
 	line-height: 1.7;
 }
 
 @media (min-width: 640px) {
 	.jobboard .jb-page {
-		padding: 4rem 2rem 6rem;
+		padding: var(--space-16) var(--space-8) var(--space-24);
 	}
 
 	.jobboard .jb-filters {
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 1rem;
+		gap: var(--space-4);
 	}
 
 	.jobboard .jb-filters > .jb-filter-field:last-child {
@@ -521,13 +475,13 @@
 
 	.jobboard .jb-job-row-link {
 		grid-template-columns: 2.75rem minmax(0, 1fr) minmax(10rem, auto) 1.25rem;
-		gap: 1.25rem;
+		gap: var(--space-5);
 		align-items: center;
 	}
 
 	.jobboard .jb-company-icon {
-		width: 2.75rem;
-		height: 2.75rem;
+		width: var(--target-min);
+		height: var(--target-min);
 	}
 
 	.jobboard .jb-job-row-extra {

@@ -4,6 +4,10 @@ Development continues on `main`, based on the existing Astro website. The Cockpi
 
 Home, Members and Join remain prerendered. Jobboard listings and details render on demand through the Node adapter. Employer submissions go into Cockpit's private review queue. The public website has no database connection and keeps service keys on the server. Shared Astro/React icons are used across the website.
 
+## Design and contributor onboarding
+
+Read [AGENTS.md](AGENTS.md) and the [design guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
+
 ## Local setup
 
 Use Node.js 22.12 or newer. Install with the pinned pnpm lockfile, then create a private local configuration:

@@ -74,7 +74,7 @@ const rows = [
 <style>
 	.partners {
 		display: block;
-		padding-bottom: 4rem;
+		padding-bottom: var(--space-16);
 		overflow: hidden;
 	}
 
@@ -82,7 +82,7 @@ const rows = [
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: var(--space-8);
 	}
 
 	/* Fade the logos out at both edges. */
@@ -92,7 +92,7 @@ const rows = [
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		z-index: 10;
+		z-index: var(--z-decoration);
 		width: 8rem;
 		pointer-events: none;
 	}
@@ -128,7 +128,7 @@ const rows = [
 		height: 60px;
 		margin-inline: 2.25rem;
 		opacity: 0.8;
-		transition: all 200ms;
+		transition: opacity var(--duration-ui), transform var(--duration-ui);
 	}
 
 	.partners__logo:hover {
