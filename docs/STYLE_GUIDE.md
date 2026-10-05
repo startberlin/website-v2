@@ -56,7 +56,7 @@ Use `--space-*` for the 4-px spacing rhythm. Containers use `--layout-page` (80 
 
 Allow long text to wrap. Keep `min-width: 0` on flexible children. Avoid fixed card heights and page-wide overflow hiding. Keep optical badge positioning and photo crops local and documented.
 
-## UX and verification
+## UX and accessibility
 
 - Use links for navigation and buttons for actions. Label fields and icon-only controls.
 - New touch controls need 44 × 44 px. Shared focus is 2 px Cyan with a 4-px offset.
@@ -64,7 +64,20 @@ Allow long text to wrap. Keep `min-width: 0` on flexible children. Avoid fixed c
 - Define loading, empty and failure states. Preserve Jobs URL filters and pagination through reload/Back.
 - Respect reduced motion. Ongoing animation needs pause/stop; list transition properties explicitly.
 - Use local Astro image assets, reserved dimensions and meaningful alt text. Check photo crops and overlay contrast.
+- Meet [WCAG 2.2 AA](https://www.w3.org/TR/WCAG22/). Verify keyboard access, visible/unobscured focus and screen-reader names, states and announcements. Check 200% text zoom and reflow at 320 px.
 
-Run `check:design` and the checks in [AGENTS.md](../AGENTS.md). The checker catches raw CSS colours, untokenized typography/radii, undefined variables and `transition: all`; browser review checks correct use and behaviour.
+## Verification
+
+Every component must look correct and remain accessible across device sizes. Test all affected components in their relevant default, focused, open, loading, empty, error, success and disabled states.
+
+| Device | Minimum test widths (CSS px) |
+| --- | --- |
+| Smartphone | 320, 390 |
+| Tablet | 768, 1024 |
+| Desktop | 1280, 1440, 1920 |
+
+Check portrait and landscape on phones/tablets. Resize between sample widths and test both sides of affected breakpoints. At every size, verify readable text, correct image crops and usable controls without clipping, overlap or horizontal page overflow.
+
+Run `check:design` and the checks in [AGENTS.md](../AGENTS.md). Combine automated checks with manual visual, keyboard and screen-reader checks. Fix failures before completion and record the tested widths, states and results.
 
 Existing follow-ups: a shared skip link, complete motion/keyboard controls on the homepage, font delivery and the multi-season keyboard pattern.

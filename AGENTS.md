@@ -29,7 +29,12 @@ Check the existing server and port before starting one. Use `astro dev logs` and
 - Define colours, type sizes and radii in `src/styles/tokens.css`. Use `src/styles/primitives.css` for native buttons, fields and focus.
 - Keep page layout in scoped Astro CSS. Keep React limited to interactive Jobs islands.
 - Update the styleguide alongside intentional design changes. Public UI copy stays English.
-- Run the design check, typecheck and an isolated build. Check affected routes at 320, 390, 768 and 1440 px, including keyboard and reduced-motion states. Global changes require all main routes.
+
+## Verification
+
+- Run the design check, typecheck and an isolated build for UI changes.
+- Every component must look correct and remain accessible on phones, tablets and desktops. Test affected components in all relevant states using the [verification matrix](docs/STYLE_GUIDE.md#verification).
+- Shared/global changes require every consuming route. Fix visual and accessibility failures before marking UI work complete; record tested viewports and states.
 - Run Jobboard tests when changing its behaviour. Verify external destinations separately from actual delivery.
 
 ## Boundaries
