@@ -18,7 +18,7 @@ export function assertBranchRules(rules, branch) {
   for (const type of ['deletion', 'non_fast_forward']) {
     if (!rules.some(rule => rule.type === type)) throw new Error(`${branch}: missing ${type} protection.`);
   }
-  const review = rules.find(rule => rule.type === 'pull_request')?.parameters;
+  const review = rules.find(rule => rule.type === 'pull_request' && rule.parameters.required_approving_review_count === 1)?.parameters;
   if (!review || review.required_approving_review_count !== 1 || review.require_extra_approval_for_unattributed_changes === true || !review.require_code_owner_review || !review.dismiss_stale_reviews_on_push || (branch === 'main' && !review.require_last_push_approval) || !review.required_review_thread_resolution) {
     throw new Error(`${branch}: require an independent code-owner review of the latest push and resolved discussions.`);
   }
@@ -27,6 +27,23 @@ export function assertBranchRules(rules, branch) {
     throw new Error(`${branch}: require ${config.requiredCheck} from GitHub Actions.`);
   }
   if (branch === 'main' && !status.strict_required_status_checks_policy) throw new Error('main: require checks against the current base.');
+}
+
+export function assertRulesetBypass(ruleset) {
+  const actors = ruleset.bypass_actors || [];
+  if (!actors.length) return;
+  if (actors.length !== 1 || actors[0].actor_type !== 'RepositoryRole' || actors[0].actor_id !== 5 || actors[0].bypass_mode !== 'pull_request' || ruleset.rules.length !== 1 || ruleset.rules[0].type !== 'pull_request') {
+    throw new Error('Only repository admins may bypass the review-only rule, and only when merging a PR. Technical checks cannot be bypassed.');
+  }
+}
+
+export function assertTechnicalRules(ruleset, branch) {
+  if (ruleset.bypass_actors?.length) throw new Error(`${branch}: technical rules must apply to admins too.`);
+  const review = ruleset.rules.find(rule => rule.type === 'pull_request')?.parameters;
+  if (!review || review.required_approving_review_count !== 0 || review.require_code_owner_review || review.require_last_push_approval || !review.required_review_thread_resolution) throw new Error(`${branch}: the technical rule must enforce PRs and resolved discussions without requiring another reviewer.`);
+  for (const type of ['deletion', 'non_fast_forward', 'required_status_checks']) {
+    if (!ruleset.rules.some(rule => rule.type === type)) throw new Error(`${branch}: missing unbypassable ${type} rule.`);
+  }
 }
 
 export function assertEnvironment(policy, branch) {
@@ -81,19 +98,32 @@ export function assertRelease(pr, reviews, adminLogins, targetCommit, sourceTree
     if (['APPROVED', 'CHANGES_REQUESTED', 'DISMISSED'].includes(review.state)) latest.set(review.user.login, review);
   }
   const approval = [...latest.values()].some(review => review.state === 'APPROVED' && review.commit_id === pr.head.sha && review.user.login !== pr.user.login && adminLogins.includes(review.user.login));
-  if (!approval) throw new Error('The exact release commit needs approval from an independent repository admin.');
+  const adminMerge = pr.merged_by?.type === 'User' && adminLogins.includes(pr.merged_by.login);
+  if (!approval && !adminMerge) throw new Error('One repository admin must approve the exact release commit or authorize it by merging the release PR.');
   if (!stagedRuns.some(evidence => isStagingDeployment(evidence, pr.head.sha))) {
     throw new Error('The exact release source has no successful staging deployment.');
   }
 }
 
 export async function verifyConfiguration(environment) {
-  for (const branch of ['main', 'production']) assertBranchRules(await github(`rules/branches/${branch}`), branch);
-  // No bypass actors: admins must also use a PR. Do not accept a weaker ruleset.
+  const applied = new Map();
+  for (const branch of ['main', 'production']) {
+    const rules = await github(`rules/branches/${branch}`);
+    assertBranchRules(rules, branch);
+    applied.set(branch, rules);
+  }
+  // An admin merge is an approval, including on the admin's own PR. CI stays separate.
   const rulesets = await github('rulesets?includes_parents=true&per_page=100');
+  const details = new Map();
   for (const summary of rulesets.filter(item => item.enforcement === 'active' && item.source === config.repository)) {
     const ruleset = await github(`rulesets/${summary.id}`);
-    if (ruleset.bypass_actors?.length) throw new Error(`Ruleset ${ruleset.name} allows bypassing review.`);
+    assertRulesetBypass(ruleset);
+    details.set(summary.id, ruleset);
+  }
+  for (const [branch, rules] of applied) {
+    const technical = rules.find(rule => rule.type === 'required_status_checks' && details.has(rule.ruleset_id));
+    if (!technical) throw new Error(`${branch}: a repository-owned technical ruleset is required.`);
+    assertTechnicalRules(details.get(technical.ruleset_id), branch);
   }
   const text = readFileSync(new URL('../../.github/CODEOWNERS', import.meta.url), 'utf8');
   const rows = text.split('\n').filter(line => line.trim() && !line.trim().startsWith('#'));
@@ -118,6 +148,7 @@ export async function verifyRelease(owners) {
   const pr = candidates.find(item => item.base.ref === 'production' && item.merge_commit_sha === targetCommit);
   if (!pr) throw new Error('No merged release PR belongs to this production commit.');
   const full = await github(`pulls/${pr.number}`);
+  if (full.merged_by?.type === 'User' && (await github(`collaborators/${full.merged_by.login}/permission`)).permission === 'admin') owners = [...new Set([...owners, full.merged_by.login])];
   const source = await github(`git/commits/${full.head.sha}`);
   const targetTree = execFileSync('git', ['rev-parse', 'HEAD^{tree}'], { encoding: 'utf8' }).trim();
   const staged = await verifiedStagingSource(full.head.sha);

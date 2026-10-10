@@ -1,8 +1,14 @@
 {
-  "name": "Reviewed main",
+  "name": "Admin approval main",
   "target": "branch",
   "enforcement": "active",
-  "bypass_actors": [],
+  "bypass_actors": [
+    {
+      "actor_type": "RepositoryRole",
+      "actor_id": 5,
+      "bypass_mode": "pull_request"
+    }
+  ],
   "conditions": {
     "ref_name": {
       "include": [
@@ -12,12 +18,6 @@
     }
   },
   "rules": [
-    {
-      "type": "deletion"
-    },
-    {
-      "type": "non_fast_forward"
-    },
     {
       "type": "pull_request",
       "parameters": {
@@ -32,19 +32,6 @@
           "rebase"
         ],
         "require_extra_approval_for_unattributed_changes": false
-      }
-    },
-    {
-      "type": "required_status_checks",
-      "parameters": {
-        "strict_required_status_checks_policy": true,
-        "do_not_enforce_on_create": false,
-        "required_status_checks": [
-          {
-            "context": "Required checks",
-            "integration_id": 15368
-          }
-        ]
       }
     }
   ]

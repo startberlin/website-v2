@@ -4,7 +4,7 @@
 
 Start a feature branch from current `main`. Explain the problem, keep the diff bounded and open a PR to `main`. Direct pushes to `main` and `production`, force pushes and branch deletion are blocked. Admins follow the same branch rules.
 
-An independent repository admin reviews the latest feature commit. CODEOWNERS currently lists the verified repository admins: `jannikbln`, `zunkelty`, `ahaMfM` and `DieProgrammIDE`. A changed role requires updating the owner list; deployment guards reject a code owner who is no longer an admin. Read access or an ordinary approval from another contributor does not satisfy the code-owner rule.
+A repository admin reviews and authorizes the latest feature commit. Admins can authorize any PR, including their own, by intentionally merging it after checking the diff and evidence. GitHub does not allow the author to submit a separate Approve review. CODEOWNERS currently lists the verified repository admins: `jannikbln`, `zunkelty`, `ahaMfM` and `DieProgrammIDE`. A changed role requires updating the owner list; deployment guards reject a code owner who is no longer an admin. Read access or an ordinary approval from another contributor does not satisfy the code-owner rule.
 
 New commits dismiss stale reviews. Resolve review discussions and wait for Required checks before merging. Do not ask someone to approve an earlier version and then add unreviewed changes.
 
@@ -42,6 +42,6 @@ After successful CI, each same-repository PR gets its own preview when deploymen
 
 ## Releasing
 
-After merge, staging validates the exact source before assigning its domain. The release bot opens a `main`-to-`production` PR only after staging succeeds. One admin approves that release PR, including Jannik. There is no second production environment approval. If the release bot authored the PR, its admin reviewer can also merge it.
+After merge, staging validates the exact source before assigning its domain. The release bot opens a `main`-to-`production` PR only after staging succeeds. One admin approves that release PR through review or intentional merge, including when that admin is its author. There is no second production environment approval. Technical rules require a PR, resolved discussions and passing CI for admins too.
 
 Follow docs/RELEASE.md for acceptance and cutover. Do not mix content completion, missing service credentials or a domain transfer into a claim that CI alone makes the website ready to publish.

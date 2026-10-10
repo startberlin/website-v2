@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { assertBranchRules, assertEnvironment, assertProductionReviewers, assertRelease, isStagingDeployment } from './verify-github.mjs';
+import { assertBranchRules, assertEnvironment, assertProductionReviewers, assertRelease, isStagingDeployment, assertRulesetBypass, assertTechnicalRules } from './verify-github.mjs';
 import { assertVercelProject } from './project-config.mjs';
 
 test('deployments require the intended unlinked project and reject a restored Git connection', () => {
@@ -18,6 +18,20 @@ const rules = () => [
   { type: 'pull_request', parameters: { required_approving_review_count: 1, require_code_owner_review: true, dismiss_stale_reviews_on_push: true, require_last_push_approval: true, required_review_thread_resolution: true } },
   { type: 'required_status_checks', parameters: { strict_required_status_checks_policy: true, required_status_checks: [{ context: 'Required checks', integration_id: 15368 }] } },
 ];
+test('admin review bypass is restricted to PR merges and cannot include technical rules', () => {
+  const reviewOnly = { bypass_actors: [{ actor_type: 'RepositoryRole', actor_id: 5, bypass_mode: 'pull_request' }], rules: [rules()[2]] };
+  assert.doesNotThrow(() => assertRulesetBypass(reviewOnly));
+  assert.throws(() => assertRulesetBypass({ ...reviewOnly, rules: rules() }));
+  assert.throws(() => assertRulesetBypass({ ...reviewOnly, bypass_actors: [{ ...reviewOnly.bypass_actors[0], actor_id: 3 }] }));
+  assert.throws(() => assertRulesetBypass({ ...reviewOnly, bypass_actors: [{ ...reviewOnly.bypass_actors[0], bypass_mode: 'always' }] }));
+});
+test('technical protection enforces PRs and CI for admins without a second reviewer', () => {
+  const technical = { bypass_actors: [], rules: rules() };
+  technical.rules[2].parameters = { required_approving_review_count: 0, require_code_owner_review: false, require_last_push_approval: false, required_review_thread_resolution: true };
+  assert.doesNotThrow(() => assertTechnicalRules(technical, 'main'));
+  assert.throws(() => assertTechnicalRules({ ...technical, bypass_actors: [{ actor_type: 'RepositoryRole', actor_id: 5 }] }, 'main'));
+  assert.throws(() => assertTechnicalRules({ ...technical, rules: technical.rules.filter(rule => rule.type !== 'required_status_checks') }, 'main'));
+});
 test('branch guards reject missing review, stale approval and impersonated checks', () => {
   assert.doesNotThrow(() => assertBranchRules(rules(), 'main'));
   for (const field of ['require_code_owner_review', 'dismiss_stale_reviews_on_push', 'require_last_push_approval']) {
@@ -62,8 +76,12 @@ test('production rejects unreviewed source, stale reviews and content not staged
   assert.throws(() => check(candidate(), review(), 'same-tree', []));
   const direct = candidate(); direct.head.ref = 'feature'; assert.throws(() => check(direct));
 });
-test('self approval and a later dismissed review do not permit release', () => {
+test('an admin may authorize their own release by merging; dismissed reviews alone do not permit release', () => {
   const own = candidate(); own.user.login = 'admin'; assert.throws(() => check(own));
+  own.merged_by = { login: 'admin', type: 'User' }; assert.doesNotThrow(() => check(own, []));
+  const nonAdmin = candidate(); nonAdmin.merged_by = { login: 'developer', type: 'User' }; assert.throws(() => check(nonAdmin, []));
+  const bot = candidate(); bot.merged_by = { login: 'admin', type: 'Bot' }; assert.throws(() => check(bot, []));
+  assert.throws(() => check(own, [], 'different-tree'));
   assert.throws(() => check(candidate(), [...review(), { ...review()[0], state: 'DISMISSED' }]));
   assert.doesNotThrow(() => check(candidate(), [...review(), { ...review()[0], state: 'COMMENTED' }]));
 });

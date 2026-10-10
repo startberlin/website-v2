@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      verify_only:
+        description: Verify current source and GitHub release controls without deploying.
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -15,7 +20,7 @@ concurrency:
 
 jobs:
   checks:
-    if: vars.DEPLOYMENTS_ENABLED == 'true' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && (vars.DEPLOYMENTS_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.verify_only))
     uses: ./.github/workflows/ci.yml
   guard:
     needs: checks
@@ -33,6 +38,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
   deploy:
     needs: guard
+    if: inputs.verify_only != true
     runs-on: ubuntu-latest
     timeout-minutes: 25
     environment:

@@ -47,7 +47,7 @@ jobs:
           Staging: https://staging.start-berlin.com
           Verification: $STAGING_RUN_URL
 
-          An independent repository admin must review the latest commit. If GitHub shows an "Approve workflows to run" banner for this bot-created PR, approve CI and wait for Required checks.
+          One repository admin authorizes the latest commit by review or intentional merge, including on their own PR. Technical checks and resolved discussions still apply. If GitHub shows an "Approve workflows to run" banner for this bot-created PR, approve CI and wait for Required checks.
 
           Before merging, complete docs/RELEASE.md acceptance, including backend and external form checks. A staging 503 is a controlled preview state, not Jobboard acceptance. Merging only deploys when PRODUCTION_RELEASE_ENABLED is explicitly enabled.
           EOF
