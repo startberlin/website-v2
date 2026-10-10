@@ -65,7 +65,7 @@ jobs:
         id: deploy
         run: |
           tree=$(git rev-parse 'HEAD^{tree}')
-          "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --prod --skip-domain --yes --scope=start-berlin --non-interactive --json \
+          "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --prod --skip-domain --yes --non-interactive --json \
             --meta githubDeployment=1 --meta githubCommitRef=production --meta githubCommitSha="$GITHUB_SHA" \
             --build-env RELEASE_COMMIT_SHA="$GITHUB_SHA" --build-env RELEASE_TREE_SHA="$tree" > "$RUNNER_TEMP/production-deployment.json"
           node scripts/release/deployment-result.mjs "$RUNNER_TEMP/production-deployment.json" production
@@ -92,9 +92,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - name: Promote the exact tested production build
         if: env.RELEASE_MODE == 'publish'
-        run: '"$RUNNER_TEMP/vercel-cli/node_modules/.bin/vercel" promote "$DEPLOYMENT_URL" --yes --timeout=5m --scope=start-berlin --non-interactive'
+        run: node scripts/release/vercel-publish.mjs production
         env:
-          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          DEPLOYMENT_ID: ${{ steps.deploy.outputs.deployment_id }}
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
