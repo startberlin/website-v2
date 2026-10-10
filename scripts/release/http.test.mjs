@@ -32,6 +32,7 @@ test('authenticated transport requests the exact URL without following redirects
     const args = JSON.parse(await readFile(record, 'utf8'));
     assert.equal(args[1], 'https://selected.vercel.app/api/health');
     assert.ok(!args.includes('--scope'), 'Project tokens cannot query user scope.');
+    assert.ok(!args.includes('--non-interactive'), 'The CLI must not forward this unsupported option to native curl.');
     assert.ok(args.includes('--no-location'));
     await assert.rejects(readFile(args[args.indexOf('--dump-header') + 1]), { code: 'ENOENT' });
     await assert.rejects(readFile(args[args.indexOf('--output') + 1]), { code: 'ENOENT' });

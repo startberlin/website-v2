@@ -22,7 +22,7 @@
   "dependencies": {
     "@astrojs/node": "11.1.6",
     "@astrojs/react": "7.0.0",
-    "@astrojs/vercel": "11.0.13",
+    "@astrojs/vercel": "11.0.12",
     "@hookform/resolvers": "5.2.2",
     "astro": "7.3.5",
     "nuqs": "2.10.1",
