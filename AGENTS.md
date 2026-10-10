@@ -9,7 +9,7 @@
 
 ## Commands
 
-Run from the repository root. Use Node.js 22.12+ and the pinned dependencies.
+Run from the repository root. Use Node.js 22.13+ and the pinned dependencies.
 
 ```sh
 CI=true pnpm install --frozen-lockfile
@@ -37,6 +37,14 @@ Check the existing server and port before starting one. Use `astro dev logs` and
 - Every component must look correct and remain accessible on phones, tablets and desktops. Test affected components in all relevant states using the [verification matrix](docs/STYLE_GUIDE.md#verification).
 - Shared/global changes require every consuming route. Fix visual and accessibility failures before marking UI work complete; record tested viewports and states.
 - Run Jobboard tests when changing its behaviour. Verify external destinations separately from actual delivery.
+
+## Contribution and release
+
+- Follow [CONTRIBUTING.md](CONTRIBUTING.md). Work on a feature branch and open a PR to `main`; wait for Required checks and one independent repository-admin review.
+- AI assistance does not replace reviewing the full diff or exercising the affected flow. Record actual evidence and incomplete verification in the PR.
+- `main` feeds staging; only the reviewed `main`-to-`production` release PR feeds production. One admin approves that release PR. There is no second deployment approval.
+- Follow [docs/RELEASE.md](docs/RELEASE.md). CI validates both Node and Vercel output. Never publish tracked `dist/`, bypass branch rules, auto-merge releases or move live domains as part of an ordinary feature PR.
+- Keep deployment credentials out of PR checks. PR previews run only when a repository admin requests them, with no shared Cockpit credentials.
 
 ## Boundaries
 

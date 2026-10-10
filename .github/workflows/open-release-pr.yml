@@ -1,0 +1,49 @@
+name: Open release PR
+
+on:
+  workflow_run:
+    workflows: [Deploy staging]
+    types: [completed]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: website-release-pr
+  cancel-in-progress: false
+
+jobs:
+  open:
+    if: vars.DEPLOYMENTS_ENABLED == 'true' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Open or update main-to-production PR after successful staging
+        run: |
+          latest=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)
+          if [ "$latest" != "$STAGED_SHA" ]; then
+            echo 'A newer main commit must finish staging first.'
+            exit 0
+          fi
+          body="$RUNNER_TEMP/website-release.md"
+          cat > "$body" <<EOF
+          Release the staged main source: $STAGED_SHA.
+
+          Staging: https://staging.start-berlin.com
+          Verification: $STAGING_RUN_URL
+
+          An independent repository admin must review the latest commit. If GitHub shows an "Approve workflows to run" banner for this bot-created PR, approve CI and wait for Required checks.
+
+          Before merging, complete docs/RELEASE.md acceptance, including backend and external form checks. A staging 503 is a controlled preview state, not Jobboard acceptance. Merging only deploys when PRODUCTION_RELEASE_ENABLED is explicitly enabled.
+          EOF
+          number=$(gh pr list --repo "$GITHUB_REPOSITORY" --base production --head main --state open --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh pr edit "$number" --repo "$GITHUB_REPOSITORY" --body-file "$body"
+          else
+            gh pr create --repo "$GITHUB_REPOSITORY" --base production --head main --title 'Release reviewed website to production' --body-file "$body"
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+          STAGED_SHA: ${{ github.event.workflow_run.head_sha }}
+          STAGING_RUN_URL: ${{ github.event.workflow_run.html_url }}

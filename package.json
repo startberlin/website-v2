@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.13.0"
   },
   "scripts": {
     "dev": "astro dev",
@@ -13,11 +13,15 @@
     "check:design": "node scripts/check-design.mjs",
     "test:jobboard": "node --import tsx --test src/lib/jobboard/*.test.ts",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "build:vercel": "ASTRO_ADAPTER=vercel astro build --outDir .astro/vercel-build",
+    "test:release": "node --test scripts/release/*.test.mjs",
+    "smoke:local": "node scripts/release/smoke-local.mjs"
   },
   "dependencies": {
     "@astrojs/node": "11.1.6",
     "@astrojs/react": "7.0.0",
+    "@astrojs/vercel": "11.0.13",
     "@hookform/resolvers": "5.2.2",
     "astro": "7.3.5",
     "nuqs": "2.10.1",
@@ -38,5 +42,6 @@
   "allowScripts": {
     "esbuild": true,
     "sharp": true
-  }
+  },
+  "packageManager": "pnpm@11.25.0"
 }

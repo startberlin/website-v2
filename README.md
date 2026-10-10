@@ -8,9 +8,11 @@ Home, Members and Join remain prerendered. Jobboard listings and details render 
 
 Read [AGENTS.md](AGENTS.md) and the [design guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
 
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for the PR workflow and [docs/RELEASE.md](docs/RELEASE.md) for staging, production and domain cutover. GitHub `main` and `production` require successful checks and one admin review. Production uses the release-PR approval without a second environment approval. The new [Vercel project](https://vercel.com/start-berlin/website-v2) is separate from the existing live website; deployment activation and backend acceptance remain release work.
+
 ## Local setup
 
-Use Node.js 22.12 or newer. Install with the pinned pnpm lockfile, then create a private local configuration:
+Use Node.js 22.13 or newer and pnpm 11.25.0. CI and Vercel use Node.js 22. Install with the pinned pnpm lockfile, then create a private local configuration:
 
 ```sh
 pnpm install --frozen-lockfile
@@ -46,6 +48,6 @@ Navigation pairs `Apply Now` (`/join`) with `Jobs` (`/jobs`). The Jobboard inclu
 
 Release Newsletter in Cockpit before Jobboard. Newsletter owns migrations `0058` through `0060`; Jobboard follows with `0061`. The public migration requires no database-provider reconfiguration. Keep the standalone public project until the deployed v2 flow passes acceptance.
 
-Production API credentials and hosting remain to be configured. The Node adapter is portable; selecting Vercel requires its official Astro adapter and a fresh deployment check. Before release, reconcile the migrated legal/privacy text with the actual hosting and services; the legacy privacy policy still names Webflow. Request analytics are disabled.
+Production API credentials and backend acceptance remain to be configured. The Node adapter provides local built-server previews; `pnpm run build:vercel` uses the official Vercel adapter and isolated output. Before release, reconcile the migrated legal/privacy text with the actual hosting and services; the legacy privacy policy still names Webflow. Request analytics are disabled.
 
 START plans to agree compensation with each company before publication; a referral arrangement remains a possibility. Staff follow up manually using the private Cockpit contact, record agreed terms, then review and publish the draft. Pricing is not settled. Commercial agreement enforcement and billing are not implemented.

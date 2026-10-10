@@ -1,0 +1,95 @@
+name: Deploy staging
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: website-staging
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    if: vars.DEPLOYMENTS_ENABLED == 'true' && github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/ci.yml
+  guard:
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: '22'
+      - run: node scripts/release/verify-github.mjs staging
+        env:
+          GH_TOKEN: ${{ github.token }}
+  deploy:
+    needs: guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment:
+      name: staging
+      url: https://staging.start-berlin.com
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/vercel
+      - run: node scripts/release/preview-config.mjs
+      - name: Verify Vercel project and reserved staging domain
+        run: node scripts/release/verify-vercel.mjs staging
+        env:
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Build preview without changing the staging alias
+        id: deploy
+        run: |
+          tree=$(git rev-parse 'HEAD^{tree}')
+          url=$("$RUNNER_TEMP/vercel-cli/node_modules/.bin/vercel" deploy --target=preview --yes --scope=start-berlin --non-interactive \
+            --local-config=.astro/vercel-preview.json \
+            --meta githubDeployment=1 --meta githubCommitRef=main --meta githubCommitSha="$GITHUB_SHA" \
+            --build-env RELEASE_COMMIT_SHA="$GITHUB_SHA" --build-env RELEASE_TREE_SHA="$tree")
+          [[ "$url" =~ ^https://[a-zA-Z0-9-]+\.vercel\.app$ ]]
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "tree=$tree" >> "$GITHUB_OUTPUT"
+        env:
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Check the built pages and exact source
+        run: node scripts/release/smoke.mjs
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          RELEASE_COMMIT_SHA: ${{ github.sha }}
+          RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
+          SMOKE_PREVIEW: 'true'
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+      - name: Reject a superseded main deployment
+        run: |
+          node --input-type=module -e 'import {github} from "./scripts/release/verify-github.mjs"; const ref = await github("git/ref/heads/main"); if (ref.object.sha !== process.env.GITHUB_SHA) throw new Error("A newer main commit must finish staging first.");'
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Assign the tested deployment to staging
+        run: '"$RUNNER_TEMP/vercel-cli/node_modules/.bin/vercel" alias set "$DEPLOYMENT_URL" staging.start-berlin.com --scope=start-berlin --non-interactive'
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Check the stable staging domain
+        run: node scripts/release/smoke.mjs
+        env:
+          DEPLOYMENT_URL: https://staging.start-berlin.com
+          RELEASE_COMMIT_SHA: ${{ github.sha }}
+          RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
+          SMOKE_PREVIEW: 'true'
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}

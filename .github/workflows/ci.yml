@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, production]
+  push:
+    branches: [main, production]
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  ASTRO_TELEMETRY_DISABLED: '1'
+  CI: 'true'
+
+jobs:
+  quality:
+    name: Design and types
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm run check:design
+      - run: pnpm run typecheck
+  tests:
+    name: Behaviour tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: pnpm run test:jobboard
+      - run: pnpm run test:release
+  build:
+    name: Build (${{ matrix.target }})
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [node, vercel]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - name: Build current source into isolated output
+        run: |
+          export RELEASE_COMMIT_SHA="$GITHUB_SHA"
+          export RELEASE_TREE_SHA="$(git rev-parse 'HEAD^{tree}')"
+          if [ "$BUILD_TARGET" = vercel ]; then
+            pnpm run build:vercel
+          else
+            pnpm exec astro build --outDir .astro/ci-node
+            pnpm run smoke:local -- .astro/ci-node
+          fi
+        env:
+          BUILD_TARGET: ${{ matrix.target }}
+      - name: Preserve tracked build output
+        run: git diff --exit-code -- dist pnpm-lock.yaml package-lock.json
+  workflows:
+    name: Workflow validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12 -color
+  required:
+    name: Required checks
+    if: always()
+    needs: [quality, tests, build, workflows]
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Require every check to succeed
+        run: |
+          node --input-type=module -e 'const results = JSON.parse(process.env.RESULTS); if (Object.values(results).some(job => job.result !== "success")) process.exit(1);'
+        env:
+          RESULTS: ${{ toJSON(needs) }}
