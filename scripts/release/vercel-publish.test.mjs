@@ -3,7 +3,7 @@ import test from 'node:test';
 import { config } from './verify-github.mjs';
 import { assertPublishDeployment, publish } from './vercel-publish.mjs';
 
-const project = { id: config.vercelProjectId, name: config.vercelProject, accountId: 'team_test', autoAssignCustomDomains: false };
+const project = { id: config.vercelProjectId, name: config.vercelProject, accountId: 'team_test', autoAssignCustomDomains: false, autoExposeSystemEnvs: false, ssoProtection: { deploymentType: 'all_except_custom_domains' } };
 const options = { id: 'dpl_test', orgId: 'team_test', commit: 'commit', mode: 'staging' };
 const deployment = { id: options.id, projectId: project.id, ownerId: project.accountId, readyState: 'READY', target: null, meta: { githubCommitSha: options.commit, githubCommitRef: 'main' } };
 

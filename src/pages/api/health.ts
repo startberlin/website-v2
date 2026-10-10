@@ -4,6 +4,6 @@ export const prerender = false;
 
 // Build identity only. Backend acceptance is checked separately by the release workflow.
 export const GET: APIRoute = () => Response.json(
-  { ok: true, commit: __RELEASE_COMMIT__, tree: __RELEASE_TREE__ },
+  { ok: true, commit: __RELEASE_COMMIT__, tree: __RELEASE_TREE__, deploymentCredentialsExposed: Boolean(process.env.VERCEL_TOKEN || process.env.VERCEL_AUTOMATION_BYPASS_SECRET) },
   { headers: { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' } },
 );

@@ -24,7 +24,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
       cwd: directory, env: environment, timeout: 30_000, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
     }));
     if (result.status === 404) continue;
-    if (result.status !== 200 || result.identity?.ok !== true || result.identity.commit !== (process.env.RELEASE_COMMIT_SHA || null) || result.identity.tree !== (process.env.RELEASE_TREE_SHA || null) || !result.cache?.includes('no-store')) throw new Error('Packaged function health does not match the built source.');
+    if (result.status !== 200 || result.identity?.ok !== true || result.identity.deploymentCredentialsExposed !== false || result.identity.commit !== (process.env.RELEASE_COMMIT_SHA || null) || result.identity.tree !== (process.env.RELEASE_TREE_SHA || null) || !result.cache?.includes('no-store')) throw new Error('Packaged function health does not match the built source or contains deployment credentials.');
     verified++;
   } catch (error) {
     console.error(`Packaged Vercel function ${entry.name} failed its isolated startup/health check. ${error.status ? `Process exit: ${error.status}.` : error.message}`);
