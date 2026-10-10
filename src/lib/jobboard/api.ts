@@ -1,4 +1,5 @@
 import { env } from "node:process";
+import { validateSiteOrigin } from "../seo/site.mjs";
 import type { z } from "zod";
 import {
 	jobListResponseSchema,
@@ -30,14 +31,7 @@ export function publicSiteUrl(requestOrigin?: string): string {
   const raw = env.PUBLIC_SITE_URL;
   if (!raw && env.NODE_ENV === "production")
     throw new Error("PUBLIC_SITE_URL must be configured.");
-  const url = new URL(raw || requestOrigin || "http://localhost:4321");
-  const local = ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname);
-  if (
-    url.username || url.password || url.pathname !== "/" || url.search || url.hash ||
-    !["http:", "https:"].includes(url.protocol) ||
-    (url.protocol === "http:" && !local)
-  ) throw new Error("PUBLIC_SITE_URL requires an exact HTTPS origin, or local HTTP for development.");
-  return url.origin;
+  return validateSiteOrigin(raw || requestOrigin || "http://localhost:4321");
 }
 
 function apiConfig(scope: "read" | "submit" | "metrics") {

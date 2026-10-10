@@ -148,14 +148,7 @@ export function displayDate(date: string): string {
 		timeZone: "Europe/Berlin",
 	}).format(new Date(date));
 }
-export function safeJsonLd(value: unknown): string {
-	return JSON.stringify(value)
-		.replace(/</g, "\\u003c")
-		.replace(/>/g, "\\u003e")
-		.replace(/&/g, "\\u0026")
-		.replace(/\u2028/g, "\\u2028")
-		.replace(/\u2029/g, "\\u2029");
-}
+export { safeJsonLd } from '../seo/serialize';
 function escapeHtml(text: string): string {
 	return text
 		.replace(/&/g, "&amp;")

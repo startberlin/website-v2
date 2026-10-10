@@ -13,9 +13,10 @@ interface Props {
 	linkedin?: string;
 	email?: string;
 	portrait?: ImageMetadata;
+	profileUrl?: string;
 }
 
-const { name, role, batch, group, linkedin, email, portrait } = Astro.props;
+const { name, role, batch, group, linkedin, email, portrait, profileUrl } = Astro.props;
 const linkedinUrl = linkedin ? memberLinkedinUrl(linkedin, name) : undefined;
 const emailUrl = email ? memberEmailUrl(email, name) : undefined;
 const roleLabel = role ?? 'Member';
@@ -40,7 +41,7 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		</div>
 	</div>
 	<div class="card__body">
-		<h3 class="card__name">{name}</h3>
+		<h3 class="card__name">{profileUrl ? <a class="card__profile-link" href={profileUrl}>{name}</a> : name}</h3>
 		<p class="card__role">{roleLabel}</p>
 		{(linkedinUrl || emailUrl) && (
 			<div class="card__contacts">
@@ -57,11 +58,13 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 			</div>
 		)}
 		{batch && <p class="card__batch">Batch #{batch}</p>}
+		{profileUrl && <span class="card__profile-hint" aria-hidden="true">View profile <Icon name="arrow-up-right" size={14} /></span>}
 	</div>
 </article>
 
 <style>
 	.card {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
@@ -196,6 +199,8 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	}
 
 	.card__contact {
+		position: relative;
+		z-index: 2;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -211,6 +216,32 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	.card__contact:hover,
 	.card__contact:focus-visible {
 		color: var(--color-accent);
+	}
+
+	.card__profile-link::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		border-radius: var(--radius-card);
+	}
+
+	.card__profile-link:focus-visible { outline: none; }
+	.card__profile-link:focus-visible::after {
+		inset: var(--space-1);
+		outline: var(--focus-width) solid var(--color-accent);
+		outline-offset: 0;
+	}
+
+	.card__profile-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+		margin-top: auto;
+		padding-top: var(--space-2);
+		color: var(--color-accent);
+		font-size: var(--text-xs);
+		line-height: var(--leading-ui);
 	}
 
 	@media (max-width: 359px) {

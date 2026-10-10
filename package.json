@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.13.0"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "astro dev",
@@ -11,6 +11,9 @@
     "start": "node ./dist/server/entry.mjs",
     "typecheck": "astro check",
     "check:design": "node scripts/check-design.mjs",
+    "check:seo": "node --import tsx scripts/check-seo.ts",
+    "test:seo": "node --import tsx --test src/lib/seo/*.test.ts",
+    "test:dependencies": "node --test scripts/dependency-security.test.mjs",
     "test:jobboard": "node --import tsx --test src/lib/jobboard/*.test.ts",
     "preview": "astro preview",
     "astro": "astro",
@@ -39,6 +42,13 @@
     "@types/react-dom": "19.2.3",
     "tsx": "4.23.15",
     "typescript": "6.0.3"
+  },
+  "overrides": {
+    "http-cache-semantics": "4.3.0",
+    "source-map-js": "1.2.2",
+    "@vercel/routing-utils": {
+      "path-to-regexp": "6.3.0"
+    }
   },
   "allowScripts": {
     "esbuild": true,

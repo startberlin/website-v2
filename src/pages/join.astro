@@ -8,6 +8,7 @@ import teamPhoto from '../assets/hero/hero-3.jpg';
 import audiencePhoto from '../assets/hero/hero-4.jpg';
 import teamFourPhoto from '../assets/join/team-four.jpg';
 import teamLiftingPhoto from '../assets/join/team-lifting.jpg';
+import { pageSeo } from '../lib/seo/pages';
 
 // Flip when a round opens: swaps the status pill and points the main CTA at the
 // application form instead of the talent pool.
@@ -116,7 +117,7 @@ const initials = (name: string) =>
 		.toUpperCase();
 ---
 
-<Layout title="How to Join | START Berlin">
+<Layout seo={pageSeo('/join')}>
 	<PageHero image={groupPhoto} alt="START Berlin members posing together for a group photo.">
 			<p slot="status" class:list={['status', { 'status--open': applicationsOpen }]}>
 				<span class="status__dot"></span>

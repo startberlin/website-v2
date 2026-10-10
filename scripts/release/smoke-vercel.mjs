@@ -16,6 +16,8 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
   if (!configuration.runtime?.startsWith('nodejs')) continue;
   const directory = await mkdtemp(join(tmpdir(), 'website-function-'));
   try {
+    const nodeMajor = Number(process.versions.node.split('.')[0]);
+    if (configuration.runtime !== `nodejs${nodeMajor}.x`) throw new Error('Packaged function targets a different Node major than the CI runtime.');
     await cp(source, directory, { recursive: true, dereference: true });
     const handler = resolve(directory, configuration.handler);
     const path = relative(directory, handler);
@@ -24,6 +26,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
       cwd: directory, env: environment, timeout: 30_000, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
     }));
     if (result.status === 404) continue;
+    if (result.identity?.nodeMajor !== nodeMajor) throw new Error('Packaged function runs a different Node major than the tested CI runtime.');
     if (result.status !== 200 || result.identity?.ok !== true || result.identity.deploymentCredentialsExposed !== false || result.identity.commit !== (process.env.RELEASE_COMMIT_SHA || null) || result.identity.tree !== (process.env.RELEASE_TREE_SHA || null) || !result.cache?.includes('no-store')) throw new Error('Packaged function health does not match the built source or contains deployment credentials.');
     verified++;
   } catch (error) {

@@ -13,4 +13,4 @@ Describe environment changes or backend dependencies, and how to roll back. Stat
 - [ ] I reviewed the full diff, including any AI-generated code.
 - [ ] Required checks pass for the latest commit.
 - [ ] No credentials, private member information or generated `dist/` changes are included.
-- [ ] An independent repository admin reviewed this commit before merge.
+- [ ] One repository admin reviewed and authorized the latest commit, including through an intentional merge of their own PR.

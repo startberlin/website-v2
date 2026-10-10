@@ -1,0 +1,1 @@
+Álvaro Torres is Batch #10, confirmed by Jannik on 10 October 2026. The isolated members-batch-build passed; rendered HTML includes Batch #10 in the card and search data. Browser search for Torres returned the card with the batch visible. The saved screenshot buffers omitted layers and are not accepted as visual evidence. No source styles or external Cockpit records changed.

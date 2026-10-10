@@ -6,9 +6,11 @@ import PageHero from '../components/PageHero.astro';
 import teamPhoto from '../assets/hero/hero-3.jpg';
 import type { ImageMetadata } from 'astro';
 import { memberProfiles } from '../lib/member-profiles';
+import { boardGroups, boardProfilePath, type TeamSeason } from '../lib/board-members';
 // Maintained Cockpit roster snapshot. Season roles stay separate from the
 // shared portraits and public profile links.
 import team from '../data/team.json';
+import { pageSeo } from '../lib/seo/pages';
 
 const portraits = import.meta.glob<{ default: ImageMetadata }>('../assets/members/*.webp', { eager: true });
 const profileFor = (name: string) => {
@@ -18,21 +20,6 @@ const profileFor = (name: string) => {
 	return { linkedin: profile?.linkedin, email: profile?.email, portrait };
 };
 
-interface Member {
-	name: string;
-	role?: string;
-	batch?: number;
-	// Department heads sit on the board and are listed in both places.
-	board?: boolean;
-}
-
-interface Season {
-	// Newest first; the first season is shown by default.
-	label: string;
-	board: Member[];
-	departments: { name: string; members: Member[] }[];
-}
-
 const slugify = (value: string) =>
 	value
 		.toLowerCase()
@@ -40,20 +27,20 @@ const slugify = (value: string) =>
 		.replace(/[^a-z0-9]+/g, '-')
 		.replace(/^-|-$/g, '');
 
-const seasons = (team.seasons as Season[]).map((season) => {
+const seasons = (team.seasons as TeamSeason[]).map((season) => {
+	const boardRows = boardGroups(season);
 	const sections = [
 		{
 			id: 'board',
 			name: 'Board',
-			members: [
-				...season.board,
-				...season.departments.flatMap((department) => department.members.filter((member) => member.board)),
-			],
+			members: boardRows.flat(),
+			rows: boardRows,
 		},
 		...season.departments.map((department) => ({
 			id: slugify(department.name),
 			name: department.name,
 			members: department.members,
+			rows: [department.members],
 		})),
 	];
 	const people = new Set(sections.flatMap((section) => section.members.map((member) => member.name)));
@@ -66,7 +53,7 @@ const departments = [
 ];
 ---
 
-<Layout title="Our Members | START Berlin">
+<Layout seo={pageSeo('/members')}>
 	<PageHero image={teamPhoto} alt="START Berlin team posing together in START shirts." imagePosition="50% 10%" mobileImagePosition="58% 35%">
 		<Fragment slot="title"><span data-hero-line>Meet the</span> <span data-hero-line data-hero-accent>team</span></Fragment>
 		<Fragment slot="description">The people behind START Berlin. Get to know our board and departments.</Fragment>
@@ -125,11 +112,15 @@ const departments = [
 					hidden={index > 0}
 				>
 					{season.sections.map((section) => (
-						<section class="group" data-member-group={section.id}>
+						<section class="group" id={`${season.id}-${section.id}`} data-member-group={section.id}>
 							<h2 class="group__label">{section.name}</h2>
-							<div class="group__grid">
-								{section.members.map((member) => (
-									<MemberCard name={member.name} role={member.role} batch={member.batch} group={section.name} {...profileFor(member.name)} />
+							<div class="group__rows">
+								{section.rows.map((row) => (
+									<div class="group__grid" data-board-row={section.id === 'board' ? '' : undefined}>
+										{row.map((member) => (
+											<MemberCard name={member.name} role={member.role} batch={member.batch} group={section.name} profileUrl={boardProfilePath(member.name)} {...profileFor(member.name)} />
+										))}
+									</div>
 								))}
 							</div>
 						</section>
@@ -151,6 +142,15 @@ const departments = [
 	const countLabel = document.querySelector<HTMLElement>('[data-member-count-label]')!;
 	const countFilter = document.querySelector<HTMLElement>('[data-member-count-filter]')!;
 	const empty = document.querySelector<HTMLElement>('[data-member-empty]')!;
+	const filters = document.querySelector<HTMLElement>('.filters')!;
+	// Follow the actual filter height when text size or orientation changes.
+	const syncFilterHeight = () => {
+		const height = getComputedStyle(filters).position === 'sticky' ? filters.getBoundingClientRect().height : 0;
+		document.documentElement.style.setProperty('--member-filter-height', `${height}px`);
+	};
+	new ResizeObserver(syncFilterHeight).observe(filters);
+	window.addEventListener('resize', syncFilterHeight);
+	syncFilterHeight();
 
 	const showSeason = (id: string) => {
 		const panel = [...panels].find((candidate) => candidate.dataset.season === id);
@@ -180,6 +180,9 @@ const departments = [
 				card.hidden = !match;
 				if (match) visibleNames.add(card.querySelector<HTMLHeadingElement>('.card__name')!.textContent!.trim());
 				groupVisible ||= match;
+			});
+			group.querySelectorAll<HTMLElement>('[data-board-row]').forEach((row) => {
+				row.hidden = ![...row.querySelectorAll<HTMLElement>('[data-member]')].some((card) => !card.hidden);
 			});
 
 			group.hidden = !groupVisible;
@@ -214,13 +217,16 @@ const departments = [
 <style>
 	/* Keep focused card links below the sticky navigation and filters. */
 	:global(html) {
-		scroll-padding-block-start: calc(var(--header-height) + 3 * var(--target-min) + 2 * var(--space-3) + 3 * var(--space-4) + 2 * var(--space-1) + 4 * var(--border-width));
+		--member-filter-height: calc(3 * var(--target-min) + 2 * var(--space-3) + 2 * var(--space-4) + 2 * var(--space-1) + 4 * var(--border-width));
+		scroll-padding-block-start: calc(var(--header-height) + var(--member-filter-height) + var(--space-4));
 	}
 
 	.directory-count { margin: 0 0 var(--space-8); color: var(--text-subtle); font-size: var(--text-compact); line-height: 1.5rem; }
 	.directory-count [data-member-count] { color: var(--color-white); font-weight: var(--weight-bold); }
 
 	.filters {
+		container-type: inline-size;
+		container-name: member-filters;
 		position: sticky;
 		top: var(--header-height);
 		z-index: var(--z-filters);
@@ -363,7 +369,13 @@ const departments = [
 		border-top: var(--border-width) solid var(--border-subtle);
 	}
 
-	/* Flex instead of grid so a short last row (like the board) sits centered. */
+	.group__rows {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-6);
+	}
+
+	/* Separate board rows keep the three leadership roles above the department heads. */
 	.group__grid {
 		--columns: 2;
 		--gap: var(--space-3);
@@ -386,11 +398,7 @@ const departments = [
 		color: var(--text-subtle);
 	}
 
-	@media (min-width: 640px) {
-		:global(html) {
-			scroll-padding-block-start: calc(var(--header-height) + var(--target-min) + 3 * var(--space-4) + 2 * var(--space-1) + 4 * var(--border-width));
-		}
-
+	@container member-filters (min-width: 40rem) {
 		.filters__inner {
 			flex-direction: row;
 		}
@@ -399,7 +407,9 @@ const departments = [
 			flex-shrink: 0;
 			width: 15rem;
 		}
+	}
 
+	@media (min-width: 640px) {
 		.group__grid {
 			--columns: 3;
 			--gap: var(--space-4);
@@ -411,6 +421,12 @@ const departments = [
 			--columns: 5;
 			--gap: var(--space-5);
 		}
+	}
+
+	/* Leave the content reachable in landscape and other short viewports. */
+	@media (max-height: 600px) {
+		.filters { position: static; }
+		:global(html) { --member-filter-height: 0px; }
 	}
 
 </style>

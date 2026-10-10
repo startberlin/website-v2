@@ -4,7 +4,7 @@
 		{
 			"label": "26/27",
 			"snapshotDate": "2026-09-27",
-			"rosterUpdatedAt": "2026-09-30",
+			"rosterUpdatedAt": "2026-10-10",
 			"board": [
 				{ "name": "Antonia Hill", "role": "President" },
 				{ "name": "Julia Palm", "role": "Vice President" },
@@ -28,7 +28,7 @@
 					"name": "Operations & Digital",
 					"members": [
 						{ "name": "Jannik Schaefer", "role": "Head of Operations & Digital", "board": true },
-						{ "name": "Álvaro Torres", "role": "Co-Lead of Operations & Digital" },
+						{ "name": "Álvaro Torres", "role": "Co-Lead of Operations & Digital", "batch": 10 },
 						{ "name": "Jonathan Kubala", "batch": 10 },
 						{ "name": "Hubert Tomaszczak", "batch": 8 },
 						{ "name": "Leonie Sophie Bender", "batch": 10 },
