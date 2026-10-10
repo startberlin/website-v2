@@ -1,5 +1,6 @@
 import { pathToFileURL } from 'node:url';
 import { pageRoutes } from './routes.mjs';
+import { vercelGet } from './http.mjs';
 
 export async function smoke(base, { commit = null, tree = null, jobs = 'optional', preview = false } = {}) {
   const origin = new URL(base);
@@ -10,7 +11,9 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
   async function get(path, expected) {
     const target = new URL(path, origin);
     if (target.origin !== origin.origin) throw new Error('Smoke checks must stay on the selected deployment.');
-    const response = await fetch(target, { headers, redirect: 'manual', signal: AbortSignal.timeout(30_000) });
+    const response = !local && process.env.VERCEL_CLI
+      ? await vercelGet(target)
+      : await fetch(target, { headers, redirect: 'manual', signal: AbortSignal.timeout(30_000) });
     if (!expected.includes(response.status)) throw new Error(`${path}: expected ${expected.join('/')} but got ${response.status}.`);
     if (preview && response.headers.get('x-robots-tag') !== 'noindex, nofollow') throw new Error(`${path}: preview indexing is not blocked.`);
     return response;

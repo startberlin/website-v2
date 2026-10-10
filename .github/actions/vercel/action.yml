@@ -7,4 +7,6 @@ runs:
       with:
         node-version: '22'
     - shell: bash
-      run: npm install --prefix "$RUNNER_TEMP/vercel-cli" --no-audit --no-fund vercel@63.1.2
+      run: |
+        npm install --prefix "$RUNNER_TEMP/vercel-cli" --no-audit --no-fund vercel@63.1.2
+        echo "VERCEL_CLI=$RUNNER_TEMP/vercel-cli/node_modules/.bin/vercel" >> "$GITHUB_ENV"

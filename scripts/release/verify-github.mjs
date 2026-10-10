@@ -54,6 +54,16 @@ export async function stagingEvidence(run) {
   return { run, jobs: data.jobs };
 }
 
+async function verifiedStagingSource(sourceSha = null) {
+  const filter = sourceSha ? `head_sha=${sourceSha}` : 'branch=main&status=success';
+  const runs = await github(`actions/workflows/deploy-staging.yml/runs?${filter}&per_page=100`);
+  for (const run of runs.workflow_runs.filter(item => item.conclusion === 'success')) {
+    const staged = await stagingEvidence(run);
+    if (isStagingDeployment(staged, sourceSha || run.head_sha)) return staged;
+  }
+  return null;
+}
+
 export async function verifyStagingRun(runId, sourceSha) {
   if (!/^\d+$/.test(runId || '')) throw new Error('A staging workflow run ID is required.');
   const evidence = await stagingEvidence(await github(`actions/runs/${runId}`));
@@ -110,12 +120,8 @@ export async function verifyRelease(owners) {
   const full = await github(`pulls/${pr.number}`);
   const source = await github(`git/commits/${full.head.sha}`);
   const targetTree = execFileSync('git', ['rev-parse', 'HEAD^{tree}'], { encoding: 'utf8' }).trim();
-  const runs = await github(`actions/workflows/deploy-staging.yml/runs?head_sha=${full.head.sha}&per_page=100`);
-  const evidence = [];
-  for (const run of runs.workflow_runs.filter(item => item.conclusion === 'success')) {
-    const staged = await stagingEvidence(run);
-    if (isStagingDeployment(staged, full.head.sha)) { evidence.push(staged); break; }
-  }
+  const staged = await verifiedStagingSource(full.head.sha);
+  const evidence = staged ? [staged] : [];
   assertRelease(full, await github(`pulls/${pr.number}/reviews?per_page=100`), owners, targetCommit, source.tree.sha, targetTree, evidence);
 }
 
@@ -128,6 +134,7 @@ export async function verifyPreview() {
   if (pr.state !== 'open' || pr.base.ref !== 'main' || pr.head.repo.full_name !== config.repository) throw new Error('Preview only open same-repository PRs targeting main.');
   const checks = await github(`actions/workflows/ci.yml/runs?head_sha=${pr.head.sha}&event=pull_request&per_page=100`);
   if (!checks.workflow_runs.some(run => run.conclusion === 'success' && run.pull_requests.some(item => item.number === pr.number))) throw new Error('The selected PR commit must pass CI before requesting a preview.');
+  if (!await verifiedStagingSource()) throw new Error('Complete the first verified main staging deployment before creating PR previews.');
   const commit = await github(`git/commits/${pr.head.sha}`);
   return { sha: pr.head.sha, branch: pr.head.ref, tree: commit.tree.sha };
 }

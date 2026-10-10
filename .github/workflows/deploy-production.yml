@@ -65,11 +65,10 @@ jobs:
         id: deploy
         run: |
           tree=$(git rev-parse 'HEAD^{tree}')
-          url=$("$RUNNER_TEMP/vercel-cli/node_modules/.bin/vercel" deploy --prod --skip-domain --yes --scope=start-berlin --non-interactive \
+          "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --prod --skip-domain --yes --scope=start-berlin --non-interactive --json \
             --meta githubDeployment=1 --meta githubCommitRef=production --meta githubCommitSha="$GITHUB_SHA" \
-            --build-env RELEASE_COMMIT_SHA="$GITHUB_SHA" --build-env RELEASE_TREE_SHA="$tree")
-          [[ "$url" =~ ^https://[a-zA-Z0-9-]+\.vercel\.app$ ]]
-          echo "url=$url" >> "$GITHUB_OUTPUT"
+            --build-env RELEASE_COMMIT_SHA="$GITHUB_SHA" --build-env RELEASE_TREE_SHA="$tree" > "$RUNNER_TEMP/production-deployment.json"
+          node scripts/release/deployment-result.mjs "$RUNNER_TEMP/production-deployment.json" production
           echo "tree=$tree" >> "$GITHUB_OUTPUT"
         env:
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
@@ -82,6 +81,9 @@ jobs:
           RELEASE_COMMIT_SHA: ${{ github.sha }}
           RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
           SMOKE_JOBS: required
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
       - name: Reject a superseded production deployment
         run: |
@@ -104,6 +106,9 @@ jobs:
           RELEASE_COMMIT_SHA: ${{ github.sha }}
           RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
           SMOKE_JOBS: required
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
       - name: Record the tested production candidate
         run: |

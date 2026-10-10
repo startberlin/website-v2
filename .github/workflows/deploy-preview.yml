@@ -66,12 +66,11 @@ jobs:
       - name: Build an isolated PR preview (source executes only on Vercel)
         id: deploy
         run: |
-          url=$("$RUNNER_TEMP/vercel-cli/node_modules/.bin/vercel" deploy --cwd .astro/preview-source --target=preview --yes --scope=start-berlin --non-interactive \
+          "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --cwd .astro/preview-source --target=preview --yes --scope=start-berlin --non-interactive --json \
             --local-config="$GITHUB_WORKSPACE/.astro/vercel-preview.json" \
             --meta githubDeployment=1 --meta githubCommitRef="$PR_BRANCH" --meta githubCommitSha="$PR_SHA" \
-            --build-env RELEASE_COMMIT_SHA="$PR_SHA" --build-env RELEASE_TREE_SHA="$PR_TREE")
-          [[ "$url" =~ ^https://[a-zA-Z0-9-]+\.vercel\.app$ ]]
-          echo "url=$url" >> "$GITHUB_OUTPUT"
+            --build-env RELEASE_COMMIT_SHA="$PR_SHA" --build-env RELEASE_TREE_SHA="$PR_TREE" > "$RUNNER_TEMP/pr-deployment.json"
+          node scripts/release/deployment-result.mjs "$RUNNER_TEMP/pr-deployment.json" preview
         env:
           PR_BRANCH: ${{ needs.guard.outputs.branch }}
           PR_SHA: ${{ needs.guard.outputs.sha }}
@@ -86,4 +85,7 @@ jobs:
           RELEASE_COMMIT_SHA: ${{ needs.guard.outputs.sha }}
           RELEASE_TREE_SHA: ${{ needs.guard.outputs.tree }}
           SMOKE_PREVIEW: 'true'
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
