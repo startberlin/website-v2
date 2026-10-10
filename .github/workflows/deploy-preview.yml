@@ -66,7 +66,7 @@ jobs:
       - name: Build an isolated PR preview (source executes only on Vercel)
         id: deploy
         run: |
-          "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --cwd .astro/preview-source --target=preview --yes --scope=start-berlin --non-interactive --json \
+          "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --cwd .astro/preview-source --target=preview --yes --non-interactive --json \
             --local-config="$GITHUB_WORKSPACE/.astro/vercel-preview.json" \
             --meta githubDeployment=1 --meta githubCommitRef="$PR_BRANCH" --meta githubCommitSha="$PR_SHA" \
             --build-env RELEASE_COMMIT_SHA="$PR_SHA" --build-env RELEASE_TREE_SHA="$PR_TREE" > "$RUNNER_TEMP/pr-deployment.json"

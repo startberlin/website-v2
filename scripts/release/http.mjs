@@ -3,7 +3,6 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
-import { config } from './verify-github.mjs';
 
 const execute = promisify(execFile);
 
@@ -30,7 +29,7 @@ export async function vercelGet(url, cli = process.env.VERCEL_CLI) {
   try {
     // The CLI obtains project-scoped access using the existing Vercel authentication.
     // No credential is passed as an argument, and redirects remain visible to smoke checks.
-    await execute(cli, ['curl', url.href, '--scope', config.vercelScope, '--non-interactive', '--',
+    await execute(cli, ['curl', url.href, '--non-interactive', '--',
       '--silent', '--show-error', '--max-time', '30', '--no-location',
       '--dump-header', headerFile, '--output', bodyFile], { timeout: 45_000, maxBuffer: 512_000 });
     return curlResponse(await readFile(headerFile, 'utf8'), await readFile(bodyFile));
