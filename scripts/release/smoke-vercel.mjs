@@ -26,6 +26,7 @@ for (const entry of await readdir(root, { withFileTypes: true })) {
       cwd: directory, env: environment, timeout: 30_000, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
     }));
     if (result.status === 404) continue;
+    if (result.robots !== 'noindex, nofollow') throw new Error('Packaged health handler loses its indexing protection headers.');
     if (result.identity?.nodeMajor !== nodeMajor) throw new Error('Packaged function runs a different Node major than the tested CI runtime.');
     if (result.status !== 200 || result.identity?.ok !== true || result.identity.deploymentCredentialsExposed !== false || result.identity.commit !== (process.env.RELEASE_COMMIT_SHA || null) || result.identity.tree !== (process.env.RELEASE_TREE_SHA || null) || !result.cache?.includes('no-store')) throw new Error('Packaged function health does not match the built source or contains deployment credentials.');
     verified++;
