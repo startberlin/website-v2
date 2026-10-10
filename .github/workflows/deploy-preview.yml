@@ -1,10 +1,13 @@
 name: Deploy PR preview
 
 on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
   workflow_dispatch:
     inputs:
       pull_request:
-        description: Open PR number (an admin must inspect the diff before requesting a preview)
+        description: Open PR number with successful CI (repository Write access is required)
         required: true
         type: string
 
@@ -15,7 +18,7 @@ permissions:
 
 jobs:
   guard:
-    if: vars.DEPLOYMENTS_ENABLED == 'true' && github.ref == 'refs/heads/main'
+    if: vars.DEPLOYMENTS_ENABLED == 'true' && github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.pull_requests[0].base.ref == 'main'))
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
@@ -33,7 +36,8 @@ jobs:
         id: select
         env:
           GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ inputs.pull_request }}
+          PR_NUMBER: ${{ inputs.pull_request || github.event.workflow_run.pull_requests[0].number }}
+          PREVIEW_ACTOR: ${{ github.event.workflow_run.actor.login || github.actor }}
   deploy:
     needs: guard
     runs-on: ubuntu-latest

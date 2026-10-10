@@ -26,6 +26,7 @@ pnpm run check:design
 pnpm run typecheck
 pnpm run test:jobboard
 pnpm run test:release
+pnpm test
 pnpm exec astro build --outDir .astro/ci-node
 pnpm run smoke:local -- .astro/ci-node
 pnpm run build:vercel
@@ -33,9 +34,11 @@ pnpm run build:vercel
 
 These checks use no production credentials. The local smoke server uses an available loopback port, clears Cockpit keys and shuts itself down. A controlled Jobs 503 is valid for this isolated test and does not establish backend acceptance.
 
-CI repeats design/type checks, behaviour tests, both builds and workflow validation. Its final Required checks job fails if any dependency fails or is skipped. Documentation-only PRs still run CI so the required status cannot remain pending through a path filter.
+CI derives its work from the changed files. It discovers native test files and follows their local import dependencies, including transitive imports. New tests need no workflow edit. Typecheck and every `check:*` script are discovered from package.json when application source changes. New non-native `test:*` runners are also registered automatically; keep them self-contained for CI. Direct Node test scripts remain useful local shortcuts and do not cause duplicate CI execution.
 
-PR previews are requested by an admin through the Deploy PR preview workflow after CI succeeds. Each gets its own deployment URL. The fixed staging domain shows the latest successfully tested `main`, not every open PR at once. Vercel's deployment list is the overview of those individual previews.
+Documentation-only PRs skip builds and unrelated behaviour tests. Styles build and run source checks; native tests are selected only when they depend on the changed source. Dependencies, deleted runtime files and uncertain imports widen verification conservatively. After merge, staging/production run the full current suite and both builds. The CI summary records what ran. Required checks is one stable merge status for the generated plan; a needed check that fails or disappears prevents merge. Intentional skips can pass only when the plan says that check is unnecessary.
+
+After successful CI, each same-repository PR gets its own preview when deployment activation is enabled. Contributors with Write access can request a fresh preview through Deploy PR preview. The fixed staging domain shows the latest successfully tested `main`, not every open PR at once. Vercel's deployment list is the overview of those individual previews.
 
 ## Releasing
 

@@ -29,6 +29,8 @@ Git-triggered Vercel deployments are disabled in vercel.json. GitHub Actions own
 
 The build embeds the Git commit and source-tree identities in `/api/health`, with no-store caching. Health is application liveness only. Smoke checks separately read the built pages and verify the legal redirects. Staging may show the explicit Jobs unavailable state while integrations are still being completed; Production requires a successful Jobs read. None of these checks submits a real employer form, registers an applicant or proves email delivery.
 
+CI plans verification from the changed files and test imports. It discovers new test files and package.json check/test scripts automatically. The built-server smoke pass discovers current Astro pages from src/pages, so a newly implemented page joins route verification without a fixed URL list. Parameterised pages need their domain fixtures and behaviour tests. Documentation-only changes skip website builds; dependency changes and releases run the complete suite. The final Required checks status always reports whether the selected plan succeeded.
+
 ## Activation
 
 The workflows start disabled. Keep `DEPLOYMENTS_ENABLED=false` and `PRODUCTION_RELEASE_ENABLED=false` until the following configuration is verified. A true flag alone cannot bypass the GitHub or Vercel configuration guards.
@@ -40,7 +42,7 @@ The workflows start disabled. Keep `DEPLOYMENTS_ENABLED=false` and `PRODUCTION_R
 5. Configure Preview's private Cockpit values only for the `main` branch. Other PR branches receive no shared service credentials. Set `PUBLIC_SITE_URL` to `https://staging.start-berlin.com` for main Preview; Production uses `https://www.start-berlin.com`. Keep metrics disabled. Production read/submit keys must be distinct and scoped; the public website gets no database connection.
 6. Enable `DEPLOYMENTS_ENABLED` and run staging. Verify the deployment URL and stable domain against the exact source commit/tree, with noindex headers. Leave `PRODUCTION_RELEASE_ENABLED=false` until relaunch acceptance and the domain cutover are approved.
 
-An admin requests an individual PR preview through Deploy PR preview on main, specifying the PR number. The guard checks the actor's current admin permission, an open same-repository PR and successful CI for that exact head. The preview source executes on Vercel, outside the credential-bearing GitHub runner. The CLI and deployment configuration come from reviewed main.
+Individual PR previews follow successful CI automatically once deployments are enabled. A contributor with Write access can request a fresh preview through Deploy PR preview on main, specifying the PR number. The guard checks current contributor permission, an open same-repository PR and successful CI for that exact head. The preview source executes on Vercel, outside the credential-bearing GitHub runner. The CLI and deployment configuration come from reviewed main. Production approval still belongs to exactly one admin in the release PR.
 
 The release bot opens its PR after successful staging. GitHub may require a human to approve workflow execution on a bot-created PR. Use the Approve workflows to run banner and wait for Required checks; do not count a skipped or approval-pending run as successful CI.
 

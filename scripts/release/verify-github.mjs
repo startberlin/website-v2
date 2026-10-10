@@ -94,7 +94,8 @@ export async function verifyRelease(owners) {
 }
 
 export async function verifyPreview() {
-  if ((await github(`collaborators/${process.env.GITHUB_ACTOR}/permission`)).permission !== 'admin') throw new Error('Only a repository admin may request a PR preview.');
+  const actor = process.env.PREVIEW_ACTOR || process.env.GITHUB_ACTOR;
+  if (!['admin', 'write', 'maintain'].includes((await github(`collaborators/${actor}/permission`)).permission)) throw new Error('A repository contributor with Write access is required for a PR preview.');
   const number = process.env.PR_NUMBER;
   if (!/^\d+$/.test(number || '')) throw new Error('A PR number is required.');
   const pr = await github(`pulls/${number}`);

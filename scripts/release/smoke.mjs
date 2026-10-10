@@ -1,4 +1,5 @@
 import { pathToFileURL } from 'node:url';
+import { pageRoutes } from './routes.mjs';
 
 export async function smoke(base, { commit = null, tree = null, jobs = 'optional', preview = false } = {}) {
   const origin = new URL(base);
@@ -7,7 +8,9 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
   const headers = {};
   if (!local && process.env.VERCEL_AUTOMATION_BYPASS_SECRET) headers['x-vercel-protection-bypass'] = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
   async function get(path, expected) {
-    const response = await fetch(new URL(path, origin), { headers, redirect: 'manual', signal: AbortSignal.timeout(30_000) });
+    const target = new URL(path, origin);
+    if (target.origin !== origin.origin) throw new Error('Smoke checks must stay on the selected deployment.');
+    const response = await fetch(target, { headers, redirect: 'manual', signal: AbortSignal.timeout(30_000) });
     if (!expected.includes(response.status)) throw new Error(`${path}: expected ${expected.join('/')} but got ${response.status}.`);
     if (preview && response.headers.get('x-robots-tag') !== 'noindex, nofollow') throw new Error(`${path}: preview indexing is not blocked.`);
     return response;
@@ -15,18 +18,20 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
   const health = await get('/api/health', [200]);
   const identity = await health.json();
   if (identity.ok !== true || identity.commit !== commit || identity.tree !== tree || !health.headers.get('cache-control')?.includes('no-store')) throw new Error('Deployment identity differs from the tested source, or the health response is cached.');
-  for (const path of ['/', '/join', '/members', '/legal-notice', '/privacy-policy']) {
-    const html = await (await get(path, [200])).text();
+  let jobsAvailable = false;
+  const routes = pageRoutes();
+  for (const path of routes) {
+    const response = await get(path, path === '/jobs' && jobs !== 'required' ? [200, 503] : [200]);
+    if (path === '/jobs') jobsAvailable = response.status === 200;
+    const html = await response.text();
     if ((html.match(/<main\b/g) || []).length !== 1 || (html.match(/<h1\b/g) || []).length !== 1) throw new Error(`${path}: missing or duplicated page landmarks.`);
   }
   for (const [path, destination] of [['/legal/legal-notice.html', '/legal-notice'], ['/legal/privacy.html', '/privacy-policy']]) {
     const response = await get(path, [301]);
     if (new URL(response.headers.get('location'), origin).pathname !== destination) throw new Error(`${path}: incorrect legacy redirect.`);
   }
-  const listing = await get('/jobs', jobs === 'required' ? [200] : [200, 503]);
-  await get('/jobs/submit', [200]);
-  console.log(`Smoke checks passed. Jobs: ${listing.status === 200 ? 'available' : 'controlled unavailable state (not backend acceptance)'}.`);
-  return { jobsAvailable: listing.status === 200 };
+  console.log(`Smoke checks passed for ${routes.length} current pages. Jobs: ${jobsAvailable ? 'available' : 'controlled unavailable state (not backend acceptance)'}.`);
+  return { jobsAvailable };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

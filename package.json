@@ -16,7 +16,8 @@
     "astro": "astro",
     "build:vercel": "ASTRO_ADAPTER=vercel astro build --outDir .astro/vercel-build",
     "test:release": "node --test scripts/release/*.test.mjs",
-    "smoke:local": "node scripts/release/smoke-local.mjs"
+    "smoke:local": "node scripts/release/smoke-local.mjs",
+    "test": "node scripts/ci/run.mjs tests"
   },
   "dependencies": {
     "@astrojs/node": "11.1.6",
