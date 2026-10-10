@@ -1,4 +1,5 @@
 import { config } from './verify-github.mjs';
+import { assertPreviewVariables } from './preview-env.mjs';
 
 const { VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID } = process.env;
 if (!VERCEL_TOKEN || !VERCEL_ORG_ID || VERCEL_PROJECT_ID !== config.vercelProjectId) throw new Error('Configure the new website-v2 Vercel project. Never use the legacy project ID.');
@@ -19,10 +20,7 @@ if (process.argv[2] === 'staging') {
   if (!domain.verified || domain.gitBranch !== config.reservedStagingBranch || domain.redirect) throw new Error('The verified staging domain must use the reserved staging branch.');
 }
 if (process.argv[2] === 'pr-preview') {
-  const data = await api(`/v9/projects/${VERCEL_PROJECT_ID}/env`);
-  const allowed = new Set(['PUBLIC_SITE_URL', 'JOBBOARD_METRICS_ENABLED']);
-  for (const variable of data.envs) {
-    if (variable.target?.includes('preview') && !variable.gitBranch && !allowed.has(variable.key)) throw new Error('PR previews must have no shared service credentials. Scope private Preview variables to main.');
-  }
+  const data = await api(`/v9/projects/${VERCEL_PROJECT_ID}/env?decrypt=false`);
+  assertPreviewVariables(data.envs);
 }
 console.log('Verified the intended Vercel project and deployment settings.');
