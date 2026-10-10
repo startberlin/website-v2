@@ -8,7 +8,11 @@ Home, Members and Join remain prerendered. Jobboard listings and details render 
 
 Read [AGENTS.md](AGENTS.md) and the [design guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) for the PR workflow and [docs/RELEASE.md](docs/RELEASE.md) for staging, production and domain cutover. GitHub `main` and `production` require successful checks and one admin review. Production uses the release-PR approval without a second environment approval. The new [Vercel project](https://vercel.com/start-berlin/website-v2) is separate from the existing live website; deployment activation and backend acceptance remain release work.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for the PR workflow and [docs/RELEASE.md](docs/RELEASE.md) for staging, production and domain cutover. GitHub `main` and `production` require successful checks and one admin authorization, through review or intentional PR merge, including on the admin's own PR. Production uses that release-PR authorization without a second environment approval.
+
+Activation verified on 10 October 2026: the new [Vercel project](https://vercel.com/start-berlin/website-v2) deploys reviewed main source to [staging.start-berlin.com](https://staging.start-berlin.com), with individual PR previews after CI. Both use public preview configuration and block indexing. Individual generated Preview URLs retain Vercel Authentication; the fixed staging domain is accessible without a Vercel login. The project-scoped START Website CI credential is stored in the protected GitHub deployment environments. Source uploads require no Vercel Git connection or personal GitHub sign-in in the shared START account. The complete team flow is on [Website v2 Overhaul](https://app.notion.com/p/3f5dec9cfc2780c0b715cac4e447bc3b).
+
+Production publication stays disabled until backend/product acceptance and the approved first domain cutover. The existing live website remains on its legacy project. Do not treat a controlled Jobs-unavailable preview as backend or form-delivery acceptance.
 
 ## Local setup
 

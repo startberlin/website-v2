@@ -5,12 +5,14 @@ import { assertVercelProject } from './project-config.mjs';
 
 test('deployments require the intended unlinked project and reject a restored Git connection', () => {
   const identity = { projectId: 'new-project', projectName: 'website-v2', orgId: 'start-team' };
-  const project = { id: 'new-project', name: 'website-v2', accountId: 'start-team', autoAssignCustomDomains: false, link: null };
+  const project = { id: 'new-project', name: 'website-v2', accountId: 'start-team', autoAssignCustomDomains: false, autoExposeSystemEnvs: false, ssoProtection: { deploymentType: 'all_except_custom_domains' }, link: null };
   assert.doesNotThrow(() => assertVercelProject(project, identity));
   assert.throws(() => assertVercelProject({ ...project, link: { type: 'github', repo: 'website-v2', productionBranch: 'production' } }, identity));
   assert.throws(() => assertVercelProject({ ...project, id: 'legacy-project' }, identity));
   assert.throws(() => assertVercelProject({ ...project, accountId: 'personal-team' }, identity));
   assert.throws(() => assertVercelProject({ ...project, autoAssignCustomDomains: true }, identity));
+  assert.throws(() => assertVercelProject({ ...project, autoExposeSystemEnvs: true }, identity));
+  assert.throws(() => assertVercelProject({ ...project, ssoProtection: null }, identity));
 });
 
 const rules = () => [

@@ -100,6 +100,7 @@ jobs:
           RELEASE_COMMIT_SHA: ${{ github.sha }}
           RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
           SMOKE_PREVIEW: 'true'
+          SMOKE_PUBLIC: 'true'
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
