@@ -29,7 +29,8 @@ export async function vercelGet(url, cli = process.env.VERCEL_CLI) {
   try {
     // The CLI obtains project-scoped access using the existing Vercel authentication.
     // No credential is passed as an argument, and redirects remain visible to smoke checks.
-    await execute(cli, ['curl', url.href, '--non-interactive', '--',
+    // curl is non-interactive by design; this CLI version forwards that global flag to curl.
+    await execute(cli, ['curl', url.href, '--',
       '--silent', '--show-error', '--max-time', '30', '--no-location',
       '--dump-header', headerFile, '--output', bodyFile], { timeout: 45_000, maxBuffer: 512_000 });
     return curlResponse(await readFile(headerFile, 'utf8'), await readFile(bodyFile));

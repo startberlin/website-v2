@@ -92,6 +92,7 @@ jobs:
           export RELEASE_COMMIT_SHA RELEASE_TREE_SHA
           if [ "$BUILD_TARGET" = vercel ]; then
             pnpm run build:vercel
+            node scripts/release/smoke-vercel.mjs
           else
             pnpm exec astro build --outDir .astro/ci-node
             pnpm run smoke:local -- .astro/ci-node
