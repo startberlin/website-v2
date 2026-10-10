@@ -1,12 +1,13 @@
 ---
 import JobboardLayout from '../../layouts/JobboardLayout.astro';
 import { SubmissionForm } from '../../components/jobboard/SubmissionForm';
+import { pageSeo } from '../../lib/seo/pages';
 
 export const prerender = false;
 Astro.response.headers.set('Cache-Control', 'no-store');
 ---
 
-<JobboardLayout title="Post a role | START Berlin" robots="noindex, follow">
+<JobboardLayout seo={pageSeo('/jobs/submit')}>
 	<header class="jb-intro">
 		<div>
 			<h1 class="jb-page-heading">Post a role</h1>

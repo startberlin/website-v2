@@ -22,6 +22,7 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
   const identity = await health.json();
   if (identity.ok !== true || identity.commit !== commit || identity.tree !== tree || !health.headers.get('cache-control')?.includes('no-store')) throw new Error('Deployment identity differs from the tested source, or the health response is cached.');
   if (identity.deploymentCredentialsExposed !== false) throw new Error('Deployment-management credentials must not be present in application runtime.');
+  if (identity.nodeMajor !== Number(process.versions.node.split('.')[0])) throw new Error('Deployment Node major differs from the tested CI runtime.');
   let jobsAvailable = false;
   const routes = pageRoutes();
   for (const path of routes) {

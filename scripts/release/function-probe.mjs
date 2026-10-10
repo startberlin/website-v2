@@ -13,5 +13,5 @@ try {
     await once(server, 'listening');
     response = await fetch(`http://127.0.0.1:${server.address().port}/api/health`, { signal: AbortSignal.timeout(10_000), redirect: 'manual' });
   } else throw new Error('Unsupported packaged Node function export.');
-  console.log(JSON.stringify({ status: response.status, cache: response.headers.get('cache-control'), identity: response.status === 200 ? await response.json() : null }));
+  console.log(JSON.stringify({ status: response.status, cache: response.headers.get('cache-control'), robots: response.headers.get('x-robots-tag'), identity: response.status === 200 ? await response.json() : null }));
 } finally { if (server) await new Promise(resolve => server.close(resolve)); }

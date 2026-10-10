@@ -25,3 +25,18 @@ test('public-domain verification detects guest protection despite valid automati
     if (previousSecret === undefined) delete process.env.VERCEL_AUTOMATION_BYPASS_SECRET; else process.env.VERCEL_AUTOMATION_BYPASS_SECRET = previousSecret;
   }
 });
+
+test('a ready deployment cannot pass when its actual Node runtime differs from CI', async () => {
+  const originalFetch = globalThis.fetch;
+  try {
+    for (const nodeMajor of [undefined, Number(process.versions.node.split('.')[0]) + 2]) {
+      let requests = 0;
+      globalThis.fetch = async () => {
+        requests++;
+        return Response.json({ ok: true, commit: null, tree: null, nodeMajor, deploymentCredentialsExposed: false }, { headers: { 'Cache-Control': 'no-store' } });
+      };
+      await assert.rejects(smoke('http://127.0.0.1'), /Node major differs/);
+      assert.equal(requests, 1, 'Reject incompatible runtime before accepting pages or assigning domains.');
+    }
+  } finally { globalThis.fetch = originalFetch; }
+});

@@ -3,8 +3,7 @@ import Icon from './icons/Icon.astro';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 
-// Navigation structure mirrors startmunich.de. Entries whose START Berlin page
-// doesn't exist yet are left out until it does.
+// Unbuilt destinations remain reserved until their pages are implemented.
 interface NavLink {
 	label: string;
 	href: string;
@@ -24,7 +23,20 @@ const nav: NavEntry[] = [
 	{ label: 'Home', href: '/' },
 	{
 		label: 'Community',
-		items: [{ label: 'Our Members', href: '/members' }],
+		items: [
+			{ label: 'About Us', href: '/about-us' },
+			{ label: 'Our Members', href: '/members' },
+			{ label: 'Member Journey', href: '/member-journey' },
+			{ label: 'Jobs', href: '/jobs' },
+		],
+	},
+	{ label: 'Events', href: '/events' },
+	{
+		label: 'Partners',
+		items: [
+			{ label: 'For Partners', href: '/for-partners' },
+			{ label: 'Our Partners', href: '/partners' },
+		],
 	},
 ];
 
@@ -34,12 +46,14 @@ const ctas: NavLink[] = [
 ];
 
 const isGroup = (entry: NavEntry): entry is NavGroup => 'items' in entry;
+const panelId = (entry: NavGroup, mobile = false) =>
+	`${mobile ? 'mobile-' : ''}nav-${entry.label.toLowerCase()}-panel`;
 const linkAttrs = (link: NavLink) =>
 	link.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 ---
 
 <nav class="nav">
-	<div class="nav__bar page-container">
+	<div class="nav__bar page-container" data-nav-bar>
 		<a href="/" class="logo">
 			<Image src={logo} alt="START Berlin" class="logo__image" loading="eager" />
 		</a>
@@ -49,11 +63,11 @@ const linkAttrs = (link: NavLink) =>
 				nav.map((entry) =>
 					isGroup(entry) ? (
 						<div class="dropdown" data-dropdown>
-							<button class="nav__link dropdown__toggle" aria-expanded="false" aria-haspopup="menu">
+							<button type="button" class="nav__link dropdown__toggle" aria-expanded="false" aria-controls={panelId(entry)}>
 								<span>{entry.label}</span>
 								<Icon name="chevron-down" class="chevron" />
 							</button>
-							<div class="dropdown__panel" data-dropdown-panel hidden>
+							<div id={panelId(entry)} class="dropdown__panel" data-dropdown-panel hidden>
 								{entry.items.map((item) => (
 									<a href={item.href} {...linkAttrs(item)} class="dropdown__item">
 										<Icon name="chevron-right" />
@@ -78,7 +92,7 @@ const linkAttrs = (link: NavLink) =>
 			}
 		</div>
 
-		<div class="cta-group cta-group--desktop">
+		<div class="cta-group cta-group--header">
 			{ctas.map((cta) => <a href={cta.href} {...linkAttrs(cta)} class="cta">{cta.label}</a>)}
 		</div>
 
@@ -102,11 +116,11 @@ const linkAttrs = (link: NavLink) =>
 				nav.map((entry) =>
 					isGroup(entry) ? (
 						<div class="mobile-menu__group">
-							<button class="mobile-menu__link mobile-menu__toggle" aria-expanded="false" data-accordion>
+							<button type="button" class="mobile-menu__link mobile-menu__toggle" aria-expanded="false" aria-controls={panelId(entry, true)} data-accordion>
 								<span>{entry.label}</span>
 								<Icon name="chevron-down" class="chevron" />
 							</button>
-							<div class="mobile-menu__sublinks" hidden>
+							<div id={panelId(entry, true)} class="mobile-menu__sublinks" hidden>
 								{entry.items.map((item) => (
 									<a href={item.href} {...linkAttrs(item)} class="mobile-menu__sublink">
 										{item.label}
@@ -146,17 +160,26 @@ const linkAttrs = (link: NavLink) =>
 		const toggle = dropdown.querySelector('button')!;
 		const panel = dropdown.querySelector<HTMLElement>('[data-dropdown-panel]')!;
 		let closeTimer: ReturnType<typeof setTimeout> | undefined;
+		let openedByHover = false;
 
-		const setOpen = (open: boolean) => {
+		const setOpen = (open: boolean, fromHover = false) => {
 			clearTimeout(closeTimer);
+			openedByHover = open && fromHover;
 			panel.hidden = !open;
 			toggle.setAttribute('aria-expanded', String(open));
 		};
 
-		toggle.addEventListener('click', () => setOpen(Boolean(panel.hidden)));
+		// A pointer's first click keeps a menu opened by hover available.
+		toggle.addEventListener('click', (event) => {
+			setOpen(Boolean(panel.hidden) || (openedByHover && event.detail > 0));
+		});
 
 		// The short delay lets the pointer cross the gap between button and panel.
-		dropdown.addEventListener('mouseenter', () => canHover.matches && setOpen(true));
+		dropdown.addEventListener('mouseenter', () => {
+			if (!canHover.matches) return;
+			clearTimeout(closeTimer);
+			if (panel.hidden) setOpen(true, true);
+		});
 		dropdown.addEventListener('mouseleave', () => {
 			if (!canHover.matches) return;
 			clearTimeout(closeTimer);
@@ -175,6 +198,7 @@ const linkAttrs = (link: NavLink) =>
 	const mobileMenu = document.querySelector<HTMLElement>('[data-mobile-menu]')!;
 	const menuOpen = document.querySelector<HTMLElement>('[data-menu-open]')!;
 	const menuClose = mobileMenu.querySelector<HTMLElement>('[data-menu-close]')!;
+	const navBar = document.querySelector<HTMLElement>('[data-nav-bar]')!;
 	const pageMain = document.querySelector<HTMLElement>('main');
 	const pageFooter = document.querySelector<HTMLElement>('footer');
 	const originalOverflow = document.body.style.overflow;
@@ -182,6 +206,7 @@ const linkAttrs = (link: NavLink) =>
 	const setMenuOpen = (open: boolean) => {
 		mobileMenu.hidden = !open;
 		menuOpen.setAttribute('aria-expanded', String(open));
+		navBar.inert = open;
 		if (pageMain) pageMain.inert = open;
 		if (pageFooter) pageFooter.inert = open;
 		document.body.style.overflow = open ? 'hidden' : originalOverflow;
@@ -217,9 +242,9 @@ const linkAttrs = (link: NavLink) =>
 			first?.focus();
 		}
 	});
-	window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
-		if (event.matches && !mobileMenu.hidden) setMenuOpen(false);
-	});
+	new ResizeObserver(() => {
+		if (getComputedStyle(menuOpen).display === 'none' && !mobileMenu.hidden) setMenuOpen(false);
+	}).observe(navBar);
 	mobileMenu.addEventListener('click', (event) => {
 		if ((event.target as Element).closest('a')) setMenuOpen(false);
 	});
@@ -239,6 +264,7 @@ const linkAttrs = (link: NavLink) =>
 		top: 0;
 		z-index: var(--z-navigation);
 		background: var(--color-dark-blue);
+		container-type: inline-size;
 	}
 
 	.nav__bar {
@@ -275,6 +301,7 @@ const linkAttrs = (link: NavLink) =>
 	.nav__link {
 		display: flex;
 		align-items: center;
+		min-height: var(--target-min);
 		gap: var(--space-1);
 		font-size: var(--text-base);
 		line-height: 1.5rem;
@@ -365,17 +392,21 @@ const linkAttrs = (link: NavLink) =>
 	.cta-group {
 		display: flex;
 		gap: 2px;
-		overflow: hidden;
 		border-radius: var(--radius-control);
 		background: var(--color-dark-blue);
 	}
 
-	.cta-group--desktop {
+	.cta-group--header {
 		display: none;
 	}
 
 	.cta {
-		padding: 0.375rem var(--space-4);
+		display: flex;
+		min-width: 0;
+		min-height: var(--target-min);
+		align-items: center;
+		justify-content: center;
+		padding-inline: var(--space-4);
 		background: var(--color-white);
 		color: var(--color-dark-blue);
 		font-size: var(--text-sm);
@@ -383,7 +414,18 @@ const linkAttrs = (link: NavLink) =>
 		font-weight: var(--weight-bold);
 		text-transform: uppercase;
 		letter-spacing: var(--tracking-label);
+		text-align: center;
 		transition: background-color var(--duration-panel), color var(--duration-panel);
+	}
+
+	.cta:first-child {
+		border-start-start-radius: var(--radius-control);
+		border-end-start-radius: var(--radius-control);
+	}
+
+	.cta:last-child {
+		border-start-end-radius: var(--radius-control);
+		border-end-end-radius: var(--radius-control);
 	}
 
 	.cta:hover {
@@ -401,6 +443,8 @@ const linkAttrs = (link: NavLink) =>
 	}
 
 	.menu-button {
+		min-width: var(--target-min);
+		min-height: var(--target-min);
 		padding: var(--space-2);
 		line-height: 0;
 	}
@@ -513,9 +557,10 @@ const linkAttrs = (link: NavLink) =>
 		letter-spacing: normal;
 	}
 
-	@media (min-width: 1024px) {
+	/* The font-relative threshold keeps enlarged navigation in the compact layout. */
+	@container (min-width: 64rem) {
 		.nav__links,
-		.cta-group--desktop {
+		.cta-group--header {
 			display: flex;
 		}
 

@@ -1,0 +1,1280 @@
+{
+  "responsive": [
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 320,
+      "title": "Student entrepreneurship in Berlin | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/join",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 320,
+      "title": "Join our student entrepreneurship community | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/members",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 320,
+      "title": "Members and departments | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/legal-notice",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 320,
+      "title": "Legal Notice | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/privacy-policy",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 320,
+      "title": "Privacy Policy | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 320,
+      "title": "Startup jobs and internships | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/submit",
+      "robots": "noindex, follow",
+      "scrollWidth": 320,
+      "title": "Post a role | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/privacy",
+      "robots": "noindex, follow",
+      "scrollWidth": 320,
+      "title": "Jobboard privacy | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/job-example/product-intern",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 320,
+      "title": "Product Intern 1 at Example Studio | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/closed/product-intern",
+      "robots": "noindex, follow",
+      "scrollWidth": 320,
+      "title": "Product Intern at Example Studio | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/missing/missing",
+      "robots": "noindex, follow",
+      "scrollWidth": 320,
+      "title": "Job listing | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/404",
+      "robots": "noindex, follow",
+      "scrollWidth": 320,
+      "title": "Page not found | START Berlin",
+      "width": 320
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 390,
+      "title": "Student entrepreneurship in Berlin | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/join",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 390,
+      "title": "Join our student entrepreneurship community | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/members",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 390,
+      "title": "Members and departments | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/legal-notice",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 390,
+      "title": "Legal Notice | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/privacy-policy",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 390,
+      "title": "Privacy Policy | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 390,
+      "title": "Startup jobs and internships | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/submit",
+      "robots": "noindex, follow",
+      "scrollWidth": 390,
+      "title": "Post a role | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/privacy",
+      "robots": "noindex, follow",
+      "scrollWidth": 390,
+      "title": "Jobboard privacy | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/job-example/product-intern",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 390,
+      "title": "Product Intern 1 at Example Studio | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/closed/product-intern",
+      "robots": "noindex, follow",
+      "scrollWidth": 390,
+      "title": "Product Intern at Example Studio | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/missing/missing",
+      "robots": "noindex, follow",
+      "scrollWidth": 390,
+      "title": "Job listing | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/404",
+      "robots": "noindex, follow",
+      "scrollWidth": 390,
+      "title": "Page not found | START Berlin",
+      "width": 390
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 768,
+      "title": "Student entrepreneurship in Berlin | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/join",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 768,
+      "title": "Join our student entrepreneurship community | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/members",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 768,
+      "title": "Members and departments | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/legal-notice",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 768,
+      "title": "Legal Notice | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/privacy-policy",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 768,
+      "title": "Privacy Policy | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 768,
+      "title": "Startup jobs and internships | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/submit",
+      "robots": "noindex, follow",
+      "scrollWidth": 768,
+      "title": "Post a role | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/privacy",
+      "robots": "noindex, follow",
+      "scrollWidth": 768,
+      "title": "Jobboard privacy | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/job-example/product-intern",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 768,
+      "title": "Product Intern 1 at Example Studio | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/closed/product-intern",
+      "robots": "noindex, follow",
+      "scrollWidth": 768,
+      "title": "Product Intern at Example Studio | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/missing/missing",
+      "robots": "noindex, follow",
+      "scrollWidth": 768,
+      "title": "Job listing | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/404",
+      "robots": "noindex, follow",
+      "scrollWidth": 768,
+      "title": "Page not found | START Berlin",
+      "width": 768
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1024,
+      "title": "Student entrepreneurship in Berlin | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/join",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1024,
+      "title": "Join our student entrepreneurship community | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/members",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1024,
+      "title": "Members and departments | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/legal-notice",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1024,
+      "title": "Legal Notice | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/privacy-policy",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1024,
+      "title": "Privacy Policy | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1024,
+      "title": "Startup jobs and internships | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/submit",
+      "robots": "noindex, follow",
+      "scrollWidth": 1024,
+      "title": "Post a role | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/privacy",
+      "robots": "noindex, follow",
+      "scrollWidth": 1024,
+      "title": "Jobboard privacy | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/job-example/product-intern",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1024,
+      "title": "Product Intern 1 at Example Studio | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/closed/product-intern",
+      "robots": "noindex, follow",
+      "scrollWidth": 1024,
+      "title": "Product Intern at Example Studio | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/missing/missing",
+      "robots": "noindex, follow",
+      "scrollWidth": 1024,
+      "title": "Job listing | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/404",
+      "robots": "noindex, follow",
+      "scrollWidth": 1024,
+      "title": "Page not found | START Berlin",
+      "width": 1024
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1280,
+      "title": "Student entrepreneurship in Berlin | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/join",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1280,
+      "title": "Join our student entrepreneurship community | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/members",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1280,
+      "title": "Members and departments | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/legal-notice",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1280,
+      "title": "Legal Notice | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/privacy-policy",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1280,
+      "title": "Privacy Policy | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1280,
+      "title": "Startup jobs and internships | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/submit",
+      "robots": "noindex, follow",
+      "scrollWidth": 1280,
+      "title": "Post a role | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/privacy",
+      "robots": "noindex, follow",
+      "scrollWidth": 1280,
+      "title": "Jobboard privacy | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/job-example/product-intern",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1280,
+      "title": "Product Intern 1 at Example Studio | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/closed/product-intern",
+      "robots": "noindex, follow",
+      "scrollWidth": 1280,
+      "title": "Product Intern at Example Studio | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/missing/missing",
+      "robots": "noindex, follow",
+      "scrollWidth": 1280,
+      "title": "Job listing | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/404",
+      "robots": "noindex, follow",
+      "scrollWidth": 1280,
+      "title": "Page not found | START Berlin",
+      "width": 1280
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1440,
+      "title": "Student entrepreneurship in Berlin | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/join",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1440,
+      "title": "Join our student entrepreneurship community | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/members",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1440,
+      "title": "Members and departments | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/legal-notice",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1440,
+      "title": "Legal Notice | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/privacy-policy",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1440,
+      "title": "Privacy Policy | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1440,
+      "title": "Startup jobs and internships | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/submit",
+      "robots": "noindex, follow",
+      "scrollWidth": 1440,
+      "title": "Post a role | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/privacy",
+      "robots": "noindex, follow",
+      "scrollWidth": 1440,
+      "title": "Jobboard privacy | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/job-example/product-intern",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1440,
+      "title": "Product Intern 1 at Example Studio | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/closed/product-intern",
+      "robots": "noindex, follow",
+      "scrollWidth": 1440,
+      "title": "Product Intern at Example Studio | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/missing/missing",
+      "robots": "noindex, follow",
+      "scrollWidth": 1440,
+      "title": "Job listing | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/404",
+      "robots": "noindex, follow",
+      "scrollWidth": 1440,
+      "title": "Page not found | START Berlin",
+      "width": 1440
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1920,
+      "title": "Student entrepreneurship in Berlin | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/join",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1920,
+      "title": "Join our student entrepreneurship community | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/members",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1920,
+      "title": "Members and departments | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/legal-notice",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1920,
+      "title": "Legal Notice | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/privacy-policy",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1920,
+      "title": "Privacy Policy | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1920,
+      "title": "Startup jobs and internships | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/submit",
+      "robots": "noindex, follow",
+      "scrollWidth": 1920,
+      "title": "Post a role | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/privacy",
+      "robots": "noindex, follow",
+      "scrollWidth": 1920,
+      "title": "Jobboard privacy | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/job-example/product-intern",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "scrollWidth": 1920,
+      "title": "Product Intern 1 at Example Studio | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/closed/product-intern",
+      "robots": "noindex, follow",
+      "scrollWidth": 1920,
+      "title": "Product Intern at Example Studio | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/jobs/missing/missing",
+      "robots": "noindex, follow",
+      "scrollWidth": 1920,
+      "title": "Job listing | START Berlin",
+      "width": 1920
+    },
+    {
+      "footer": 1,
+      "h1": 1,
+      "main": 1,
+      "path": "/404",
+      "robots": "noindex, follow",
+      "scrollWidth": 1920,
+      "title": "Page not found | START Berlin",
+      "width": 1920
+    }
+  ],
+  "orientation": [
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/join",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/members",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/legal-notice",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/privacy-policy",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/jobs",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/jobs/submit",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/jobs/privacy",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/jobs/job-example/product-intern",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/jobs/closed/product-intern",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/jobs/missing/missing",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 390,
+      "path": "/404",
+      "scrollWidth": 844,
+      "width": 844
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/join",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/members",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/legal-notice",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/privacy-policy",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/jobs",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/jobs/submit",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/jobs/privacy",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/jobs/job-example/product-intern",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/jobs/closed/product-intern",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/jobs/missing/missing",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "h1": 1,
+      "height": 768,
+      "path": "/404",
+      "scrollWidth": 1024,
+      "width": 1024
+    }
+  ],
+  "textZoom": [
+    {
+      "buttons": [
+        {
+          "box": {
+            "bottom": 1158.765625,
+            "height": 128.390625,
+            "left": 32,
+            "right": 288,
+            "top": 1030.375,
+            "width": 256,
+            "x": 32,
+            "y": 1030.375
+          },
+          "text": "Back to home"
+        },
+        {
+          "box": {
+            "bottom": 1279.9609375,
+            "height": 89.1953125,
+            "left": 32,
+            "right": 279.9296875,
+            "top": 1190.765625,
+            "width": 247.9296875,
+            "x": 32,
+            "y": 1190.765625
+          },
+          "text": "Browse jobs"
+        }
+      ],
+      "h1": {
+        "bottom": 576,
+        "height": 320,
+        "left": 32,
+        "right": 288,
+        "top": 256,
+        "width": 256,
+        "x": 32,
+        "y": 256
+      },
+      "rootFont": "32px",
+      "scrollWidth": 320,
+      "width": 320
+    },
+    {
+      "buttons": [
+        {
+          "box": {
+            "bottom": 933.9765625,
+            "height": 89.1953125,
+            "left": 32,
+            "right": 298.859375,
+            "top": 844.78125,
+            "width": 266.859375,
+            "x": 32,
+            "y": 844.78125
+          },
+          "text": "Back to home"
+        },
+        {
+          "box": {
+            "bottom": 1055.171875,
+            "height": 89.1953125,
+            "left": 32,
+            "right": 279.9296875,
+            "top": 965.9765625,
+            "width": 247.9296875,
+            "x": 32,
+            "y": 965.9765625
+          },
+          "text": "Browse jobs"
+        }
+      ],
+      "h1": {
+        "bottom": 496,
+        "height": 240,
+        "left": 32,
+        "right": 358,
+        "top": 256,
+        "width": 326,
+        "x": 32,
+        "y": 256
+      },
+      "rootFont": "32px",
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "buttons": [
+        {
+          "box": {
+            "bottom": 872,
+            "height": 89.1953125,
+            "left": 48,
+            "right": 314.859375,
+            "top": 782.8046875,
+            "width": 266.859375,
+            "x": 48,
+            "y": 782.8046875
+          },
+          "text": "Back to home"
+        },
+        {
+          "box": {
+            "bottom": 872,
+            "height": 89.1953125,
+            "left": 346.859375,
+            "right": 594.7890625,
+            "top": 782.8046875,
+            "width": 247.9296875,
+            "x": 346.859375,
+            "y": 782.8046875
+          },
+          "text": "Browse jobs"
+        }
+      ],
+      "h1": {
+        "bottom": 572.609375,
+        "height": 160,
+        "left": 48,
+        "right": 720,
+        "top": 412.609375,
+        "width": 672,
+        "x": 48,
+        "y": 412.609375
+      },
+      "rootFont": "32px",
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "buttons": [
+        {
+          "box": {
+            "bottom": 872,
+            "height": 89.1953125,
+            "left": 64,
+            "right": 330.859375,
+            "top": 782.8046875,
+            "width": 266.859375,
+            "x": 64,
+            "y": 782.8046875
+          },
+          "text": "Back to home"
+        },
+        {
+          "box": {
+            "bottom": 872,
+            "height": 89.1953125,
+            "left": 362.859375,
+            "right": 610.7890625,
+            "top": 782.8046875,
+            "width": 247.9296875,
+            "x": 362.859375,
+            "y": 782.8046875
+          },
+          "text": "Browse jobs"
+        }
+      ],
+      "h1": {
+        "bottom": 572.609375,
+        "height": 80,
+        "left": 64,
+        "right": 960,
+        "top": 492.609375,
+        "width": 896,
+        "x": 64,
+        "y": 492.609375
+      },
+      "rootFont": "32px",
+      "scrollWidth": 1024,
+      "width": 1024
+    },
+    {
+      "buttons": [
+        {
+          "box": {
+            "bottom": 872,
+            "height": 89.1953125,
+            "left": 64,
+            "right": 330.859375,
+            "top": 782.8046875,
+            "width": 266.859375,
+            "x": 64,
+            "y": 782.8046875
+          },
+          "text": "Back to home"
+        },
+        {
+          "box": {
+            "bottom": 872,
+            "height": 89.1953125,
+            "left": 362.859375,
+            "right": 610.7890625,
+            "top": 782.8046875,
+            "width": 247.9296875,
+            "x": 362.859375,
+            "y": 782.8046875
+          },
+          "text": "Browse jobs"
+        }
+      ],
+      "h1": {
+        "bottom": 632.0078125,
+        "height": 89.6015625,
+        "left": 64,
+        "right": 1088,
+        "top": 542.40625,
+        "width": 1024,
+        "x": 64,
+        "y": 542.40625
+      },
+      "rootFont": "32px",
+      "scrollWidth": 1280,
+      "width": 1280
+    },
+    {
+      "buttons": [
+        {
+          "box": {
+            "bottom": 872,
+            "height": 89.1953125,
+            "left": 64,
+            "right": 330.859375,
+            "top": 782.8046875,
+            "width": 266.859375,
+            "x": 64,
+            "y": 782.8046875
+          },
+          "text": "Back to home"
+        },
+        {
+          "box": {
+            "bottom": 872,
+            "height": 89.1953125,
+            "left": 362.859375,
+            "right": 610.7890625,
+            "top": 782.8046875,
+            "width": 247.9296875,
+            "x": 362.859375,
+            "y": 782.8046875
+          },
+          "text": "Browse jobs"
+        }
+      ],
+      "h1": {
+        "bottom": 632.0078125,
+        "height": 134.3984375,
+        "left": 64,
+        "right": 1238.4765625,
+        "top": 497.609375,
+        "width": 1174.4765625,
+        "x": 64,
+        "y": 497.609375
+      },
+      "rootFont": "32px",
+      "scrollWidth": 1920,
+      "width": 1920
+    }
+  ],
+  "keyboardAndNavigation": [
+    "Tab from Back to home focuses Browse jobs",
+    "Back to home navigates to /",
+    "Browse jobs navigates to /jobs"
+  ],
+  "console": []
+}
