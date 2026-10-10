@@ -48,6 +48,9 @@ Check the existing server and port before starting one. Use `astro dev logs` and
 
 ## Boundaries
 
+- Use the shared START Vercel account for this project. Never connect or transfer Jannik's personal GitHub sign-in to a shared START account. Verify the destination account before any OAuth/login-link action.
+- V2 uses source uploads from GitHub Actions with the START Vercel project/team IDs and deployment token. Keep its Vercel Git connection absent. A public repository does not need a personal GitHub sign-in to Vercel.
+- Preview configuration contains public values only. Test private service integrations on the prepared Production candidate before assigning live domains; do not depend on branch-specific secrets in a disconnected Git project.
 - Preserve tracked `dist/`, existing assets and unrelated local changes. Keep lockfiles unchanged for UI-only work.
 - Cockpit owns Jobs data and review. Reuse existing newsletter/subscriber workflows.
 - Keep credentials server-side, outside `PUBLIC_` variables and client code. Never commit `.env` or private personnel information.
