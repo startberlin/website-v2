@@ -1,6 +1,6 @@
 # Cockpit pipeline review
 
-Reviewed GitHub main at `372083719b6968e875187e9abbfc372392cd0a51` and production at `ec7af4a2663bae8cab6900a667bd8b11d947ecc4` on 10 October 2026. The separate local Cockpit checkout was on another feature branch, so the review and proposed fixes use an isolated snapshot of the actual remote main.
+Reviewed GitHub main at `372083719b6968e875187e9abbfc372392cd0a51` and production at `ec7af4a2663bae8cab6900a667bd8b11d947ecc4` on 10 October 2026. The separate local Cockpit checkout was on another feature branch, so the review uses an isolated snapshot of the actual remote main.
 
 ## What transfers
 

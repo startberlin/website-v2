@@ -14,6 +14,11 @@ const project = await api(`/v9/projects/${VERCEL_PROJECT_ID}`);
 if (project.id !== config.vercelProjectId || project.name !== config.vercelProject || project.accountId !== VERCEL_ORG_ID) throw new Error('Vercel project identity does not match the reviewed release configuration.');
 if (project.link && project.link.productionBranch !== 'production') throw new Error('The Vercel production branch must be production.');
 if (project.autoAssignCustomDomains !== false) throw new Error('Disable automatic production domain assignment before enabling the pipeline.');
+if (process.argv[2] === 'publish') {
+  const host = new URL(config.productionOrigin).hostname;
+  const domain = await api(`/v9/projects/${VERCEL_PROJECT_ID}/domains/${host}`);
+  if (!domain.verified || domain.gitBranch || domain.redirect) throw new Error('Attach the verified production domain to website-v2 during the approved cutover before enabling regular publication.');
+}
 if (process.argv[2] === 'staging') {
   const host = new URL(config.stagingOrigin).hostname;
   const domain = await api(`/v9/projects/${VERCEL_PROJECT_ID}/domains/${host}`);

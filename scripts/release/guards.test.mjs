@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { assertBranchRules, assertEnvironment, assertProductionReviewers, assertRelease } from './verify-github.mjs';
+import { assertBranchRules, assertEnvironment, assertProductionReviewers, assertRelease, isStagingDeployment } from './verify-github.mjs';
 
 const rules = () => [
   { type: 'deletion' }, { type: 'non_fast_forward' },
@@ -37,7 +37,10 @@ test('production needs one release-PR approval without a second environment appr
 });
 const candidate = () => ({ merged: true, base: { ref: 'production' }, head: { ref: 'main', sha: 'staged-sha', repo: { full_name: 'startberlin/website-v2' } }, merge_commit_sha: 'production-sha', user: { login: 'author' } });
 const review = () => [{ state: 'APPROVED', commit_id: 'staged-sha', user: { login: 'admin' } }];
-const staging = () => [{ head_sha: 'staged-sha', head_branch: 'main', conclusion: 'success', event: 'push' }];
+const staging = () => [{
+  run: { path: '.github/workflows/deploy-staging.yml', head_sha: 'staged-sha', head_branch: 'main', status: 'completed', conclusion: 'success', event: 'push' },
+  jobs: [{ name: 'deploy', head_sha: 'staged-sha', status: 'completed', conclusion: 'success' }],
+}];
 const check = (pr = candidate(), reviews = review(), tree = 'same-tree', runs = staging()) => assertRelease(pr, reviews, ['admin'], 'production-sha', 'same-tree', tree, runs);
 test('production rejects unreviewed source, stale reviews and content not staged', () => {
   assert.doesNotThrow(() => check());
@@ -52,4 +55,18 @@ test('self approval and a later dismissed review do not permit release', () => {
   const own = candidate(); own.user.login = 'admin'; assert.throws(() => check(own));
   assert.throws(() => check(candidate(), [...review(), { ...review()[0], state: 'DISMISSED' }]));
   assert.doesNotThrow(() => check(candidate(), [...review(), { ...review()[0], state: 'COMMENTED' }]));
+});
+test('manual staging is valid, while skipped, failed and unrelated runs cannot open a release', () => {
+  const manual = staging(); manual[0].run.event = 'workflow_dispatch';
+  assert.doesNotThrow(() => check(candidate(), review(), 'same-tree', manual));
+  for (const conclusion of ['skipped', 'failure', 'cancelled', null]) {
+    const falseGreen = staging(); falseGreen[0].jobs[0].conclusion = conclusion;
+    assert.throws(() => check(candidate(), review(), 'same-tree', falseGreen));
+  }
+  const missing = staging(); missing[0].jobs = [];
+  assert.equal(isStagingDeployment(missing[0], 'staged-sha'), false);
+  for (const [key, value] of [['head_sha', 'older-sha'], ['head_branch', 'feature'], ['path', '.github/workflows/ci.yml'], ['event', 'pull_request']]) {
+    const unrelated = staging(); unrelated[0].run[key] = value;
+    assert.equal(isStagingDeployment(unrelated[0], 'staged-sha'), false);
+  }
 });

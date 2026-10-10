@@ -10,7 +10,7 @@ export async function github(path) {
     headers: { Authorization: `Bearer ${process.env.GH_TOKEN}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
     signal: AbortSignal.timeout(30_000),
   });
-  if (!response.ok) throw new Error(`GitHub ${path.split('?')[0]} returned ${response.status}. Private Free repositories cannot enforce the required branch rules and environments.`);
+  if (!response.ok) throw new Error(`GitHub ${path.split('?')[0]} returned ${response.status}. Verify workflow read permissions and the repository's active release controls.`);
   return response.json();
 }
 
@@ -40,6 +40,27 @@ export function assertProductionReviewers(settings) {
   }
 }
 
+export function isStagingDeployment({ run, jobs }, sourceSha) {
+  return run.path === '.github/workflows/deploy-staging.yml'
+    && run.head_sha === sourceSha && run.head_branch === 'main'
+    && run.status === 'completed' && run.conclusion === 'success'
+    && ['push', 'workflow_dispatch'].includes(run.event)
+    && jobs.some(job => job.name === 'deploy' && job.head_sha === sourceSha
+      && job.status === 'completed' && job.conclusion === 'success');
+}
+
+export async function stagingEvidence(run) {
+  const data = await github(`actions/runs/${run.id}/attempts/${run.run_attempt}/jobs?per_page=100`);
+  return { run, jobs: data.jobs };
+}
+
+export async function verifyStagingRun(runId, sourceSha) {
+  if (!/^\d+$/.test(runId || '')) throw new Error('A staging workflow run ID is required.');
+  const evidence = await stagingEvidence(await github(`actions/runs/${runId}`));
+  if (!isStagingDeployment(evidence, sourceSha)) throw new Error('Staging must deploy and verify the exact main source. Skipped jobs do not count.');
+  return evidence;
+}
+
 export function assertRelease(pr, reviews, adminLogins, targetCommit, sourceTree, targetTree, stagedRuns) {
   if (!pr.merged || pr.base.ref !== 'production' || pr.head.ref !== 'main' || pr.head.repo.full_name !== config.repository || pr.merge_commit_sha !== targetCommit) {
     throw new Error('Production must be the merge of a main-to-production release PR.');
@@ -51,7 +72,7 @@ export function assertRelease(pr, reviews, adminLogins, targetCommit, sourceTree
   }
   const approval = [...latest.values()].some(review => review.state === 'APPROVED' && review.commit_id === pr.head.sha && review.user.login !== pr.user.login && adminLogins.includes(review.user.login));
   if (!approval) throw new Error('The exact release commit needs approval from an independent repository admin.');
-  if (!stagedRuns.some(run => run.head_sha === pr.head.sha && run.head_branch === 'main' && run.conclusion === 'success' && run.event === 'push')) {
+  if (!stagedRuns.some(evidence => isStagingDeployment(evidence, pr.head.sha))) {
     throw new Error('The exact release source has no successful staging deployment.');
   }
 }
@@ -90,7 +111,12 @@ export async function verifyRelease(owners) {
   const source = await github(`git/commits/${full.head.sha}`);
   const targetTree = execFileSync('git', ['rev-parse', 'HEAD^{tree}'], { encoding: 'utf8' }).trim();
   const runs = await github(`actions/workflows/deploy-staging.yml/runs?head_sha=${full.head.sha}&per_page=100`);
-  assertRelease(full, await github(`pulls/${pr.number}/reviews?per_page=100`), owners, targetCommit, source.tree.sha, targetTree, runs.workflow_runs);
+  const evidence = [];
+  for (const run of runs.workflow_runs.filter(item => item.conclusion === 'success')) {
+    const staged = await stagingEvidence(run);
+    if (isStagingDeployment(staged, full.head.sha)) { evidence.push(staged); break; }
+  }
+  assertRelease(full, await github(`pulls/${pr.number}/reviews?per_page=100`), owners, targetCommit, source.tree.sha, targetTree, evidence);
 }
 
 export async function verifyPreview() {

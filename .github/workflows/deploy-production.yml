@@ -4,6 +4,13 @@ on:
   push:
     branches: [production]
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Prepare a tested candidate for the first domain cutover, or publish a regular release.
+        type: choice
+        options: [prepare, publish]
+        default: prepare
+        required: true
 
 permissions:
   contents: read
@@ -14,9 +21,12 @@ concurrency:
   group: website-production
   cancel-in-progress: false
 
+env:
+  RELEASE_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || 'publish' }}
+
 jobs:
   checks:
-    if: vars.DEPLOYMENTS_ENABLED == 'true' && vars.PRODUCTION_RELEASE_ENABLED == 'true' && github.ref == 'refs/heads/production'
+    if: vars.DEPLOYMENTS_ENABLED == 'true' && github.ref == 'refs/heads/production' && (vars.PRODUCTION_RELEASE_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'prepare'))
     uses: ./.github/workflows/ci.yml
   guard:
     needs: checks
@@ -46,7 +56,7 @@ jobs:
           persist-credentials: false
       - uses: ./.github/actions/vercel
       - name: Verify the intended Vercel production project
-        run: node scripts/release/verify-vercel.mjs production
+        run: node scripts/release/verify-vercel.mjs "$RELEASE_MODE"
         env:
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
@@ -79,6 +89,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Promote the exact tested production build
+        if: env.RELEASE_MODE == 'publish'
         run: '"$RUNNER_TEMP/vercel-cli/node_modules/.bin/vercel" promote "$DEPLOYMENT_URL" --yes --timeout=5m --scope=start-berlin --non-interactive'
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
@@ -86,6 +97,7 @@ jobs:
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       - name: Verify the public domain after promotion
+        if: env.RELEASE_MODE == 'publish'
         run: node scripts/release/smoke.mjs
         env:
           DEPLOYMENT_URL: https://www.start-berlin.com
@@ -93,3 +105,19 @@ jobs:
           RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
           SMOKE_JOBS: required
           VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+      - name: Record the tested production candidate
+        run: |
+          {
+            echo '### Tested production build'
+            echo
+            echo "Mode: $RELEASE_MODE"
+            echo "Deployment: $DEPLOYMENT_URL"
+            echo "Commit: $GITHUB_SHA"
+            echo "Source tree: $RELEASE_TREE_SHA"
+            if [ "$RELEASE_MODE" = prepare ]; then
+              echo 'No promotion or domain assignment was performed. Follow docs/RELEASE.md for the first cutover.'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
