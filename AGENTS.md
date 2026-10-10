@@ -9,7 +9,7 @@
 
 ## Commands
 
-Run from the repository root. Use Node.js 22.12+ and the pinned dependencies.
+Run from the repository root. Use Node.js 22.13+ and the pinned dependencies.
 
 ```sh
 CI=true pnpm install --frozen-lockfile
@@ -38,8 +38,19 @@ Check the existing server and port before starting one. Use `astro dev logs` and
 - Shared/global changes require every consuming route. Fix visual and accessibility failures before marking UI work complete; record tested viewports and states.
 - Run Jobboard tests when changing its behaviour. Verify external destinations separately from actual delivery.
 
+## Contribution and release
+
+- Follow [CONTRIBUTING.md](CONTRIBUTING.md). Work on a feature branch and open a PR to `main`; wait for Required checks and one repository-admin approval. An admin can authorize their own PR by intentionally merging it after review. GitHub cannot record a separate Approve review from the PR author.
+- AI assistance does not replace reviewing the full diff or exercising the affected flow. Record actual evidence and incomplete verification in the PR.
+- `main` feeds staging; only the reviewed `main`-to-`production` release PR feeds production. One admin approves that release PR. There is no second deployment approval.
+- Follow [docs/RELEASE.md](docs/RELEASE.md). CI validates both Node and Vercel output. Never publish tracked `dist/`, bypass the technical rules, auto-merge releases or move live domains as part of an ordinary feature PR. Admin review authorization applies only to PR merges; CI and resolved discussions stay mandatory.
+- Keep deployment credentials out of PR checks. After successful CI, same-repository PRs receive a preview with no shared Cockpit credentials. Contributors with Write access may request a fresh preview.
+
 ## Boundaries
 
+- Use the shared START Vercel account for this project. Never connect or transfer Jannik's personal GitHub sign-in to a shared START account. Verify the destination account before any OAuth/login-link action.
+- V2 uses source uploads from GitHub Actions with the START Vercel project/team IDs and deployment token. Keep its Vercel Git connection absent. A public repository does not need a personal GitHub sign-in to Vercel.
+- Preview configuration contains public values only. Test private service integrations on the prepared Production candidate before assigning live domains; do not depend on branch-specific secrets in a disconnected Git project.
 - Preserve tracked `dist/`, existing assets and unrelated local changes. Keep lockfiles unchanged for UI-only work.
 - Cockpit owns Jobs data and review. Reuse existing newsletter/subscriber workflows.
 - Keep credentials server-side, outside `PUBLIC_` variables and client code. Never commit `.env` or private personnel information.
