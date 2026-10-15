@@ -3,6 +3,7 @@
 ## Before editing
 
 - Read [README.md](README.md) and [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md). Inspect the affected shared component.
+- Read [docs/SECURITY.md] for the security guidelines and practices to follow.
 - Read [docs/SEO.md](docs/SEO.md) before adding or changing pages, metadata, public URLs or crawler rules.
 - Check `git status --short --branch` and preserve existing work.
 - Develop in `src/`. `first-draft/` and `design/handoff/` are historical references.
