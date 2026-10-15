@@ -2,9 +2,9 @@
 
 ## One change, one PR
 
-Start a feature branch from current `main`. Explain the problem, keep the diff bounded and open a PR to `main`. Direct pushes to `main` and `production`, force pushes and branch deletion are blocked. Admins follow the same branch rules.
+Contributors with Write access can create and push development branches in this repository. Start a feature branch from current `main`. Explain the problem, keep the diff bounded and open a PR to `main`. Direct pushes to `main` and `production`, force pushes and branch deletion are blocked. Admins follow the same branch rules.
 
-A repository admin reviews and authorizes the latest feature commit. Admins can authorize any PR, including their own, by intentionally merging it after checking the diff and evidence. GitHub does not allow the author to submit a separate Approve review. CODEOWNERS currently lists the verified repository admins: `jannikbln`, `zunkelty`, `ahaMfM` and `DieProgrammIDE`. A changed role requires updating the owner list; deployment guards reject a code owner who is no longer an admin. Read access or an ordinary approval from another contributor does not satisfy the code-owner rule.
+A repository admin reviews and authorizes the latest feature commit. Admins can authorize any PR, including their own, by intentionally merging it after checking the diff and evidence. GitHub does not allow the author to submit a separate Approve review. CODEOWNERS currently lists the verified repository admins: `jannikbln`, `zunkelty` and `ahaMfM`. A changed role requires updating the owner list; deployment guards reject a code owner who is no longer an admin. Read access or an ordinary approval from another contributor does not satisfy the code-owner rule.
 
 New commits dismiss stale reviews. Resolve review discussions and wait for Required checks before merging. Do not ask someone to approve an earlier version and then add unreviewed changes.
 
