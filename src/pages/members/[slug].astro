@@ -1,0 +1,28 @@
+---
+import type { GetStaticPaths, ImageMetadata } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import BoardProfile from '../../components/BoardProfile.astro';
+import { boardMembers, boardProfileIsIndexable, type BoardMember } from '../../lib/board-members';
+import { pageSeo } from '../../lib/seo/pages';
+
+export const getStaticPaths = (() => boardMembers.map((member) => ({ params: { slug: member.slug }, props: { member } }))) satisfies GetStaticPaths;
+
+interface Props { member: BoardMember; }
+const { member } = Astro.props;
+const portraits = import.meta.glob<{ default: ImageMetadata }>('../../assets/members/*.webp', { eager: true });
+const portrait = member.portrait ? portraits[`../../assets/members/${member.portrait}`]?.default : undefined;
+if (member.portrait && !portrait) throw new Error(`Missing portrait for ${member.name}`);
+const canonicalPath = `/members/${member.slug}`;
+const seo = {
+	...pageSeo('/members/[slug]'),
+	title: `${member.name}, ${member.role}`,
+	description: `Meet ${member.name}, ${member.role} on the START Berlin ${member.season} board. Explore their background and projects, and get in touch.`,
+	canonicalPath,
+	// Profiles with only an introduction placeholder stay out of search.
+	noindex: !boardProfileIsIndexable(member),
+};
+---
+
+<Layout seo={seo}>
+	<BoardProfile member={member} portrait={portrait} />
+</Layout>

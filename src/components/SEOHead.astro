@@ -1,0 +1,33 @@
+---
+import { buildMetadata, getSiteConfig, pageGraph, safeJsonLd, type PageSeo } from '../lib/seo/metadata';
+import { siteIdentity } from '../lib/seo/site.mjs';
+
+interface Props { seo: PageSeo; }
+const { seo } = Astro.props;
+const config = getSiteConfig();
+const metadata = buildMetadata(seo, config, Astro.response.status);
+const graph = pageGraph(seo, metadata, config.origin);
+Astro.locals.seoNoindex = metadata.noindex;
+---
+
+<title>{metadata.title}</title>
+<meta name="description" content={metadata.description} />
+{metadata.canonical && <link rel="canonical" href={metadata.canonical} />}
+<meta name="robots" content={metadata.robots} />
+<meta property="og:site_name" content={siteIdentity.name} />
+<meta property="og:title" content={metadata.title} />
+<meta property="og:description" content={metadata.description} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={siteIdentity.locale} />
+{metadata.canonical && <meta property="og:url" content={metadata.canonical} />}
+<meta property="og:image" content={metadata.image.url} />
+<meta property="og:image:type" content={metadata.image.type} />
+<meta property="og:image:width" content={String(metadata.image.width)} />
+<meta property="og:image:height" content={String(metadata.image.height)} />
+<meta property="og:image:alt" content={metadata.image.alt} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={metadata.title} />
+<meta name="twitter:description" content={metadata.description} />
+<meta name="twitter:image" content={metadata.image.url} />
+<meta name="twitter:image:alt" content={metadata.image.alt} />
+{graph && <script type="application/ld+json" is:inline set:html={safeJsonLd(graph)} />}

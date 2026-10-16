@@ -1,0 +1,133 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './icons/Icon.astro';
+import type { BoardMember } from '../lib/board-members';
+import { memberEmailUrl, memberLinkedinUrl } from '../lib/member-profiles';
+
+interface Props {
+	member: BoardMember;
+	portrait?: ImageMetadata;
+}
+
+const { member, portrait } = Astro.props;
+const { name, role, season, content, linkedin, email } = member;
+const initials = name.split(/\s+/).filter((_, index, parts) => index === 0 || index === parts.length - 1).map((part) => part[0]).join('');
+const experience = [
+	...content.experience,
+	...content.projects.filter((project) => !project.url || !content.experience.some((entry) => entry.url === project.url)),
+];
+const sections = [
+	{ id: 'experience', title: 'Experience', entries: experience },
+	{ id: 'education', title: 'Education', entries: content.education },
+	{ id: 'volunteering', title: 'Volunteering', entries: [{ title: role, organisation: 'START Berlin', period: `Board ${season}` }, ...content.volunteering] },
+];
+---
+
+<article class="profile page-container" aria-labelledby="profile-name">
+	<div class="profile__layout">
+		<div class="profile__portrait-column">
+			<div class="profile__portrait">
+				{portrait ? <Image src={portrait} alt={`Portrait of ${name}`} width={256} height={256} widths={[128, 256]} sizes="(min-width: 960px) 256px, 160px" format="webp" loading="eager" fetchpriority="high" decoding="async" class="profile__image" /> : <span class="profile__initials" role="img" aria-label={`Portrait unavailable for ${name}`}>{initials}</span>}
+			</div>
+		</div>
+		<div class="profile__content">
+			<header class="profile__hero">
+				<div class="profile__identity">
+					<p class="profile__eyebrow">Board {season}</p>
+					<h1 id="profile-name">{name}</h1>
+					<p class="profile__role">{role}</p>
+					<div class="profile__contacts">
+						{linkedin && <a class="button button--outline" href={memberLinkedinUrl(linkedin, name)} target="_blank" rel="noopener noreferrer"><Icon name="linkedin" size={18} /> LinkedIn <span class="visually-hidden">for {name} (opens in a new tab)</span><Icon name="arrow-up-right" size={16} /></a>}
+						{email && <a class="button button--outline" href={memberEmailUrl(email, name)}><Icon name="mail" size={18} /> Email <span class="visually-hidden">{name} at {email}</span></a>}
+					</div>
+				</div>
+				<div class="profile__introduction">
+					<h2 class="profile__section-label">About</h2>
+					{content.introduction ? <p>{content.introduction}</p> : <p class="profile__pending">A personal introduction will be added here.</p>}
+				</div>
+			</header>
+		</div>
+	</div>
+
+	<div class="profile__background" aria-label="Selected background">
+		{sections.map((section) => (
+			<section class="profile__section" aria-labelledby={`${section.id}-title`}>
+				<h2 class="profile__section-label" id={`${section.id}-title`}>{section.title}</h2>
+				{section.entries.length ? <ul class="profile__entries">
+					{section.entries.map((entry) => (
+						<li>
+							<div class="profile__entry-heading">
+								<h3>{entry.title}</h3>
+								{entry.period && <p class="profile__period">{entry.period}</p>}
+							</div>
+							{entry.organisation && <p class="profile__organisation">{entry.organisation}</p>}
+							{entry.url && <a class="profile__entry-link" href={entry.url} target="_blank" rel="noopener noreferrer">{`Visit ${entry.organisation ?? entry.title}`}<Icon name="arrow-up-right" size={16} /><span class="visually-hidden"> (opens in a new tab)</span></a>}
+						</li>
+					))}
+				</ul> : <p class="profile__pending">Details to follow.</p>}
+			</section>
+		))}
+	</div>
+	<div class="profile__return">
+		<a class="button button--outline" href="/members"><Icon name="arrow-left" size={18} /> Back to the Members</a>
+	</div>
+</article>
+
+<style>
+	.profile { padding-block: var(--space-8) var(--space-20); container-type: inline-size; container-name: board-profile; }
+	.profile__layout { display: grid; gap: var(--space-8); }
+	.profile__portrait-column, .profile__content { min-width: 0; }
+	.profile__content { padding-bottom: var(--space-8); }
+	.profile__hero { display: grid; gap: var(--space-8); align-items: start; }
+	.profile__portrait {
+		width: min(100%, 10rem);
+		aspect-ratio: 1;
+		background: var(--surface-card);
+		border-radius: var(--radius-media);
+		overflow: hidden;
+	}
+	.profile__portrait :global(.profile__image) { display: block; width: 100%; height: 100%; object-fit: cover; }
+	.profile__initials {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		background: var(--gradient-avatar);
+		font-size: var(--type-member-name);
+		font-weight: var(--weight-bold);
+	}
+	.profile__identity { min-width: 0; }
+	.profile__eyebrow { margin: 0 0 var(--space-3); font-size: var(--text-xs); font-weight: var(--weight-bold); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-accent); }
+	h1 { margin: 0; max-width: 20ch; font-size: var(--type-member-name); line-height: 1.08; font-weight: var(--weight-heavy); letter-spacing: var(--tracking-member-name); text-wrap: balance; }
+	.profile__role { margin: var(--space-4) 0 0; font-size: var(--text-xl); line-height: var(--leading-ui); color: var(--text-muted); }
+	.profile__contacts { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+	.profile__contacts a { flex-shrink: 0; max-width: 100%; flex-wrap: wrap; }
+	.profile__introduction { min-width: 0; max-width: var(--layout-reading); }
+	.profile__introduction > p { margin: var(--space-4) 0 0; font-size: var(--text-lg); line-height: var(--leading-copy); color: var(--text-copy); }
+	.profile__section-label { margin: 0; font-size: var(--text-sm); font-weight: var(--weight-bold); line-height: var(--leading-copy); color: var(--text-subtle); }
+	.profile__pending { margin: 0; font-size: var(--text-base); color: var(--text-subtle); line-height: var(--leading-copy); }
+	.profile__background { border-top: var(--border-width) solid var(--border-subtle); }
+	.profile__section { display: grid; gap: var(--space-5); padding-block: var(--space-8); border-bottom: var(--border-width) solid var(--border-subtle); }
+	.profile__entries { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--space-7); max-width: var(--layout-reading); min-width: 0; }
+	.profile__entry-heading { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; column-gap: var(--space-6); row-gap: var(--space-1); }
+	.profile__entry-heading h3 { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-semibold); line-height: var(--leading-ui); }
+	.profile__period { margin: 0; font-size: var(--text-xs); color: var(--text-subtle); line-height: var(--leading-copy); }
+	.profile__organisation { margin: var(--space-1) 0 0; font-size: var(--text-base); color: var(--text-muted); line-height: var(--leading-copy); }
+	.profile__entry-link { display: inline-flex; align-items: center; gap: var(--space-2); min-height: var(--target-min); max-width: 100%; margin-top: var(--space-2); font-size: var(--text-sm); color: var(--color-accent); text-decoration: underline; text-underline-offset: var(--space-1); }
+	.profile__entry-link svg { flex-shrink: 0; }
+	.profile__return { margin-top: var(--space-10); }
+	@container board-profile (min-width: 60rem) {
+		.profile__layout { grid-template-columns: 16rem minmax(0, 1fr); column-gap: var(--space-16); }
+		.profile__portrait { position: sticky; top: calc(var(--header-height) + var(--space-10)); width: 16rem; }
+		.profile__section { grid-template-columns: 16rem minmax(0, 1fr); column-gap: var(--space-16); }
+		.profile__return { margin-left: calc(16rem + var(--space-16)); }
+	}
+	@media (min-width: 960px) {
+		.profile { padding-block: var(--space-10) var(--space-24); }
+	}
+	@media (max-height: 600px) {
+		.profile__portrait { position: static; }
+	}
+</style>

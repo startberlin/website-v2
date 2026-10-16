@@ -1,0 +1,129 @@
+name: Deploy production
+
+on:
+  push:
+    branches: [production]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Prepare a tested candidate for the first domain cutover, or publish a regular release.
+        type: choice
+        options: [prepare, publish]
+        default: prepare
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: read
+
+concurrency:
+  group: website-production
+  cancel-in-progress: false
+
+env:
+  RELEASE_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || 'publish' }}
+
+jobs:
+  checks:
+    if: vars.DEPLOYMENTS_ENABLED == 'true' && github.ref == 'refs/heads/production' && (vars.PRODUCTION_RELEASE_ENABLED == 'true' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'prepare'))
+    uses: ./.github/workflows/ci.yml
+  guard:
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: package.json
+      - name: Verify admin approval and exact staged content
+        run: node scripts/release/verify-github.mjs production
+        env:
+          GH_TOKEN: ${{ github.token }}
+  deploy:
+    needs: guard
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    environment:
+      name: production
+      url: https://www.start-berlin.com
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/vercel
+      - name: Verify the intended Vercel production project
+        run: node scripts/release/verify-vercel.mjs "$RELEASE_MODE"
+        env:
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Stage a production build without assigning domains
+        id: deploy
+        run: |
+          tree=$(git rev-parse 'HEAD^{tree}')
+          "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --prod --skip-domain --yes --non-interactive --json \
+            --meta githubDeployment=1 --meta githubCommitRef=production --meta githubCommitSha="$GITHUB_SHA" \
+            --build-env RELEASE_COMMIT_SHA="$GITHUB_SHA" --build-env RELEASE_TREE_SHA="$tree" > "$RUNNER_TEMP/production-deployment.json"
+          node scripts/release/deployment-result.mjs "$RUNNER_TEMP/production-deployment.json" production
+          echo "tree=$tree" >> "$GITHUB_OUTPUT"
+        env:
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Verify the production build and live Jobboard read path
+        run: node scripts/release/smoke.mjs
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          RELEASE_COMMIT_SHA: ${{ github.sha }}
+          RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
+          SMOKE_JOBS: required
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+      - name: Reject a superseded production deployment
+        run: |
+          node --input-type=module -e 'import {github} from "./scripts/release/verify-github.mjs"; const ref = await github("git/ref/heads/production"); if (ref.object.sha !== process.env.GITHUB_SHA) throw new Error("A newer production commit is queued.");'
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Promote the exact tested production build
+        if: env.RELEASE_MODE == 'publish'
+        run: node scripts/release/vercel-publish.mjs production
+        env:
+          DEPLOYMENT_ID: ${{ steps.deploy.outputs.deployment_id }}
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Verify the public domain after promotion
+        if: env.RELEASE_MODE == 'publish'
+        run: node scripts/release/smoke.mjs
+        env:
+          DEPLOYMENT_URL: https://www.start-berlin.com
+          RELEASE_COMMIT_SHA: ${{ github.sha }}
+          RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
+          SMOKE_JOBS: required
+          SMOKE_PUBLIC: 'true'
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+      - name: Record the tested production candidate
+        run: |
+          {
+            echo '### Tested production build'
+            echo
+            echo "Mode: $RELEASE_MODE"
+            echo "Deployment: $DEPLOYMENT_URL"
+            echo "Commit: $GITHUB_SHA"
+            echo "Source tree: $RELEASE_TREE_SHA"
+            if [ "$RELEASE_MODE" = prepare ]; then
+              echo 'No promotion or domain assignment was performed. Follow docs/RELEASE.md for the first cutover.'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.url }}
+          RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}

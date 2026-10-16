@@ -8,9 +8,17 @@ Home, Members and Join remain prerendered. Jobboard listings and details render 
 
 Read [AGENTS.md](AGENTS.md) and the [design guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
 
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for the PR workflow and [docs/RELEASE.md](docs/RELEASE.md) for staging, production and domain cutover. GitHub `main` and `production` require successful checks and one admin authorization, through review or intentional PR merge, including on the admin's own PR. Production uses that release-PR authorization without a second environment approval.
+
+Activation verified on 10 October 2026: the new [Vercel project](https://vercel.com/start-berlin/website-v2) deploys reviewed main source to [staging.start-berlin.com](https://staging.start-berlin.com), with individual PR previews after CI. Both use public preview configuration and block indexing. Individual generated Preview URLs retain Vercel Authentication; the fixed staging domain is accessible without a Vercel login. The project-scoped START Website CI credential is stored in the protected GitHub deployment environments. Source uploads require no Vercel Git connection or personal GitHub sign-in in the shared START account. The complete team flow is on [Website v2 Overhaul](https://app.notion.com/p/3f5dec9cfc2780c0b715cac4e447bc3b).
+
+Production publication stays disabled until backend/product acceptance and the approved first domain cutover. The existing live website remains on its legacy project. Do not treat a controlled Jobs-unavailable preview as backend or form-delivery acceptance.
+
+Every page also follows the [SEO and AI-search contract](docs/SEO.md). Register it in `src/lib/seo/pages.ts` and pass its `seo` through the shared layout. This powers the common head and root sitemap. The inventory guard runs on every Astro build. `SITE_INDEXABLE=false` protects previews; the approved production build and runtime must both enable indexing with the same `PUBLIC_SITE_URL`.
+
 ## Local setup
 
-Use Node.js 22.12 or newer. Install with the pinned pnpm lockfile, then create a private local configuration:
+Use Node.js 22.13 or newer within the 22.x release line and pnpm 11.25.0. Package engines, CI and Vercel use Node.js 22. Deployment checks compare the actual runtime major with the CI runtime before assigning domains. Install with the pinned pnpm lockfile, then create a private local configuration:
 
 ```sh
 pnpm install --frozen-lockfile
@@ -33,6 +41,9 @@ Open `http://127.0.0.1:4321/jobs`. Check the existing background-server status b
 
 ```sh
 pnpm run typecheck
+pnpm run test:dependencies
+pnpm run check:seo
+pnpm run test:seo
 pnpm run test:jobboard
 pnpm exec astro build --outDir .astro/jobboard-build
 HOST=127.0.0.1 PORT=4337 node --env-file=.env .astro/jobboard-build/server/entry.mjs
@@ -40,12 +51,16 @@ HOST=127.0.0.1 PORT=4337 node --env-file=.env .astro/jobboard-build/server/entry
 
 The separate verification output preserves the tracked upstream `dist/`. Serve the generated Node entrypoint with its client assets; uploading static HTML alone does not provide the live Jobboard routes. Production variables must be supplied by the host. Built output does not automatically load `.env`.
 
+Dependency security overrides live in `package.json` for npm and `pnpm-workspace.yaml` for pnpm. Keep both configurations and lockfiles aligned. Run `pnpm audit`, `npm audit --package-lock-only` and `test:dependencies` after dependency changes. The Vercel adapter stays on 11.0.12, the release pipeline's verified version, because 11.0.13 fails isolated function startup.
+
+The `http-cache-semantics` 4.3.0 update clears the reported version range of [GHSA-ch52-4w7c-c8xp](https://github.com/advisories/GHSA-ch52-4w7c-c8xp), but retains the reported generic `max-stale` behaviour. Current Astro image builds use `storable()` and `timeToLive()` without visitor cache headers. The dependency tests check that actual image-cache boundary, source-map offset validation and Vercel routing. They do not establish a generic cache-library fix or replace magicast's embedded source-map copy, which is used by Astro's configuration-editing CLI.
+
 ## Scope and release requirements
 
 Navigation pairs `Apply Now` (`/join`) with `Jobs` (`/jobs`). The Jobboard includes filters with 25-role URL pagination, canonical detail pages, employer submissions, application/share redirects and an active-role sitemap. The shared website footer appears on all pages, including Jobs. It links to `/legal-notice` and `/privacy-policy`, which preserve the legacy Berlin texts in the START Munich layout. Legacy `/legal/*.html` URLs redirect to these pages. Donate is present but disabled until a donation destination is provided. See the [approved plan and implementation update](docs/plans/2026-09-29-jobboard-integration.md) and [local verification evidence](docs/verification/jobboard-2026-09-29/browser.md).
 
 Release Newsletter in Cockpit before Jobboard. Newsletter owns migrations `0058` through `0060`; Jobboard follows with `0061`. The public migration requires no database-provider reconfiguration. Keep the standalone public project until the deployed v2 flow passes acceptance.
 
-Production API credentials and hosting remain to be configured. The Node adapter is portable; selecting Vercel requires its official Astro adapter and a fresh deployment check. Before release, reconcile the migrated legal/privacy text with the actual hosting and services; the legacy privacy policy still names Webflow. Request analytics are disabled.
+Production API credentials and backend acceptance remain to be configured. The Node adapter provides local built-server previews; `pnpm run build:vercel` uses the official Vercel adapter and isolated output. Before release, reconcile the migrated legal/privacy text with the actual hosting and services; the legacy privacy policy still names Webflow. Request analytics are disabled.
 
 START plans to agree compensation with each company before publication; a referral arrangement remains a possibility. Staff follow up manually using the private Cockpit contact, record agreed terms, then review and publish the draft. Pricing is not settled. Commercial agreement enforcement and billing are not implemented.

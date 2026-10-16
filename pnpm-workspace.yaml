@@ -1,2 +1,8 @@
 allowBuilds:
   esbuild: true
+
+# Keep these aligned with npm's package.json overrides.
+overrides:
+  http-cache-semantics: 4.3.0
+  source-map-js: 1.2.2
+  '@vercel/routing-utils>path-to-regexp': 6.3.0

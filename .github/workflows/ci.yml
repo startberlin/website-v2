@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, production]
+  push:
+    branches: [main, production]
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  ASTRO_TELEMETRY_DISABLED: '1'
+  CI: 'true'
+
+jobs:
+  plan:
+    name: Select relevant checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      plan: ${{ steps.plan.outputs.plan }}
+      quality: ${{ steps.plan.outputs.quality }}
+      tests: ${{ steps.plan.outputs.tests }}
+      build: ${{ steps.plan.outputs.build }}
+      workflows: ${{ steps.plan.outputs.workflows }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: node scripts/ci/plan.mjs
+        id: plan
+        env:
+          CI_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          CI_HEAD_SHA: ${{ github.sha }}
+          CI_FORCE_ALL: ${{ github.event_name != 'pull_request' }}
+  quality:
+    name: Relevant source checks
+    needs: plan
+    if: needs.plan.outputs.quality == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: node scripts/ci/run.mjs quality
+        env:
+          CI_PLAN: ${{ needs.plan.outputs.plan }}
+  tests:
+    name: Affected behaviour tests
+    needs: plan
+    if: needs.plan.outputs.tests == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - run: node scripts/ci/run.mjs tests
+        env:
+          CI_PLAN: ${{ needs.plan.outputs.plan }}
+  build:
+    name: Build (${{ matrix.target }})
+    needs: plan
+    if: needs.plan.outputs.build == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [node, vercel]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup
+      - name: Build current source into isolated output
+        run: |
+          RELEASE_COMMIT_SHA=$GITHUB_SHA
+          RELEASE_TREE_SHA=$(git rev-parse 'HEAD^{tree}')
+          export RELEASE_COMMIT_SHA RELEASE_TREE_SHA
+          if [ "$BUILD_TARGET" = vercel ]; then
+            pnpm run build:vercel
+            node scripts/release/smoke-vercel.mjs
+          else
+            pnpm exec astro build --outDir .astro/ci-node
+            pnpm run smoke:local -- .astro/ci-node
+          fi
+        env:
+          BUILD_TARGET: ${{ matrix.target }}
+      - name: Preserve tracked build output
+        run: git diff --exit-code -- dist pnpm-lock.yaml package-lock.json
+  workflows:
+    name: Workflow validation
+    needs: plan
+    if: needs.plan.outputs.workflows == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - run: go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12 -color
+  required:
+    name: Required checks
+    if: always()
+    needs: [plan, quality, tests, build, workflows]
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Require exactly the verification selected for this change
+        run: |
+          node --input-type=module <<'JS'
+          const results = JSON.parse(process.env.RESULTS);
+          if (results.plan.result !== 'success') process.exit(1);
+          const plan = JSON.parse(process.env.CI_PLAN);
+          const expected = { quality: plan.quality.length > 0, tests: plan.tests, build: plan.build, workflows: plan.workflows };
+          for (const [job, needed] of Object.entries(expected)) {
+            const result = results[job].result;
+            if (needed ? result !== 'success' : !['success', 'skipped'].includes(result)) process.exit(1);
+          }
+          JS
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+          CI_PLAN: ${{ needs.plan.outputs.plan }}

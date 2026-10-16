@@ -1,0 +1,223 @@
+{
+	"Antonia Hill": {
+		"introduction": "Antonia is President of START Berlin. She studies English and German law at King's College London and Humboldt-Universität zu Berlin. Her experience includes legal internships at Gleiss Lutz and A&O Shearman. She also co-founded Lexora, a learning platform for children with dyslexia.",
+		"experience": [
+			{
+				"title": "VC Fellow",
+				"organisation": "baby vc",
+				"period": "Oct 2026 - present"
+			},
+			{
+				"title": "Legal Intern",
+				"organisation": "Gleiss Lutz",
+				"period": "Jul - Aug 2026"
+			},
+			{
+				"title": "Legal Intern",
+				"organisation": "A&O Shearman",
+				"period": "Mar - Apr 2026"
+			}
+		],
+		"education": [
+			{
+				"title": "Law (LLB)",
+				"organisation": "King's College London",
+				"period": "2023 - 2028"
+			},
+			{
+				"title": "German Law (LLM)",
+				"organisation": "Humboldt-Universität zu Berlin",
+				"period": "2023 - 2028"
+			}
+		],
+		"volunteering": [
+			{
+				"title": "Law Student Mentor",
+				"organisation": "King's College London Law Council",
+				"period": "Sep 2024 - Sep 2025"
+			}
+		],
+		"projects": [
+			{
+				"title": "Lexora",
+				"url": "https://www.linkedin.com/company/lexora-learn/"
+			}
+		]
+	},
+	"Julia Palm": {
+		"introduction": "Julia is Vice President of START Berlin. She studies Software Engineering at CODE University of Applied Sciences. Before joining the board, she co-led the People department. Her previous work as a swim instructor involved teaching children and adults.",
+		"experience": [
+			{
+				"title": "Swim Instructor",
+				"organisation": "Landskrona Simsällskap",
+				"period": "2020 - 2024"
+			}
+		],
+		"education": [
+			{
+				"title": "Software Engineering (BSc)",
+				"organisation": "CODE University of Applied Sciences",
+				"period": "2025 - 2028"
+			}
+		],
+		"volunteering": [
+			{
+				"title": "Co-Lead, People",
+				"organisation": "START Berlin",
+				"period": "Apr - Sep 2026"
+			}
+		],
+		"projects": []
+	},
+	"Kari-Pele Streithoff": {
+		"introduction": "Kari is Head of Finance at START Berlin. He studies Business Administration at Freie Universität Berlin and is interested in data analytics. At START, he works on event budgets and the financial assessment of partnerships. He also supports teaching in accounting and auditing.",
+		"experience": [
+			{
+				"title": "Teaching Assistant",
+				"organisation": "Freie Universität Berlin"
+			}
+		],
+		"education": [
+			{
+				"title": "Business Administration",
+				"organisation": "Freie Universität Berlin",
+				"period": "2025 - 2028"
+			}
+		],
+		"volunteering": [],
+		"projects": []
+	},
+	"Tobias Burger": {
+		"introduction": "Tobias is Head of Partnerships at START Berlin. He studies Business Management and Entrepreneurship at CODE University of Applied Sciences. He works in Revenue Operations at Superchat. He previously led the SpaceZ team in the national CanSat competition.",
+		"experience": [
+			{
+				"title": "Revenue Operations",
+				"organisation": "Superchat"
+			}
+		],
+		"education": [
+			{
+				"title": "Business Management and Entrepreneurship (BA)",
+				"organisation": "CODE University of Applied Sciences",
+				"period": "2025 - 2028"
+			}
+		],
+		"volunteering": [],
+		"projects": [
+			{
+				"title": "SpaceZ, CanSat competition",
+				"period": "Oct 2023 - Jun 2024"
+			}
+		]
+	},
+	"Jannik Schaefer": {
+		"introduction": "I study Business Information Systems at the Berlin School of Economics and Law. I founded KI Weekly to make developments in artificial intelligence easier to understand. My experience at Lufthansa Innovation Hub and Mercedes-Benz includes work with generative AI. At START Berlin, I lead Operations & Digital and help build the systems our community uses.",
+		"experience": [
+			{
+				"title": "Founder",
+				"organisation": "KI Weekly",
+				"url": "https://www.kiweekly.de/",
+				"period": "Feb 2023 - present"
+			},
+			{
+				"title": "Transformation",
+				"organisation": "Lufthansa Innovation Hub",
+				"period": "Mar - Aug 2026"
+			},
+			{
+				"title": "Application Management",
+				"organisation": "Mercedes-Benz AG",
+				"period": "Jan 2024 - Jul 2025"
+			}
+		],
+		"education": [
+			{
+				"title": "Business Information Systems (BSc)",
+				"organisation": "Berlin School of Economics and Law",
+				"period": "2023 - 2027"
+			},
+			{
+				"title": "Exchange semester",
+				"organisation": "Macquarie University, Sydney",
+				"period": "2025"
+			}
+		],
+		"volunteering": [
+			{
+				"title": "Guest Expert on Generative AI",
+				"organisation": "Various organisations, including Hyper Island"
+			}
+		],
+		"projects": [
+			{
+				"title": "KI Weekly",
+				"url": "https://www.kiweekly.de/"
+			}
+		]
+	},
+	"Anna Brinkkötter": {
+		"introduction": "Anna is Head of People at START Berlin. Her academic background is in Business Administration at Freie Universität Berlin.",
+		"experience": [],
+		"education": [
+			{
+				"title": "Business Administration",
+				"organisation": "Freie Universität Berlin"
+			}
+		],
+		"volunteering": [],
+		"projects": []
+	},
+	"Rhema Tamunoiyowuna": {
+		"introduction": "Rhema is Head of Growth at START Berlin. His background combines business management with an interest in data analytics. He works in online marketing at InterNations and previously co-founded Yanga Label. He also writes Exploring Businesses, a newsletter about how companies grow.",
+		"experience": [
+			{
+				"title": "Working Student, Online Marketing",
+				"organisation": "InterNations",
+				"period": "Mar 2026 - present"
+			},
+			{
+				"title": "Co-Founder",
+				"organisation": "Yanga Label",
+				"period": "Apr 2021 - Apr 2022"
+			}
+		],
+		"education": [
+			{
+				"title": "Media Management",
+				"organisation": "Macromedia University of Applied Sciences",
+				"period": "2022 - 2027"
+			},
+			{
+				"title": "Business Administration and Management (BSc Hons)",
+				"organisation": "Regent's University London",
+				"period": "2022 - 2026"
+			}
+		],
+		"volunteering": [
+			{
+				"title": "Event Assistant",
+				"organisation": "TEDxMitte",
+				"period": "Oct 2025"
+			}
+		],
+		"projects": [
+			{
+				"title": "Exploring Businesses",
+				"url": "https://www.linkedin.com/newsletters/7422043924745158656/"
+			}
+		]
+	},
+	"Rocco Yohji Matthew Krippendorff": {
+		"introduction": "Rocco is Head of Events at START Berlin. He studies Business Administration and Management at Freie Universität Berlin.",
+		"experience": [],
+		"education": [
+			{
+				"title": "Business Administration and Management",
+				"organisation": "Freie Universität Berlin",
+				"period": "2025 - 2028"
+			}
+		],
+		"volunteering": [],
+		"projects": []
+	}
+}

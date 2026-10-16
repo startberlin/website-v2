@@ -1,0 +1,91 @@
+[
+  {
+    "enlarged": false,
+    "visible": true,
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "h1": 1,
+    "height": 800,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 16.001419067382812,
+        "right": 303.9985809326172
+      },
+      {
+        "class": "comparison-nav page-container",
+        "left": 16.001419067382812,
+        "right": 303.9985809326172
+      },
+      {
+        "class": "profile page-container",
+        "left": 16.001419067382812,
+        "right": 303.9985809326172
+      },
+      {
+        "class": "page-container",
+        "left": 16.001419067382812,
+        "right": 303.9985809326172
+      }
+    ],
+    "width": 320
+  },
+  {
+    "enlarged": true,
+    "visible": true,
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 128.9985809326172,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 255.9943084716797
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 800,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320
+  }
+]

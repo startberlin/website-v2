@@ -1,0 +1,3 @@
+# Repository admins authorized to approve website-v2 changes.
+# The release guard checks that every listed owner still has admin access.
+* @jannikbln @zunkelty @ahaMfM @alvaroltorres
