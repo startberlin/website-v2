@@ -2,11 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import JourneyStages from '../components/member-journey/JourneyStages.astro';
+import DepartmentTabs from '../components/member-journey/DepartmentTabs.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import { pageSeo } from '../lib/seo/pages';
 import { departments, departmentsSection, game, hero, memberStories, stages, storiesSection } from '../data/member-journey';
 
-// Skeleton: the departments and stories sections get their designed components
-// in the following steps. No call to action while applications are closed.
+// Skeleton: the stories section gets its designed component in the next step.
+// No call to action while applications are closed.
 ---
 
 <Layout seo={pageSeo('/member-journey')}>
@@ -20,16 +22,11 @@ import { departments, departmentsSection, game, hero, memberStories, stages, sto
 	<JourneyStages stages={stages} />
 
 	<section class="section page-container" id="departments" aria-labelledby="departments-heading">
-		<h2 id="departments-heading" class="section__title">
-			{departmentsSection.headingSolid} {departmentsSection.headingOutline}
-		</h2>
-		<p class="section__lead">{departmentsSection.subheading}</p>
-		{departments.map((department) => (
-			<article id={`department-${department.id}`}>
-				<h3>{department.name}</h3>
-				{department.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-			</article>
-		))}
+		<SectionHeading id="departments-heading">
+			{departmentsSection.headingSolid}{' '}<span data-outline>{departmentsSection.headingOutline}</span>
+			<Fragment slot="lead">{departmentsSection.subheading}</Fragment>
+		</SectionHeading>
+		<DepartmentTabs departments={departments} />
 	</section>
 
 	{/* Rendered only once the shared game is integrated; see game in src/data/member-journey.ts. */}
