@@ -4,11 +4,14 @@ import PageHero from '../components/PageHero.astro';
 import JourneyStages from '../components/member-journey/JourneyStages.astro';
 import DepartmentTabs from '../components/member-journey/DepartmentTabs.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import Testimonial from '../components/Testimonial.astro';
 import { pageSeo } from '../lib/seo/pages';
 import { departments, departmentsSection, game, hero, memberStories, stages, storiesSection } from '../data/member-journey';
 
-// Skeleton: the stories section gets its designed component in the next step.
 // No call to action while applications are closed.
+
+// The featured story leads; the others keep their approved order.
+const orderedStories = [...memberStories.filter((story) => story.featured), ...memberStories.filter((story) => !story.featured)];
 ---
 
 <Layout seo={pageSeo('/member-journey')}>
@@ -33,14 +36,17 @@ import { departments, departmentsSection, game, hero, memberStories, stages, sto
 	{game.enabled && <section id={game.id} class="game page-container"></section>}
 
 	<section class="section page-container" id="member-stories" aria-labelledby="member-stories-heading">
-		<h2 id="member-stories-heading" class="section__title">{storiesSection.heading}</h2>
-		<p class="section__lead">{storiesSection.subheading}</p>
-		{memberStories.map((story) => (
-			<figure>
-				<blockquote><p>“{story.quote}”</p></blockquote>
-				<figcaption>{story.name}, {story.role}</figcaption>
-			</figure>
-		))}
+		<SectionHeading id="member-stories-heading">
+			{storiesSection.heading}
+			<Fragment slot="lead">{storiesSection.subheading}</Fragment>
+		</SectionHeading>
+		<ul class="stories">
+			{orderedStories.map((story) => (
+				<li class:list={['stories__item', { 'stories__item--featured': story.featured }]}>
+					<Testimonial {...story} />
+				</li>
+			))}
+		</ul>
 	</section>
 </Layout>
 
@@ -49,22 +55,26 @@ import { departments, departmentsSection, game, hero, memberStories, stages, sto
 		padding-block: var(--space-16);
 	}
 
-	.section__title {
-		margin: 0 0 var(--space-6);
-		font-size: var(--type-section);
-		font-weight: var(--weight-display);
-		line-height: 0.95;
-		text-transform: uppercase;
-	}
-
-	.section__lead {
-		max-width: var(--layout-reading);
-		color: var(--text-muted);
-		font-size: var(--text-lg);
-		line-height: var(--leading-copy);
+	.stories {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--space-4);
+		margin: 0;
+		padding: 0;
+		list-style: none;
 	}
 
 	.game {
 		min-height: 20rem;
+	}
+
+	@media (min-width: 640px) {
+		.stories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.stories__item--featured { grid-column: 1 / -1; }
+	}
+
+	@media (min-width: 1024px) {
+		.section { padding-block: var(--space-24); }
+		.stories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 	}
 </style>

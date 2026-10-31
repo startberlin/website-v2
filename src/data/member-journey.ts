@@ -4,6 +4,14 @@ import sprintCeremony from '../assets/member-journey/start-sprint-award-ceremony
 import cofounderNight from '../assets/member-journey/cofounder-matching-night.jpg';
 import groupPicture from '../assets/member-journey/start-group-picture.jpg';
 import langdockVisit from '../assets/member-journey/langdock-visit.jpg';
+import mahirIsikli from '../assets/member-journey/stories/mahir-isikli.jpg';
+import anouarSpringer from '../assets/member-journey/stories/anouar-springer.jpg';
+import polinaShcheglova from '../assets/member-journey/stories/polina-shcheglova.jpg';
+import lionAbboudHerbert from '../assets/member-journey/stories/lion-abboud-herbert.jpg';
+import soenkePeters from '../assets/member-journey/stories/soenke-peters.jpg';
+// Existing member portraits are reused rather than duplicated.
+import antoniaHill from '../assets/members/antonia-hill.webp';
+import rhemaTamunoiyowuna from '../assets/members/rhema-tamunoiyowuna.webp';
 
 // Member Journey page content. All public text is approved copy; keep it
 // verbatim and change it only together with the content owner.
@@ -164,37 +172,44 @@ export const memberStories: MemberStory[] = [
 	{
 		name: 'Mahir Isikli',
 		role: 'President 23/24',
+		portrait: mahirIsikli,
 		quote: "START was the best learning environment I've ever been in. At 23, I led a team, made mistakes, and actually learned how to get things done – not just alone, but with others.",
 		featured: true,
 	},
 	{
 		name: 'Anouar Springer',
 		role: 'Head of Partnerships 23/24',
+		portrait: anouarSpringer,
 		quote: "START Berlin changed everything. I found a community of driven, like-minded people who inspired me to grow both personally and professionally. START opened doors I didn't know existed.",
 	},
 	{
 		name: 'Polina Shcheglova',
 		role: 'Member 19/20',
+		portrait: polinaShcheglova,
 		quote: 'START Berlin gave me so much value – not just during my time as a member, but long after. Through the community, I landed my first job and built lasting friendships here in Berlin.',
 	},
 	{
 		name: 'Lion Abboud Herbert',
 		role: 'President 2026',
+		portrait: lionAbboudHerbert,
 		quote: 'I had never experienced such a concentrated amount of inspiring, curious and driven people before. People with different stories and backgrounds, but the same desire to learn, build and grow. This is not something you simply find at university or anywhere. It happens when you build a community like START Berlin, a place that brings these people together and gives them space to grow.',
 	},
 	{
 		name: 'Antonia Hill',
 		role: 'President 2026/27',
+		portrait: antoniaHill,
 		quote: "I came to Berlin a year ago without knowing many people. Through START Berlin, I've gotten to know an amazing community and discovered opportunities I otherwise wouldn't have known much about.",
 	},
 	{
 		name: 'Sönke Peters',
 		role: 'Vice President 2025/26',
+		portrait: soenkePeters,
 		quote: "At START Berlin I had more responsibility and freedom to do things than I'd ever had before, and I learned a lot. Along the way I met so many cool people, and that network put me in touch with some of Berlin's best startups. One of those connections turned into my next job and changed the course of my career.",
 	},
 	{
 		name: 'Rhema Tamunoiyowuna',
 		role: 'Head of Growth 2026/27',
+		portrait: rhemaTamunoiyowuna,
 		quote: "START gave me the community I'd been looking for as a student in Berlin: ambitious people who inspire me to build. Through the chapters in Munich, Paris and beyond, my connections now reach far past Berlin. In a short time, it has completely changed how I see the tech world.",
 	},
 ];
