@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { pageSeo } from '../lib/seo/pages';
+import { departments, departmentsSection, game, hero, memberStories, stages, storiesSection } from '../data/member-journey';
+
+// Skeleton: the journey, departments and stories sections get their designed
+// components in the following steps. No call to action while applications are closed.
+const stageTotal = String(stages.length).padStart(2, '0');
+---
+
+<Layout seo={pageSeo('/member-journey')}>
+	<PageHero>
+		<Fragment slot="title">
+			<span data-hero-line data-hero-accent>{hero.accent}</span>{' '}
+			<span data-hero-line data-hero-outline>{hero.outline}</span>
+		</Fragment>
+	</PageHero>
+
+	<div class="journey page-container" id="journey">
+		<ol class="stages">
+			{stages.map((stage) => (
+				<li id={`stage-${stage.id}`} class="stage">
+					<p class="stage__eyebrow">Stage {stage.number} / {stageTotal}</p>
+					<h2 class="stage__title">{stage.title}</h2>
+					<p class="stage__intro">{stage.intro}</p>
+					<ul class="stage__points">
+						{stage.points.map((point) => <li>{point}</li>)}
+					</ul>
+				</li>
+			))}
+		</ol>
+	</div>
+
+	<section class="section page-container" id="departments" aria-labelledby="departments-heading">
+		<h2 id="departments-heading" class="section__title">
+			{departmentsSection.headingSolid} {departmentsSection.headingOutline}
+		</h2>
+		<p class="section__lead">{departmentsSection.subheading}</p>
+		{departments.map((department) => (
+			<article id={`department-${department.id}`}>
+				<h3>{department.name}</h3>
+				{department.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+			</article>
+		))}
+	</section>
+
+	{/* Rendered only once the shared game is integrated; see game in src/data/member-journey.ts. */}
+	{game.enabled && <section id={game.id} class="game page-container"></section>}
+
+	<section class="section page-container" id="member-stories" aria-labelledby="member-stories-heading">
+		<h2 id="member-stories-heading" class="section__title">{storiesSection.heading}</h2>
+		<p class="section__lead">{storiesSection.subheading}</p>
+		{memberStories.map((story) => (
+			<figure>
+				<blockquote><p>“{story.quote}”</p></blockquote>
+				<figcaption>{story.name}, {story.role}</figcaption>
+			</figure>
+		))}
+	</section>
+</Layout>
+
+<style>
+	.journey,
+	.section {
+		padding-block: var(--space-16);
+	}
+
+	.stages {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.stage + .stage {
+		margin-top: var(--space-16);
+	}
+
+	.stage__eyebrow {
+		margin: 0 0 var(--space-4);
+		color: var(--color-accent);
+		font-size: var(--text-caption);
+		font-weight: var(--weight-bold);
+		letter-spacing: var(--tracking-eyebrow);
+		text-transform: uppercase;
+	}
+
+	.stage__title,
+	.section__title {
+		margin: 0 0 var(--space-6);
+		font-size: var(--type-section);
+		font-weight: var(--weight-display);
+		line-height: 0.95;
+		text-transform: uppercase;
+	}
+
+	.stage__intro,
+	.section__lead {
+		max-width: var(--layout-reading);
+		color: var(--text-muted);
+		font-size: var(--text-lg);
+		line-height: var(--leading-copy);
+	}
+
+	.game {
+		min-height: 20rem;
+	}
+</style>
