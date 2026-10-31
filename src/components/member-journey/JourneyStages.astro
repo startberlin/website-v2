@@ -1,0 +1,464 @@
+---
+import { Image } from 'astro:assets';
+import type { JourneyStage } from '../../data/member-journey';
+
+interface Props {
+	stages: JourneyStage[];
+}
+
+const { stages } = Astro.props;
+const total = String(stages.length).padStart(2, '0');
+const last = stages.length - 1;
+
+// The wave alternates low and high nodes across the rail. The SVG stretches to
+// the rail box, so node positions are percentages of the same box.
+const points = stages.map((_, index) => ({
+	x: last === 0 ? 0 : (index / last) * 100,
+	y: index % 2 === 0 ? 76 : 24,
+}));
+const wave = points
+	.map((point, index) => {
+		const x = point.x * 10;
+		if (index === 0) return `M ${x} ${point.y}`;
+		const previous = points[index - 1];
+		const bend = (x - previous.x * 10) / 2;
+		return `C ${previous.x * 10 + bend} ${previous.y} ${x - bend} ${point.y} ${x} ${point.y}`;
+	})
+	.join(' ');
+---
+
+<div class="journey page-container" data-journey>
+	<nav class="rail" aria-label="Journey stages" data-journey-rail>
+		<div class="rail__box">
+			<svg class="rail__wave" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+				<path class="rail__track" d={wave} />
+			</svg>
+			<div class="rail__fill" aria-hidden="true">
+				<svg class="rail__wave" viewBox="0 0 1000 100" preserveAspectRatio="none" focusable="false">
+					<path class="rail__line" d={wave} />
+				</svg>
+			</div>
+			<ol class="rail__nodes">
+				{stages.map((stage, index) => (
+					<li
+						class:list={['rail__node', index % 2 === 0 ? 'rail__node--low' : 'rail__node--high', { 'rail__node--first': index === 0, 'rail__node--last': index === last }]}
+						style={`--x: ${points[index].x}; --y: ${points[index].y};`}
+						data-rail-node
+					>
+						<a class="rail__link" href={`#stage-${stage.id}`}>
+							<span class="rail__number">{stage.number}</span>
+							<span class="rail__label">{stage.title}</span>
+						</a>
+					</li>
+				))}
+			</ol>
+		</div>
+	</nav>
+
+	<ol class="stages">
+		{stages.map((stage) => (
+			<li id={`stage-${stage.id}`} class="stage" data-stage>
+				<span class="stage__node" aria-hidden="true">{stage.number}</span>
+				<div class="stage__body">
+					<div class="stage__head">
+						<p class="stage__eyebrow">Stage {stage.number} / {total}</p>
+						<h2 class="stage__title">{stage.title}</h2>
+						<p class="stage__intro">{stage.intro}</p>
+					</div>
+					<ul class="stage__points">
+						{stage.points.map((point) => <li class="stage__point">{point}</li>)}
+					</ul>
+					{stage.photo && (
+						<Image
+							src={stage.photo.src}
+							alt={stage.photo.alt}
+							widths={[480, 800, 1200].filter((width) => width < stage.photo!.src.width).concat(Math.min(stage.photo.src.width, 1600))}
+							sizes="(min-width: 64rem) 36rem, calc(100vw - 2rem)"
+							format="webp"
+							loading="lazy"
+							decoding="async"
+							class:list={['stage__photo', { 'stage__photo--portrait': stage.photo.src.height > stage.photo.src.width }]}
+							style={stage.photo.position ? `object-position: ${stage.photo.position}` : undefined}
+						/>
+					)}
+				</div>
+			</li>
+		))}
+	</ol>
+</div>
+
+<script>
+	// Marks reached, current and upcoming stages while scrolling and fills the
+	// wave up to the current position. Only attributes and custom properties change.
+	const root = document.querySelector<HTMLElement>('[data-journey]');
+
+	if (root) {
+		const rail = root.querySelector<HTMLElement>('[data-journey-rail]')!;
+		const stages = [...root.querySelectorAll<HTMLElement>('[data-stage]')];
+		const nodes = [...root.querySelectorAll<HTMLElement>('[data-rail-node]')];
+		const links = nodes.map((node) => node.querySelector('a')!);
+		const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+		const header = document.querySelector<HTMLElement>('.nav');
+		let frame = 0;
+
+		const railIsSticky = () => getComputedStyle(rail).position === 'sticky';
+
+		const update = () => {
+			frame = 0;
+			const top = railIsSticky() ? rail.getBoundingClientRect().bottom : (header?.offsetHeight ?? 0);
+			const line = top + (window.innerHeight - top) * 0.35;
+			const tops = stages.map((stage) => stage.getBoundingClientRect().top);
+			let current = 0;
+			tops.forEach((stageTop, index) => {
+				if (stageTop <= line) current = index;
+			});
+			const next = tops[current + 1];
+			const fraction = next === undefined || tops[current] > line
+				? 0
+				: Math.min(1, Math.max(0, (line - tops[current]) / (next - tops[current])));
+			const position = reducedMotion.matches ? current : current + fraction;
+			root.style.setProperty('--journey-progress', String(position / Math.max(1, stages.length - 1)));
+
+			stages.forEach((stage, index) => {
+				const state = index < current ? 'reached' : index === current ? 'current' : 'upcoming';
+				stage.dataset.state = state;
+				nodes[index].dataset.state = state;
+				if (state === 'current') links[index].setAttribute('aria-current', 'step');
+				else links[index].removeAttribute('aria-current');
+			});
+		};
+
+		const schedule = () => {
+			if (!frame) frame = requestAnimationFrame(update);
+		};
+
+		// Anchor targets clear the sticky band; CSS supplies an estimate without JavaScript.
+		new ResizeObserver(() => {
+			const band = railIsSticky() ? `${rail.offsetHeight}px` : '0px';
+			stages.forEach((stage) => stage.style.setProperty('--journey-band', band));
+			schedule();
+		}).observe(rail);
+
+		root.dataset.enhanced = '';
+		window.addEventListener('scroll', schedule, { passive: true });
+		window.addEventListener('resize', schedule);
+		reducedMotion.addEventListener('change', schedule);
+		update();
+	}
+</script>
+
+<style>
+	.journey {
+		--node-size: 3.5rem;
+		--rail-height: 8rem;
+		--journey-progress: 0;
+		container: journey / inline-size;
+		padding-bottom: var(--space-16);
+	}
+
+	/* Rail: hidden on narrow containers, where each stage shows its own node. */
+	.rail {
+		display: none;
+	}
+
+	.rail__box {
+		position: relative;
+		height: var(--rail-height);
+		margin-inline: calc(var(--node-size) / 2);
+	}
+
+	.rail__wave,
+	.rail__fill {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		overflow: visible;
+	}
+
+	.rail__track,
+	.rail__line {
+		fill: none;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.rail__track {
+		stroke: var(--border-control);
+		stroke-width: 2;
+		stroke-dasharray: 2 8;
+		stroke-linecap: round;
+	}
+
+	.rail__line {
+		stroke: var(--color-accent);
+		stroke-width: 3;
+	}
+
+	.rail__fill {
+		clip-path: inset(-1rem calc(100% - var(--journey-progress) * 100%) -1rem -1rem);
+		transition: clip-path var(--duration-ui) ease-out;
+	}
+
+	.rail__nodes {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.rail__node {
+		position: absolute;
+		left: calc(var(--x) * 1%);
+		top: calc(var(--y) * 1%);
+		translate: -50% -50%;
+	}
+
+	.rail__link {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--node-size);
+		height: var(--node-size);
+		border: var(--border-width-accent) solid var(--border-control);
+		border-radius: var(--radius-pill);
+		background: var(--color-dark-blue);
+		color: var(--color-white);
+		transition: background-color var(--duration-ui), border-color var(--duration-ui), color var(--duration-ui);
+	}
+
+	.rail__number {
+		font-size: var(--text-xl);
+		font-weight: var(--weight-display);
+		line-height: 1;
+	}
+
+	.rail__label {
+		position: absolute;
+		left: 50%;
+		translate: -50% 0;
+		color: var(--text-muted);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-bold);
+		letter-spacing: var(--tracking-wide);
+		line-height: 1.25rem;
+		text-transform: uppercase;
+		white-space: nowrap;
+		transition: color var(--duration-ui);
+	}
+
+	.rail__node--low .rail__label { top: calc(100% + var(--space-3)); }
+	.rail__node--high .rail__label { bottom: calc(100% + var(--space-3)); }
+	/* The outer labels align with the circle edge so they stay inside the page edges. */
+	.rail__node--first .rail__label { left: calc(var(--border-width-accent) * -1); translate: 0 0; }
+	.rail__node--last .rail__label { left: auto; right: calc(var(--border-width-accent) * -1); translate: 0 0; }
+
+	.rail__link:hover .rail__label { color: var(--color-white); }
+
+	[data-state='reached'] > .rail__link,
+	[data-state='current'] > .rail__link {
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+	}
+
+	[data-state='current'] .rail__label {
+		color: var(--color-accent);
+	}
+
+	/* Stages */
+	.stages {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.stage {
+		--stage-node: 2.75rem;
+		position: relative;
+		display: grid;
+		grid-template-columns: var(--stage-node) minmax(0, 1fr);
+		gap: var(--space-4);
+		padding-bottom: var(--space-16);
+		--journey-band: 0px;
+		scroll-margin-top: calc(var(--header-height) + var(--journey-band) + var(--space-6));
+	}
+
+	/* Vertical rail segment from this node to the next one. */
+	.stage:not(:last-child)::before {
+		content: '';
+		position: absolute;
+		top: calc(var(--stage-node) + var(--space-2));
+		bottom: var(--space-2);
+		left: calc(var(--stage-node) / 2 - var(--border-width));
+		border-left: var(--border-width-accent) dotted var(--border-control);
+	}
+
+	.stage[data-state='reached']::before {
+		border-left-style: solid;
+		border-left-color: var(--color-accent);
+	}
+
+	.stage__node {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--stage-node);
+		height: var(--stage-node);
+		border: var(--border-width-accent) solid var(--border-control);
+		border-radius: var(--radius-pill);
+		font-size: var(--text-base);
+		font-weight: var(--weight-display);
+		transition: background-color var(--duration-ui), border-color var(--duration-ui), color var(--duration-ui);
+	}
+
+	.stage[data-state='reached'] .stage__node,
+	.stage[data-state='current'] .stage__node {
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+	}
+
+	.stage__body {
+		display: grid;
+		grid-template-areas: 'head' 'points' 'photo';
+		gap: var(--space-8);
+		min-width: 0;
+	}
+
+	.stage__head { grid-area: head; }
+
+	.stage__eyebrow {
+		margin: var(--space-3) 0 var(--space-4);
+		color: var(--color-accent);
+		font-size: var(--text-caption);
+		font-weight: var(--weight-bold);
+		letter-spacing: var(--tracking-eyebrow);
+		line-height: 1.25rem;
+		text-transform: uppercase;
+	}
+
+	.stage__title {
+		margin: 0 0 var(--space-6);
+		font-size: var(--type-section);
+		font-weight: var(--weight-display);
+		letter-spacing: -0.025em;
+		line-height: 0.95;
+		text-transform: uppercase;
+		hyphens: auto;
+	}
+
+	/* Keeps "APPLICATION" on one line beside the node at 320 px. */
+	@container journey (max-width: 21rem) {
+		.stage { --stage-node: 2.25rem; gap: var(--space-3); }
+		.stage__node { font-size: var(--text-sm); }
+		.stage__title { font-size: var(--text-3xl); }
+	}
+
+	.stage__intro {
+		margin: 0;
+		color: var(--text-muted);
+		font-size: var(--text-lg);
+		line-height: var(--leading-copy);
+	}
+
+	.stage__points {
+		grid-area: points;
+		align-self: start;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		border-top: var(--border-width) solid var(--border-subtle);
+	}
+
+	.stage__point {
+		position: relative;
+		padding: var(--space-5) 0 var(--space-5) var(--space-8);
+		border-bottom: var(--border-width) solid var(--border-subtle);
+		font-size: var(--text-lg);
+		line-height: 1.5;
+	}
+
+	/* Decorative diamond marker. */
+	.stage__point::before {
+		content: '';
+		position: absolute;
+		left: var(--space-1);
+		top: calc(var(--space-5) + 0.75em - 0.3125rem);
+		width: 0.625rem;
+		height: 0.625rem;
+		background: var(--color-accent);
+		rotate: 45deg;
+	}
+
+	.stage__photo {
+		grid-area: photo;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+	}
+
+	.stage__photo--portrait {
+		aspect-ratio: 4 / 5;
+		max-width: 28rem;
+	}
+
+	/* Horizontal wave rail replaces the per-stage nodes. */
+	@container journey (min-width: 40rem) {
+		.rail {
+			display: block;
+			padding-block: var(--space-10);
+			margin-bottom: var(--space-8);
+		}
+
+		.stage {
+			display: block;
+			padding-block: var(--space-12) var(--space-16);
+		}
+
+		.stage::before,
+		.stage__node {
+			display: none;
+		}
+
+		.stage:not(:first-child) {
+			border-top: var(--border-width) solid var(--border-subtle);
+		}
+	}
+
+	@container journey (min-width: 48rem) {
+		.stage__body {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+			grid-template-areas: 'head points' 'photo points';
+			column-gap: var(--space-16);
+			row-gap: var(--space-8);
+		}
+
+		.stage__photo { align-self: start; }
+	}
+
+	/* A sticky band only where enough height remains for the stage content. */
+	@container journey (min-width: 56rem) {
+		@media (min-height: 45rem) {
+			/* Estimate without JavaScript; the script replaces it with the measured height. */
+			.stage { --journey-band: 13rem; }
+
+			.rail {
+				position: sticky;
+				top: var(--header-height);
+				z-index: var(--z-filters);
+				padding-block: var(--space-10);
+				background: var(--color-dark-blue);
+				/* Extends the band background and a divider into the page gutters without affecting layout. */
+				box-shadow: 0 0 0 100vmax var(--color-dark-blue), 0 var(--border-width) 0 100vmax var(--border-subtle);
+				clip-path: inset(0 -100vmax calc(var(--border-width) * -1));
+			}
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.rail__fill { transition: none; }
+	}
+</style>

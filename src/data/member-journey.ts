@@ -1,4 +1,9 @@
 import type { ImageMetadata } from 'astro';
+import sapCrowd from '../assets/member-journey/start-x-sap-crowd.jpg';
+import sprintCeremony from '../assets/member-journey/start-sprint-award-ceremony.jpg';
+import cofounderNight from '../assets/member-journey/cofounder-matching-night.jpg';
+import groupPicture from '../assets/member-journey/start-group-picture.jpg';
+import langdockVisit from '../assets/member-journey/langdock-visit.jpg';
 
 // Member Journey page content. All public text is approved copy; keep it
 // verbatim and change it only together with the content owner.
@@ -50,6 +55,7 @@ export const stages: JourneyStage[] = [
 			'Stage 2: Personal interview',
 			'Open to students at any university in Berlin',
 		],
+		photo: { src: sapCrowd, alt: 'Students filling an event room for a START Berlin and SAP talk' },
 	},
 	{
 		id: 'start-sprint',
@@ -61,6 +67,8 @@ export const stages: JourneyStage[] = [
 			'Workshops on the foundations of building a startup',
 			'Final pitch in front of a jury',
 		],
+		// Cropped to the right-hand group so no certificate names are legible.
+		photo: { src: sprintCeremony, alt: 'START Berlin members on stage at the START Sprint award ceremony, one holding a microphone' },
 	},
 	{
 		id: 'departments',
@@ -73,6 +81,7 @@ export const stages: JourneyStage[] = [
 			'Learn useful startup skills in practice',
 			'Contribute for one full year, with at least six months based in Berlin',
 		],
+		photo: { src: cofounderNight, alt: 'Four people at the START Berlin Co-Founder Matching Night in front of the event screen' },
 	},
 	{
 		id: 'active-member',
@@ -84,6 +93,7 @@ export const stages: JourneyStage[] = [
 			'Get access to exclusive, member-only events',
 			'Membership fee: €20 per semester',
 		],
+		photo: { src: groupPicture, alt: 'START Berlin members in navy team shirts posing and laughing together' },
 	},
 	{
 		id: 'start-alumni',
@@ -95,6 +105,7 @@ export const stages: JourneyStage[] = [
 			'Give back by mentoring and supporting new STARTies',
 			'Stay involved as much as you want; department work is optional',
 		],
+		photo: { src: langdockVisit, alt: 'Two guests on stage talking with an audience of students' },
 	},
 ];
 
