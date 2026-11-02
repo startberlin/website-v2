@@ -113,7 +113,8 @@ export const stages: JourneyStage[] = [
 			'Give back by mentoring and supporting new STARTies',
 			'Stay involved as much as you want; department work is optional',
 		],
-		photo: { src: langdockVisit, alt: 'Two guests on stage talking with an audience of students' },
+		// Portrait source shown in the shared 4:3 frame; 20% keeps both speakers' faces in view.
+		photo: { src: langdockVisit, alt: 'Two guests on stage talking with an audience of students', position: '50% 20%' },
 	},
 ];
 

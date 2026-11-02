@@ -77,7 +77,7 @@ const wave = points
 							format="webp"
 							loading="lazy"
 							decoding="async"
-							class:list={['stage__photo', { 'stage__photo--portrait': stage.photo.src.height > stage.photo.src.width }]}
+							class="stage__photo"
 							style={stage.photo.position ? `object-position: ${stage.photo.position}` : undefined}
 						/>
 					)}
@@ -400,11 +400,6 @@ const wave = points
 		border-radius: var(--radius-card);
 	}
 
-	.stage__photo--portrait {
-		aspect-ratio: 4 / 5;
-		max-width: 28rem;
-	}
-
 	/* Horizontal wave rail replaces the per-stage nodes. */
 	@container journey (min-width: 40rem) {
 		.rail {
@@ -423,6 +418,9 @@ const wave = points
 			display: none;
 		}
 
+		/* The offset only aligns the eyebrow with the phone node. */
+		.stage__eyebrow { margin-top: 0; }
+
 		.stage:not(:first-child) {
 			border-top: var(--border-width) solid var(--border-subtle);
 		}
@@ -431,7 +429,9 @@ const wave = points
 	@container journey (min-width: 48rem) {
 		.stage__body {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-			grid-template-areas: 'head points' 'photo points';
+			/* Text column on the left, photo top-aligned beside it. */
+			grid-template-areas: 'head photo' 'points photo';
+			grid-template-rows: auto 1fr;
 			column-gap: var(--space-16);
 			row-gap: var(--space-8);
 		}
