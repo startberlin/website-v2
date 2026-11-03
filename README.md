@@ -18,7 +18,7 @@ Every page also follows the [SEO and AI-search contract](docs/SEO.md). Register 
 
 ## Local setup
 
-Use Node.js 22.13 or newer within the 22.x release line and pnpm 11.25.0. Package engines, CI and Vercel use Node.js 22. Deployment checks compare the actual runtime major with the CI runtime before assigning domains. Install with the pinned pnpm lockfile, then create a private local configuration:
+Use Node.js 22.23.4 or newer within the 22.x release line and pnpm 11.25.0. Package engines, CI and Vercel use Node.js 22. Deployment checks compare the actual runtime major with the CI runtime before assigning domains. Install with the pinned pnpm lockfile, then create a private local configuration:
 
 ```sh
 pnpm install --frozen-lockfile
@@ -51,7 +51,7 @@ HOST=127.0.0.1 PORT=4337 node --env-file=.env .astro/jobboard-build/server/entry
 
 The separate verification output preserves the tracked upstream `dist/`. Serve the generated Node entrypoint with its client assets; uploading static HTML alone does not provide the live Jobboard routes. Production variables must be supplied by the host. Built output does not automatically load `.env`.
 
-Dependency security overrides live in `package.json` for npm and `pnpm-workspace.yaml` for pnpm. Keep both configurations and lockfiles aligned. Run `pnpm audit`, `npm audit --package-lock-only` and `test:dependencies` after dependency changes. The Vercel adapter stays on 11.0.12, the release pipeline's verified version, because 11.0.13 fails isolated function startup.
+Dependency security overrides live in `package.json` for npm and `pnpm-workspace.yaml` for pnpm. Keep both configurations and lockfiles aligned. Run `pnpm audit`, `npm audit --package-lock-only` and `test:dependencies` after dependency changes. The Vercel adapter is pinned to 11.0.16 and passes isolated function startup. Keep that check mandatory for future updates; 11.0.13 previously failed it.
 
 The `http-cache-semantics` 4.3.0 update clears the reported version range of [GHSA-ch52-4w7c-c8xp](https://github.com/advisories/GHSA-ch52-4w7c-c8xp), but retains the reported generic `max-stale` behaviour. Current Astro image builds use `storable()` and `timeToLive()` without visitor cache headers. The dependency tests check that actual image-cache boundary, source-map offset validation and Vercel routing. They do not establish a generic cache-library fix or replace magicast's embedded source-map copy, which is used by Astro's configuration-editing CLI.
 
