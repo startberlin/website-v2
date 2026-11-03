@@ -13,9 +13,26 @@ Researched on 10 October 2026 from the members' visible LinkedIn profiles. The p
 | Rhema Tamunoiyowuna | [LinkedIn](https://www.linkedin.com/in/rhema-tamunoiyowuna/) | InterNations Online Marketing; Yanga Label co-founder; Macromedia and Regent's degrees; TEDxMitte; Exploring Businesses newsletter. |
 | Rocco Yohji Matthew Krippendorff | [LinkedIn](https://www.linkedin.com/in/rocco-krippendorff-931b70388/) | FU Business Administration and Management, 2025–2028. No selected employer or independent project was available. |
 
-The profile introductions paraphrase the selected facts. Anna and Rocco have two sentences because their available information is sparse; four sentences would repeat facts or invent detail. Other introductions have four sentences. CV entries show only titles, organisations, available periods and links. Descriptions and education notes are removed at Jannik's request.
+The researched introductions paraphrase the selected facts. Available information for Anna and Rocco was sparse, so their original research drafts were kept short. Personal copy supplied later is tracked below. CV entries show only titles, organisations, available periods and links. Descriptions and education notes are removed at Jannik's request.
 
 Jannik explicitly requested a personal introduction. His first-person introduction includes a drafted description of his Operations & Digital work and is not claimed to be a verbatim LinkedIn statement. He subsequently removed the complete quote section, its draft and all placeholders. Quote collection is no longer a readiness requirement. Profiles with a public introduction can join the production sitemap; preview indexing remains off for every page.
+
+## Personal introduction status
+
+Updated 3 November 2026. All eight profiles have visible introductions in `src/data/board-profiles.json`. The remaining task is to obtain personal introductions for the five members whose current copy is still a researched draft.
+
+| Member | Current introduction | Remaining work |
+| --- | --- | --- |
+| Antonia Hill | Researched draft | Obtain and approve personal introduction. |
+| Julia Palm | Supplied first-person copy from 19 October 2026 | No replacement text outstanding. |
+| Kari-Pele Streithoff | Researched draft | Obtain and approve personal introduction. |
+| Tobias Burger | Researched draft | Obtain and approve personal introduction. |
+| Jannik Schaefer | Requested first-person introduction | No replacement text outstanding. |
+| Anna Brinkkötter | Supplied first-person copy from 19 October 2026 | No replacement text outstanding. |
+| Rhema Tamunoiyowuna | Researched draft | Obtain and approve personal introduction. |
+| Rocco Yohji Matthew Krippendorff | Researched draft | Obtain and approve personal introduction. |
+
+Keep the existing researched copy visible until replacement text is supplied and approved. Missing CV facts remain separate content work; quotes are not required.
 
 ## Project destinations
 
