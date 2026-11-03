@@ -39,6 +39,8 @@ The Vercel build also starts the packaged Node function from an isolated tempora
 
 ## Activation
 
+After assigning a stable public alias, health may briefly come from its previous deployment. Guest verification makes at most eight health reads, two seconds apart, and still requires the exact expected commit/tree. Immutable deployment URLs fail a source mismatch immediately. Invalid health, cached responses and transport/authentication failures are never accepted by this waiting window.
+
 The workflows start disabled. Keep `DEPLOYMENTS_ENABLED=false` and `PRODUCTION_RELEASE_ENABLED=false` until the following configuration is verified. A true flag alone cannot bypass the GitHub or Vercel configuration guards.
 
 1. Merge the pipeline PR after Required checks and one admin review. Keep the bootstrap `production` branch at its existing source until the first release PR. `staging` is a reserved branch name, not another development branch.
