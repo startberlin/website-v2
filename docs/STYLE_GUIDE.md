@@ -21,6 +21,8 @@
 
 Search for an existing component before adding one. Extend repeated UI with props, slots or a named variant. Share behaviour through components; keep domain data in its existing source.
 
+Member Journey owns the shared membership content in `src/data/member-journey.ts`. Both Member Journey and Join render its department paragraphs, member stories and annual membership fee. Update this source instead of maintaining page-specific copies. Join retains the existing LinkedIn destinations from the shared story records.
+
 ## Tokens and native controls
 
 [Tokens](../src/styles/tokens.css) own visual values. [Primitives](../src/styles/primitives.css) own buttons, text fields and focus. Both load through `global.css`; local CSS handles layout.
