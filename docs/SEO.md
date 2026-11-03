@@ -50,6 +50,8 @@ For dynamic content, register the route template with `canonicalPath: null` and 
 
 The current page format is Astro. Markdown, MDX and raw HTML page additions fail the guard until their shared-layout and inventory support is deliberately added. They must not bypass the same metadata policy.
 
+The Layout's existing generator meta also carries `data-security-policy`, derived from the shared security-header policy. Keep it on every HTML route, including errors. It updates static HTML validators when the policy changes so older browser caches receive the new headers, without changing search metadata or disabling caching.
+
 ## Build and deployment policy
 
 `PUBLIC_SITE_URL` is one exact origin shared by Astro's `site`, metadata, sitemaps and Jobs URLs. The default points to START Berlin's existing public domain. It does not establish a V2 deployment. `trailingSlash: 'never'` aligns internal routes with canonicals. The root URL retains its required `/`.

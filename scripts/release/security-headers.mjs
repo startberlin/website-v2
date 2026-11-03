@@ -1,3 +1,5 @@
+import { securityPolicyVersion } from '../../src/lib/security/policy-version.mjs';
+
 // Verify the HTTP contract independently of the policy used to generate headers.
 export function assertSecurityHeaders(headers, path) {
   const csp = headers.get('content-security-policy') || '';
@@ -15,4 +17,9 @@ export function assertSecurityHeaders(headers, path) {
   for (const permission of ['camera=()', 'microphone=()', 'geolocation=()']) {
     if (!permissions.includes(permission)) throw new Error(`${path}: missing permission restriction ${permission}.`);
   }
+}
+
+export function assertSecurityPolicyVersion(html, path) {
+  const markers = [...html.matchAll(/<meta\b[^>]*data-security-policy="([a-f0-9]{64})"[^>]*>/g)];
+  if (markers.length !== 1 || markers[0][1] !== securityPolicyVersion) throw new Error(`${path}: HTML must change with the current security policy to refresh cached headers.`);
 }

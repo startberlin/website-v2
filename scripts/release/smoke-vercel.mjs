@@ -3,12 +3,25 @@ import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join, resolve, relative, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { assertSecurityHeaders } from './security-headers.mjs';
+import { assertSecurityHeaders, assertSecurityPolicyVersion } from './security-headers.mjs';
 
 const output = JSON.parse(await readFile('.vercel/output/config.json', 'utf8'));
 const first = output.routes?.[0];
 if (first?.src !== '/.*' || first.continue !== true || first.dest || first.status || first.has || first.missing || first.methods) throw new Error('Global security headers must precede all Vercel filesystem, redirect and error routes.');
 assertSecurityHeaders(new Headers(first.headers), 'Vercel global route');
+let htmlCount = 0;
+async function verifyStaticHtml(directory) {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = join(directory, entry.name);
+    if (entry.isDirectory()) await verifyStaticHtml(path);
+    else if (entry.name.endsWith('.html')) {
+      assertSecurityPolicyVersion(await readFile(path, 'utf8'), path);
+      htmlCount++;
+    }
+  }
+}
+await verifyStaticHtml('.vercel/output/static');
+if (!htmlCount) throw new Error('Vercel static HTML was not verified.');
 
 // Import the function away from checkout dependencies, as Vercel does.
 const root = resolve('.vercel/output/functions');
