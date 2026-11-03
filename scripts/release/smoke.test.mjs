@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { smoke } from './smoke.mjs';
+import { applySecurityHeaders } from '../../src/lib/security/headers.mjs';
 
 test('public-domain verification detects guest protection despite valid automation access', async () => {
   const originalFetch = globalThis.fetch;
@@ -33,7 +34,7 @@ test('a ready deployment cannot pass when its actual Node runtime differs from C
       let requests = 0;
       globalThis.fetch = async () => {
         requests++;
-        return Response.json({ ok: true, commit: null, tree: null, nodeMajor, deploymentCredentialsExposed: false }, { headers: { 'Cache-Control': 'no-store' } });
+        return Response.json({ ok: true, commit: null, tree: null, nodeMajor, deploymentCredentialsExposed: false }, { headers: applySecurityHeaders(new Headers({ 'Cache-Control': 'no-store' })) });
       };
       await assert.rejects(smoke('http://127.0.0.1'), /Node major differs/);
       assert.equal(requests, 1, 'Reject incompatible runtime before accepting pages or assigning domains.');

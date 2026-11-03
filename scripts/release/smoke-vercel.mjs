@@ -3,6 +3,12 @@ import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { join, resolve, relative, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { assertSecurityHeaders } from './security-headers.mjs';
+
+const output = JSON.parse(await readFile('.vercel/output/config.json', 'utf8'));
+const first = output.routes?.[0];
+if (first?.src !== '/.*' || first.continue !== true || first.dest || first.status || first.has || first.missing || first.methods) throw new Error('Global security headers must precede all Vercel filesystem, redirect and error routes.');
+assertSecurityHeaders(new Headers(first.headers), 'Vercel global route');
 
 // Import the function away from checkout dependencies, as Vercel does.
 const root = resolve('.vercel/output/functions');
