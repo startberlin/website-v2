@@ -67,6 +67,8 @@ jobs:
         with:
           persist-credentials: false
       - uses: ./.github/actions/setup
+      - name: Audit production and build dependencies
+        run: pnpm audit --audit-level=low
       - run: node scripts/ci/run.mjs tests
         env:
           CI_PLAN: ${{ needs.plan.outputs.plan }}
