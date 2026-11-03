@@ -116,9 +116,6 @@ The flag was then set back to `false` and `git diff` confirmed the data module u
 - **Screen readers:** no spoken screen-reader audit was done.
 - **Production:** no production or preview deployment, live indexing, Search Console or field Core Web Vitals.
 - **Shared PageHero, pre-existing:** at 200% text on 320 px the hero title breaks inside a word (for example "BERLI-N") on every route that uses it. This predates this change; it causes no overflow.
-- **People:**
-  - Photo consent for the people shown in the stage photos still needs confirmation.
-  - Confirm the portrait file matches: Lion_Herbert is Lion Abboud Herbert, Soenke_Peters is Sönke Peters.
 
 ## Security (SECURITY.md §19)
 
@@ -166,4 +163,3 @@ The flag was then set back to `false` and `git diff` confirmed the data module u
      - Recommendation: a separate dependency update PR.
 6. **Residual risks and recommendations.**
    - **Game embed:** when it is integrated, review the sandbox permissions, the exact `postMessage` origin allow-list and a CSP `frame-src` if one is added.
-   - **Consent:** confirm photo consent before release.
