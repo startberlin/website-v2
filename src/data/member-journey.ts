@@ -84,10 +84,10 @@ export const stages: JourneyStage[] = [
 		title: 'Departments',
 		intro: "Finish the Sprint and you're officially a STARTie. Contribute meaningful work inside one of our departments and shape the direction of START Berlin alongside the people around you.",
 		points: [
-			'Become part of one of our five departments: Events, Partnerships, Operations & Digital, People and Growth',
+			'Become part of one of our five departments: Events, Partnerships, Operations & Digital, People or Growth',
 			'Work on real projects with visible impact inside and outside START',
 			'Learn useful startup skills in practice',
-			'Contribute for one full year, with at least six months based in Berlin',
+			'Contribute for one full year',
 		],
 		photo: { src: cofounderNight, alt: 'Four people at the START Berlin Co-Founder Matching Night in front of the event screen' },
 	},
