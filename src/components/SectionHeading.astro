@@ -1,0 +1,56 @@
+---
+interface Props {
+	id: string;
+	level?: 2 | 3;
+	eyebrow?: string;
+}
+
+const { id, level = 2, eyebrow } = Astro.props;
+const Heading = `h${level}` as 'h2' | 'h3';
+---
+
+<div class="section-heading">
+	{eyebrow && <p class="section-heading__eyebrow">{eyebrow}</p>}
+	<Heading id={id} class="section-heading__title"><slot /></Heading>
+	{Astro.slots.has('lead') && <p class="section-heading__lead"><slot name="lead" /></p>}
+</div>
+
+<style>
+	.section-heading {
+		margin-bottom: var(--space-12);
+	}
+
+	.section-heading__eyebrow {
+		margin: 0 0 var(--space-4);
+		color: var(--color-accent);
+		font-size: var(--text-caption);
+		font-weight: var(--weight-bold);
+		letter-spacing: var(--tracking-eyebrow);
+		line-height: 1.25rem;
+		text-transform: uppercase;
+	}
+
+	.section-heading__title {
+		margin: 0;
+		font-size: var(--type-section);
+		font-weight: var(--weight-display);
+		letter-spacing: -0.025em;
+		line-height: 0.95;
+		text-transform: uppercase;
+		hyphens: auto;
+	}
+
+	.section-heading__title :global([data-outline]) {
+		-webkit-text-stroke: 2px var(--color-white);
+		-webkit-text-fill-color: transparent;
+		paint-order: stroke fill;
+	}
+
+	.section-heading__lead {
+		max-width: var(--layout-reading);
+		margin: var(--space-6) 0 0;
+		color: var(--text-muted);
+		font-size: var(--text-lg);
+		line-height: var(--leading-copy);
+	}
+</style>
