@@ -26,6 +26,7 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: package.json
+          check-latest: true
       - name: Require a completed staging deployment, including its domain verification
         run: |
           node --input-type=module -e 'import {verifyStagingRun} from "./scripts/release/verify-github.mjs"; await verifyStagingRun(process.env.STAGING_RUN_ID, process.env.STAGED_SHA);'
