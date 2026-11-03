@@ -3,6 +3,7 @@
 ## Before editing
 
 - Read [README.md](README.md) and [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md). Inspect the affected shared component.
+- Read [docs/SECURITY.md] for the security guidelines to follow.
 - Read [docs/SEO.md](docs/SEO.md) before adding or changing pages, metadata, public URLs or crawler rules.
 - Check `git status --short --branch` and preserve existing work.
 - Develop in `src/`. `first-draft/` and `design/handoff/` are historical references.
@@ -10,7 +11,7 @@
 
 ## Commands
 
-Run from the repository root. Use Node.js 22.13+ within 22.x and the pinned dependencies. Keep the package engine's major aligned with CI and the Vercel project; hosted health and packaged-function checks reject a runtime mismatch.
+Run from the repository root. Use Node.js 22.23.4+ within 22.x and the pinned dependencies. Keep the package engine's major aligned with CI and the Vercel project; hosted health and packaged-function checks reject a runtime mismatch.
 
 ```sh
 CI=true pnpm install --frozen-lockfile

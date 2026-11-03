@@ -23,6 +23,11 @@ export const pageDefinitions = {
     description: 'Get to know a START Berlin board member. Explore their selected experience, education and projects, and find their contact links.',
     canonicalPath: null, noindex: true, pageType: 'AboutPage',
   },
+  '/member-journey': {
+    title: 'Member journey: from application to alumni',
+    description: 'Follow the five stages of START Berlin membership, from application and the START Sprint to departments, active membership and alumni. Meet our departments and read member stories.',
+    canonicalPath: '/member-journey',
+  },
   '/jobs': {
     title: 'Startup jobs and internships',
     description: 'Explore open roles from companies in the START Berlin network. Find startup jobs, internships and working student positions, and apply directly with the employer.',

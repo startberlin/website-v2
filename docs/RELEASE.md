@@ -35,9 +35,11 @@ The build embeds the Git commit and source-tree identities in `/api/health`, wit
 
 CI plans verification from the changed files and test imports. It discovers new test files and package.json check/test scripts automatically. The built-server smoke pass discovers current Astro pages from src/pages, so a newly implemented page joins route verification without a fixed URL list. Parameterised pages need their domain fixtures and behaviour tests. Documentation-only changes skip website builds; dependency changes and releases run the complete suite. The final Required checks status always reports whether the selected plan succeeded.
 
-The Vercel build also starts the packaged Node function from an isolated temporary directory and verifies its embedded health identity, without access to checkout dependencies. This catches runtime imports that a build alone misses. The adapter is pinned to 11.0.12 while 11.0.13 has a [confirmed runtime bundler-import regression](https://github.com/withastro/astro/issues/18328); future adapter updates must pass the same packaged-function check. HTTP smoke uses the full deployment URL and does not pass `--non-interactive` to `vercel curl`, because CLI 63.1.2 forwards that option to native curl.
+The Vercel build also starts the packaged Node function from an isolated temporary directory and verifies its embedded health identity, without access to checkout dependencies. This catches runtime imports that a build alone misses. The adapter is pinned to 11.0.16 and passes this check. Version 11.0.13 had a [confirmed runtime bundler-import regression](https://github.com/withastro/astro/issues/18328); future adapter updates must pass the same packaged-function check. HTTP smoke uses the full deployment URL and does not pass `--non-interactive` to `vercel curl`, because CLI 63.1.2 forwards that option to native curl.
 
 ## Activation
+
+After assigning a stable public alias, health may briefly come from its previous deployment. Guest verification makes at most eight health reads, two seconds apart, and still requires the exact expected commit/tree. Immutable deployment URLs fail a source mismatch immediately. Invalid health, cached responses and transport/authentication failures are never accepted by this waiting window.
 
 The workflows start disabled. Keep `DEPLOYMENTS_ENABLED=false` and `PRODUCTION_RELEASE_ENABLED=false` until the following configuration is verified. A true flag alone cannot bypass the GitHub or Vercel configuration guards.
 
