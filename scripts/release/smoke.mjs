@@ -2,7 +2,7 @@ import { pathToFileURL } from 'node:url';
 import { pageRoutes } from './routes.mjs';
 import { vercelGet } from './http.mjs';
 import { deploymentHealth } from './identity.mjs';
-import { assertSecurityHeaders } from './security-headers.mjs';
+import { assertSecurityHeaders, assertSecurityPolicyVersion } from './security-headers.mjs';
 
 export async function smoke(base, { commit = null, tree = null, jobs = 'optional', preview = false, publicAccess = false } = {}) {
   const origin = new URL(base);
@@ -31,13 +31,15 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
     const response = await get(path, path === '/jobs' && jobs !== 'required' ? [200, 503] : [200]);
     if (path === '/jobs') jobsAvailable = response.status === 200;
     const html = await response.text();
+    assertSecurityPolicyVersion(html, path);
     if ((html.match(/<main\b/g) || []).length !== 1 || (html.match(/<h1\b/g) || []).length !== 1) throw new Error(`${path}: missing or duplicated page landmarks.`);
   }
   for (const [path, destination] of [['/legal/legal-notice.html', '/legal-notice'], ['/legal/privacy.html', '/privacy-policy']]) {
     const response = await get(path, [301]);
     if (new URL(response.headers.get('location'), origin).pathname !== destination) throw new Error(`${path}: incorrect legacy redirect.`);
   }
-  await get('/security-smoke-missing-route', [404]);
+  const missing = await get('/security-smoke-missing-route', [404]);
+  assertSecurityPolicyVersion(await missing.text(), '404');
   console.log(`Smoke checks passed for ${routes.length} current pages. Jobs: ${jobsAvailable ? 'available' : 'controlled unavailable state (not backend acceptance)'}.`);
   return { jobsAvailable };
 }

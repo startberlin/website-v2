@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { applySecurityHeaders } from './headers.mjs';
-import { assertSecurityHeaders } from '../../../scripts/release/security-headers.mjs';
+import { assertSecurityHeaders, assertSecurityPolicyVersion } from '../../../scripts/release/security-headers.mjs';
+import { securityPolicyVersion } from './policy-version.mjs';
 
 test('baseline policy protects responses without changing cache or indexing decisions', () => {
   const headers = applySecurityHeaders(new Headers({ 'Cache-Control': 'public, max-age=31536000, immutable', 'X-Robots-Tag': 'noindex, nofollow' }));
@@ -31,4 +32,12 @@ test('release checks reject each missing security control and permissive variant
     permissive.set(name, value);
     assert.throws(() => assertSecurityHeaders(permissive, '/join'));
   }
+});
+
+test('release checks reject HTML that could retain an older cached security policy', () => {
+  assert.throws(() => assertSecurityPolicyVersion('<meta name="generator" content="Astro">', '/join'));
+  assert.throws(() => assertSecurityPolicyVersion(`<meta data-security-policy="${'0'.repeat(64)}">`, '/join'));
+  const current = `<meta name="generator" data-security-policy="${securityPolicyVersion}">`;
+  assert.doesNotThrow(() => assertSecurityPolicyVersion(current, '/join'));
+  assert.throws(() => assertSecurityPolicyVersion(current + current, '/join'));
 });
