@@ -41,7 +41,6 @@ export interface MemberStory {
 	name: string;
 	role: string;
 	quote: string;
-	linkedin?: string;
 	portrait?: ImageMetadata;
 	featured?: boolean;
 }
@@ -176,7 +175,6 @@ export const memberStories: MemberStory[] = [
 	{
 		name: 'Mahir Isikli',
 		role: 'President 23/24',
-		linkedin: 'https://www.linkedin.com/in/mahir-isikli/',
 		portrait: mahirIsikli,
 		quote: "START was the best learning environment I've ever been in. At 23, I led a team, made mistakes, and actually learned how to get things done – not just alone, but with others.",
 		featured: true,
@@ -184,7 +182,6 @@ export const memberStories: MemberStory[] = [
 	{
 		name: 'Anouar Springer',
 		role: 'Head of Partnerships 23/24',
-		linkedin: 'https://www.linkedin.com/in/anouar-springer/',
 		portrait: anouarSpringer,
 		quote: "START Berlin changed everything. I found a community of driven, like-minded people who inspired me to grow both personally and professionally. START opened doors I didn't know existed.",
 	},
