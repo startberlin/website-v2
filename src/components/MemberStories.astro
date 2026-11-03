@@ -1,0 +1,47 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Testimonial from './Testimonial.astro';
+import { memberStories, storiesSection } from '../data/member-journey';
+
+// The featured story leads; the others keep their approved order.
+const orderedStories = [...memberStories.filter((story) => story.featured), ...memberStories.filter((story) => !story.featured)];
+---
+
+<section class="member-stories page-container" id="member-stories" aria-labelledby="member-stories-heading">
+	<SectionHeading id="member-stories-heading">
+		{storiesSection.heading}
+		<Fragment slot="lead">{storiesSection.subheading}</Fragment>
+	</SectionHeading>
+	<ul class="stories">
+		{orderedStories.map((story) => (
+			<li class:list={['stories__item', { 'stories__item--featured': story.featured }]}>
+				<Testimonial {...story} />
+			</li>
+		))}
+	</ul>
+</section>
+
+<style>
+	.member-stories {
+		padding-block: var(--space-16);
+	}
+
+	.stories {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--space-4);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	@media (min-width: 640px) {
+		.stories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.stories__item--featured { grid-column: 1 / -1; }
+	}
+
+	@media (min-width: 1024px) {
+		.member-stories { padding-block: var(--space-24); }
+		.stories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	}
+</style>

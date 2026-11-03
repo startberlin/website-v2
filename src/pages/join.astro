@@ -3,13 +3,14 @@ import Icon from '../components/icons/Icon.astro';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import MemberStories from '../components/MemberStories.astro';
 import groupPhoto from '../assets/hero/hero-1.jpg';
 import teamPhoto from '../assets/hero/hero-3.jpg';
 import audiencePhoto from '../assets/hero/hero-4.jpg';
 import teamFourPhoto from '../assets/join/team-four.jpg';
 import teamLiftingPhoto from '../assets/join/team-lifting.jpg';
 import { pageSeo } from '../lib/seo/pages';
-import { departments, memberStories, membershipFee, storiesSection } from '../data/member-journey';
+import { departments, membershipFee } from '../data/member-journey';
 
 // Flip when a round opens: swaps the status pill and points the main CTA at the
 // application form instead of the talent pool.
@@ -64,12 +65,6 @@ const steps: { title: string; text: string; date?: string }[] = [
 	},
 ];
 
-const initials = (name: string) =>
-	name
-		.split(/\s+/)
-		.map((part) => part[0])
-		.join('')
-		.toUpperCase();
 ---
 
 <Layout seo={pageSeo('/join')}>
@@ -217,34 +212,7 @@ const initials = (name: string) =>
 		</div>
 	</section>
 
-	<section class="section page-container">
-		<div class="section__head">
-			<p class="eyebrow">{storiesSection.subheading}</p>
-			<h2 class="heading">{storiesSection.heading}</h2>
-		</div>
-		<div class="quotes">
-			{
-				memberStories.map((testimonial) => (
-					<figure class="quote">
-						<blockquote class="quote__text">“{testimonial.quote}”</blockquote>
-						<figcaption class="quote__author">
-							<span class="quote__avatar" aria-hidden="true">{initials(testimonial.name)}</span>
-							<span>
-								{testimonial.linkedin ? (
-									<a href={testimonial.linkedin} target="_blank" rel="noopener noreferrer" class="quote__name">
-										{testimonial.name}
-									</a>
-								) : (
-									<span class="quote__name">{testimonial.name}</span>
-								)}
-								<span class="quote__role">{testimonial.role}</span>
-							</span>
-						</figcaption>
-					</figure>
-				))
-			}
-		</div>
-	</section>
+	<MemberStories />
 
 	<section class="closing">
 		<Image src={teamPhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="closing__image" />
@@ -616,68 +584,6 @@ const initials = (name: string) =>
 		margin-top: var(--space-4);
 	}
 
-	/* Testimonials */
-
-	.quotes {
-		display: grid;
-		gap: var(--space-4);
-	}
-
-	.quote {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: var(--space-8);
-		margin: 0;
-		padding: var(--space-8) var(--space-6);
-		background: var(--surface-card);
-		border: var(--border-width) solid var(--border-subtle);
-		border-radius: var(--radius-card);
-	}
-
-	.quote__text {
-		margin: 0;
-		font-size: var(--text-lead);
-		line-height: 1.65;
-	}
-
-	.quote__author {
-		display: flex;
-		align-items: center;
-		gap: 0.875rem;
-	}
-
-	.quote__avatar {
-		display: flex;
-		flex-shrink: 0;
-		align-items: center;
-		justify-content: center;
-		width: 3rem;
-		height: 3rem;
-		border-radius: var(--radius-pill);
-		background: var(--gradient-avatar);
-		border: var(--border-width) solid var(--border-subtle);
-		font-weight: var(--weight-display);
-	}
-
-	.quote__name {
-		display: block;
-		font-weight: var(--weight-bold);
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-label);
-		transition: color var(--duration-fast);
-	}
-
-	a.quote__name:hover {
-		color: var(--color-accent);
-	}
-
-	.quote__role {
-		display: block;
-		font-size: var(--text-sm);
-		color: var(--text-subtle);
-	}
-
 	/* Closing CTAs */
 
 	.closing__shade {
@@ -756,8 +662,7 @@ const initials = (name: string) =>
 			order: -1;
 		}
 
-		.steps,
-		.quotes {
+		.steps {
 			grid-template-columns: repeat(3, 1fr);
 		}
 
