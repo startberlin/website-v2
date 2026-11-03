@@ -72,7 +72,7 @@ test('the page inventory rejects unregistered routes, stale entries and copied m
   assert.match(validatePageInventory(pageDefinitions, routes.filter((route) => route !== '/join')).join('\n'), /join.*no implemented/);
   const copied = { ...pageDefinitions, '/new-page': { ...pageSeo('/join'), canonicalPath: '/new-page' } };
   assert.match(validatePageInventory(copied, [...routes, '/new-page']).join('\n'), /unique title/);
-  assert.deepEqual(sitemapPages().sort(), ['/', '/jobs', '/join', '/legal-notice', '/members', '/privacy-policy',
+  assert.deepEqual(sitemapPages().sort(), ['/', '/jobs', '/join', '/legal-notice', '/member-journey', '/members', '/privacy-policy',
     '/members/antonia-hill', '/members/julia-palm', '/members/kari-pele-streithoff', '/members/tobias-burger',
     '/members/jannik-schaefer', '/members/anna-brinkkoetter', '/members/rhema-tamunoiyowuna', '/members/rocco-yohji-matthew-krippendorff'].sort());
 });
