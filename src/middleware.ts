@@ -1,5 +1,6 @@
 import { defineMiddleware } from 'astro:middleware';
 import { getSiteConfig, isUtilityRoute } from './lib/seo/metadata';
+import { applySecurityHeaders } from './lib/security/headers.mjs';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const response = await next();
@@ -7,14 +8,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const jobboard = pathname === '/jobs' || pathname.startsWith('/jobs/') || pathname.startsWith('/api/jobboard/');
   const preview = !getSiteConfig().indexable;
   const noindex = preview || context.locals.seoNoindex || response.status >= 400 || isUtilityRoute(pathname);
-  if (!jobboard && !noindex) return response;
-  const headers = new Headers(response.headers);
+  const headers = applySecurityHeaders(new Headers(response.headers));
   if (jobboard) {
     headers.set('Cache-Control', 'no-store');
-    headers.set('X-Content-Type-Options', 'nosniff');
-    if (!headers.has('Referrer-Policy')) headers.set('Referrer-Policy', 'strict-origin');
-    headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-    headers.set('Content-Security-Policy', "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'");
   }
   if (noindex) {
     const nofollow = preview || (headers.get('X-Robots-Tag') || '').toLowerCase().split(/[\s,]+/).includes('nofollow');

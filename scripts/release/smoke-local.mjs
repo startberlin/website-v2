@@ -4,6 +4,7 @@ import { once } from 'node:events';
 import { resolve } from 'node:path';
 import { setTimeout } from 'node:timers/promises';
 import { smoke } from './smoke.mjs';
+import { smokeNodeHeaders } from './smoke-node-headers.mjs';
 
 const reservation = createServer();
 reservation.listen(0, '127.0.0.1');
@@ -25,6 +26,7 @@ try {
   }
   if (!ready) throw new Error('Local built server did not start.');
   await smoke(base, { commit: process.env.RELEASE_COMMIT_SHA || null, tree: process.env.RELEASE_TREE_SHA || null });
+  await smokeNodeHeaders(base);
 } finally {
   if (server.exitCode === null) { server.kill('SIGTERM'); await once(server, 'exit'); }
 }

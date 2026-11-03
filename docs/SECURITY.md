@@ -296,3 +296,13 @@ After every security pass (and always after a major feature integration, see Sec
 6. **Residual risks & recommendations**: e.g. key rotation needed, infra settings, monitoring to add.
 
 *Security is continuous: re-audit on every dependency update, feature addition, and infrastructure change.*
+
+## Website implementation, 3 November 2026
+
+`src/lib/security/headers.mjs` owns the shared browser policy. Astro middleware applies it to SSR responses. `scripts/security-adapter.mjs` retains both official adapters and adds enforcement at the Node HTTP boundary and before all Vercel Build Output routing. This covers static-file aliases, assets and early malformed-URL errors as well as ordinary pages and redirects. Node's native handler, standalone startup, TLS and shutdown APIs remain in use. Do not replace these boundaries with prerender-only header maps or Jobs-only middleware.
+
+The policy rejects framing and plugins, limits base URLs and form posts to the same origin, suppresses referrers and disables unused device permissions. It deliberately retains Astro's existing inline scripts/styles and external application links. This is not a nonce/hash-based script CSP. HTTPS and HSTS are supplied by Vercel; the shared policy does not force HTTPS onto the loopback development server. Jobs responses retain `no-store`; hashed assets retain their immutable cache policy. Preview robots controls remain separate.
+
+The dependency fix pins Zod 4.6.7 and patches vulnerable transitive copies of Zod, undici and fast-uri in both package managers. The glob 14.0.2 override is scoped to `@vercel/nft`: its current parent still requests vulnerable glob 13. Remove or revise that override when the parent adopts a safe version. Validate dynamic dependency tracing and the isolated packaged Vercel function when changing it. Node remains on the supported 22.x runtime.
+
+Regression coverage includes oversized Zod containers, encoded URI schemes, aborted filesystem walks and bounded minimatch expansion, with ordinary controls. Release checks enforce the header contract on current pages, redirects and a missing route. Node smoke checks also cover encoded/direct-file aliases, malformed URLs, HEAD and conditional 304 responses, and immutable stylesheets. CI audits production and build dependencies at every severity. An audit finding is a package advisory; it does not by itself establish reachability through an HTTP request.

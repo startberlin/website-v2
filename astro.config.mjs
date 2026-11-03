@@ -6,6 +6,7 @@ import vercel from '@astrojs/vercel';
 import { loadEnvFile } from 'node:process';
 import { resolveSiteConfig } from './src/lib/seo/site.mjs';
 import seoContract from './scripts/check-seo.ts';
+import { withSecurityHeaders } from './scripts/security-adapter.mjs';
 
 // Configuration runs before Astro loads .env. Keep build and runtime origins aligned.
 try { loadEnvFile(new URL('.env', import.meta.url)); }
@@ -21,8 +22,8 @@ export default defineConfig({
   output: 'static',
   session: false,
   adapter: process.env.ASTRO_ADAPTER === 'vercel'
-    ? vercel()
-    : node({ mode: 'standalone' }),
+    ? withSecurityHeaders(vercel(), 'vercel')
+    : withSecurityHeaders(node({ mode: 'standalone' }), 'node'),
   integrations: [react(), seoContract],
   vite: {
     define: {

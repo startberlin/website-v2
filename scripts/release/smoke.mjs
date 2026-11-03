@@ -2,6 +2,7 @@ import { pathToFileURL } from 'node:url';
 import { pageRoutes } from './routes.mjs';
 import { vercelGet } from './http.mjs';
 import { deploymentHealth } from './identity.mjs';
+import { assertSecurityHeaders } from './security-headers.mjs';
 
 export async function smoke(base, { commit = null, tree = null, jobs = 'optional', preview = false, publicAccess = false } = {}) {
   const origin = new URL(base);
@@ -16,6 +17,7 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
       ? await vercelGet(target)
       : await fetch(target, { headers, redirect: 'manual', signal: AbortSignal.timeout(30_000) });
     if (!expected.includes(response.status)) throw new Error(`${path}: expected ${expected.join('/')} but got ${response.status}.`);
+    assertSecurityHeaders(response.headers, path);
     if (preview && response.headers.get('x-robots-tag') !== 'noindex, nofollow') throw new Error(`${path}: preview indexing is not blocked.`);
     return response;
   }
@@ -35,6 +37,7 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
     const response = await get(path, [301]);
     if (new URL(response.headers.get('location'), origin).pathname !== destination) throw new Error(`${path}: incorrect legacy redirect.`);
   }
+  await get('/security-smoke-missing-route', [404]);
   console.log(`Smoke checks passed for ${routes.length} current pages. Jobs: ${jobsAvailable ? 'available' : 'controlled unavailable state (not backend acceptance)'}.`);
   return { jobsAvailable };
 }
