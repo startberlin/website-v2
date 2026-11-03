@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import JourneyStages from '../components/member-journey/JourneyStages.astro';
+import DepartmentTabs from '../components/member-journey/DepartmentTabs.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Testimonial from '../components/Testimonial.astro';
+import { pageSeo } from '../lib/seo/pages';
+import { departments, departmentsSection, game, hero, memberStories, stages, storiesSection } from '../data/member-journey';
+
+// No call to action while applications are closed.
+
+// The featured story leads; the others keep their approved order.
+const orderedStories = [...memberStories.filter((story) => story.featured), ...memberStories.filter((story) => !story.featured)];
+---
+
+<Layout seo={pageSeo('/member-journey')}>
+	<PageHero>
+		<Fragment slot="title">
+			<span data-hero-line data-hero-accent>{hero.accent}</span>{' '}
+			<span data-hero-line data-hero-outline>{hero.outline}</span>
+		</Fragment>
+	</PageHero>
+
+	<JourneyStages stages={stages} />
+
+	<section class="section page-container" id="departments" aria-labelledby="departments-heading">
+		<SectionHeading id="departments-heading">
+			{departmentsSection.headingSolid}{' '}<span data-outline>{departmentsSection.headingOutline}</span>
+			<Fragment slot="lead">{departmentsSection.subheading}</Fragment>
+		</SectionHeading>
+		<DepartmentTabs departments={departments} />
+	</section>
+
+	{/* Rendered only once the shared game is integrated; see game in src/data/member-journey.ts. */}
+	{game.enabled && <section id={game.id} class="game page-container"></section>}
+
+	<section class="section page-container" id="member-stories" aria-labelledby="member-stories-heading">
+		<SectionHeading id="member-stories-heading">
+			{storiesSection.heading}
+			<Fragment slot="lead">{storiesSection.subheading}</Fragment>
+		</SectionHeading>
+		<ul class="stories">
+			{orderedStories.map((story) => (
+				<li class:list={['stories__item', { 'stories__item--featured': story.featured }]}>
+					<Testimonial {...story} />
+				</li>
+			))}
+		</ul>
+	</section>
+</Layout>
+
+<style>
+	.section {
+		padding-block: var(--space-16);
+	}
+
+	.stories {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--space-4);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.game {
+		min-height: 20rem;
+	}
+
+	@media (min-width: 640px) {
+		.stories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.stories__item--featured { grid-column: 1 / -1; }
+	}
+
+	@media (min-width: 1024px) {
+		.section { padding-block: var(--space-24); }
+		.stories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	}
+</style>
