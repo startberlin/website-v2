@@ -26,3 +26,11 @@ Both pages use "€40 per year, paid annually" from the same exported value. The
 This is local verification. No Safari, Firefox, spoken screen-reader pass, real-device zoom, field Core Web Vitals or production indexing is established. HTTP access to a form does not establish delivery. The original PR verification remains dated evidence for its recorded initial source.
 
 The existing dependency advisories and missing general static-page security headers are separate review concerns. This content follow-up does not change their controls.
+
+## Dependency follow-up
+
+The combined dependency updates pass frozen pnpm installation and npm lockfile validation. All 95 tests pass with Node.js 22.23.4. Typecheck retains zero errors and zero warnings, with six existing hints. The Node build and isolated Vercel packaged-function startup pass.
+
+The 36 route/viewport/JavaScript cases and the enlarged-text checks were repeated against the combined updates. The Jobboard submission form also passes hydration, conditional salary fields and country selection. Invalid submission preserves the company name and displays field errors. The test blocks all non-GET requests; it observed zero outgoing write requests and zero page errors.
+
+The production-dependency audit reports 15 advisories: five high, eight moderate and two low. These affect fast-uri, glob, minimatch, undici and zod. Package advisory severity does not establish reachability through a deployed website request. Remaining dependency findings require separate triage; these merges do not establish an audit with no findings.
