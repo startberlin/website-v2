@@ -35,7 +35,7 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 		<div class="page-hero__copy">
 			<slot name="status" />
 			<h1 class="page-hero__title"><slot name="title" /></h1>
-			<p class="page-hero__text"><slot name="description" /></p>
+			{Astro.slots.has('description') && <p class="page-hero__text"><slot name="description" /></p>}
 			<slot name="actions" />
 		</div>
 		{Astro.slots.has('aside') && <div class="page-hero__aside"><slot name="aside" /></div>}
@@ -98,6 +98,11 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 	}
 	.page-hero__title :global([data-hero-line]) { display: block; }
 	.page-hero__title :global([data-hero-accent]) { color: var(--color-accent); }
+	.page-hero__title :global([data-hero-outline]) {
+		-webkit-text-stroke: 2px var(--color-white);
+		-webkit-text-fill-color: transparent;
+		paint-order: stroke fill;
+	}
 	.page-hero--landing .page-hero__title { font-size: var(--type-hero-landing); }
 	.page-hero__text {
 		max-width: 32rem;

@@ -1,6 +1,7 @@
 import { pathToFileURL } from 'node:url';
 import { pageRoutes } from './routes.mjs';
 import { vercelGet } from './http.mjs';
+import { deploymentHealth } from './identity.mjs';
 
 export async function smoke(base, { commit = null, tree = null, jobs = 'optional', preview = false, publicAccess = false } = {}) {
   const origin = new URL(base);
@@ -18,9 +19,8 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
     if (preview && response.headers.get('x-robots-tag') !== 'noindex, nofollow') throw new Error(`${path}: preview indexing is not blocked.`);
     return response;
   }
-  const health = await get('/api/health', [200]);
-  const identity = await health.json();
-  if (identity.ok !== true || identity.commit !== commit || identity.tree !== tree || !health.headers.get('cache-control')?.includes('no-store')) throw new Error('Deployment identity differs from the tested source, or the health response is cached.');
+  const stableAlias = ['staging.start-berlin.com', 'www.start-berlin.com'].includes(origin.hostname);
+  const identity = await deploymentHealth(() => get('/api/health', [200]), { commit, tree }, { waitForSource: publicAccess && stableAlias });
   if (identity.deploymentCredentialsExposed !== false) throw new Error('Deployment-management credentials must not be present in application runtime.');
   if (identity.nodeMajor !== Number(process.versions.node.split('.')[0])) throw new Error('Deployment Node major differs from the tested CI runtime.');
   let jobsAvailable = false;
