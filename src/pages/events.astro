@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { pageSeo } from '../lib/seo/pages';
+import { lumaCalendar } from '../lib/luma';
+import { formats, formatsSection, hero, membersOnly, pastEvents } from '../data/events';
+---
+
+<Layout seo={pageSeo('/events')}>
+	<PageHero>
+		<Fragment slot="title">{hero.title}</Fragment>
+		<Fragment slot="description">{hero.description}</Fragment>
+	</PageHero>
+
+	<section class="section page-container" id="formats" aria-labelledby="formats-heading">
+		<SectionHeading id="formats-heading">
+			{formatsSection.headingSolid}{' '}<span data-outline>{formatsSection.headingOutline}</span>
+		</SectionHeading>
+		<div class="formats">
+			{formats.map((format) => (
+				<article class="format" id={format.id}>
+					<h3 class="format__title">{format.title}</h3>
+					<p class="format__text">{format.text}</p>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="section page-container" id="members-only" aria-labelledby="members-only-heading">
+		<div class="members-card">
+			<SectionHeading id="members-only-heading">
+				{membersOnly.heading}
+				<Fragment slot="lead">{membersOnly.text}</Fragment>
+			</SectionHeading>
+			<a class="button" href={membersOnly.link.href}>{membersOnly.link.label}</a>
+		</div>
+	</section>
+
+	<section class="section page-container" id="past-events" aria-labelledby="past-events-heading">
+		<SectionHeading id="past-events-heading">
+			{pastEvents.heading}
+			<Fragment slot="lead">{pastEvents.lead}</Fragment>
+		</SectionHeading>
+		<a class="button button--outline" href={lumaCalendar.pastEventsUrl} target="_blank" rel="noopener noreferrer">
+			{pastEvents.linkLabel}<span class="sr-only"> (opens in a new tab)</span>
+		</a>
+	</section>
+</Layout>
+
+<style>
+	.section {
+		padding-block: var(--space-16);
+	}
+
+	.formats {
+		display: grid;
+		gap: var(--space-12);
+	}
+
+	.format {
+		min-width: 0;
+	}
+
+	.format__title {
+		margin: 0 0 var(--space-4);
+		font-size: var(--text-3xl);
+		font-weight: var(--weight-display);
+		letter-spacing: -0.025em;
+		line-height: 0.95;
+		text-transform: uppercase;
+		hyphens: auto;
+	}
+
+	.format__text {
+		max-width: var(--layout-reading);
+		margin: 0;
+		color: var(--text-muted);
+		font-size: var(--text-lg);
+		line-height: var(--leading-copy);
+	}
+
+	/* Distinguished by its surface and border alone, as in the featured Testimonial. */
+	.members-card {
+		padding: var(--space-8) var(--space-6);
+		border: var(--border-width) solid var(--border-accent);
+		border-radius: var(--radius-card);
+		background: var(--surface-accent);
+	}
+
+	@media (min-width: 768px) {
+		.members-card { padding: var(--space-12); }
+	}
+
+	@media (min-width: 1024px) {
+		.section { padding-block: var(--space-24); }
+		.formats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); }
+	}
+</style>
