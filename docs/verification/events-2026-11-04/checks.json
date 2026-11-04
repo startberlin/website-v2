@@ -1,0 +1,521 @@
+{
+ "date": "2026-11-04",
+ "node": "v22.23.4",
+ "pnpm": "11.25.0",
+ "browser": {
+  "viewports": [
+   {
+    "viewport": "320x640",
+    "js": true,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 1,
+    "frameH": 512,
+    "errors": 0
+   },
+   {
+    "viewport": "390x844",
+    "js": true,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 1,
+    "frameH": 675,
+    "errors": 0
+   },
+   {
+    "viewport": "768x1024",
+    "js": true,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 3,
+    "frameH": 819,
+    "errors": 0
+   },
+   {
+    "viewport": "1024x768",
+    "js": true,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 3,
+    "frameH": 614,
+    "errors": 0
+   },
+   {
+    "viewport": "1280x800",
+    "js": true,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 3,
+    "pastCols": 5,
+    "frameH": 640,
+    "errors": 0
+   },
+   {
+    "viewport": "1440x900",
+    "js": true,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 3,
+    "pastCols": 5,
+    "frameH": 720,
+    "errors": 0
+   },
+   {
+    "viewport": "1920x1080",
+    "js": true,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 3,
+    "pastCols": 5,
+    "frameH": 864,
+    "errors": 0
+   },
+   {
+    "viewport": "844x390",
+    "js": true,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 3,
+    "frameH": 384,
+    "errors": 0
+   },
+   {
+    "viewport": "1180x820",
+    "js": true,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 3,
+    "pastCols": 5,
+    "frameH": 656,
+    "errors": 0
+   },
+   {
+    "viewport": "320x640",
+    "js": false,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 1,
+    "frameH": 512,
+    "errors": 0
+   },
+   {
+    "viewport": "390x844",
+    "js": false,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 1,
+    "frameH": 675,
+    "errors": 0
+   },
+   {
+    "viewport": "768x1024",
+    "js": false,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 3,
+    "frameH": 819,
+    "errors": 0
+   },
+   {
+    "viewport": "1024x768",
+    "js": false,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 3,
+    "frameH": 614,
+    "errors": 0
+   },
+   {
+    "viewport": "1280x800",
+    "js": false,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 3,
+    "pastCols": 5,
+    "frameH": 640,
+    "errors": 0
+   },
+   {
+    "viewport": "1440x900",
+    "js": false,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 3,
+    "pastCols": 5,
+    "frameH": 720,
+    "errors": 0
+   },
+   {
+    "viewport": "1920x1080",
+    "js": false,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 3,
+    "pastCols": 5,
+    "frameH": 864,
+    "errors": 0
+   },
+   {
+    "viewport": "844x390",
+    "js": false,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 1,
+    "pastCols": 3,
+    "frameH": 384,
+    "errors": 0
+   },
+   {
+    "viewport": "1180x820",
+    "js": false,
+    "status": 200,
+    "overflow": 0,
+    "h1": 1,
+    "outside": 0,
+    "images": 9,
+    "imagesOk": 9,
+    "formatCols": 3,
+    "pastCols": 5,
+    "frameH": 656,
+    "errors": 0
+   }
+  ],
+  "heroContrast": {
+   "320x640": {
+    "title": 15.03,
+    "text": 8.71
+   },
+   "390x844": {
+    "title": 16.42,
+    "text": 9.77
+   },
+   "768x1024": {
+    "title": 11.85,
+    "text": 7.39
+   },
+   "1024x768": {
+    "title": 12.3,
+    "text": 8.74
+   },
+   "1280x800": {
+    "title": 12.85,
+    "text": 9.1
+   },
+   "1440x900": {
+    "title": 13.2,
+    "text": 9.48
+   },
+   "1920x1080": {
+    "title": 12.33,
+    "text": 10.15
+   },
+   "844x390": {
+    "title": 13.14,
+    "text": 8.71
+   },
+   "1180x820": {
+    "title": 12.48,
+    "text": 9.33
+   }
+  },
+  "calendar": {
+   "loaded": {
+    "linkVisible": true,
+    "statusText": "The calendar is loading from Luma. You can also view it directly on Luma.",
+    "frameText": "No Upcoming Events Check back later for new events.",
+    "frameHeightStable": true,
+    "frameHeight": 720,
+    "cls": 0,
+    "errors": 0
+   },
+   "slow": {
+    "linkVisible": true,
+    "statusText": "The calendar is loading from Luma. You can also view it directly on Luma.",
+    "frameText": "(no frame document)",
+    "frameHeightStable": true,
+    "frameHeight": 720,
+    "cls": 0,
+    "errors": 0
+   },
+   "blocked": {
+    "linkVisible": true,
+    "statusText": "The calendar is loading from Luma. You can also view it directly on Luma.",
+    "frameText": "(no frame document)",
+    "frameHeightStable": true,
+    "frameHeight": 720,
+    "cls": 0,
+    "errors": 0
+   },
+   "nojs": {
+    "linkVisible": true,
+    "statusText": "The calendar is loading from Luma. You can also view it directly on Luma.",
+    "frameText": "(empty)",
+    "frameHeightStable": true,
+    "frameHeight": 720,
+    "cls": null,
+    "errors": 0
+   }
+  },
+  "keyboard": {
+   "1440x900": {
+    "stops": 9,
+    "cardStops": 5,
+    "allVisible": true,
+    "order": [
+     "luma-events__link: View calendar on Luma (opens in a new tab)",
+     "iframe (calendar): Upcoming public events hosted by START Berlin",
+     "button: Explore the Member Journey",
+     "past-card: Qonto x START Berlin21 October 2026 (opens in a ne",
+     "past-card: START Berlin Founders Talk19 October 2026 (opens i",
+     "past-card: MEET START: 5K RUN18 October 2026 (opens in a new ",
+     "past-card: Startup Visit: Procuros14 October 2026 (opens in a",
+     "past-card: From Idea to Impact: Meet 3 START Founders23 April",
+     "button: View past events on Luma (opens in a new tab)"
+    ]
+   },
+   "390x844": {
+    "stops": 9,
+    "cardStops": 5,
+    "allVisible": true,
+    "order": [
+     "luma-events__link: View calendar on Luma (opens in a new tab)",
+     "iframe (calendar): Upcoming public events hosted by START Berlin",
+     "button: Explore the Member Journey",
+     "past-card: Qonto x START Berlin21 October 2026 (opens in a ne",
+     "past-card: START Berlin Founders Talk19 October 2026 (opens i",
+     "past-card: MEET START: 5K RUN18 October 2026 (opens in a new ",
+     "past-card: Startup Visit: Procuros14 October 2026 (opens in a",
+     "past-card: From Idea to Impact: Meet 3 START Founders23 April",
+     "button: View past events on Luma (opens in a new tab)"
+    ]
+   }
+  },
+  "text200": [
+   {
+    "width": 320,
+    "overflow": 0,
+    "outside": 0,
+    "clipped": 0
+   },
+   {
+    "width": 768,
+    "overflow": 0,
+    "outside": 0,
+    "clipped": 0
+   },
+   {
+    "width": 1280,
+    "overflow": 0,
+    "outside": 0,
+    "clipped": 0
+   }
+  ],
+  "reducedMotion": {
+   "elementsWithTransitionOrAnimation": 0
+  },
+  "pixel": {
+   "identical": 54,
+   "total": 54,
+   "differing": []
+  },
+  "header": {
+   "href": "/events",
+   "status": 200
+  },
+  "contrastTokens": {
+   "card title (white on --surface-card)": 19.27,
+   "card date (--text-muted on --surface-card)": 9.48,
+   "calendar status (--text-muted on --surface-card)": 9.48,
+   "calendar link (cyan on navy)": 9.52,
+   "members card lead (--text-muted on --surface-accent)": 9.09,
+   "format text (--text-muted on navy)": 9.72
+  }
+ },
+ "route": "/events",
+ "builds": {
+  "preview": ".astro/ci-node",
+  "indexable": ".astro/events-indexable (PUBLIC_SITE_URL=https://www.start-berlin.com SITE_INDEXABLE=true)",
+  "vercel": ".astro/vercel-build",
+  "pageHeroBaseline": ".astro/pagehero-baseline-events (built from a630633, before the PageHero change)"
+ },
+ "commands": {
+  "CI=true pnpm install --frozen-lockfile": "pass, already up to date",
+  "check:design": "pass, 31 stylesheets/blocks, 135 defined custom properties",
+  "check:seo": "pass, 13 HTML route templates",
+  "test:seo": "9 pass, 0 fail",
+  "typecheck": "128 files, 0 errors, 0 warnings, 6 existing hints in src/content.config.ts and src/lib/jobboard/contracts.ts",
+  "test:jobboard": "47 pass, 0 fail",
+  "test:release": "28 pass, 0 fail",
+  "pnpm test": "104 pass, 0 fail",
+  "test:dependencies": "11 pass, 0 fail",
+  "astro build --outDir .astro/ci-node": "pass",
+  "smoke:local -- .astro/ci-node": "pass, 10 current pages including /events; Jobs controlled unavailable state (not backend acceptance); Node aliases, malformed URLs, HEAD, 304 and immutable assets keep security headers",
+  "build:vercel": "pass, /events emitted",
+  "pnpm audit": "no known vulnerabilities"
+ },
+ "seo": {
+  "indexable": {
+   "status": 200,
+   "title": "Events: founder talks, startup visits and workshops | START Berlin",
+   "canonical": "https://www.start-berlin.com/events",
+   "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+   "sitemapPagesUrls": 16,
+   "eventsInSitemap": true,
+   "robotsTxt": "User-agent: * / Allow: / / Sitemap: https://www.start-berlin.com/sitemap.xml",
+   "jsonLdTypes": [
+    "WebPage",
+    "WebSite",
+    "Organization",
+    "ImageObject"
+   ],
+   "eventStructuredData": false
+  },
+  "preview": {
+   "status": 200,
+   "robots": "noindex, follow",
+   "sitemapPagesUrls": 0,
+   "robotsTxt": "User-agent: * / Disallow: /"
+  }
+ },
+ "securityHeaders": {
+  "Content-Security-Policy": "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'",
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "no-referrer",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+  "X-Frame-Options": "DENY",
+  "srcLibSecurityChanged": false
+ },
+ "lumaProbe": {
+  "date": "2026-11-04",
+  "method": "Guest context, embed inside a test page served with the shared securityHeaders",
+  "sandboxVariants": {
+   "none": "loads, 0 console errors",
+   "allow-scripts": "Cloudflare challenge and data requests fail (CORS, opaque origin), frame still shows No Upcoming Events",
+   "allow-scripts allow-same-origin": "loads, 0 errors",
+   "allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox": "loads, 0 errors"
+  },
+  "postMessageToParent": "none observed",
+  "loadEventWhenBlocked": "fires (failure not detectable)",
+  "frameAncestorsOrXFrameOptions": "not set by Luma",
+  "pastEventsEmbed": "period=past ignored by the embed; Luma help describes upcoming events only",
+  "iframeFocusMatching": "Chromium does not match :focus, :focus-visible or :focus-within for a focused iframe (cross-origin and same-origin test frames)"
+ },
+ "pastEvents": {
+  "source": "Each event page on luma.com, guest view, structured data and visible text, 2026-11-04",
+  "events": [
+   {
+    "date": "2026-10-21",
+    "title": "Qonto x START Berlin",
+    "url": "https://luma.com/ffitsdbl",
+    "luma": "Online event, Google Meet"
+   },
+   {
+    "date": "2026-10-19",
+    "title": "START Berlin Founders Talk",
+    "url": "https://luma.com/i573fz95",
+    "luma": "EDGE Grand Central Berlin"
+   },
+   {
+    "date": "2026-10-18",
+    "title": "MEET START: 5K RUN",
+    "url": "https://luma.com/apcq3do7",
+    "luma": "List: Mitte; event page: Register to See Address, Berlin"
+   },
+   {
+    "date": "2026-10-14",
+    "title": "Startup Visit: Procuros",
+    "url": "https://luma.com/7a9xzzap",
+    "luma": "List: Mitte; event page: Register to See Address, Berlin"
+   },
+   {
+    "date": "2026-04-23",
+    "title": "From Idea to Impact: Meet 3 START Founders",
+    "url": "https://luma.com/yfw6i1zl",
+    "luma": "Invalidenstraße 65, Berlin; emoji dropped from the title"
+   }
+  ],
+  "graphics": "Identical to the Luma covers (mean difference 0.4-0.6/255); START Berlin graphics, rights confirmed by the page owner; 800 x 800, no metadata; April badge blurred"
+ },
+ "images": {
+  "committed": 9,
+  "metadata": "none (no EXIF, XMP, IPTC, ICC or JFIF) in committed JPEGs and emitted WebP files",
+  "emittedFormat": "WebP only"
+ }
+}
