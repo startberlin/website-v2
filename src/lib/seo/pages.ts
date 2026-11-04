@@ -28,6 +28,11 @@ export const pageDefinitions = {
     description: 'Follow the five stages of START Berlin membership, from application and the START Sprint to departments, active membership and alumni. Meet our departments and read member stories.',
     canonicalPath: '/member-journey',
   },
+  '/events': {
+    title: 'Events: founder talks, startup visits and workshops',
+    description: 'Find upcoming START Berlin events and register on Luma. Explore our founder talks, startup visits and workshops, and the formats open only to members.',
+    canonicalPath: '/events',
+  },
   '/jobs': {
     title: 'Startup jobs and internships',
     description: 'Explore open roles from companies in the START Berlin network. Find startup jobs, internships and working student positions, and apply directly with the employer.',
