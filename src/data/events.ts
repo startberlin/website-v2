@@ -3,6 +3,13 @@ import heroPhoto from '../assets/events/hero.jpg';
 import founderTalksPhoto from '../assets/events/founder-talks.jpg';
 import startupVisitsPhoto from '../assets/events/startup-visits.jpg';
 import workshopsPhoto from '../assets/events/workshops.jpg';
+// START Berlin's own event graphics, also used as the Luma covers; rights confirmed by the page owner.
+import qontoGraphic from '../assets/events/past/2026-10-21-qonto.jpg';
+import foundersTalkGraphic from '../assets/events/past/2026-10-19-founders-talk.jpg';
+import runGraphic from '../assets/events/past/2026-10-18-5k-run.jpg';
+import procurosGraphic from '../assets/events/past/2026-10-14-procuros.jpg';
+// A name badge on the left portrait is blurred so it cannot be read.
+import ideaToImpactGraphic from '../assets/events/past/2026-04-23-idea-to-impact.jpg';
 
 // Events page content. All public text is approved copy; keep it verbatim
 // and change it only together with the content owner.
@@ -72,8 +79,58 @@ export const membersOnly = {
 	link: { label: 'Explore the Member Journey', href: '/member-journey' },
 };
 
+export interface PastEvent {
+	title: string;
+	/** Calendar date in Berlin, YYYY-MM-DD. */
+	date: string;
+	/** As published on Luma; not shown on the card. */
+	location: string;
+	url: string;
+	/** Decorative inside the card link, whose name is the title and date. */
+	graphic?: ImageMetadata;
+}
+
 export const pastEvents = {
 	heading: 'Past Events',
 	lead: 'Browse the events we have hosted on Luma.',
 	linkLabel: 'View past events on Luma',
 };
+
+// Selected events, newest first, as published on Luma.
+export const pastEventList: PastEvent[] = [
+	{
+		title: 'Qonto x START Berlin',
+		date: '2026-10-21',
+		location: 'Online',
+		url: 'https://luma.com/ffitsdbl',
+		graphic: qontoGraphic,
+	},
+	{
+		title: 'START Berlin Founders Talk',
+		date: '2026-10-19',
+		location: 'EDGE Grand Central Berlin',
+		url: 'https://luma.com/i573fz95',
+		graphic: foundersTalkGraphic,
+	},
+	{
+		title: 'MEET START: 5K RUN',
+		date: '2026-10-18',
+		location: 'Mitte',
+		url: 'https://luma.com/apcq3do7',
+		graphic: runGraphic,
+	},
+	{
+		title: 'Startup Visit: Procuros',
+		date: '2026-10-14',
+		location: 'Mitte',
+		url: 'https://luma.com/7a9xzzap',
+		graphic: procurosGraphic,
+	},
+	{
+		title: 'From Idea to Impact: Meet 3 START Founders',
+		date: '2026-04-23',
+		location: 'Invalidenstraße 65',
+		url: 'https://luma.com/yfw6i1zl',
+		graphic: ideaToImpactGraphic,
+	},
+];

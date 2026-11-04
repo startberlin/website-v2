@@ -7,10 +7,13 @@ import SectionHeading from '../components/SectionHeading.astro';
 import LumaEvents from '../components/LumaEvents.astro';
 import { pageSeo } from '../lib/seo/pages';
 import { lumaCalendar } from '../lib/luma';
-import { calendarSection, formats, formatsSection, hero, membersOnly, pastEvents } from '../data/events';
+import { calendarSection, formats, formatsSection, hero, membersOnly, pastEventList, pastEvents } from '../data/events';
 
 // Never request more pixels than the source has.
 const photoWidths = (photo: ImageMetadata) => [...[400, 800].filter((width) => width < photo.width), Math.min(photo.width, 1200)];
+const pastByDate = [...pastEventList].sort((a, b) => b.date.localeCompare(a.date));
+const dateLabel = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const formatDate = (isoDate: string) => dateLabel.format(new Date(`${isoDate}T00:00:00Z`));
 ---
 
 <Layout seo={pageSeo('/events')}>
@@ -62,11 +65,35 @@ const photoWidths = (photo: ImageMetadata) => [...[400, 800].filter((width) => w
 		</div>
 	</section>
 
-	<section class="section page-container" id="past-events" aria-labelledby="past-events-heading">
+	<section class="section past-section page-container" id="past-events" aria-labelledby="past-events-heading">
 		<SectionHeading id="past-events-heading">
 			{pastEvents.heading}
 			<Fragment slot="lead">{pastEvents.lead}</Fragment>
 		</SectionHeading>
+		<ol class="past-list" role="list">
+			{pastByDate.map((event) => (
+				<li class="past-list__item">
+					<a class="past-card" href={event.url} target="_blank" rel="noopener noreferrer">
+						{event.graphic && (
+							<Image
+								src={event.graphic}
+								alt=""
+								widths={photoWidths(event.graphic)}
+								sizes="(min-width: 68rem) 14rem, (min-width: 43rem) 30vw, (min-width: 29rem) 45vw, 100vw"
+								format="webp"
+								loading="lazy"
+								class="past-card__graphic"
+							/>
+						)}
+						<span class="past-card__body">
+							<h3 class="past-card__title">{event.title}</h3>
+							<time class="past-card__date" datetime={event.date}>{formatDate(event.date)}</time>
+							<span class="sr-only"> (opens in a new tab)</span>
+						</span>
+					</a>
+				</li>
+			))}
+		</ol>
 		<a class="button button--outline" href={lumaCalendar.pastEventsUrl} target="_blank" rel="noopener noreferrer">
 			{pastEvents.linkLabel}<span class="sr-only"> (opens in a new tab)</span>
 		</a>
@@ -139,6 +166,82 @@ const photoWidths = (photo: ImageMetadata) => [...[400, 800].filter((width) => w
 	@container formats (min-width: 64rem) {
 		.formats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); }
 		.format { grid-template-columns: none; align-items: start; gap: var(--space-6); }
+	}
+
+	.past-section {
+		container: past / inline-size;
+	}
+
+	.past-list {
+		display: grid;
+		gap: var(--space-6);
+		margin: 0 0 var(--space-12);
+		padding: 0;
+		list-style: none;
+	}
+
+	.past-list__item {
+		display: flex;
+		min-width: 0;
+	}
+
+	/* The whole card is one link; the shared focus outline surrounds it. */
+	.past-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		width: 100%;
+		padding: var(--space-3);
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		background: var(--surface-card);
+		transition: background-color var(--duration-fast), border-color var(--duration-fast);
+	}
+
+	.past-card:hover {
+		border-color: var(--border-strong);
+		background: var(--surface-control);
+	}
+
+	/* Square graphics at their native 800 px stay sharp up to 400 px wide at 2x; the
+	   columns below keep every card near or below that width. */
+	.past-card__graphic {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1;
+		border-radius: var(--radius-field);
+	}
+
+	.past-card__body {
+		display: grid;
+		gap: var(--space-1);
+		padding: 0 var(--space-1) var(--space-2);
+	}
+
+	.past-card__title {
+		margin: 0;
+		font-size: var(--text-lg);
+		font-weight: var(--weight-bold);
+		line-height: var(--leading-ui);
+	}
+
+	.past-card__date {
+		color: var(--text-muted);
+		font-size: var(--text-sm);
+		line-height: var(--leading-ui);
+	}
+
+	@container past (min-width: 26rem) {
+		.past-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	}
+
+	@container past (min-width: 40rem) {
+		.past-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	}
+
+	@container past (min-width: 64rem) {
+		.past-list { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 	}
 
 	/* Distinguished by its surface and border alone, as in the featured Testimonial. */
