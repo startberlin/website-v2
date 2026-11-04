@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
@@ -6,23 +8,43 @@ import LumaEvents from '../components/LumaEvents.astro';
 import { pageSeo } from '../lib/seo/pages';
 import { lumaCalendar } from '../lib/luma';
 import { calendarSection, formats, formatsSection, hero, membersOnly, pastEvents } from '../data/events';
+
+// Never request more pixels than the source has.
+const photoWidths = (photo: ImageMetadata) => [...[400, 800].filter((width) => width < photo.width), Math.min(photo.width, 1200)];
 ---
 
 <Layout seo={pageSeo('/events')}>
-	<PageHero>
+	<PageHero
+		image={hero.photo.src}
+		alt={hero.photo.alt}
+		imagePosition={hero.imagePosition}
+		mobileImagePosition={hero.mobileImagePosition}
+		phoneShade
+	>
 		<Fragment slot="title">{hero.title}</Fragment>
 		<Fragment slot="description">{hero.description}</Fragment>
 	</PageHero>
 
-	<section class="section page-container" id="formats" aria-labelledby="formats-heading">
+	<section class="section formats-section page-container" id="formats" aria-labelledby="formats-heading">
 		<SectionHeading id="formats-heading">
 			{formatsSection.headingSolid}{' '}<span data-outline>{formatsSection.headingOutline}</span>
 		</SectionHeading>
 		<div class="formats">
 			{formats.map((format) => (
 				<article class="format" id={format.id}>
-					<h3 class="format__title">{format.title}</h3>
-					<p class="format__text">{format.text}</p>
+					<Image
+						src={format.photo.src}
+						alt={format.photo.alt}
+						widths={photoWidths(format.photo.src)}
+						sizes="(min-width: 68rem) 25rem, (min-width: 43rem) 40vw, 100vw"
+						format="webp"
+						loading="lazy"
+						class="format__photo"
+					/>
+					<div class="format__body">
+						<h3 class="format__title">{format.title}</h3>
+						<p class="format__text">{format.text}</p>
+					</div>
 				</article>
 			))}
 		</div>
@@ -56,12 +78,34 @@ import { calendarSection, formats, formatsSection, hero, membersOnly, pastEvents
 		padding-block: var(--space-16);
 	}
 
+	.formats-section {
+		container: formats / inline-size;
+	}
+
 	.formats {
 		display: grid;
 		gap: var(--space-12);
 	}
 
 	.format {
+		display: grid;
+		gap: var(--space-6);
+		align-content: start;
+		min-width: 0;
+	}
+
+	/* One 16:10 frame for every format photo, matching the Member Journey photo frame. */
+	.format__photo {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 10;
+		object-fit: cover;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+	}
+
+	.format__body {
 		min-width: 0;
 	}
 
@@ -83,6 +127,20 @@ import { calendarSection, formats, formatsSection, hero, membersOnly, pastEvents
 		line-height: var(--leading-copy);
 	}
 
+	/* Photo beside the text on tablets, three columns once each column has room. */
+	@container formats (min-width: 40rem) {
+		.format {
+			grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+			align-items: center;
+			gap: var(--space-8);
+		}
+	}
+
+	@container formats (min-width: 64rem) {
+		.formats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); }
+		.format { grid-template-columns: none; align-items: start; gap: var(--space-6); }
+	}
+
 	/* Distinguished by its surface and border alone, as in the featured Testimonial. */
 	.members-card {
 		padding: var(--space-8) var(--space-6);
@@ -97,6 +155,5 @@ import { calendarSection, formats, formatsSection, hero, membersOnly, pastEvents
 
 	@media (min-width: 1024px) {
 		.section { padding-block: var(--space-24); }
-		.formats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); }
 	}
 </style>
