@@ -1,0 +1,194 @@
+---
+import type { Department } from '../../data/member-journey';
+
+interface Props {
+	departments: Department[];
+}
+
+const { departments } = Astro.props;
+---
+
+<div class="departments" data-department-tabs>
+	<div class="departments__layout">
+		{/* Hidden until the script turns the stacked panels into tabs. */}
+		<div class="departments__list" role="tablist" aria-label="Departments" aria-orientation="vertical" hidden data-department-tablist>
+			{departments.map((department, index) => (
+				<button
+					type="button"
+					class="departments__tab"
+					role="tab"
+					id={`department-tab-${department.id}`}
+					aria-controls={`department-${department.id}`}
+					aria-selected={index === 0 ? 'true' : 'false'}
+					tabindex={index === 0 ? 0 : -1}
+				>
+					<span class="departments__name">{department.name}</span>
+					<span class="departments__dot" aria-hidden="true"></span>
+				</button>
+			))}
+		</div>
+
+		<div class="departments__panels">
+			{departments.map((department) => (
+				<section id={`department-${department.id}`} class="department" aria-labelledby={`department-heading-${department.id}`} data-department-panel>
+					<h3 id={`department-heading-${department.id}`} class="department__name">{department.name}</h3>
+					{department.paragraphs.map((paragraph) => <p class="department__text">{paragraph}</p>)}
+				</section>
+			))}
+		</div>
+	</div>
+</div>
+
+<script>
+	// Progressive enhancement: without JavaScript all departments stay visible.
+	document.querySelectorAll<HTMLElement>('[data-department-tabs]').forEach((root) => {
+		const list = root.querySelector<HTMLElement>('[data-department-tablist]')!;
+		const tabs = [...list.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+		const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')!)!);
+
+		const select = (index: number, focus = false) => {
+			tabs.forEach((tab, tabIndex) => {
+				const selected = tabIndex === index;
+				tab.setAttribute('aria-selected', String(selected));
+				tab.tabIndex = selected ? 0 : -1;
+				panels[tabIndex].hidden = !selected;
+			});
+			if (focus) tabs[index].focus();
+		};
+
+		panels.forEach((panel, index) => {
+			panel.setAttribute('role', 'tabpanel');
+			panel.setAttribute('aria-labelledby', tabs[index].id);
+			panel.tabIndex = 0;
+		});
+
+		tabs.forEach((tab, index) => {
+			tab.addEventListener('click', () => select(index));
+			tab.addEventListener('keydown', (event) => {
+				const last = tabs.length - 1;
+				const target = {
+					ArrowDown: index === last ? 0 : index + 1,
+					ArrowRight: index === last ? 0 : index + 1,
+					ArrowUp: index === 0 ? last : index - 1,
+					ArrowLeft: index === 0 ? last : index - 1,
+					Home: 0,
+					End: last,
+				}[event.key];
+				if (target === undefined) return;
+				event.preventDefault();
+				select(target, true);
+			});
+		});
+
+		list.hidden = false;
+		root.dataset.enhanced = '';
+		select(0);
+	});
+</script>
+
+<style>
+	.departments {
+		container: departments / inline-size;
+	}
+
+	.departments__layout {
+		display: grid;
+		gap: var(--space-8);
+	}
+
+	.departments__list {
+		display: flex;
+		flex-direction: column;
+		border-top: var(--border-width) solid var(--border-subtle);
+	}
+
+	.departments__tab {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: center;
+		gap: var(--space-6);
+		width: 100%;
+		min-height: var(--target-min);
+		padding-block: var(--space-6);
+		border-bottom: var(--border-width) solid var(--border-subtle);
+		text-align: left;
+	}
+
+	.departments__name {
+		min-width: 0;
+		font-size: var(--text-2xl);
+		font-weight: var(--weight-display);
+		line-height: 1.1;
+		text-transform: uppercase;
+		text-wrap: balance;
+		transition: color var(--duration-ui), padding-left var(--duration-ui);
+	}
+
+	.departments__dot {
+		flex-shrink: 0;
+		width: 1rem;
+		height: 1rem;
+		border: var(--border-width-accent) solid var(--color-white);
+		border-radius: var(--radius-pill);
+		transition: background-color var(--duration-ui), border-color var(--duration-ui);
+	}
+
+	.departments__tab:hover .departments__dot {
+		border-color: var(--color-accent);
+	}
+
+	.departments__tab[aria-selected='true'] .departments__name {
+		padding-left: var(--space-6);
+		color: var(--color-accent);
+	}
+
+	.departments__tab[aria-selected='true'] .departments__dot {
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+	}
+
+	.departments__panels {
+		display: grid;
+		gap: var(--space-4);
+		align-self: start;
+	}
+
+	.department {
+		padding: var(--space-8) var(--space-6);
+		border-radius: var(--radius-card);
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+	}
+
+	.department__name {
+		margin: 0 0 var(--space-6);
+		font-size: var(--text-3xl);
+		font-weight: var(--weight-display);
+		line-height: 1.1;
+		text-transform: uppercase;
+	}
+
+	.department__text {
+		max-width: var(--layout-reading);
+		margin: 0;
+		font-size: var(--text-lg);
+		line-height: var(--leading-copy);
+	}
+
+	.department__text + .department__text {
+		margin-top: var(--space-4);
+	}
+
+	@container departments (min-width: 40rem) {
+		.departments__name { font-size: var(--text-4xl); }
+		.department { padding: var(--space-10) var(--space-10); }
+	}
+
+	@container departments (min-width: 48rem) {
+		[data-enhanced] .departments__layout {
+			grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+			column-gap: var(--space-16);
+			align-items: start;
+		}
+	}
+</style>

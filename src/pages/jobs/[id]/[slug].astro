@@ -4,9 +4,11 @@ import Icon from '../../../components/icons/Icon.astro';
 import { getJob, CockpitError, publicSiteUrl } from '../../../lib/jobboard/api';
 import {
 	displayDate, employmentLabels, isActive, jobHref, jobPath, jobPosting,
-	remoteLabels, safeJsonLd, salaryLabel, seniorityLabels, sourceFrom, sourceHref,
+	remoteLabels, salaryLabel, seniorityLabels, sourceFrom, sourceHref,
 } from '../../../lib/jobboard/public-utils';
 import type { PublicJob } from '../../../lib/jobboard/contracts';
+import { pageSeo } from '../../../lib/seo/pages';
+import { textSnippet } from '../../../lib/seo/metadata';
 
 export const prerender = false;
 Astro.response.headers.set('Cache-Control', 'no-store');
@@ -26,11 +28,15 @@ if (job && slug !== job.slug) return Astro.redirect(jobHref(job, source), 308);
 const active = job ? isActive(job) : false;
 const canonical = job && origin ? new URL(jobPath(job), origin).href : undefined;
 const structured = job && origin ? jobPosting(job, origin) : null;
-const title = job ? `${job.content.title} at ${job.company.name} | START Berlin` : 'Job listing | START Berlin';
+const seo = {
+	...pageSeo('/jobs/[id]/[slug]'),
+	...(job ? { title: `${job.content.title} at ${job.company.name}`, description: textSnippet(job.content.description), canonicalPath: jobPath(job) } : {}),
+	noindex: !active,
+	structuredData: structured ? [structured] : [],
+};
 ---
 
-<JobboardLayout title={title} description={job?.content.description.slice(0, 160)} canonical={canonical} robots={active ? undefined : 'noindex, follow'}>
-	{structured && <script slot="head" type="application/ld+json" is:inline set:html={safeJsonLd(structured)} />}
+<JobboardLayout seo={seo}>
 	<a class="jb-link jb-back" href={sourceHref('/jobs', source)}><Icon name="arrow-left" size={18} /> All jobs</a>
 	{job ? (
 		<>

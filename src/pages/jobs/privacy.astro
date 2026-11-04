@@ -1,9 +1,10 @@
 ---
 import JobboardLayout from '../../layouts/JobboardLayout.astro';
+import { pageSeo } from '../../lib/seo/pages';
 export const prerender = false;
 ---
 
-<JobboardLayout title="Jobboard privacy | START Berlin" robots="noindex, follow">
+<JobboardLayout seo={pageSeo('/jobs/privacy')}>
 	<header class="jb-intro"><div><p class="jb-kicker">START BERLIN</p><h1 class="jb-page-heading">Jobboard privacy</h1><p class="jb-intro-text">How this jobboard handles listings and submissions.</p></div></header>
 	<article class="jb-privacy">
 		<h2>Who operates this jobboard</h2>

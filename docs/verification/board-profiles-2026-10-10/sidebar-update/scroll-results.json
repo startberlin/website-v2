@@ -1,0 +1,5654 @@
+[
+  {
+    "slug": "antonia-hill",
+    "state": "top",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": 119.99999237060548,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1536.036865234375,
+        "class": "profile page-container",
+        "height": 1456.036865234375,
+        "left": 80,
+        "right": 1360,
+        "top": 80,
+        "width": 1280
+      },
+      {
+        "bottom": 1659.126350402832,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1576.036865234375,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1440.04252243042,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1394.6376953125,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 0,
+    "sections": [
+      {
+        "bottom": 946.484344482422,
+        "entries": {
+          "bottom": 913.5794982910156,
+          "height": 327.9474182128906,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 585.632080078125,
+          "width": 703.99853515625
+        },
+        "height": 392.8479919433594,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 913.5794982910156,
+          "height": 327.9474182128906,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 585.632080078125,
+          "width": 255.9943084716797
+        },
+        "top": 553.6363525390625,
+        "width": 1280
+      },
+      {
+        "bottom": 1150.561004638672,
+        "entries": {
+          "bottom": 1117.656234741211,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 978.4801025390624,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 1117.656234741211,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 978.4801025390624,
+          "width": 255.9943084716797
+        },
+        "top": 946.4843139648438,
+        "width": 1280
+      },
+      {
+        "bottom": 1354.637725830078,
+        "entries": {
+          "bottom": 1321.732894897461,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 1182.5567626953125,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 1321.732894897461,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 1182.5567626953125,
+          "width": 255.9943084716797
+        },
+        "top": 1150.56103515625,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Oct 2026 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "antonia-hill",
+    "state": "early scroll",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -2.7272725105285645,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -2.7272725105285645,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1413.3095932006836,
+        "class": "profile page-container",
+        "height": 1456.036865234375,
+        "left": 80,
+        "right": 1360,
+        "top": -42.727272033691406,
+        "width": 1280
+      },
+      {
+        "bottom": 1536.399055480957,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1453.3095703125,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1317.3153495788574,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1271.9105224609375,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 122.7272720336914,
+    "sections": [
+      {
+        "bottom": 823.757080078125,
+        "entries": {
+          "bottom": 790.8522338867188,
+          "height": 327.9474182128906,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 462.9048156738281,
+          "width": 703.99853515625
+        },
+        "height": 392.8479919433594,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 790.8522338867188,
+          "height": 327.9474182128906,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 462.9048156738281,
+          "width": 255.9943084716797
+        },
+        "top": 430.9090881347656,
+        "width": 1280
+      },
+      {
+        "bottom": 1027.8337707519531,
+        "entries": {
+          "bottom": 994.928939819336,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 855.7528076171875,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 994.928939819336,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 855.7528076171875,
+          "width": 255.9943084716797
+        },
+        "top": 823.757080078125,
+        "width": 1280
+      },
+      {
+        "bottom": 1231.9104309082031,
+        "entries": {
+          "bottom": 1199.005599975586,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 1059.8294677734375,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 1199.005599975586,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 1059.8294677734375,
+          "width": 255.9943084716797
+        },
+        "top": 1027.833740234375,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Oct 2026 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "antonia-hill",
+    "state": "next section approaches",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 184.5454559326172,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -248.1818084716797,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 184.5454559326172,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -248.1818084716797,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 184.54544830322263,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -71.44886016845703,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1167.8550720214844,
+        "class": "profile page-container",
+        "height": 1456.036865234375,
+        "left": 80,
+        "right": 1360,
+        "top": -288.1817932128906,
+        "width": 1280
+      },
+      {
+        "bottom": 1290.9445877075195,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1207.8551025390625,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1071.8607597351074,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1026.4559326171875,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 368.1818237304687,
+    "sections": [
+      {
+        "bottom": 578.3025360107422,
+        "entries": {
+          "bottom": 545.3976898193359,
+          "height": 327.9474182128906,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 217.4502716064453,
+          "width": 703.99853515625
+        },
+        "height": 392.8479919433594,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 545.3976898193359,
+          "height": 327.9474182128906,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 217.4502716064453,
+          "width": 255.9943084716797
+        },
+        "top": 185.4545440673828,
+        "width": 1280
+      },
+      {
+        "bottom": 782.3792419433594,
+        "entries": {
+          "bottom": 749.4744110107422,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 610.2982788085938,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 749.4744110107422,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 610.2982788085938,
+          "width": 255.9943084716797
+        },
+        "top": 578.3025512695312,
+        "width": 1280
+      },
+      {
+        "bottom": 986.4559020996094,
+        "entries": {
+          "bottom": 953.5511322021484,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 814.375,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 953.5511322021484,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 814.375,
+          "width": 255.9943084716797
+        },
+        "top": 782.3792114257812,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Oct 2026 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "antonia-hill",
+    "state": "CV and page end",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": -222.27273559570312,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -655,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": -222.27273559570312,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -655,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": -222.2727203369141,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -478.26702880859375,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.036865234375,
+        "class": "profile page-container",
+        "height": 1456.036865234375,
+        "left": 80,
+        "right": 1360,
+        "top": -695,
+        "width": 1280
+      },
+      {
+        "bottom": 884.1264114379883,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.0369262695312,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.0425834655762,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.6377563476562,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 775,
+    "sections": [
+      {
+        "bottom": 171.48435974121094,
+        "entries": {
+          "bottom": 138.57952880859375,
+          "height": 327.9474182128906,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": -189.36788940429688,
+          "width": 703.99853515625
+        },
+        "height": 392.8479919433594,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 138.57952880859375,
+          "height": 327.9474182128906,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": -189.36788940429688,
+          "width": 255.9943084716797
+        },
+        "top": -221.36363220214844,
+        "width": 1280
+      },
+      {
+        "bottom": 375.5610656738281,
+        "entries": {
+          "bottom": 342.65623474121094,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 203.4801025390625,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 342.65623474121094,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 203.4801025390625,
+          "width": 255.9943084716797
+        },
+        "top": 171.484375,
+        "width": 1280
+      },
+      {
+        "bottom": 579.6377563476562,
+        "entries": {
+          "bottom": 546.7329254150391,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 407.5567932128906,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.7329254150391,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 407.5567932128906,
+          "width": 255.9943084716797
+        },
+        "top": 375.5610656738281,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Oct 2026 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "julia-palm",
+    "state": "top",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": 119.99999237060548,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1180.09228515625,
+        "class": "profile page-container",
+        "height": 1100.09228515625,
+        "left": 80,
+        "right": 1360,
+        "top": 80,
+        "width": 1280
+      },
+      {
+        "bottom": 1303.181770324707,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1220.09228515625,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1084.097942352295,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1038.693115234375,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 0,
+    "sections": [
+      {
+        "bottom": 674.1264038085938,
+        "entries": {
+          "bottom": 641.221565246582,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 585.632080078125,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 641.221565246582,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 585.632080078125,
+          "width": 255.9943084716797
+        },
+        "top": 553.6363525390625,
+        "width": 1280
+      },
+      {
+        "bottom": 794.616455078125,
+        "entries": {
+          "bottom": 761.7116165161133,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 706.1221313476562,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 761.7116165161133,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 706.1221313476562,
+          "width": 255.9943084716797
+        },
+        "top": 674.1264038085938,
+        "width": 1280
+      },
+      {
+        "bottom": 998.6931457519532,
+        "entries": {
+          "bottom": 965.788314819336,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 826.6121826171875,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 965.788314819336,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 826.6121826171875,
+          "width": 255.9943084716797
+        },
+        "top": 794.616455078125,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "2020 - 2024",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "julia-palm",
+    "state": "early scroll",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -2.7272725105285645,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -2.7272725105285645,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1057.3650131225586,
+        "class": "profile page-container",
+        "height": 1100.09228515625,
+        "left": 80,
+        "right": 1360,
+        "top": -42.727272033691406,
+        "width": 1280
+      },
+      {
+        "bottom": 1180.454475402832,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1097.364990234375,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 961.3707084655762,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 915.9658813476562,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 122.7272720336914,
+    "sections": [
+      {
+        "bottom": 551.3991394042969,
+        "entries": {
+          "bottom": 518.4943008422852,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 462.9048156738281,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 518.4943008422852,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 462.9048156738281,
+          "width": 255.9943084716797
+        },
+        "top": 430.9090881347656,
+        "width": 1280
+      },
+      {
+        "bottom": 671.88916015625,
+        "entries": {
+          "bottom": 638.9843215942383,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 583.3948364257812,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 638.9843215942383,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 583.3948364257812,
+          "width": 255.9943084716797
+        },
+        "top": 551.3991088867188,
+        "width": 1280
+      },
+      {
+        "bottom": 875.9658508300781,
+        "entries": {
+          "bottom": 843.0610198974609,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 703.8848876953125,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 843.0610198974609,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 703.8848876953125,
+          "width": 255.9943084716797
+        },
+        "top": 671.88916015625,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "2020 - 2024",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "julia-palm",
+    "state": "next section approaches",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 184.5454559326172,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -248.1818084716797,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 184.5454559326172,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -248.1818084716797,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 184.54544830322263,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -71.44886016845703,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 811.9104919433594,
+        "class": "profile page-container",
+        "height": 1100.09228515625,
+        "left": 80,
+        "right": 1360,
+        "top": -288.1817932128906,
+        "width": 1280
+      },
+      {
+        "bottom": 934.9999465942384,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 851.9104614257812,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 715.9161796569824,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 670.5113525390625,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 368.1818237304687,
+    "sections": [
+      {
+        "bottom": 305.94459533691406,
+        "entries": {
+          "bottom": 273.03975677490234,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 217.4502716064453,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 273.03975677490234,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 217.4502716064453,
+          "width": 255.9943084716797
+        },
+        "top": 185.4545440673828,
+        "width": 1280
+      },
+      {
+        "bottom": 426.43463134765625,
+        "entries": {
+          "bottom": 393.52982330322266,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 337.9403381347656,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 393.52982330322266,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 337.9403381347656,
+          "width": 255.9943084716797
+        },
+        "top": 305.944580078125,
+        "width": 1280
+      },
+      {
+        "bottom": 630.5113220214844,
+        "entries": {
+          "bottom": 597.6065216064453,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 458.4303894042969,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 597.6065216064453,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 458.4303894042969,
+          "width": 255.9943084716797
+        },
+        "top": 426.43463134765625,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "2020 - 2024",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "julia-palm",
+    "state": "CV and page end",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 133.6363525390625,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -299.0909118652344,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 133.6363525390625,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -299.0909118652344,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 133.63636016845703,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -122.35794830322266,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.0013732910156,
+        "class": "profile page-container",
+        "height": 1100.09228515625,
+        "left": 80,
+        "right": 1360,
+        "top": -339.0909118652344,
+        "width": 1280
+      },
+      {
+        "bottom": 884.0908889770508,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.0014038085938,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.0070610046387,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.6022338867188,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 419.0909118652344,
+    "sections": [
+      {
+        "bottom": 255.03550720214844,
+        "entries": {
+          "bottom": 222.13066864013672,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 166.5411834716797,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 222.13066864013672,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 166.5411834716797,
+          "width": 255.9943084716797
+        },
+        "top": 134.5454559326172,
+        "width": 1280
+      },
+      {
+        "bottom": 375.5255584716797,
+        "entries": {
+          "bottom": 342.62073516845703,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 287.03125,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 342.62073516845703,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 287.03125,
+          "width": 255.9943084716797
+        },
+        "top": 255.03550720214844,
+        "width": 1280
+      },
+      {
+        "bottom": 579.6022338867188,
+        "entries": {
+          "bottom": 546.6974334716797,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 407.5213012695313,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.6974334716797,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 407.5213012695313,
+          "width": 255.9943084716797
+        },
+        "top": 375.5255432128906,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "2020 - 2024",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "kari-pele-streithoff",
+    "state": "top",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": 119.99999237060548,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1096.505615234375,
+        "class": "profile page-container",
+        "height": 1016.505615234375,
+        "left": 80,
+        "right": 1360,
+        "top": 80,
+        "width": 1280
+      },
+      {
+        "bottom": 1219.595100402832,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1136.505615234375,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1000.5113334655762,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 955.1065063476562,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 0,
+    "sections": [
+      {
+        "bottom": 674.1264038085938,
+        "entries": {
+          "bottom": 641.221565246582,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 585.632080078125,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 641.221565246582,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 585.632080078125,
+          "width": 255.9943084716797
+        },
+        "top": 553.6363525390625,
+        "width": 1280
+      },
+      {
+        "bottom": 794.616455078125,
+        "entries": {
+          "bottom": 761.7116165161133,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 706.1221313476562,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 761.7116165161133,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 706.1221313476562,
+          "width": 255.9943084716797
+        },
+        "top": 674.1264038085938,
+        "width": 1280
+      },
+      {
+        "bottom": 915.1065063476562,
+        "entries": {
+          "bottom": 882.2016677856445,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 826.6121826171875,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 882.2016677856445,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 826.6121826171875,
+          "width": 255.9943084716797
+        },
+        "top": 794.616455078125,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "kari-pele-streithoff",
+    "state": "early scroll",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -2.7272725105285645,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -2.7272725105285645,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 973.7783432006836,
+        "class": "profile page-container",
+        "height": 1016.505615234375,
+        "left": 80,
+        "right": 1360,
+        "top": -42.727272033691406,
+        "width": 1280
+      },
+      {
+        "bottom": 1096.8678665161133,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1013.7783813476562,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 877.7840385437012,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 832.3792114257812,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 122.7272720336914,
+    "sections": [
+      {
+        "bottom": 551.3991394042969,
+        "entries": {
+          "bottom": 518.4943008422852,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 462.9048156738281,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 518.4943008422852,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 462.9048156738281,
+          "width": 255.9943084716797
+        },
+        "top": 430.9090881347656,
+        "width": 1280
+      },
+      {
+        "bottom": 671.88916015625,
+        "entries": {
+          "bottom": 638.9843215942383,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 583.3948364257812,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 638.9843215942383,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 583.3948364257812,
+          "width": 255.9943084716797
+        },
+        "top": 551.3991088867188,
+        "width": 1280
+      },
+      {
+        "bottom": 792.3792114257812,
+        "entries": {
+          "bottom": 759.4743728637695,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 703.8848876953125,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 759.4743728637695,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 703.8848876953125,
+          "width": 255.9943084716797
+        },
+        "top": 671.88916015625,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "kari-pele-streithoff",
+    "state": "next section approaches",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 217.2727203369141,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -215.4545440673828,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 217.2727203369141,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -215.4545440673828,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 217.2727203369141,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -38.721588134765625,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.0510864257812,
+        "class": "profile page-container",
+        "height": 1016.505615234375,
+        "left": 80,
+        "right": 1360,
+        "top": -255.45452880859375,
+        "width": 1280
+      },
+      {
+        "bottom": 884.1405715942383,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.0510864257812,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.0568046569824,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.6519775390625,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 335.45452880859375,
+    "sections": [
+      {
+        "bottom": 338.67185974121094,
+        "entries": {
+          "bottom": 305.7670364379883,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 250.17755126953125,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 305.7670364379883,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 250.17755126953125,
+          "width": 255.9943084716797
+        },
+        "top": 218.1818084716797,
+        "width": 1280
+      },
+      {
+        "bottom": 459.1619262695313,
+        "entries": {
+          "bottom": 426.25708770751953,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 370.6676025390625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 426.25708770751953,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 370.6676025390625,
+          "width": 255.9943084716797
+        },
+        "top": 338.671875,
+        "width": 1280
+      },
+      {
+        "bottom": 579.6519775390625,
+        "entries": {
+          "bottom": 546.7471389770508,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 491.15765380859375,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.7471389770508,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 491.15765380859375,
+          "width": 255.9943084716797
+        },
+        "top": 459.1619262695313,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "kari-pele-streithoff",
+    "state": "CV and page end",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 217.2727203369141,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -215.4545440673828,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 217.2727203369141,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -215.4545440673828,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 217.2727203369141,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -38.721588134765625,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.0510864257812,
+        "class": "profile page-container",
+        "height": 1016.505615234375,
+        "left": 80,
+        "right": 1360,
+        "top": -255.45452880859375,
+        "width": 1280
+      },
+      {
+        "bottom": 884.1405715942383,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.0510864257812,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.0568046569824,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.6519775390625,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 335.45452880859375,
+    "sections": [
+      {
+        "bottom": 338.67185974121094,
+        "entries": {
+          "bottom": 305.7670364379883,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 250.17755126953125,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 305.7670364379883,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 250.17755126953125,
+          "width": 255.9943084716797
+        },
+        "top": 218.1818084716797,
+        "width": 1280
+      },
+      {
+        "bottom": 459.1619262695313,
+        "entries": {
+          "bottom": 426.25708770751953,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 370.6676025390625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 426.25708770751953,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 370.6676025390625,
+          "width": 255.9943084716797
+        },
+        "top": 338.671875,
+        "width": 1280
+      },
+      {
+        "bottom": 579.6519775390625,
+        "entries": {
+          "bottom": 546.7471389770508,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 491.15765380859375,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.7471389770508,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 491.15765380859375,
+          "width": 255.9943084716797
+        },
+        "top": 459.1619262695313,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "tobias-burger",
+    "state": "top",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": 119.99999237060548,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1149.694580078125,
+        "class": "profile page-container",
+        "height": 1069.694580078125,
+        "left": 80,
+        "right": 1360,
+        "top": 80,
+        "width": 1280
+      },
+      {
+        "bottom": 1272.784065246582,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1189.694580078125,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1053.70023727417,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1008.29541015625,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 0,
+    "sections": [
+      {
+        "bottom": 727.3153228759766,
+        "entries": {
+          "bottom": 694.4104843139648,
+          "height": 108.77840423583984,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 585.632080078125,
+          "width": 703.99853515625
+        },
+        "height": 173.67897033691406,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 694.4104843139648,
+          "height": 108.77840423583984,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 585.632080078125,
+          "width": 255.9943084716797
+        },
+        "top": 553.6363525390625,
+        "width": 1280
+      },
+      {
+        "bottom": 847.8053588867188,
+        "entries": {
+          "bottom": 814.900520324707,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 759.31103515625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 814.900520324707,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 759.31103515625,
+          "width": 255.9943084716797
+        },
+        "top": 727.3153076171875,
+        "width": 1280
+      },
+      {
+        "bottom": 968.29541015625,
+        "entries": {
+          "bottom": 935.3905715942384,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 879.8010864257812,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 935.3905715942384,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 879.8010864257812,
+          "width": 255.9943084716797
+        },
+        "top": 847.8053588867188,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Oct 2023 - Jun 2024",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "tobias-burger",
+    "state": "early scroll",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -2.7272725105285645,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -2.7272725105285645,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1026.9673080444336,
+        "class": "profile page-container",
+        "height": 1069.694580078125,
+        "left": 80,
+        "right": 1360,
+        "top": -42.727272033691406,
+        "width": 1280
+      },
+      {
+        "bottom": 1150.056770324707,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1066.96728515625,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 930.9730033874512,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 885.5681762695312,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 122.7272720336914,
+    "sections": [
+      {
+        "bottom": 604.5880584716797,
+        "entries": {
+          "bottom": 571.683219909668,
+          "height": 108.77840423583984,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 462.9048156738281,
+          "width": 703.99853515625
+        },
+        "height": 173.67897033691406,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 571.683219909668,
+          "height": 108.77840423583984,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 462.9048156738281,
+          "width": 255.9943084716797
+        },
+        "top": 430.9090881347656,
+        "width": 1280
+      },
+      {
+        "bottom": 725.078125,
+        "entries": {
+          "bottom": 692.1732864379883,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 636.5838012695312,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 692.1732864379883,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 636.5838012695312,
+          "width": 255.9943084716797
+        },
+        "top": 604.5880737304688,
+        "width": 1280
+      },
+      {
+        "bottom": 845.5681762695312,
+        "entries": {
+          "bottom": 812.6633377075195,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 757.0738525390625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 812.6633377075195,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 757.0738525390625,
+          "width": 255.9943084716797
+        },
+        "top": 725.078125,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Oct 2023 - Jun 2024",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "tobias-burger",
+    "state": "next section approaches",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 184.5454559326172,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -248.1818084716797,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 184.5454559326172,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -248.1818084716797,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 184.54544830322263,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -71.44886016845703,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 781.5127868652344,
+        "class": "profile page-container",
+        "height": 1069.694580078125,
+        "left": 80,
+        "right": 1360,
+        "top": -288.1817932128906,
+        "width": 1280
+      },
+      {
+        "bottom": 904.6022415161132,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 821.5127563476562,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 685.5184135437012,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 640.1135864257812,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 368.1818237304687,
+    "sections": [
+      {
+        "bottom": 359.1335144042969,
+        "entries": {
+          "bottom": 326.22867584228516,
+          "height": 108.77840423583984,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 217.4502716064453,
+          "width": 703.99853515625
+        },
+        "height": 173.67897033691406,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 326.22867584228516,
+          "height": 108.77840423583984,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 217.4502716064453,
+          "width": 255.9943084716797
+        },
+        "top": 185.4545440673828,
+        "width": 1280
+      },
+      {
+        "bottom": 479.6235656738281,
+        "entries": {
+          "bottom": 446.7187271118164,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 391.1292419433594,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 446.7187271118164,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 391.1292419433594,
+          "width": 255.9943084716797
+        },
+        "top": 359.1335144042969,
+        "width": 1280
+      },
+      {
+        "bottom": 600.1136169433594,
+        "entries": {
+          "bottom": 567.2087783813477,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 511.6192932128906,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 567.2087783813477,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 511.6192932128906,
+          "width": 255.9943084716797
+        },
+        "top": 479.6235656738281,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Oct 2023 - Jun 2024",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "tobias-burger",
+    "state": "CV and page end",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 164.09091186523438,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -268.6363525390625,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 164.09091186523438,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -268.6363525390625,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 164.09090423583984,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -91.90340423583984,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.0582275390625,
+        "class": "profile page-container",
+        "height": 1069.694580078125,
+        "left": 80,
+        "right": 1360,
+        "top": -308.6363525390625,
+        "width": 1280
+      },
+      {
+        "bottom": 884.1477127075195,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.0582275390625,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.0638847351074,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.6590576171875,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 388.6363525390625,
+    "sections": [
+      {
+        "bottom": 338.67897033691406,
+        "entries": {
+          "bottom": 305.77413177490234,
+          "height": 108.77840423583984,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 196.9957275390625,
+          "width": 703.99853515625
+        },
+        "height": 173.67897033691406,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 305.77413177490234,
+          "height": 108.77840423583984,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 196.9957275390625,
+          "width": 255.9943084716797
+        },
+        "top": 165,
+        "width": 1280
+      },
+      {
+        "bottom": 459.16900634765625,
+        "entries": {
+          "bottom": 426.26419830322266,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 370.6747131347656,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 426.26419830322266,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 370.6747131347656,
+          "width": 255.9943084716797
+        },
+        "top": 338.678955078125,
+        "width": 1280
+      },
+      {
+        "bottom": 579.6590576171875,
+        "entries": {
+          "bottom": 546.7542495727539,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 491.1647644042969,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.7542495727539,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 491.1647644042969,
+          "width": 255.9943084716797
+        },
+        "top": 459.16900634765625,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Oct 2023 - Jun 2024",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "jannik-schaefer",
+    "state": "top",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 582.4218368530273,
+      "height": 462.4218444824219,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 582.4218368530273,
+      "height": 462.4218444824219,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": 119.99999237060548,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1512.5426025390625,
+        "class": "profile page-container",
+        "height": 1432.5426025390625,
+        "left": 80,
+        "right": 1360,
+        "top": 80,
+        "width": 1280
+      },
+      {
+        "bottom": 1635.6320877075195,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1552.5426025390625,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1416.5482597351074,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1371.1434326171875,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 0,
+    "sections": [
+      {
+        "bottom": 922.9900207519532,
+        "entries": {
+          "bottom": 890.0851745605469,
+          "height": 274.7585144042969,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 615.32666015625,
+          "width": 703.99853515625
+        },
+        "height": 339.6590881347656,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 890.0851745605469,
+          "height": 274.7585144042969,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 615.32666015625,
+          "width": 255.9943084716797
+        },
+        "top": 583.3309326171875,
+        "width": 1280
+      },
+      {
+        "bottom": 1127.0667419433594,
+        "entries": {
+          "bottom": 1094.1619110107422,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 954.9857788085938,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 1094.1619110107422,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 954.9857788085938,
+          "width": 255.9943084716797
+        },
+        "top": 922.9900512695312,
+        "width": 1280
+      },
+      {
+        "bottom": 1331.1434631347656,
+        "entries": {
+          "bottom": 1298.2386322021484,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 1159.0625,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 1298.2386322021484,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 1159.0625,
+          "width": 255.9943084716797
+        },
+        "top": 1127.0667724609375,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Feb 2023 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "jannik-schaefer",
+    "state": "early scroll",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 459.6945719718933,
+      "height": 462.4218444824219,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -2.7272725105285645,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 459.6945719718933,
+      "height": 462.4218444824219,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -2.7272725105285645,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1389.815330505371,
+        "class": "profile page-container",
+        "height": 1432.5426025390625,
+        "left": 80,
+        "right": 1360,
+        "top": -42.727272033691406,
+        "width": 1280
+      },
+      {
+        "bottom": 1512.9047927856443,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1429.8153076171875,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1293.8209648132324,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1248.4161376953125,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 122.7272720336914,
+    "sections": [
+      {
+        "bottom": 800.2627563476562,
+        "entries": {
+          "bottom": 767.3579406738281,
+          "height": 274.7585144042969,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 492.5994262695313,
+          "width": 703.99853515625
+        },
+        "height": 339.6590881347656,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 767.3579406738281,
+          "height": 274.7585144042969,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 492.5994262695313,
+          "width": 255.9943084716797
+        },
+        "top": 460.6036682128906,
+        "width": 1280
+      },
+      {
+        "bottom": 1004.3394470214844,
+        "entries": {
+          "bottom": 971.4346160888672,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 832.2584838867188,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 971.4346160888672,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 832.2584838867188,
+          "width": 255.9943084716797
+        },
+        "top": 800.2627563476562,
+        "width": 1280
+      },
+      {
+        "bottom": 1208.4161682128906,
+        "entries": {
+          "bottom": 1175.5113372802734,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 1036.335205078125,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 1175.5113372802734,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 1036.335205078125,
+          "width": 255.9943084716797
+        },
+        "top": 1004.3394775390624,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Feb 2023 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "jannik-schaefer",
+    "state": "next section approaches",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 214.2400360107422,
+      "height": 462.4218444824219,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -248.1818084716797,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 214.2400360107422,
+      "height": 462.4218444824219,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -248.1818084716797,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 214.240047454834,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -41.7542610168457,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1144.360809326172,
+        "class": "profile page-container",
+        "height": 1432.5426025390625,
+        "left": 80,
+        "right": 1360,
+        "top": -288.1817932128906,
+        "width": 1280
+      },
+      {
+        "bottom": 1267.4502029418943,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1184.3607177734375,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1048.366436004639,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1002.9616088867188,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 368.1818237304687,
+    "sections": [
+      {
+        "bottom": 554.8082275390625,
+        "entries": {
+          "bottom": 521.9033966064453,
+          "height": 274.7585144042969,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 247.14488220214844,
+          "width": 703.99853515625
+        },
+        "height": 339.6590881347656,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 521.9033966064453,
+          "height": 274.7585144042969,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 247.14488220214844,
+          "width": 255.9943084716797
+        },
+        "top": 215.14913940429688,
+        "width": 1280
+      },
+      {
+        "bottom": 758.8849182128906,
+        "entries": {
+          "bottom": 725.9800872802734,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 586.803955078125,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 725.9800872802734,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 586.803955078125,
+          "width": 255.9943084716797
+        },
+        "top": 554.8082275390625,
+        "width": 1280
+      },
+      {
+        "bottom": 962.9615783691406,
+        "entries": {
+          "bottom": 930.0568084716796,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 790.8806762695312,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 930.0568084716796,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 790.8806762695312,
+          "width": 255.9943084716797
+        },
+        "top": 758.8848876953125,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Feb 2023 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "jannik-schaefer",
+    "state": "CV and page end",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": -169.39633178710938,
+      "height": 462.4218444824219,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -631.8181762695312,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": -169.39633178710938,
+      "height": 462.4218444824219,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -631.8181762695312,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": -169.3963165283203,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -425.390625,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 760.7244262695312,
+        "class": "profile page-container",
+        "height": 1432.5426025390625,
+        "left": 80,
+        "right": 1360,
+        "top": -671.8181762695312,
+        "width": 1280
+      },
+      {
+        "bottom": 883.8139114379883,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 800.7244262695312,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 664.7300834655762,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.3252563476562,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 751.8181762695312,
+    "sections": [
+      {
+        "bottom": 171.171875,
+        "entries": {
+          "bottom": 138.2670440673828,
+          "height": 274.7585144042969,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": -136.49147033691406,
+          "width": 703.99853515625
+        },
+        "height": 339.6590881347656,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 138.2670440673828,
+          "height": 274.7585144042969,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": -136.49147033691406,
+          "width": 255.9943084716797
+        },
+        "top": -168.48721313476562,
+        "width": 1280
+      },
+      {
+        "bottom": 375.2485656738281,
+        "entries": {
+          "bottom": 342.34373474121094,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 203.1676025390625,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 342.34373474121094,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 203.1676025390625,
+          "width": 255.9943084716797
+        },
+        "top": 171.171875,
+        "width": 1280
+      },
+      {
+        "bottom": 579.3252563476562,
+        "entries": {
+          "bottom": 546.4204254150391,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 407.2442932128906,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.4204254150391,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 407.2442932128906,
+          "width": 255.9943084716797
+        },
+        "top": 375.2485656738281,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Feb 2023 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "anna-brinkkoetter",
+    "state": "top",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 493.3380355834961,
+      "height": 373.3380432128906,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 493.3380355834961,
+      "height": 373.3380432128906,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": 119.99999237060548,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1007.9260864257812,
+        "class": "profile page-container",
+        "height": 927.9260864257812,
+        "left": 80,
+        "right": 1360,
+        "top": 80,
+        "width": 1280
+      },
+      {
+        "bottom": 1131.0156326293943,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1047.9261474609375,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 911.9318046569824,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 866.5269775390625,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 0,
+    "sections": [
+      {
+        "bottom": 585.5468444824219,
+        "entries": {
+          "bottom": 552.6420059204102,
+          "height": 26.399147033691406,
+          "left": 399.9928894042969,
+          "right": 1359.999969482422,
+          "top": 526.2428588867188,
+          "width": 960.007080078125
+        },
+        "height": 91.29971313476562,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 552.6420059204102,
+          "height": 26.399147033691406,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 526.2428588867188,
+          "width": 255.9943084716797
+        },
+        "top": 494.24713134765625,
+        "width": 1280
+      },
+      {
+        "bottom": 706.0369262695312,
+        "entries": {
+          "bottom": 673.1320877075195,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 617.5426025390625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 673.1320877075195,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 617.5426025390625,
+          "width": 255.9943084716797
+        },
+        "top": 585.546875,
+        "width": 1280
+      },
+      {
+        "bottom": 826.5269775390625,
+        "entries": {
+          "bottom": 793.6221389770508,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 738.0326538085938,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 793.6221389770508,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 738.0326538085938,
+          "width": 255.9943084716797
+        },
+        "top": 706.0369262695312,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "anna-brinkkoetter",
+    "state": "early scroll",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 370.61077070236206,
+      "height": 373.3380432128906,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -2.7272725105285645,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 370.61077070236206,
+      "height": 373.3380432128906,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -2.7272725105285645,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 370.61077880859375,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 114.61647033691406,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 885.1988143920898,
+        "class": "profile page-container",
+        "height": 927.9260864257812,
+        "left": 80,
+        "right": 1360,
+        "top": -42.727272033691406,
+        "width": 1280
+      },
+      {
+        "bottom": 1008.2883377075196,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 925.1988525390624,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 789.2045097351074,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 743.7996826171875,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 122.7272720336914,
+    "sections": [
+      {
+        "bottom": 462.819580078125,
+        "entries": {
+          "bottom": 429.9147720336914,
+          "height": 26.399147033691406,
+          "left": 399.9928894042969,
+          "right": 1359.999969482422,
+          "top": 403.515625,
+          "width": 960.007080078125
+        },
+        "height": 91.29971313476562,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 429.9147720336914,
+          "height": 26.399147033691406,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 403.515625,
+          "width": 255.9943084716797
+        },
+        "top": 371.5198669433594,
+        "width": 1280
+      },
+      {
+        "bottom": 583.3096313476562,
+        "entries": {
+          "bottom": 550.4048233032227,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 494.8153381347656,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 550.4048233032227,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 494.8153381347656,
+          "width": 255.9943084716797
+        },
+        "top": 462.819580078125,
+        "width": 1280
+      },
+      {
+        "bottom": 703.7996826171875,
+        "entries": {
+          "bottom": 670.8948440551758,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 615.3053588867188,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 670.8948440551758,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 615.3053588867188,
+          "width": 255.9943084716797
+        },
+        "top": 583.3096313476562,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "anna-brinkkoetter",
+    "state": "next section approaches",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 246.51986694335935,
+      "height": 373.3380432128906,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -126.81817626953124,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 246.51986694335935,
+      "height": 373.3380432128906,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -126.81817626953124,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 246.51987743377688,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -9.474431037902832,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.10791015625,
+        "class": "profile page-container",
+        "height": 927.9260864257812,
+        "left": 80,
+        "right": 1360,
+        "top": -166.81817626953125,
+        "width": 1280
+      },
+      {
+        "bottom": 884.197395324707,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.10791015625,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.1136283874512,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.7088012695312,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 246.81817626953125,
+    "sections": [
+      {
+        "bottom": 338.7286834716797,
+        "entries": {
+          "bottom": 305.82386016845703,
+          "height": 26.399147033691406,
+          "left": 399.9928894042969,
+          "right": 1359.999969482422,
+          "top": 279.4247131347656,
+          "width": 960.007080078125
+        },
+        "height": 91.29971313476562,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 305.82386016845703,
+          "height": 26.399147033691406,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 279.4247131347656,
+          "width": 255.9943084716797
+        },
+        "top": 247.4289703369141,
+        "width": 1280
+      },
+      {
+        "bottom": 459.2187194824219,
+        "entries": {
+          "bottom": 426.3139114379883,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 370.7244262695313,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 426.3139114379883,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 370.7244262695313,
+          "width": 255.9943084716797
+        },
+        "top": 338.7286682128906,
+        "width": 1280
+      },
+      {
+        "bottom": 579.7087707519531,
+        "entries": {
+          "bottom": 546.8039627075195,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 491.2144775390625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.8039627075195,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 491.2144775390625,
+          "width": 255.9943084716797
+        },
+        "top": 459.2187194824219,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "anna-brinkkoetter",
+    "state": "CV and page end",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 246.51986694335935,
+      "height": 373.3380432128906,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -126.81817626953124,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 246.51986694335935,
+      "height": 373.3380432128906,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -126.81817626953124,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 246.51987743377688,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -9.474431037902832,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.10791015625,
+        "class": "profile page-container",
+        "height": 927.9260864257812,
+        "left": 80,
+        "right": 1360,
+        "top": -166.81817626953125,
+        "width": 1280
+      },
+      {
+        "bottom": 884.197395324707,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.10791015625,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.1136283874512,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.7088012695312,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 246.81817626953125,
+    "sections": [
+      {
+        "bottom": 338.7286834716797,
+        "entries": {
+          "bottom": 305.82386016845703,
+          "height": 26.399147033691406,
+          "left": 399.9928894042969,
+          "right": 1359.999969482422,
+          "top": 279.4247131347656,
+          "width": 960.007080078125
+        },
+        "height": 91.29971313476562,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 305.82386016845703,
+          "height": 26.399147033691406,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 279.4247131347656,
+          "width": 255.9943084716797
+        },
+        "top": 247.4289703369141,
+        "width": 1280
+      },
+      {
+        "bottom": 459.2187194824219,
+        "entries": {
+          "bottom": 426.3139114379883,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 370.7244262695313,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 426.3139114379883,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 370.7244262695313,
+          "width": 255.9943084716797
+        },
+        "top": 338.7286682128906,
+        "width": 1280
+      },
+      {
+        "bottom": 579.7087707519531,
+        "entries": {
+          "bottom": 546.8039627075195,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 491.2144775390625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.8039627075195,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 491.2144775390625,
+          "width": 255.9943084716797
+        },
+        "top": 459.2187194824219,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "rhema-tamunoiyowuna",
+    "state": "top",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 552.7272567749023,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": 119.99999237060548,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1452.4501953125,
+        "class": "profile page-container",
+        "height": 1372.4501953125,
+        "left": 80,
+        "right": 1360,
+        "top": 80,
+        "width": 1280
+      },
+      {
+        "bottom": 1575.539680480957,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1492.4501953125,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1356.4559745788574,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1311.0511474609375,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 0,
+    "sections": [
+      {
+        "bottom": 862.897705078125,
+        "entries": {
+          "bottom": 829.9928741455078,
+          "height": 244.3607940673828,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 585.632080078125,
+          "width": 703.99853515625
+        },
+        "height": 309.2613525390625,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 829.9928741455078,
+          "height": 244.3607940673828,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 585.632080078125,
+          "width": 255.9943084716797
+        },
+        "top": 553.6363525390625,
+        "width": 1280
+      },
+      {
+        "bottom": 1066.9743957519531,
+        "entries": {
+          "bottom": 1034.069564819336,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 894.8934326171875,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 1034.069564819336,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 894.8934326171875,
+          "width": 255.9943084716797
+        },
+        "top": 862.897705078125,
+        "width": 1280
+      },
+      {
+        "bottom": 1271.0510559082031,
+        "entries": {
+          "bottom": 1238.146224975586,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 1098.9700927734375,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 1238.146224975586,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 1098.9700927734375,
+          "width": 255.9943084716797
+        },
+        "top": 1066.974365234375,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Mar 2026 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "rhema-tamunoiyowuna",
+    "state": "early scroll",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -2.7272725105285645,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 429.9999918937683,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -2.7272725105285645,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1329.7229232788086,
+        "class": "profile page-container",
+        "height": 1372.4501953125,
+        "left": 80,
+        "right": 1360,
+        "top": -42.727272033691406,
+        "width": 1280
+      },
+      {
+        "bottom": 1452.8125076293943,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1369.7230224609375,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 1233.7286796569824,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 1188.3238525390625,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 122.7272720336914,
+    "sections": [
+      {
+        "bottom": 740.1704406738281,
+        "entries": {
+          "bottom": 707.2656097412109,
+          "height": 244.3607940673828,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 462.9048156738281,
+          "width": 703.99853515625
+        },
+        "height": 309.2613525390625,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 707.2656097412109,
+          "height": 244.3607940673828,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 462.9048156738281,
+          "width": 255.9943084716797
+        },
+        "top": 430.9090881347656,
+        "width": 1280
+      },
+      {
+        "bottom": 944.247100830078,
+        "entries": {
+          "bottom": 911.3422698974608,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 772.1661376953125,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 911.3422698974608,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 772.1661376953125,
+          "width": 255.9943084716797
+        },
+        "top": 740.17041015625,
+        "width": 1280
+      },
+      {
+        "bottom": 1148.3238220214844,
+        "entries": {
+          "bottom": 1115.4189910888672,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 976.2428588867188,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 1115.4189910888672,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 976.2428588867188,
+          "width": 255.9943084716797
+        },
+        "top": 944.2471313476562,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Mar 2026 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "rhema-tamunoiyowuna",
+    "state": "next section approaches",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 184.5454559326172,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -248.1818084716797,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 184.5454559326172,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -248.1818084716797,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 184.54544830322263,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -71.44886016845703,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1084.2684020996094,
+        "class": "profile page-container",
+        "height": 1372.4501953125,
+        "left": 80,
+        "right": 1360,
+        "top": -288.1817932128906,
+        "width": 1280
+      },
+      {
+        "bottom": 1207.3579177856443,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1124.2684326171875,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 988.2740898132324,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 942.8692626953124,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 368.1818237304687,
+    "sections": [
+      {
+        "bottom": 494.7158966064453,
+        "entries": {
+          "bottom": 461.8110656738281,
+          "height": 244.3607940673828,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 217.4502716064453,
+          "width": 703.99853515625
+        },
+        "height": 309.2613525390625,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 461.8110656738281,
+          "height": 244.3607940673828,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 217.4502716064453,
+          "width": 255.9943084716797
+        },
+        "top": 185.4545440673828,
+        "width": 1280
+      },
+      {
+        "bottom": 698.7925720214844,
+        "entries": {
+          "bottom": 665.8877410888672,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 526.7116088867188,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 665.8877410888672,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 526.7116088867188,
+          "width": 255.9943084716797
+        },
+        "top": 494.71588134765625,
+        "width": 1280
+      },
+      {
+        "bottom": 902.8692932128906,
+        "entries": {
+          "bottom": 869.9644622802734,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 730.788330078125,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 869.9644622802734,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 730.788330078125,
+          "width": 255.9943084716797
+        },
+        "top": 698.7926025390625,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Mar 2026 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "rhema-tamunoiyowuna",
+    "state": "CV and page end",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": -138.63632202148438,
+      "height": 432.7272644042969,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -571.3635864257812,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": -138.63632202148438,
+      "height": 432.7272644042969,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -571.3635864257812,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": -138.63636779785156,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -394.6306762695313,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.0866088867188,
+        "class": "profile page-container",
+        "height": 1372.4501953125,
+        "left": 80,
+        "right": 1360,
+        "top": -611.3635864257812,
+        "width": 1280
+      },
+      {
+        "bottom": 884.1760940551758,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.0866088867188,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.0923271179199,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.6875,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 691.3636474609375,
+    "sections": [
+      {
+        "bottom": 171.53408813476562,
+        "entries": {
+          "bottom": 138.62926483154297,
+          "height": 244.3607940673828,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": -105.73152923583984,
+          "width": 703.99853515625
+        },
+        "height": 309.2613525390625,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 138.62926483154297,
+          "height": 244.3607940673828,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": -105.73152923583984,
+          "width": 255.9943084716797
+        },
+        "top": -137.72726440429688,
+        "width": 1280
+      },
+      {
+        "bottom": 375.61077880859375,
+        "entries": {
+          "bottom": 342.70594787597656,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 203.52981567382812,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 342.70594787597656,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 203.52981567382812,
+          "width": 255.9943084716797
+        },
+        "top": 171.53408813476562,
+        "width": 1280
+      },
+      {
+        "bottom": 579.6874694824219,
+        "entries": {
+          "bottom": 546.7826385498047,
+          "height": 139.17613220214844,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 407.60650634765625,
+          "width": 703.99853515625
+        },
+        "height": 204.07669067382812,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.7826385498047,
+          "height": 139.17613220214844,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 407.60650634765625,
+          "width": 255.9943084716797
+        },
+        "top": 375.61077880859375,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "founderPeriod": "Mar 2026 - present",
+    "quoteNodes": 0
+  },
+  {
+    "slug": "rocco-yohji-matthew-krippendorff",
+    "state": "top",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 562.4502487182617,
+      "height": 442.45025634765625,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 562.4502487182617,
+      "height": 442.45025634765625,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": 119.99999237060548,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 1077.038330078125,
+        "class": "profile page-container",
+        "height": 997.038330078125,
+        "left": 80,
+        "right": 1360,
+        "top": 80,
+        "width": 1280
+      },
+      {
+        "bottom": 1200.127815246582,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 1117.038330078125,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 981.04398727417,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 935.63916015625,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 0,
+    "sections": [
+      {
+        "bottom": 654.6590881347656,
+        "entries": {
+          "bottom": 621.7542495727539,
+          "height": 26.399147033691406,
+          "left": 399.9928894042969,
+          "right": 1359.999969482422,
+          "top": 595.3551025390625,
+          "width": 960.007080078125
+        },
+        "height": 91.29971313476562,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 621.7542495727539,
+          "height": 26.399147033691406,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 595.3551025390625,
+          "width": 255.9943084716797
+        },
+        "top": 563.359375,
+        "width": 1280
+      },
+      {
+        "bottom": 775.1491088867188,
+        "entries": {
+          "bottom": 742.244270324707,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 686.65478515625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 742.244270324707,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 686.65478515625,
+          "width": 255.9943084716797
+        },
+        "top": 654.6590576171875,
+        "width": 1280
+      },
+      {
+        "bottom": 895.63916015625,
+        "entries": {
+          "bottom": 862.7343215942383,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 807.1448364257812,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 862.7343215942383,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 807.1448364257812,
+          "width": 255.9943084716797
+        },
+        "top": 775.1491088867188,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "rocco-yohji-matthew-krippendorff",
+    "state": "early scroll",
+    "phase": "pinned",
+    "clipped": [],
+    "column": {
+      "bottom": 439.7229838371277,
+      "height": 442.45025634765625,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -2.7272725105285645,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 439.7229838371277,
+      "height": 442.45025634765625,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -2.7272725105285645,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 375.9943008422851,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": 119.99999237060548,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 954.3110580444336,
+        "class": "profile page-container",
+        "height": 997.038330078125,
+        "left": 80,
+        "right": 1360,
+        "top": -42.727272033691406,
+        "width": 1280
+      },
+      {
+        "bottom": 1077.400520324707,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 994.31103515625,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 858.3167533874512,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 812.9119262695312,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 122.7272720336914,
+    "sections": [
+      {
+        "bottom": 531.9317932128906,
+        "entries": {
+          "bottom": 499.02698516845703,
+          "height": 26.399147033691406,
+          "left": 399.9928894042969,
+          "right": 1359.999969482422,
+          "top": 472.6278381347656,
+          "width": 960.007080078125
+        },
+        "height": 91.29971313476562,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 499.02698516845703,
+          "height": 26.399147033691406,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 472.6278381347656,
+          "width": 255.9943084716797
+        },
+        "top": 440.632080078125,
+        "width": 1280
+      },
+      {
+        "bottom": 652.421875,
+        "entries": {
+          "bottom": 619.5170364379883,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 563.9275512695312,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 619.5170364379883,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 563.9275512695312,
+          "width": 255.9943084716797
+        },
+        "top": 531.9318237304688,
+        "width": 1280
+      },
+      {
+        "bottom": 772.9119262695312,
+        "entries": {
+          "bottom": 740.0070877075195,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 684.4176025390625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 740.0070877075195,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 684.4176025390625,
+          "width": 255.9943084716797
+        },
+        "top": 652.421875,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "rocco-yohji-matthew-krippendorff",
+    "state": "next section approaches",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 246.54116821289065,
+      "height": 442.45025634765625,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -195.9090881347656,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 246.54116821289065,
+      "height": 442.45025634765625,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -195.9090881347656,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 246.5411834716797,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -9.453125,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.1292419433594,
+        "class": "profile page-container",
+        "height": 997.038330078125,
+        "left": 80,
+        "right": 1360,
+        "top": -235.9090881347656,
+        "width": 1280
+      },
+      {
+        "bottom": 884.2186965942383,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.1292114257812,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.1349296569824,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.7301025390625,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 315.9090881347656,
+    "sections": [
+      {
+        "bottom": 338.74998474121094,
+        "entries": {
+          "bottom": 305.8451614379883,
+          "height": 26.399147033691406,
+          "left": 399.9928894042969,
+          "right": 1359.999969482422,
+          "top": 279.4460144042969,
+          "width": 960.007080078125
+        },
+        "height": 91.29971313476562,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 305.8451614379883,
+          "height": 26.399147033691406,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 279.4460144042969,
+          "width": 255.9943084716797
+        },
+        "top": 247.4502716064453,
+        "width": 1280
+      },
+      {
+        "bottom": 459.2400512695313,
+        "entries": {
+          "bottom": 426.33521270751953,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 370.7457275390625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 426.33521270751953,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 370.7457275390625,
+          "width": 255.9943084716797
+        },
+        "top": 338.75,
+        "width": 1280
+      },
+      {
+        "bottom": 579.7301025390625,
+        "entries": {
+          "bottom": 546.8252639770508,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 491.23577880859375,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.8252639770508,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 491.23577880859375,
+          "width": 255.9943084716797
+        },
+        "top": 459.2400512695313,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  },
+  {
+    "slug": "rocco-yohji-matthew-krippendorff",
+    "state": "CV and page end",
+    "phase": "released",
+    "clipped": [],
+    "column": {
+      "bottom": 246.54116821289065,
+      "height": 442.45025634765625,
+      "left": 80,
+      "right": 335.9943084716797,
+      "top": -195.9090881347656,
+      "width": 255.9943084716797
+    },
+    "contacts": [
+      {
+        "height": 45.40482711791992,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "width": 158.64346313476562
+      },
+      {
+        "height": 45.40482711791992,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "width": 109.48863220214844
+      }
+    ],
+    "content": {
+      "bottom": 246.54116821289065,
+      "height": 442.45025634765625,
+      "left": 399.9928894042969,
+      "right": 1359.999969482422,
+      "top": -195.9090881347656,
+      "width": 960.007080078125
+    },
+    "expectedSticky": true,
+    "h1": 1,
+    "height": 900,
+    "localNavigation": 0,
+    "main": 1,
+    "overflow": false,
+    "portrait": {
+      "bottom": 246.5411834716797,
+      "height": 255.9943084716797,
+      "left": 80,
+      "loaded": true,
+      "offset": 120,
+      "position": "sticky",
+      "right": 335.9943084716797,
+      "top": -9.453125,
+      "width": 255.9943084716797
+    },
+    "quoteCount": 0,
+    "regions": [
+      {
+        "bottom": 80,
+        "class": "nav__bar page-container",
+        "height": 80,
+        "left": 80,
+        "right": 1360,
+        "top": 0,
+        "width": 1280
+      },
+      {
+        "bottom": 761.1292419433594,
+        "class": "profile page-container",
+        "height": 997.038330078125,
+        "left": 80,
+        "right": 1360,
+        "top": -235.9090881347656,
+        "width": 1280
+      },
+      {
+        "bottom": 884.2186965942383,
+        "class": "page-container",
+        "height": 83.08948516845703,
+        "left": 80,
+        "right": 1360,
+        "top": 801.1292114257812,
+        "width": 1280
+      }
+    ],
+    "removedLabels": [],
+    "return": {
+      "bottom": 665.1349296569824,
+      "height": 45.40482711791992,
+      "href": "/members",
+      "label": "Back to the Members",
+      "left": 400,
+      "right": 615.5397644042969,
+      "top": 619.7301025390625,
+      "width": 215.53976440429688
+    },
+    "rootFont": 16,
+    "scrollY": 315.9090881347656,
+    "sections": [
+      {
+        "bottom": 338.74998474121094,
+        "entries": {
+          "bottom": 305.8451614379883,
+          "height": 26.399147033691406,
+          "left": 399.9928894042969,
+          "right": 1359.999969482422,
+          "top": 279.4460144042969,
+          "width": 960.007080078125
+        },
+        "height": 91.29971313476562,
+        "label": "Experience",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 305.8451614379883,
+          "height": 26.399147033691406,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 279.4460144042969,
+          "width": 255.9943084716797
+        },
+        "top": 247.4502716064453,
+        "width": 1280
+      },
+      {
+        "bottom": 459.2400512695313,
+        "entries": {
+          "bottom": 426.33521270751953,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 370.7457275390625,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Education",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 426.33521270751953,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 370.7457275390625,
+          "width": 255.9943084716797
+        },
+        "top": 338.75,
+        "width": 1280
+      },
+      {
+        "bottom": 579.7301025390625,
+        "entries": {
+          "bottom": 546.8252639770508,
+          "height": 55.58948516845703,
+          "left": 399.9928894042969,
+          "right": 1103.9914245605469,
+          "top": 491.23577880859375,
+          "width": 703.99853515625
+        },
+        "height": 120.49005126953124,
+        "label": "Volunteering",
+        "left": 80,
+        "right": 1360,
+        "title": {
+          "bottom": 546.8252639770508,
+          "height": 55.58948516845703,
+          "left": 80,
+          "right": 335.9943084716797,
+          "top": 491.23577880859375,
+          "width": 255.9943084716797
+        },
+        "top": 459.2400512695313,
+        "width": 1280
+      }
+    ],
+    "sticky": true,
+    "wide": true,
+    "width": 1440,
+    "extraNotes": [],
+    "quoteNodes": 0
+  }
+]

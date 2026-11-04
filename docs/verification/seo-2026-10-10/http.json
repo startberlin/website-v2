@@ -1,0 +1,514 @@
+{
+  "html": [
+    {
+      "port": 4350,
+      "route": "/",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/"
+      ],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/join",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/join"
+      ],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/members?season=26%2F27&utm_source=test",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/members"
+      ],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "CollectionPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/legal-notice",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/legal-notice"
+      ],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/privacy-policy",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/privacy-policy"
+      ],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs"
+      ],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "CollectionPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs?source=linkedin",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs"
+      ],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "CollectionPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs?q=Product",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "CollectionPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs?page=2",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "CollectionPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs/submit",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs/submit"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs/privacy",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs/privacy"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs/job-example/product-intern?source=whatsapp",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs/job-example/product-intern"
+      ],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage",
+        "JobPosting"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs/closed/product-intern",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs/closed/product-intern"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs/expired/product-intern",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs/expired/product-intern"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs/unsafe-content/product-intern",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs/unsafe-content/product-intern"
+      ],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage",
+        "JobPosting"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs/missing/missing",
+      "status": 404,
+      "canonical": [],
+      "robots": "noindex, follow",
+      "schema_types": [],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/jobs/unavailable/role",
+      "status": 503,
+      "canonical": [],
+      "robots": "noindex, follow",
+      "schema_types": [],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/not-a-page",
+      "status": 404,
+      "canonical": [],
+      "robots": "noindex, follow",
+      "schema_types": [],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4350,
+      "route": "/404",
+      "status": 404,
+      "canonical": [],
+      "robots": "noindex, follow",
+      "schema_types": [],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4352,
+      "route": "/jobs",
+      "status": 503,
+      "canonical": [],
+      "robots": "noindex, follow",
+      "schema_types": [],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4352,
+      "route": "/jobs/job-example/product-intern",
+      "status": 503,
+      "canonical": [],
+      "robots": "noindex, follow",
+      "schema_types": [],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4351,
+      "route": "/",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4351,
+      "route": "/join",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/join"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4351,
+      "route": "/members",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/members"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "CollectionPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4351,
+      "route": "/legal-notice",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/legal-notice"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4351,
+      "route": "/privacy-policy",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/privacy-policy"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4351,
+      "route": "/jobs/submit",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs/submit"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4351,
+      "route": "/jobs/privacy",
+      "status": 200,
+      "canonical": [
+        "https://www.start-berlin.com/jobs/privacy"
+      ],
+      "robots": "noindex, follow",
+      "schema_types": [
+        "Organization",
+        "WebSite",
+        "WebPage"
+      ],
+      "one_h1_main_footer": true
+    },
+    {
+      "port": 4351,
+      "route": "/not-a-page",
+      "status": 404,
+      "canonical": [],
+      "robots": "noindex, follow",
+      "schema_types": [],
+      "one_h1_main_footer": true
+    }
+  ],
+  "discovery": [
+    {
+      "port": 4350,
+      "route": "/robots.txt",
+      "status": 200,
+      "entries": 0
+    },
+    {
+      "port": 4350,
+      "route": "/sitemap.xml",
+      "status": 200,
+      "entries": 2
+    },
+    {
+      "port": 4350,
+      "route": "/sitemap-pages.xml",
+      "status": 200,
+      "entries": 6
+    },
+    {
+      "port": 4350,
+      "route": "/jobs/sitemap.xml",
+      "status": 200,
+      "entries": 28
+    },
+    {
+      "port": 4351,
+      "route": "/robots.txt",
+      "status": 200,
+      "entries": 0
+    },
+    {
+      "port": 4351,
+      "route": "/sitemap.xml",
+      "status": 200,
+      "entries": 0
+    },
+    {
+      "port": 4351,
+      "route": "/sitemap-pages.xml",
+      "status": 200,
+      "entries": 0
+    },
+    {
+      "port": 4351,
+      "route": "/jobs/sitemap.xml",
+      "status": 200,
+      "entries": 0
+    },
+    {
+      "port": 4352,
+      "route": "/robots.txt",
+      "status": 200,
+      "entries": 0
+    },
+    {
+      "port": 4352,
+      "route": "/sitemap.xml",
+      "status": 200,
+      "entries": 2
+    },
+    {
+      "port": 4352,
+      "route": "/sitemap-pages.xml",
+      "status": 200,
+      "entries": 6
+    },
+    {
+      "port": 4352,
+      "route": "/jobs/sitemap.xml",
+      "status": 503,
+      "entries": 0
+    }
+  ],
+  "redirects": [
+    {
+      "route": "/legal/legal-notice.html",
+      "status": 301,
+      "location": "/legal-notice"
+    },
+    {
+      "route": "/legal/privacy.html",
+      "status": 301,
+      "location": "/privacy-policy"
+    },
+    {
+      "route": "/jobs/job-example/wrong-slug?source=linkedin",
+      "status": 308,
+      "location": "/jobs/job-example/product-intern?source=linkedin"
+    },
+    {
+      "route": "/jobs/apply/job-example",
+      "status": 303,
+      "location": "https://example.com/careers/product-intern"
+    }
+  ],
+  "assets": [
+    {
+      "file": "start-berlin.jpg",
+      "status": 200,
+      "type": "image/jpeg",
+      "bytes": 93965
+    },
+    {
+      "file": "start-berlin-logo.png",
+      "status": 200,
+      "type": "image/png",
+      "bytes": 10762
+    }
+  ],
+  "limits": [
+    "Local built Node output with synthetic GET-only Cockpit fixtures.",
+    "No live indexing, rich-result eligibility or Core Web Vitals field measurement."
+  ],
+  "checks": 48
+}

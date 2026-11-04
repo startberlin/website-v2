@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { pageSeo } from '../lib/seo/pages';
+
+Astro.response.status = 404;
+---
+
+<Layout seo={pageSeo('/404')}>
+  <PageHero>
+    <Fragment slot="title">Page not found</Fragment>
+    <Fragment slot="description">This address could not be found. Return to our homepage or browse the current opportunities in our network.</Fragment>
+    <Fragment slot="actions">
+      <div class="error-actions">
+        <a class="button" href="/">Back to home</a>
+        <a class="button button--outline" href="/jobs">Browse jobs</a>
+      </div>
+    </Fragment>
+  </PageHero>
+</Layout>
+
+<style>
+  .error-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+</style>

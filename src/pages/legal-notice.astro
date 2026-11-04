@@ -1,11 +1,12 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+import { pageSeo } from '../lib/seo/pages';
 
 // Text migrated from website-raw/legal/legal-notice.html on 5 October 2026.
 // Hosting and service disclosures need reconciliation with the selected V2 host before release.
 ---
 
-<LegalLayout title="Legal Notice">
+<LegalLayout title="Legal Notice" seo={pageSeo('/legal-notice')}>
 	<section class="legal-chapter">
 		<div class="legal-section">
 			<p>START Berlin e.V.<br />Luisenstraße 53<br />c/o HU-Gründerhaus<br />10117 Berlin</p>

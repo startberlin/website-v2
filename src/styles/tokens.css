@@ -73,6 +73,8 @@
 	--type-job-page: clamp(2.75rem, 5.5vw, 4rem);
 	--type-job-detail: clamp(2rem, 4vw, 3.5rem);
 	--type-job-row: clamp(1.0625rem, 1.8vw, 1.3125rem);
+	--type-member-name: clamp(2.25rem, 4.5vw, 4rem);
+	--tracking-member-name: -0.03em;
 	--leading-copy: 1.65;
 	--leading-ui: 1.4;
 	--tracking-label: 0.025em;

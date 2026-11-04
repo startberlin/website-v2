@@ -1,0 +1,314 @@
+[
+  {
+    "case": "Default roster",
+    "count": "45",
+    "empty": false,
+    "profileLinks": [
+      "/members/antonia-hill",
+      "/members/julia-palm",
+      "/members/kari-pele-streithoff",
+      "/members/tobias-burger",
+      "/members/jannik-schaefer",
+      "/members/anna-brinkkoetter",
+      "/members/rhema-tamunoiyowuna",
+      "/members/rocco-yohji-matthew-krippendorff",
+      "/members/tobias-burger",
+      "/members/jannik-schaefer",
+      "/members/anna-brinkkoetter",
+      "/members/rhema-tamunoiyowuna",
+      "/members/rocco-yohji-matthew-krippendorff"
+    ],
+    "rows": [
+      {
+        "hidden": false,
+        "names": [
+          "Antonia Hill",
+          "Julia Palm",
+          "Kari-Pele Streithoff"
+        ]
+      },
+      {
+        "hidden": false,
+        "names": [
+          "Tobias Burger",
+          "Jannik Schaefer",
+          "Anna Brinkkötter",
+          "Rhema Tamunoiyowuna",
+          "Rocco Yohji Matthew Krippendorff"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "Search deduplicates Board and department",
+    "count": "1",
+    "empty": false,
+    "profileLinks": [
+      "/members/jannik-schaefer",
+      "/members/jannik-schaefer"
+    ],
+    "rows": [
+      {
+        "hidden": true,
+        "names": []
+      },
+      {
+        "hidden": false,
+        "names": [
+          "Jannik Schaefer"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "Combined search and department",
+    "count": "1",
+    "empty": false,
+    "profileLinks": [
+      "/members/jannik-schaefer"
+    ],
+    "rows": [
+      {
+        "hidden": true,
+        "names": []
+      },
+      {
+        "hidden": true,
+        "names": []
+      }
+    ]
+  },
+  {
+    "case": "Board filter",
+    "count": "8",
+    "empty": false,
+    "profileLinks": [
+      "/members/antonia-hill",
+      "/members/julia-palm",
+      "/members/kari-pele-streithoff",
+      "/members/tobias-burger",
+      "/members/jannik-schaefer",
+      "/members/anna-brinkkoetter",
+      "/members/rhema-tamunoiyowuna",
+      "/members/rocco-yohji-matthew-krippendorff"
+    ],
+    "rows": [
+      {
+        "hidden": false,
+        "names": [
+          "Antonia Hill",
+          "Julia Palm",
+          "Kari-Pele Streithoff"
+        ]
+      },
+      {
+        "hidden": false,
+        "names": [
+          "Tobias Burger",
+          "Jannik Schaefer",
+          "Anna Brinkkötter",
+          "Rhema Tamunoiyowuna",
+          "Rocco Yohji Matthew Krippendorff"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "Role search hides the second Board row",
+    "count": "1",
+    "empty": false,
+    "profileLinks": [
+      "/members/kari-pele-streithoff"
+    ],
+    "rows": [
+      {
+        "hidden": false,
+        "names": [
+          "Kari-Pele Streithoff"
+        ]
+      },
+      {
+        "hidden": true,
+        "names": []
+      }
+    ]
+  },
+  {
+    "case": "Empty state",
+    "count": "0",
+    "empty": true,
+    "profileLinks": [],
+    "rows": [
+      {
+        "hidden": true,
+        "names": []
+      },
+      {
+        "hidden": true,
+        "names": []
+      }
+    ]
+  },
+  {
+    "case": "Reset returns all members",
+    "count": "45",
+    "empty": false,
+    "profileLinks": [
+      "/members/antonia-hill",
+      "/members/julia-palm",
+      "/members/kari-pele-streithoff",
+      "/members/tobias-burger",
+      "/members/jannik-schaefer",
+      "/members/anna-brinkkoetter",
+      "/members/rhema-tamunoiyowuna",
+      "/members/rocco-yohji-matthew-krippendorff",
+      "/members/tobias-burger",
+      "/members/jannik-schaefer",
+      "/members/anna-brinkkoetter",
+      "/members/rhema-tamunoiyowuna",
+      "/members/rocco-yohji-matthew-krippendorff"
+    ],
+    "rows": [
+      {
+        "hidden": false,
+        "names": [
+          "Antonia Hill",
+          "Julia Palm",
+          "Kari-Pele Streithoff"
+        ]
+      },
+      {
+        "hidden": false,
+        "names": [
+          "Tobias Burger",
+          "Jannik Schaefer",
+          "Anna Brinkkötter",
+          "Rhema Tamunoiyowuna",
+          "Rocco Yohji Matthew Krippendorff"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "Keyboard profile focus below sticky bars",
+    "bottom": 580.4900054931641,
+    "cardOutline": "1.81818px",
+    "href": "/members/antonia-hill",
+    "name": "Antonia Hill",
+    "outline": "2.72727px",
+    "stickyBottom": 279.609375,
+    "top": 560.0354614257812,
+    "visible": true
+  },
+  {
+    "case": "Keyboard reaches LinkedIn independently",
+    "bottom": 656.4843559265137,
+    "cardOutline": "2.72727px",
+    "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+    "name": "Antonia Hill on LinkedIn (opens in a new tab)",
+    "outline": "1.81818px",
+    "stickyBottom": 279.609375,
+    "top": 612.4857788085938,
+    "visible": true
+  },
+  {
+    "case": "Keyboard reaches Email independently",
+    "bottom": 656.4843559265137,
+    "cardOutline": "2.72727px",
+    "href": "mailto:antonia.hill@start-berlin.com",
+    "name": "Email Antonia Hill at antonia.hill@start-berlin.com",
+    "outline": "1.81818px",
+    "stickyBottom": 279.609375,
+    "top": 612.4857788085938,
+    "visible": true
+  },
+  {
+    "case": "All contact hit targets remain separate",
+    "results": [
+      {
+        "hit": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill"
+      },
+      {
+        "hit": "mailto:antonia.hill@start-berlin.com",
+        "href": "mailto:antonia.hill@start-berlin.com"
+      },
+      {
+        "hit": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm"
+      },
+      {
+        "hit": "mailto:julia.palm@start-berlin.com",
+        "href": "mailto:julia.palm@start-berlin.com"
+      }
+    ]
+  },
+  {
+    "case": "Keyboard opens Board profile",
+    "url": "http://127.0.0.1:4352/members/antonia-hill",
+    "heading": "Antonia Hill"
+  },
+  {
+    "case": "Return to Board anchor",
+    "url": "http://127.0.0.1:4352/members#26-27-board",
+    "count": "45",
+    "empty": false,
+    "profileLinks": [
+      "/members/antonia-hill",
+      "/members/julia-palm",
+      "/members/kari-pele-streithoff",
+      "/members/tobias-burger",
+      "/members/jannik-schaefer",
+      "/members/anna-brinkkoetter",
+      "/members/rhema-tamunoiyowuna",
+      "/members/rocco-yohji-matthew-krippendorff",
+      "/members/tobias-burger",
+      "/members/jannik-schaefer",
+      "/members/anna-brinkkoetter",
+      "/members/rhema-tamunoiyowuna",
+      "/members/rocco-yohji-matthew-krippendorff"
+    ],
+    "rows": [
+      {
+        "hidden": false,
+        "names": [
+          "Antonia Hill",
+          "Julia Palm",
+          "Kari-Pele Streithoff"
+        ]
+      },
+      {
+        "hidden": false,
+        "names": [
+          "Tobias Burger",
+          "Jannik Schaefer",
+          "Anna Brinkkötter",
+          "Rhema Tamunoiyowuna",
+          "Rocco Yohji Matthew Krippendorff"
+        ]
+      }
+    ]
+  },
+  {
+    "case": "Portrait opens Board profile",
+    "url": "http://127.0.0.1:4352/members/antonia-hill"
+  },
+  {
+    "case": "Mobile menu makes the profile inert",
+    "bar": true,
+    "footer": true,
+    "main": true
+  },
+  {
+    "case": "Escape restores mobile menu focus",
+    "active": "Open menu",
+    "bar": false,
+    "footer": false,
+    "main": false
+  },
+  {
+    "case": "Project link opens the actual KI Weekly ranking",
+    "url": "https://www.kiweekly.de/ranking",
+    "title": "KI-Modell-Ranking: Das beste KI-Modell im Vergleich | KI Weekly"
+  }
+]

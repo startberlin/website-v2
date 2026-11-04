@@ -1,11 +1,12 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+import { pageSeo } from '../lib/seo/pages';
 
 // Text migrated from website-raw/legal/privacy.html on 5 October 2026.
 // Hosting and service disclosures need reconciliation with the selected V2 host before release.
 ---
 
-<LegalLayout title="Privacy Policy">
+<LegalLayout title="Privacy Policy" seo={pageSeo('/privacy-policy')}>
 	<section class="legal-chapter">
 		<h2>1. Data protection at a glance</h2>
 		<div class="legal-section">

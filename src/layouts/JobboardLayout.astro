@@ -1,34 +1,17 @@
 ---
 import Layout from './Layout.astro';
 import '../styles/jobboard.css';
+import type { PageSeo } from '../lib/seo/metadata';
 
 interface Props {
-	title?: string;
-	description?: string;
-	canonical?: string;
-	robots?: string;
+	seo: PageSeo;
 }
 
-const {
-	title = 'Jobs | START Berlin',
-	description = 'Open roles from companies in the START Berlin network. Apply directly with the team.',
-	canonical,
-	robots,
-} = Astro.props;
+const { seo } = Astro.props;
 const hasHero = Astro.slots.has('hero');
 ---
 
-<Layout title={title}>
-	<Fragment slot="head">
-		<meta name="description" content={description} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content="website" />
-		{canonical && <link rel="canonical" href={canonical} />}
-		{canonical && <meta property="og:url" content={canonical} />}
-		{robots && <meta name="robots" content={robots} />}
-		<slot name="head" />
-	</Fragment>
+<Layout seo={seo}>
 	<div class:list={['jobboard', { 'jobboard--hero': hasHero }]}>
 		<a class="jb-skip" href="#jobboard-content">Skip to jobs content</a>
 		<slot name="hero" />

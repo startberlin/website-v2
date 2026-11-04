@@ -1,14 +1,16 @@
 ---
 import Layout from './Layout.astro';
+import type { PageSeo } from '../lib/seo/metadata';
 
 interface Props {
 	title: string;
+	seo: PageSeo;
 }
 
-const { title } = Astro.props;
+const { title, seo } = Astro.props;
 ---
 
-<Layout title={`${title} | START Berlin`}>
+<Layout seo={seo}>
 	<article class="legal-page page-container" aria-labelledby="legal-title">
 		<h1 id="legal-title">{title}</h1>
 		<div class="legal-page__content"><slot /></div>
