@@ -2,9 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import LumaEvents from '../components/LumaEvents.astro';
 import { pageSeo } from '../lib/seo/pages';
 import { lumaCalendar } from '../lib/luma';
-import { formats, formatsSection, hero, membersOnly, pastEvents } from '../data/events';
+import { calendarSection, formats, formatsSection, hero, membersOnly, pastEvents } from '../data/events';
 ---
 
 <Layout seo={pageSeo('/events')}>
@@ -26,6 +27,8 @@ import { formats, formatsSection, hero, membersOnly, pastEvents } from '../data/
 			))}
 		</div>
 	</section>
+
+	<LumaEvents id={calendarSection.id} heading={calendarSection.heading} lead={calendarSection.lead} />
 
 	<section class="section page-container" id="members-only" aria-labelledby="members-only-heading">
 		<div class="members-card">

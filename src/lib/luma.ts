@@ -8,4 +8,7 @@ export const lumaCalendar = {
 	calendarUrl,
 	pastEventsUrl: `${calendarUrl}?period=past`,
 	frameTitle: 'Upcoming public events hosted by START Berlin',
+	linkLabel: 'View calendar on Luma',
+	// Visible while the embed loads, and stays visible if it never does.
+	loadingText: 'The calendar is loading from Luma. You can also view it directly on Luma.',
 } as const;

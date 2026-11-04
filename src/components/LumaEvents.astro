@@ -1,0 +1,125 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { lumaCalendar } from '../lib/luma';
+
+interface Props {
+	id: string;
+	heading: string;
+	level?: 2 | 3;
+	eyebrow?: string;
+	lead?: string;
+}
+
+const { id, heading, level = 2, eyebrow, lead } = Astro.props;
+const headingId = `${id}-heading`;
+// Luma needs scripts and its own origin to load events (an opaque origin fails
+// silently and looks like an empty calendar). Forms and popups serve guest
+// registration, event pages and Luma sign-in. Top-level navigation of this
+// page, downloads and modal dialogs stay blocked.
+const sandbox = 'allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox';
+---
+
+<section class="luma-events page-container" id={id} aria-labelledby={headingId}>
+	<SectionHeading id={headingId} level={level} eyebrow={eyebrow}>
+		{heading}
+		{lead && <Fragment slot="lead">{lead}</Fragment>}
+	</SectionHeading>
+	<a class="luma-events__link" href={lumaCalendar.calendarUrl} target="_blank" rel="noopener noreferrer">
+		{lumaCalendar.linkLabel}<span class="sr-only"> (opens in a new tab)</span>
+	</a>
+	<div class="luma-events__frame">
+		<p class="luma-events__status">{lumaCalendar.loadingText}</p>
+		<iframe
+			class="luma-events__embed"
+			src={lumaCalendar.embedUrl}
+			title={lumaCalendar.frameTitle}
+			width="100%"
+			height="720"
+			loading="lazy"
+			sandbox={sandbox}
+		></iframe>
+	</div>
+</section>
+
+<style>
+	.luma-events {
+		padding-block: var(--space-16);
+		scroll-margin-top: var(--header-height);
+	}
+
+	.luma-events__link {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--target-min);
+		max-width: 100%;
+		color: var(--color-accent);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-bold);
+		line-height: var(--leading-ui);
+		text-decoration: underline;
+		text-underline-offset: var(--space-1);
+	}
+
+	/* The frame never grows with its content, so the height is reserved here. Staying
+	   below the viewport height leaves page area to scroll past it on phones. */
+	.luma-events__frame {
+		position: relative;
+		display: grid;
+		place-items: center;
+		height: clamp(24rem, 80svh, 56rem);
+		margin-top: var(--space-4);
+		overflow: hidden;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		background: var(--surface-card);
+	}
+
+	/* Luma's opaque page covers this once loaded; a blocked frame stays transparent. */
+	.luma-events__status {
+		max-width: var(--layout-reading);
+		margin: 0;
+		padding: var(--space-6);
+		color: var(--text-muted);
+		font-size: var(--text-base);
+		line-height: var(--leading-copy);
+		text-align: center;
+	}
+
+	.luma-events__embed {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	/* The shared focus outline, set by the script below. */
+	.luma-events__frame.is-focused {
+		outline: var(--focus-width) solid var(--color-accent);
+		outline-offset: var(--focus-offset);
+	}
+
+	@media (min-width: 1024px) {
+		.luma-events { padding-block: var(--space-24); }
+	}
+</style>
+
+<script>
+	// Browsers never match :focus on an iframe while focus is inside it, so CSS alone
+	// cannot show where keyboard focus went. Mark the frame when Tab moves focus into
+	// the embed; pointer clicks into it keep no outline, as with :focus-visible.
+	let tabbed = false;
+	document.addEventListener('keydown', (event) => { tabbed = event.key === 'Tab'; });
+	window.addEventListener('blur', () => {
+		// activeElement points at the iframe only after the window has lost focus.
+		window.setTimeout(() => {
+			for (const frame of document.querySelectorAll('.luma-events__frame')) {
+				frame.classList.toggle('is-focused', tabbed && frame.contains(document.activeElement));
+			}
+			tabbed = false;
+		});
+	});
+	window.addEventListener('focus', () => {
+		for (const frame of document.querySelectorAll('.luma-events__frame')) frame.classList.remove('is-focused');
+	});
+</script>

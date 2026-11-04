@@ -36,6 +36,12 @@ export const formats: EventFormat[] = [
 	},
 ];
 
+export const calendarSection = {
+	id: 'upcoming-events',
+	heading: 'Upcoming Events',
+	lead: 'Register for our public events directly on Luma.',
+};
+
 export const membersOnly = {
 	heading: 'Members Only',
 	text: 'As a START Berlin member, you get access to exclusive workshops, startup visits and internal community events. These formats offer opportunities to learn directly from founders and startup teams, connect more closely with fellow STARTies and take part in experiences that are not generally open to the public.',
