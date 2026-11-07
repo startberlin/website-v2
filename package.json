@@ -24,10 +24,10 @@
   },
   "dependencies": {
     "@astrojs/node": "11.1.9",
-    "@astrojs/react": "7.1.1",
-    "@astrojs/vercel": "11.0.16",
+    "@astrojs/react": "7.1.2",
+    "@astrojs/vercel": "11.0.18",
     "@hookform/resolvers": "7.0.0",
-    "astro": "7.4.2",
+    "astro": "7.4.5",
     "nuqs": "2.10.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
