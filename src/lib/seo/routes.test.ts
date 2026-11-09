@@ -37,9 +37,11 @@ test('production discovery uses the configured origin, excludes utilities and ha
     const response = await pages(context);
     assert.equal(response.headers.get('content-type'), 'application/xml; charset=utf-8');
     const xml = await response.text();
-    assert.equal((xml.match(/<url>/g) ?? []).length, 16);
+    assert.equal((xml.match(/<url>/g) ?? []).length, 18);
     assert.match(xml, /\/member-journey<\/loc>/);
     assert.match(xml, /\/events<\/loc>/);
+    assert.match(xml, /\/about-us<\/loc>/);
+    assert.match(xml, /\/partners<\/loc>/);
     assert.match(xml, /\/members\/rhema-tamunoiyowuna/);
     assert.match(xml, /\/members\/jannik-schaefer/);
     assert.match(xml, /\/members\/antonia-hill/);

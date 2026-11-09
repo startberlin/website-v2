@@ -55,6 +55,8 @@ export const icons = {
 	'arrow-up-right': outline(["M7 17 17 7M7 7h10v10"]),
 	'external-link': outline(["M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"]),
 	'check': outline(["M5 13l4 4L19 7"]),
+	'pause': outline(["M9 5v14M15 5v14"]),
+	'play': outline(["M7 4.5v15l12-7.5-12-7.5z"]),
 } satisfies Record<string, IconDefinition>;
 
 export type IconName = keyof typeof icons;

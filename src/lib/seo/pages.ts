@@ -33,6 +33,17 @@ export const pageDefinitions = {
     description: 'Find upcoming START Berlin events and register on Luma. Explore our founder talks, startup visits and workshops, and the formats open only to members.',
     canonicalPath: '/events',
   },
+  // DRAFT copy for the About Us and Partners pages; confirm with the content owners.
+  '/about-us': {
+    title: 'About us: Berlin\'s student entrepreneurship community',
+    description: 'Get to know START Berlin: our purpose, our members and departments, our board and our place in the international START Network.',
+    canonicalPath: '/about-us', pageType: 'AboutPage',
+  },
+  '/partners': {
+    title: 'Partner with START Berlin',
+    description: 'Work with START Berlin through startup visits, talks, workshops and hiring. Meet our partners and contact our Partnerships team.',
+    canonicalPath: '/partners',
+  },
   '/jobs': {
     title: 'Startup jobs and internships',
     description: 'Explore open roles from companies in the START Berlin network. Find startup jobs, internships and working student positions, and apply directly with the employer.',

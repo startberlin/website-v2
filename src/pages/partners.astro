@@ -1,0 +1,546 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PersonChip from '../components/PersonChip.astro';
+import StartStar from '../components/StartStar.astro';
+import Icon from '../components/icons/Icon.astro';
+import { pageSeo } from '../lib/seo/pages';
+import { boardMembers } from '../lib/board-members';
+import { collaborations, contact, hero, offers, offersIntro, partnerGroups, partners } from '../data/partners';
+
+const portraits = import.meta.glob<{ default: ImageMetadata }>('../assets/members/*.webp', { eager: true });
+const contactPerson = boardMembers.find((member) => member.name === contact.person);
+if (!contactPerson) throw new Error(`Missing board profile for ${contact.person}`);
+const contactPortrait = contactPerson.portrait ? portraits[`../assets/members/${contactPerson.portrait}`]?.default : undefined;
+
+// Logos are sized by visual area rather than height, so wide wordmarks and compact
+// marks read at a similar weight: about 2,400 px², 18–52 px high, at most 140 px wide.
+const logoHeight = (logo: ImageMetadata) => {
+	const aspect = logo.width / logo.height;
+	const height = Math.min(Math.max(Math.sqrt(2400 / aspect), 18), 52);
+	return Math.round(Math.min(height, 140 / aspect));
+};
+
+// Groups keep their order; empty groups are not rendered.
+const groups = partnerGroups
+	.map((group) => ({ ...group, partners: partners.filter((partner) => partner.group === group.id).sort((a, b) => a.name.localeCompare(b.name)) }))
+	.filter((group) => group.partners.length);
+
+// Never request more pixels than the source has.
+const photoWidths = (photo: ImageMetadata) => [...[400, 800].filter((width) => width < photo.width), Math.min(photo.width, 1200)];
+const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
+---
+
+<Layout seo={pageSeo('/partners')}>
+	<PageHero image={hero.photo.src} alt={hero.photo.alt} imagePosition="50% 40%" phoneShade>
+		<Fragment slot="title">
+			<span data-hero-line data-hero-accent>{hero.accent}</span>{' '}
+			<span data-hero-line data-hero-outline>{hero.outline}</span>
+		</Fragment>
+		<Fragment slot="description">{hero.description}</Fragment>
+		<div slot="actions" class="hero-actions">
+			<a class="button" href="#contact">Talk to us</a>
+			<a class="button button--outline" href="#offers">See ways to work together</a>
+		</div>
+	</PageHero>
+
+	<section class="band" id="offers" aria-labelledby="offers-heading">
+		<div class="section page-container offers-section">
+			<div class="intro">
+				<SectionHeading id="offers-heading">
+					{offersIntro.heading}
+					<Fragment slot="lead">{offersIntro.lead}</Fragment>
+				</SectionHeading>
+				<ul class="reasons" role="list">
+					{offersIntro.reasons.map((reason) => (
+						<li class="reason">
+							<h3 class="reason__title">{reason.title}</h3>
+							<p class="reason__text">{reason.text}</p>
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div class="offers">
+				{offers.map((offer) => (
+					<article class:list={['offer', { 'offer--action': !offer.photo }]} id={offer.id}>
+						{offer.photo && (
+							<Image src={offer.photo.src} alt={offer.photo.alt} widths={photoWidths(offer.photo.src)} sizes={cardSizes} format="webp" loading="lazy" class="offer__photo" style={offer.photo.position ? `object-position: ${offer.photo.position}` : undefined} />
+						)}
+						<div class="offer__body">
+							<h3 class="offer__title">{offer.title}</h3>
+							<p class="offer__text">{offer.text}</p>
+							{offer.link && <a class="button offer__link" href={offer.link.href}>{offer.link.label} <Icon name="arrow-right" size={18} /></a>}
+						</div>
+					</article>
+				))}
+			</div>
+			<a class="button button--outline offers__cta" href="#contact">Talk to us about a format <Icon name="arrow-right" size={18} /></a>
+		</div>
+	</section>
+
+	<section class="section page-container" id="stories" aria-labelledby="stories-heading">
+		<SectionHeading id="stories-heading">Recent collaborations</SectionHeading>
+		<ul class="stories" role="list">
+			{collaborations.map((story) => (
+				<li class="story">
+					<Image src={story.photo.src} alt={story.photo.alt} width={192} height={192} widths={[192, 384]} sizes="(min-width: 64rem) 7rem, 6rem" format="webp" loading="lazy" class="story__photo" />
+					<div class="story__body">
+						<h3 class="story__title">{story.title}</h3>
+						<p class="story__date">{story.date}</p>
+						<p class="story__text">{story.text}</p>
+						<a class="story__link" href={story.link.href} target="_blank" rel="noopener noreferrer">
+							{story.link.label} <Icon name="arrow-up-right" size={16} /><span class="sr-only"> (opens in a new tab)</span>
+						</a>
+					</div>
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<section class="band" aria-labelledby="our-partners-heading">
+		<div class="section page-container" id="our-partners">
+			<SectionHeading id="our-partners-heading">
+				Our <span data-outline>partners</span>
+				<Fragment slot="lead">Companies, investors, universities and venues that support START Berlin's community.</Fragment>
+			</SectionHeading>
+
+			{/* Hidden until the script turns the stacked groups into a filter. */}
+			<div class="filters" role="group" aria-label="Filter partners by group" hidden data-partner-filters>
+				<button type="button" class="filter" aria-pressed="true" data-filter="all">All</button>
+				{groups.map((group) => (
+					<button type="button" class="filter" aria-pressed="false" data-filter={group.id}>{group.name}</button>
+				))}
+			</div>
+			<p class="sr-only" role="status" aria-live="polite" data-partner-status></p>
+
+			<div class="partner-groups">
+				{groups.map((group) => (
+					<section class="partner-group" aria-labelledby={`partners-${group.id}`} data-group={group.id}>
+						<h3 class="partner-group__title" id={`partners-${group.id}`}>{group.name}</h3>
+						<ul class="logos" role="list">
+							{group.partners.map((partner) => (
+								<li class="logo">
+									<Image src={partner.logo} alt={partner.name} height={logoHeight(partner.logo) * 2} style={`height: ${logoHeight(partner.logo)}px`} class="logo__image" />
+								</li>
+							))}
+						</ul>
+					</section>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="contact-section" id="contact" aria-labelledby="contact-heading">
+		<div class="contact-section__glow" aria-hidden="true"></div>
+		<div class="section page-container">
+			<div class="contact">
+				<div class="contact__star"><StartStar mode="idle" sizes="(min-width: 64rem) 24rem, 40vw" /></div>
+				<div class="contact__copy">
+					<h2 class="contact__heading" id="contact-heading">{contact.heading}</h2>
+					<p class="contact__promise">{contact.promise}</p>
+					<p class="contact__text">{contact.text}</p>
+					<PersonChip name={contactPerson.name} role={contact.role} portrait={contactPortrait} profileUrl={`/members/${contactPerson.slug}`} email={contactPerson.email} linkedin={contactPerson.linkedin} size="large" />
+					<a class="button contact__button" href={contact.form.href} target="_blank" rel="noopener noreferrer">
+						{contact.form.label} <Icon name="arrow-up-right" size={18} /><span class="sr-only"> (opens in a new tab)</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.section {
+		padding-block: var(--space-16);
+	}
+
+	/* A clearly bluer band with hard edges for the offers. */
+	.band {
+		background: var(--surface-band);
+	}
+
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-6);
+	}
+
+	/* Offers intro: heading and lead beside three short reasons to partner. */
+	.intro {
+		display: grid;
+		gap: var(--space-8) var(--space-16);
+		margin-bottom: var(--space-14);
+	}
+
+	.intro :global(.section-heading) {
+		margin-bottom: 0;
+	}
+
+	.reasons {
+		display: grid;
+		gap: var(--space-6);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.reason {
+		padding-left: var(--space-5);
+		border-left: var(--border-width-accent) solid var(--border-accent);
+	}
+
+	.reason__title {
+		margin: 0 0 var(--space-1);
+		font-size: var(--text-lg);
+		font-weight: var(--weight-bold);
+	}
+
+	.reason__text {
+		margin: 0;
+		color: var(--text-muted);
+		line-height: var(--leading-copy);
+	}
+
+	@media (min-width: 1024px) {
+		.intro { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; }
+	}
+
+	.offer__title,
+	.story__title {
+		margin: 0;
+		font-size: var(--text-2xl);
+		font-weight: var(--weight-display);
+		letter-spacing: -0.025em;
+		line-height: 1.05;
+		text-transform: uppercase;
+		hyphens: auto;
+	}
+
+	.offer__text,
+	.story__text {
+		margin: 0;
+		color: var(--text-muted);
+		line-height: var(--leading-copy);
+	}
+
+	/* Offers */
+	.offers-section {
+		container: offers / inline-size;
+	}
+
+	.offers {
+		display: grid;
+		gap: var(--space-10);
+	}
+
+	.offer {
+		display: grid;
+		gap: var(--space-5);
+		align-content: start;
+		min-width: 0;
+	}
+
+	.offer__photo {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-media);
+	}
+
+	.offer__body {
+		display: grid;
+		gap: var(--space-3);
+		justify-items: start;
+		min-width: 0;
+	}
+
+	.offer__link {
+		margin-top: var(--space-4);
+	}
+
+	/* The offer without a photo is a direct action, set apart like the featured Testimonial. */
+	.offer--action {
+		align-content: center;
+		padding: var(--space-10) var(--space-8);
+		border: var(--border-width) solid var(--border-accent);
+		border-radius: var(--radius-media);
+		background: var(--surface-accent);
+	}
+
+	.offers__cta {
+		margin-top: var(--space-12);
+	}
+
+	@container offers (min-width: 40rem) {
+		.offers { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-12) var(--space-8); }
+	}
+
+	@container offers (min-width: 64rem) {
+		.offers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-14) var(--space-10); }
+	}
+
+	/* Collaborations: compact cards, the square event graphic beside the text. */
+	.stories {
+		display: grid;
+		gap: var(--space-8);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.story {
+		display: grid;
+		grid-template-columns: 6rem minmax(0, 1fr);
+		gap: var(--space-5);
+		align-items: start;
+		min-width: 0;
+	}
+
+	.story__photo {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1;
+		object-fit: cover;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-field);
+	}
+
+	.story__body {
+		display: grid;
+		gap: var(--space-2);
+		justify-items: start;
+		min-width: 0;
+	}
+
+	.story .story__title {
+		font-size: var(--text-lg);
+		letter-spacing: 0;
+	}
+
+	.story__date {
+		margin: 0;
+		color: var(--color-accent);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-bold);
+	}
+
+	.story__link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+		min-height: var(--target-min);
+		color: var(--color-accent);
+		font-weight: var(--weight-bold);
+	}
+
+	@media (min-width: 1024px) {
+		.stories { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); }
+		.story { grid-template-columns: 7rem minmax(0, 1fr); }
+	}
+
+	/* Partner wall: one row per group, label beside the logos, no tiles. */
+	.filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin-bottom: var(--space-10);
+	}
+
+	.filters[hidden] { display: none; }
+
+	.filter {
+		min-height: var(--target-min);
+		padding: var(--space-2) var(--space-5);
+		color: var(--text-copy);
+		font: inherit;
+		font-size: var(--text-sm);
+		font-weight: var(--weight-bold);
+		border: var(--border-width) solid var(--border-default);
+		border-radius: var(--radius-pill);
+		background: transparent;
+		cursor: pointer;
+		transition: background-color var(--duration-fast), border-color var(--duration-fast), color var(--duration-fast);
+	}
+
+	.filter:hover {
+		border-color: var(--border-accent);
+	}
+
+	.filter[aria-pressed='true'] {
+		color: var(--color-dark-blue);
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+	}
+
+	.partner-groups {
+		border-top: var(--border-width) solid var(--border-default);
+	}
+
+	.partner-group {
+		display: grid;
+		gap: var(--space-5) var(--space-10);
+		padding-block: var(--space-8);
+		border-bottom: var(--border-width) solid var(--border-default);
+	}
+
+	.partner-group[hidden] { display: none; }
+
+	.partner-group__title {
+		margin: 0;
+		color: var(--text-muted);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-bold);
+		letter-spacing: var(--tracking-wide);
+		text-transform: uppercase;
+	}
+
+	/* Logos flow in a free row; sized by area, about three fit per row on phones. */
+	.logos {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-8) var(--space-10);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		min-height: 3.5rem;
+		animation: logo-in var(--duration-panel) ease-out both;
+	}
+
+	.logo :global(.logo__image) {
+		width: auto;
+		max-width: 100%;
+		object-fit: contain;
+	}
+
+	@keyframes logo-in {
+		from { opacity: 0; transform: translateY(var(--space-2)); }
+	}
+
+	@media (min-width: 768px) {
+		.partner-group { grid-template-columns: 12rem minmax(0, 1fr); align-items: center; }
+		.logos { gap: var(--space-8) var(--space-12); }
+	}
+
+	/* Contact: one clear action on a star-blue glow. */
+	.contact-section {
+		position: relative;
+		overflow: hidden;
+		isolation: isolate;
+	}
+
+	.contact-section__glow {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: var(--gradient-glow-deep) 10% 50% / 70% 110% no-repeat, var(--gradient-glow) 15% 50% / 40% 70% no-repeat;
+	}
+
+	.contact {
+		display: grid;
+		gap: var(--space-10);
+		align-items: center;
+	}
+
+	/* Decorative; hidden on phones so the heading stays near the top of the section. */
+	.contact__star {
+		display: none;
+	}
+
+	.contact__copy {
+		display: grid;
+		gap: var(--space-6);
+		justify-items: start;
+		min-width: 0;
+	}
+
+	.contact__heading {
+		margin: 0;
+		font-size: var(--type-section);
+		font-weight: var(--weight-display);
+		letter-spacing: -0.025em;
+		line-height: 0.95;
+		text-transform: uppercase;
+		hyphens: auto;
+	}
+
+	.contact__promise {
+		max-width: var(--layout-reading);
+		margin: 0;
+		font-size: var(--text-xl);
+		font-weight: var(--weight-medium);
+		line-height: 1.45;
+	}
+
+	.contact__text {
+		margin: 0;
+		color: var(--text-muted);
+		line-height: var(--leading-copy);
+	}
+
+	.contact__button {
+		margin-top: var(--space-2);
+	}
+
+	@media (min-width: 768px) {
+		.contact__star { display: block; width: min(100%, 18rem); justify-self: center; }
+	}
+
+	@media (min-width: 1024px) {
+		.section { padding-block: var(--space-24); }
+		.contact { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-16); }
+		.contact__star { width: 100%; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.logo { animation: none; }
+		.filter { transition: none; }
+	}
+</style>
+
+<script>
+	// Progressive filter: without JavaScript every group stays visible.
+	const filters = document.querySelector<HTMLElement>('[data-partner-filters]');
+	const status = document.querySelector<HTMLElement>('[data-partner-status]');
+	const groups = [...document.querySelectorAll<HTMLElement>('[data-group]')];
+
+	if (filters && status) {
+		const buttons = [...filters.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+		filters.hidden = false;
+		filters.addEventListener('click', (event) => {
+			const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-filter]');
+			if (!button) return;
+			const selected = button.dataset.filter;
+			for (const candidate of buttons) candidate.setAttribute('aria-pressed', String(candidate === button));
+			let count = 0;
+			for (const group of groups) {
+				const show = selected === 'all' || group.dataset.group === selected;
+				group.hidden = !show;
+				if (show) {
+					count += group.querySelectorAll('li').length;
+					// Replay the entrance animation for the newly shown logos.
+					for (const logo of group.querySelectorAll<HTMLElement>('.logo')) {
+						logo.style.animation = 'none';
+						void logo.offsetWidth;
+						logo.style.animation = '';
+					}
+				}
+			}
+			status.textContent = `Showing ${count} ${count === 1 ? 'partner' : 'partners'}${selected === 'all' ? '' : ` in ${button.textContent}`}.`;
+		});
+	}
+</script>

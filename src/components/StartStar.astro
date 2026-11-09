@@ -1,0 +1,113 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './icons/Icon.astro';
+import fallback from '../assets/brand/start-star.webp';
+
+// Decorative 3D START star. The still artwork shows first and stays when
+// WebGL is unavailable; three.js loads only once the star is near the viewport.
+interface Props {
+	/** assemble: shards fly in once, then idle. idle: slow rotation from the start. */
+	mode?: 'assemble' | 'idle';
+	/** Sizes hint for the still artwork. */
+	sizes?: string;
+	class?: string;
+}
+
+const { mode = 'idle', sizes = '(min-width: 64rem) 32rem, 80vw', class: className } = Astro.props;
+---
+
+<div class:list={['star', className]} data-start-star data-mode={mode}>
+	<Image src={fallback} alt="" widths={[480, 960]} sizes={sizes} format="webp" loading="lazy" decoding="async" class="star__fallback" />
+	<canvas class="star__canvas" aria-hidden="true" hidden></canvas>
+	<button type="button" class="star__toggle" hidden data-star-toggle>
+		<span data-star-pause><Icon name="pause" size={18} /><span class="sr-only">Pause star animation</span></span>
+		<span data-star-play hidden><Icon name="play" size={18} /><span class="sr-only">Play star animation</span></span>
+	</button>
+</div>
+
+<style>
+	.star {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 1;
+		/* Sideways swipes spin the star; vertical swipes still scroll the page. */
+		touch-action: pan-y;
+	}
+
+	.star__fallback,
+	.star__canvas {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.star__fallback {
+		object-fit: contain;
+		transition: opacity var(--duration-image);
+	}
+
+	.star__canvas {
+		opacity: 0;
+		transition: opacity var(--duration-image);
+	}
+
+	.star--live .star__fallback { opacity: 0; }
+	.star--live .star__canvas { opacity: 1; }
+
+	.star__toggle {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--target-min);
+		height: var(--target-min);
+		padding: 0;
+		color: var(--text-copy);
+		border: var(--border-width) solid var(--border-default);
+		border-radius: var(--radius-pill);
+		background: var(--surface-status);
+		cursor: pointer;
+		transition: border-color var(--duration-fast), color var(--duration-fast);
+	}
+
+	.star__toggle:hover {
+		color: var(--color-white);
+		border-color: var(--border-accent);
+	}
+
+	.star__toggle > span { display: inline-flex; }
+	.star__toggle > span[hidden] { display: none; }
+
+	@media (prefers-reduced-motion: reduce) {
+		.star__fallback,
+		.star__canvas { transition: none; }
+	}
+</style>
+
+<script>
+	function webglAvailable() {
+		try {
+			const probe = document.createElement('canvas');
+			return Boolean(probe.getContext('webgl2') ?? probe.getContext('webgl'));
+		} catch {
+			return false;
+		}
+	}
+
+	if (webglAvailable()) {
+		const loader = new IntersectionObserver((entries) => {
+			for (const entry of entries) {
+				if (!entry.isIntersecting) continue;
+				loader.unobserve(entry.target);
+				// Keep the still artwork if three.js fails to load.
+				import('../lib/start-star')
+					.then(({ mountStar }) => mountStar(entry.target as HTMLElement))
+					.catch(() => {});
+			}
+		}, { rootMargin: '200px' });
+		document.querySelectorAll<HTMLElement>('[data-start-star]').forEach((root) => loader.observe(root));
+	}
+</script>
