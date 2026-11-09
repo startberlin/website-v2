@@ -111,11 +111,14 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 				<div class="prose">
 					{network.text.map((paragraph) => <p>{paragraph}</p>)}
 				</div>
-				<dl class="stats">
+				<dl class="stats" data-count-group>
 					{network.stats.map((stat) => (
 						<div class="stat">
 							<dt class="stat__label">{stat.label}</dt>
-							<dd class="stat__value">{stat.value}</dd>
+							<dd class="stat__value">
+								<span aria-hidden="true" data-count={stat.value}>{stat.value}</span>
+								<span class="sr-only">{stat.value}</span>
+							</dd>
 						</div>
 					))}
 				</dl>
@@ -387,6 +390,8 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		color: var(--color-accent);
 		font-size: var(--type-stat);
 		font-weight: var(--weight-display);
+		/* Equal-width digits so counting up does not jitter. */
+		font-variant-numeric: tabular-nums;
 		line-height: 1;
 		white-space: nowrap;
 	}
@@ -466,3 +471,36 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		.join__link { transition: none; }
 	}
 </style>
+
+<script>
+	// Count the network figures up once when they scroll into view, slightly staggered.
+	// The final values stay in the HTML (search engines, no JavaScript, slow devices)
+	// and screen readers read the hidden copy; reduced motion shows them still.
+	const group = document.querySelector<HTMLElement>('[data-count-group]');
+
+	if (group && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		const counters = [...group.querySelectorAll<HTMLElement>('[data-count]')];
+		const observer = new IntersectionObserver(([entry]) => {
+			if (!entry.isIntersecting) return;
+			observer.disconnect();
+			counters.forEach((counter, index) => {
+				// Keep prefixes, suffixes and digit grouping, e.g. "+1800" or "1,800+".
+				const [, prefix = '', digits = '', suffix = ''] = counter.dataset.count?.match(/^(\D*)([\d,]+)(\D*)$/) ?? [];
+				const target = Number(digits.replace(/,/g, ''));
+				if (!target) return;
+				const format = (value: number) => prefix + (digits.includes(',') ? value.toLocaleString('en-GB') : String(value)) + suffix;
+				const delay = index * 120;
+				let start: number | undefined;
+				// The first frame sets 0, so a count that never gets a frame keeps the final value.
+				const step = (now: number) => {
+					start ??= now + delay;
+					const progress = Math.min(Math.max((now - start) / 1600, 0), 1);
+					counter.textContent = format(Math.round(target * (1 - (1 - progress) ** 3)));
+					if (progress < 1) requestAnimationFrame(step);
+				};
+				requestAnimationFrame(step);
+			});
+		}, { threshold: 0.4 });
+		observer.observe(group);
+	}
+</script>
