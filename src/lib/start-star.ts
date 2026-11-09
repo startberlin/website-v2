@@ -1,227 +1,146 @@
-// 3D START star for StartStar.astro. Named imports keep the three.js bundle to the
-// classes used here; the component loads this module only when the star is near
-// the viewport.
-import {
-	AmbientLight,
-	BufferGeometry,
-	Color,
-	DirectionalLight,
-	DoubleSide,
-	EdgesGeometry,
-	Euler,
-	Float32BufferAttribute,
-	Group,
-	IcosahedronGeometry,
-	LineBasicMaterial,
-	LineSegments,
-	Mesh,
-	MeshStandardMaterial,
-	Object3D,
-	PerspectiveCamera,
-	Quaternion,
-	Scene,
-	Vector3,
-	WebGLRenderer,
-} from 'three';
+// Animated START star for StartStar.astro: the real START star artwork, drawn with
+// a small WebGL shader. Its spikes grow out of the core, each direction at its own
+// moment, then the star turns slowly and can be spun with heavy inertia by moving
+// the cursor across it. No library is needed; the component loads this module only
+// when the star is near the viewport.
 
-interface Spike {
-	holder: Object3D;
-	mesh: Mesh;
-	from: Vector3;
-	spin: Euler;
-	delay: number;
-	phase: number;
-}
-
-// Two even length tiers, measured from the START star artwork: short spikes reach
-// 72–83 % of the longest, long spikes 87–100 %, so the tiers nearly meet.
-// Bases are wide and flattened, so each spike reads as a folded blade like the
-// artwork rather than a needle.
-const tiers = [
-	{ min: 1.62, max: 1.86, widthMin: 0.5, widthMax: 0.62 },
-	{ min: 1.96, max: 2.25, widthMin: 0.56, widthMax: 0.7 },
-];
-const spikeCount = 32;
+// Measured on src/assets/brand/start-star.webp: the dark core sits at (0.445, 0.5)
+// and the farthest tip lies 0.542 from it, so drawing at 0.885 keeps every tip
+// inside the canvas at any rotation.
+const coreCentre = [0.445, 0.5];
+const fit = 1 / 0.885;
+// Radius around the core that stays put while the spikes grow (texture units).
+const coreRadius = 0.07;
 
 // Spin feel: cursor movement drives the star, which picks up speed slowly and
 // coasts for a few seconds, so it feels heavy rather than twitchy.
-const idleSpeed = 0.12; // rad/s around the vertical axis
-const spinGain = 0.0045; // rad/s per pixel of pointer movement
-const maxSpin = 3.2; // rad/s
+const idleSpeed = 0.06; // rad/s, clockwise
+const spinGain = 9; // rad/s per radian of cursor sweep around the centre
+const maxSpin = 4; // rad/s
 const pickUp = 2.2; // how quickly the star follows the drive (1/s)
 const coast = 0.9; // how quickly the drive fades (1/s)
 
-const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const vertexSource = `
+attribute vec2 a_position;
+varying vec2 v_uv;
+void main() {
+	v_uv = vec2(a_position.x * 0.5 + 0.5, 0.5 - a_position.y * 0.5);
+	gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
 
-// Seeded generator so the star keeps the same shape on every visit.
-function seeded(seed: number) {
-	return () => {
-		seed = (seed + 0x6d2b79f5) | 0;
-		let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-		t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-		return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-	};
+// Each display point is turned back by the rotation, then mapped to the artwork:
+// the core scales in first, and outside it every direction stretches from a
+// compressed stub to full length, so spikes grow out of the middle without seams.
+const fragmentSource = `
+precision mediump float;
+uniform sampler2D u_image;
+uniform vec2 u_core;
+uniform float u_fit;
+uniform float u_coreRadius;
+uniform float u_time;
+uniform float u_rotation;
+varying vec2 v_uv;
+
+float easeOut(float value) { return 1.0 - pow(1.0 - clamp(value, 0.0, 1.0), 3.0); }
+
+void main() {
+	vec2 p = v_uv - 0.5;
+	float c = cos(u_rotation);
+	float s = sin(u_rotation);
+	p = vec2(c * p.x + s * p.y, -s * p.x + c * p.y);
+	float r = length(p) * u_fit;
+	float angle = atan(p.y, p.x);
+
+	// Integer frequencies keep the delay continuous all the way round.
+	float delay = 0.18 + 0.12 * sin(angle * 3.0 + 1.3) + 0.08 * sin(angle * 7.0 + 0.4);
+	float grow = max(easeOut((u_time - delay) / 1.3), 0.0001);
+	float core = max(easeOut(u_time / 0.45), 0.0001);
+
+	float shown = u_coreRadius * core;
+	float source = r <= shown ? r / core : u_coreRadius + (r - shown) / grow;
+	vec2 uv = u_core + (r > 0.0 ? normalize(p) : vec2(0.0)) * source;
+	vec4 colour = texture2D(u_image, uv);
+	bool inside = uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0;
+	gl_FragColor = inside ? colour : vec4(0.0);
+}`;
+
+function compile(gl: WebGLRenderingContext, type: number, source: string) {
+	const shader = gl.createShader(type)!;
+	gl.shaderSource(shader, source);
+	gl.compileShader(shader);
+	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(shader) ?? 'Shader failed');
+	return shader;
 }
 
-const clamp01 = (value: number) => Math.min(Math.max(value, 0), 1);
-const easeOutCubic = (value: number) => 1 - (1 - value) ** 3;
-const easeOutBack = (value: number) => 1 + 2.2 * (value - 1) ** 3 + 1.2 * (value - 1) ** 2;
-
-export function mountStar(root: HTMLElement) {
+export async function mountStar(root: HTMLElement) {
 	const canvas = root.querySelector<HTMLCanvasElement>('.star__canvas')!;
 	const toggle = root.querySelector<HTMLButtonElement>('[data-star-toggle]')!;
-	const assemble = root.dataset.mode === 'assemble';
 
-	// Colours come from tokens.css so the star follows the design system.
-	const styles = getComputedStyle(root);
-	const token = (name: string) => new Color(styles.getPropertyValue(name).trim());
-	const light = token('--color-star-light');
-	const mid = token('--color-star-mid');
-	const deep = token('--color-star-deep');
-	const shadow = token('--color-star-shadow');
-	const accent = token('--color-accent');
-	const white = token('--color-white');
+	const image = new Image();
+	image.src = root.dataset.texture!;
+	await image.decode();
 
-	const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'low-power' });
-	renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-	const scene = new Scene();
-	const camera = new PerspectiveCamera(30, 1, 0.1, 50);
-	camera.position.set(0, 0, 8.4);
+	const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false });
+	if (!gl) throw new Error('WebGL unavailable');
 
-	// Low ambient light keeps the deep blue in shadowed facets, as in the artwork.
-	scene.add(new AmbientLight(white, 0.2));
-	const keyLight = new DirectionalLight(white, 2);
-	keyLight.position.set(-3, 4, 5);
-	scene.add(keyLight);
-	const fillLight = new DirectionalLight(mid, 1.2);
-	fillLight.position.set(4, -1, 3);
-	scene.add(fillLight);
-	const rimLight = new DirectionalLight(light, 2);
-	rimLight.position.set(2, -3, -4);
-	scene.add(rimLight);
+	const program = gl.createProgram()!;
+	gl.attachShader(program, compile(gl, gl.VERTEX_SHADER, vertexSource));
+	gl.attachShader(program, compile(gl, gl.FRAGMENT_SHADER, fragmentSource));
+	gl.linkProgram(program);
+	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program) ?? 'Program failed');
+	gl.useProgram(program);
 
-	const star = new Group();
-	star.quaternion.setFromEuler(new Euler(0.2, 0.6, 0));
-	scene.add(star);
+	// One rectangle covering the canvas.
+	gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+	const position = gl.getAttribLocation(program, 'a_position');
+	gl.enableVertexAttribArray(position);
+	gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
 
-	const material = new MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 0.5, metalness: 0.1, side: DoubleSide });
-	const edgeMaterial = new LineBasicMaterial({ color: accent, transparent: true, opacity: 0.35 });
-	const core = new Mesh(new IcosahedronGeometry(0.62, 0), new MeshStandardMaterial({ color: shadow, flatShading: true, roughness: 0.85 }));
-	star.add(core);
+	gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
+	gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 
-	const random = seeded(2013);
-	const golden = Math.PI * (3 - Math.sqrt(5));
-	const forward = new Vector3(0, 0, 1);
-	const spikes: Spike[] = [];
+	const uniform = (name: string) => gl.getUniformLocation(program, name);
+	gl.uniform2f(uniform('u_core'), coreCentre[0], coreCentre[1]);
+	gl.uniform1f(uniform('u_fit'), fit);
+	gl.uniform1f(uniform('u_coreRadius'), coreRadius);
+	const timeUniform = uniform('u_time');
+	const rotationUniform = uniform('u_rotation');
 
-	for (let index = 0; index < spikeCount; index++) {
-		// Even spread over a sphere with only a slight jitter. Alternating tiers along
-		// the spiral interleave short and long spikes.
-		const y = 1 - ((index + 0.5) / spikeCount) * 2;
-		const radius = Math.sqrt(1 - y * y);
-		const theta = golden * index + (random() - 0.5) * 0.2;
-		const direction = new Vector3(Math.cos(theta) * radius, y + (random() - 0.5) * 0.06, Math.sin(theta) * radius).normalize();
-		const tier = tiers[index % 2];
-
-		// Each spike is a 3- or 4-sided pyramid pointing along +Z.
-		const length = tier.min + random() * (tier.max - tier.min);
-		const width = tier.widthMin + random() * (tier.widthMax - tier.widthMin);
-		const sides = random() < 0.5 ? 3 : 4;
-		const twist = random() * Math.PI * 2;
-		const flatness = 0.4 + random() * 0.25;
-		const base = Array.from({ length: sides }, (_, side) => {
-			const angle = (side / sides) * Math.PI * 2 + (random() - 0.5) * 0.4;
-			const reach = width * (0.8 + random() * 0.4);
-			// Squash one axis, then turn the blade to its own angle around the spike.
-			const x = Math.cos(angle) * reach;
-			const y = Math.sin(angle) * reach * flatness;
-			return new Vector3(x * Math.cos(twist) - y * Math.sin(twist), x * Math.sin(twist) + y * Math.cos(twist), 0.25);
-		});
-		const tip = new Vector3((random() - 0.5) * 0.18, (random() - 0.5) * 0.18, length);
-
-		const positions: number[] = [];
-		const colors: number[] = [];
-		for (let side = 0; side < sides; side++) {
-			const a = base[side];
-			const b = base[(side + 1) % sides];
-			positions.push(a.x, a.y, a.z, b.x, b.y, b.z, tip.x, tip.y, tip.z);
-			// Bright cyan where the spike leaves the core, deeper blue towards the tip.
-			const tint = random();
-			const inner = light.clone().lerp(mid, tint * 0.3);
-			const outer = deep.clone().lerp(shadow, 0.35 + tint * 0.5);
-			colors.push(...inner.toArray(), ...inner.toArray(), ...outer.toArray());
-		}
-		const geometry = new BufferGeometry();
-		geometry.setAttribute('position', new Float32BufferAttribute(positions, 3));
-		geometry.setAttribute('color', new Float32BufferAttribute(colors, 3));
-		geometry.computeVertexNormals();
-
-		const mesh = new Mesh(geometry, material);
-		mesh.add(new LineSegments(new EdgesGeometry(geometry), edgeMaterial));
-		const holder = new Object3D();
-		holder.quaternion.setFromUnitVectors(forward, direction);
-		holder.add(mesh);
-		star.add(holder);
-
-		spikes.push({
-			holder,
-			mesh,
-			from: direction.clone().multiplyScalar(5 + random() * 5),
-			spin: new Euler(random() * 6, random() * 6, random() * 6),
-			delay: random() * 0.7,
-			phase: random() * Math.PI * 2,
-		});
-	}
-
-	const still = reducedMotion.matches;
-	const drive = new Vector3();
-	const spin = new Vector3();
-	const omega = new Vector3();
-	const idle = new Vector3(0, idleSpeed, 0);
-	const step = new Quaternion();
-
-	function update(time: number, delta: number) {
-		const assembleTime = assemble && !still ? time : Infinity;
-		core.scale.setScalar(Math.max(easeOutBack(clamp01(assembleTime / 0.8)), 0.001));
-
-		for (const spike of spikes) {
-			const progress = easeOutCubic(clamp01((assembleTime - spike.delay) / 1.3));
-			const size = 0.4 + 0.6 * progress;
-			const breathe = still ? 1 : 1 + 0.03 * Math.sin(time * 0.9 + spike.phase);
-			spike.holder.position.copy(spike.from).multiplyScalar(1 - progress);
-			spike.mesh.rotation.set(spike.spin.x * (1 - progress), spike.spin.y * (1 - progress), spike.spin.z * (1 - progress));
-			spike.mesh.scale.set(size, size, size * breathe);
-		}
-
-		if (still || !delta) return;
-		spin.lerp(drive, 1 - Math.exp(-delta * pickUp));
-		drive.multiplyScalar(Math.exp(-delta * coast));
-		omega.copy(spin).add(idle);
-		const angle = omega.length() * delta;
-		if (angle > 0) star.quaternion.premultiply(step.setFromAxisAngle(omega.normalize(), angle));
-	}
-
+	let rotation = 0;
+	let drive = 0;
+	let spin = 0;
+	let elapsed = 0;
 	let frame = 0;
 	let last = 0;
-	let elapsed = 0;
 	let paused = false;
 	let onScreen = true;
 
-	function render(delta = 0) {
-		update(elapsed, delta);
-		renderer.render(scene, camera);
+	function render() {
+		gl!.viewport(0, 0, canvas.width, canvas.height);
+		gl!.uniform1f(timeUniform, elapsed);
+		gl!.uniform1f(rotationUniform, rotation);
+		gl!.drawArrays(gl!.TRIANGLE_STRIP, 0, 4);
 	}
 
 	function tick(now: number) {
 		const delta = Math.min((now - last) / 1000, 0.05);
-		elapsed += delta;
 		last = now;
-		render(delta);
+		elapsed += delta;
+		spin += (drive - spin) * (1 - Math.exp(-delta * pickUp));
+		drive *= Math.exp(-delta * coast);
+		rotation += (idleSpeed + spin) * delta;
+		render();
 		frame = requestAnimationFrame(tick);
 	}
 
 	function start() {
-		if (frame || still || paused || !onScreen || document.hidden) return;
+		if (frame || paused || !onScreen || document.hidden) return;
 		last = performance.now();
 		frame = requestAnimationFrame(tick);
 	}
@@ -232,22 +151,17 @@ export function mountStar(root: HTMLElement) {
 	}
 
 	function resize() {
-		const { width, height } = root.getBoundingClientRect();
-		if (!width || !height) return;
-		renderer.setSize(width, height, false);
-		camera.aspect = width / height;
-		camera.updateProjectionMatrix();
+		const { width } = root.getBoundingClientRect();
+		const size = Math.round(width * Math.min(window.devicePixelRatio, 2));
+		if (!size) return;
+		canvas.width = size;
+		canvas.height = size;
 		// Resizing clears the canvas; draw at once so no blank frame shows.
 		render();
 	}
 
 	new ResizeObserver(resize).observe(root);
 	resize();
-	render();
-	canvas.hidden = false;
-	root.classList.add('star--live');
-
-	if (still) return;
 
 	// Animation runs longer than five seconds, so it needs a pause control.
 	const pauseLabel = toggle.querySelector<HTMLElement>('[data-star-pause]')!;
@@ -261,22 +175,24 @@ export function mountStar(root: HTMLElement) {
 		else start();
 	});
 
-	// Moving the cursor across the star (or swiping sideways on touch) spins it.
-	let pointerX: number | undefined;
-	let pointerY = 0;
+	// Moving the cursor across the star (or swiping on touch) turns it like a wheel:
+	// the sweep of the pointer around the centre adds to the spin.
+	let previous: { x: number; y: number } | undefined;
 	root.addEventListener('pointermove', (event) => {
-		if (paused) return;
-		if (pointerX !== undefined) {
-			const dx = event.clientX - pointerX;
-			const dy = event.clientY - pointerY;
-			drive.x += dy * spinGain;
-			drive.y += dx * spinGain;
-			drive.clampLength(0, maxSpin);
+		const rect = root.getBoundingClientRect();
+		const point = { x: event.clientX - (rect.left + rect.width / 2), y: event.clientY - (rect.top + rect.height / 2) };
+		// Close to the centre a small move sweeps a large angle; ignore the core.
+		if (Math.hypot(point.x, point.y) < rect.width * 0.12) {
+			previous = undefined;
+			return;
 		}
-		pointerX = event.clientX;
-		pointerY = event.clientY;
+		if (previous && !paused) {
+			const sweep = Math.atan2(previous.x * point.y - previous.y * point.x, previous.x * point.x + previous.y * point.y);
+			drive = Math.max(-maxSpin, Math.min(maxSpin, drive + sweep * spinGain));
+		}
+		previous = point;
 	}, { passive: true });
-	const release = () => (pointerX = undefined);
+	const release = () => (previous = undefined);
 	root.addEventListener('pointerleave', release);
 	root.addEventListener('pointercancel', release);
 

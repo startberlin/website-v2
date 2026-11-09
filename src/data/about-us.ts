@@ -64,6 +64,7 @@ export const organisation = {
 	lead: 'Five departments run START Berlin, each led by a member of the board. Every member contributes to one of them for a full year.',
 	moreLink: { label: 'Read about every department', href: '/member-journey#departments' },
 	boardHeading: 'Executive board',
+	boardText: 'Leads START Berlin together with the five department heads and looks after its finances.',
 };
 
 export const network = {

@@ -6,11 +6,9 @@
 	--color-white: #ffffff;
 	--color-error: #ffb1b1;
 
-	/* 3D START star, sampled from the START star artwork (StartStar.astro reads these). */
-	--color-star-light: #00caff;
+	/* Blues sampled from the START star artwork, for the band and glow surfaces. */
 	--color-star-mid: #0092ce;
 	--color-star-deep: #004d99;
-	--color-star-shadow: #002152;
 
 	/* Semantic roles on the dark background. */
 	--text-primary: var(--color-white);

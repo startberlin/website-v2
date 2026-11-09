@@ -46,7 +46,7 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 			<a class="button" href={join.primary.href}>{join.primary.label}</a>
 			<a class="button button--outline" href="/members">Meet our members</a>
 		</div>
-		<div slot="aside" class="hero-star"><StartStar mode="assemble" sizes="(min-width: 64rem) 28rem, 60vw" /></div>
+		<div slot="aside" class="hero-star"><StartStar sizes="(min-width: 64rem) 28rem, 60vw" /></div>
 	</PageHero>
 
 	<section class="section page-container purpose" id="purpose" aria-labelledby="purpose-heading">
@@ -83,23 +83,26 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 				{departmentRows.map((row) => (
 					<li class="department">
 						<h3 class="department__name">{row.name}</h3>
-						<p class="department__intro">{row.summary}</p>
+						<p class="department__text">{row.summary}</p>
 						{row.head && (
-							<div class="department__head">
+							<div class="department__people">
 								<PersonChip name={row.head.name} role={row.head.role ?? `Head of ${row.name}`} portrait={portraitFor(row.head.name)} profileUrl={boardProfilePath(row.head.name)} />
 							</div>
 						)}
 					</li>
 				))}
+				{/* The executive board completes the grid as a sixth card. */}
+				<li class="department department--board">
+					<h3 class="department__name">{organisation.boardHeading}</h3>
+					<p class="department__text">{organisation.boardText}</p>
+					<ul class="department__people" role="list">
+						{leadership.map((member) => (
+							<li><PersonChip name={member.name} role={member.role} portrait={portraitFor(member.name)} profileUrl={`/members/${member.slug}`} /></li>
+						))}
+					</ul>
+				</li>
 			</ul>
 			<a class="text-link" href={organisation.moreLink.href}>{organisation.moreLink.label} <Icon name="arrow-right" size={18} /></a>
-
-			<h3 class="subheading">{organisation.boardHeading}</h3>
-			<ul class="board" role="list">
-				{leadership.map((member) => (
-					<li><PersonChip name={member.name} role={member.role} portrait={portraitFor(member.name)} profileUrl={`/members/${member.slug}`} /></li>
-				))}
-			</ul>
 		</div>
 	</section>
 
@@ -259,19 +262,39 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		background: var(--surface-band);
 	}
 
+	/* Department cards: name, one sentence, and the people at the bottom, so the heads
+	   line up across a row whatever the sentence length. */
+	/* Six cards: one, two, then three columns, so the rows always fill. */
 	.departments {
 		display: grid;
+		gap: var(--space-5);
 		margin: 0 0 var(--space-8);
 		padding: 0;
 		list-style: none;
-		border-top: var(--border-width) solid var(--border-default);
+	}
+
+	@media (min-width: 640px) {
+		.departments { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	}
+
+	@media (min-width: 1024px) {
+		.departments { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 	}
 
 	.department {
-		display: grid;
-		gap: var(--space-3) var(--space-8);
-		padding-block: var(--space-6);
-		border-bottom: var(--border-width) solid var(--border-default);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		min-width: 0;
+		padding: var(--space-6);
+		border: var(--border-width) solid var(--border-default);
+		border-radius: var(--radius-card);
+		background: var(--surface-card);
+	}
+
+	.department--board {
+		border-color: var(--border-accent-soft);
+		background: var(--surface-accent);
 	}
 
 	.department__name {
@@ -279,24 +302,23 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		font-size: var(--text-2xl);
 		font-weight: var(--weight-display);
 		letter-spacing: -0.02em;
+		line-height: 1.05;
 		text-transform: uppercase;
 	}
 
-	.department__intro {
-		margin: 0;
+	.department__text {
+		margin: 0 0 var(--space-2);
 		color: var(--text-copy);
 		line-height: var(--leading-copy);
 	}
 
-	/* Wide enough that "Operations & Digital" stays on one line; columns align to the
-	   top so wrapped head names look intentional. */
-	@media (min-width: 1024px) {
-		.department {
-			grid-template-columns: 20rem minmax(0, 1fr) 16rem;
-			align-items: start;
-		}
-
-		.department__head :global(.person) { align-items: start; }
+	.department__people {
+		display: grid;
+		gap: var(--space-4);
+		margin: auto 0 0;
+		padding: var(--space-5) 0 0;
+		list-style: none;
+		border-top: var(--border-width) solid var(--border-default);
 	}
 
 	.text-link {
@@ -306,24 +328,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		min-height: var(--target-min);
 		color: var(--color-accent);
 		font-weight: var(--weight-bold);
-	}
-
-	.subheading {
-		margin: var(--space-16) 0 var(--space-6);
-		color: var(--text-muted);
-		font-size: var(--text-sm);
-		font-weight: var(--weight-bold);
-		letter-spacing: var(--tracking-wide);
-		text-transform: uppercase;
-	}
-
-	.board {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-6) var(--space-12);
-		margin: 0;
-		padding: 0;
-		list-style: none;
 	}
 
 	/* Network: copy and figures beside Rhema's view from across the chapters. */

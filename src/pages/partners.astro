@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import PersonChip from '../components/PersonChip.astro';
+import Marquee from '../components/Marquee.astro';
 import StartStar from '../components/StartStar.astro';
 import Icon from '../components/icons/Icon.astro';
 import { pageSeo } from '../lib/seo/pages';
@@ -18,11 +19,13 @@ const contactPortrait = contactPerson.portrait ? portraits[`../assets/members/${
 
 // Logos are sized by visual area rather than height, so wide wordmarks and compact
 // marks read at a similar weight: about 2,400 px², 18–52 px high, at most 140 px wide.
-const logoHeight = (logo: ImageMetadata) => {
+// The banner under the hero uses a smaller area.
+const logoHeight = (logo: ImageMetadata, area = 2400) => {
 	const aspect = logo.width / logo.height;
-	const height = Math.min(Math.max(Math.sqrt(2400 / aspect), 18), 52);
-	return Math.round(Math.min(height, 140 / aspect));
+	const height = Math.min(Math.max(Math.sqrt(area / aspect), 16), 52 * Math.sqrt(area / 2400));
+	return Math.round(Math.min(height, (140 * Math.sqrt(area / 2400)) / aspect));
 };
+const bannerArea = 1600;
 
 // Groups keep their order; empty groups are not rendered.
 const groups = partnerGroups
@@ -46,6 +49,18 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 			<a class="button button--outline" href="#offers">See ways to work together</a>
 		</div>
 	</PageHero>
+
+	<section class="logo-banner page-container" aria-label="Some of our partners">
+		<Marquee label="Partner logos, scrolling" duration={70}>
+			<ul class="banner-logos" role="list">
+				{partners.map((partner) => (
+					<li class="banner-logo">
+						<Image src={partner.logo} alt={partner.name} height={logoHeight(partner.logo, bannerArea) * 2} style={`height: ${logoHeight(partner.logo, bannerArea)}px`} />
+					</li>
+				))}
+			</ul>
+		</Marquee>
+	</section>
 
 	<section class="band" id="offers" aria-labelledby="offers-heading">
 		<div class="section page-container offers-section">
@@ -138,7 +153,7 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		<div class="contact-section__glow" aria-hidden="true"></div>
 		<div class="section page-container">
 			<div class="contact">
-				<div class="contact__star"><StartStar mode="idle" sizes="(min-width: 64rem) 24rem, 40vw" /></div>
+				<div class="contact__star"><StartStar sizes="(min-width: 64rem) 24rem, 40vw" /></div>
 				<div class="contact__copy">
 					<h2 class="contact__heading" id="contact-heading">{contact.heading}</h2>
 					<p class="contact__promise">{contact.promise}</p>
@@ -168,6 +183,32 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		flex-wrap: wrap;
 		gap: var(--space-3);
 		margin-top: var(--space-6);
+	}
+
+	/* Scrolling partner logos directly under the hero. */
+	.logo-banner {
+		padding-block: var(--space-8);
+	}
+
+	.banner-logos {
+		display: flex;
+		align-items: center;
+		gap: var(--space-16);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.banner-logo {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		min-height: 3rem;
+		opacity: 0.85;
+	}
+
+	.banner-logo :global(img) {
+		width: auto;
 	}
 
 	/* Offers intro: heading and lead beside three short reasons to partner. */
