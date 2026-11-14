@@ -23,11 +23,11 @@
     "test": "node scripts/ci/run.mjs tests"
   },
   "dependencies": {
-    "@astrojs/node": "11.1.9",
-    "@astrojs/react": "7.1.1",
-    "@astrojs/vercel": "11.0.16",
+    "@astrojs/node": "11.1.12",
+    "@astrojs/react": "7.1.7",
+    "@astrojs/vercel": "11.0.21",
     "@hookform/resolvers": "7.0.0",
-    "astro": "7.4.2",
+    "astro": "7.4.10",
     "nuqs": "2.10.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
