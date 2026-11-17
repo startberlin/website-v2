@@ -7,8 +7,6 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('news')).sort(
 	(a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
-
-// On phones only the first few cards show until "Show more" is pressed.
 const mobileLimit = 3;
 
 const socials = [
@@ -25,147 +23,157 @@ const socials = [
 ];
 ---
 
-<section class="news" data-news>
+<section class="news" aria-labelledby="latest-news" data-news>
 	<div class="news__sticky page-container" data-news-sticky>
 		<div class="news__header">
-			<h2 class="news__title">Latest News</h2>
+			<h2 class="news__title" id="latest-news">Latest News</h2>
 			<div class="news__socials">
-				{
-					socials.map((social) => (
-						<a href={social.href} target="_blank" rel="noopener" class="news__social">
-							<Icon name={social.icon} />
-							<span>{social.label}</span>
-						</a>
-					))
-				}
+				{socials.map(({ href, icon, label }) => (
+					<a href={href} target="_blank" rel="noopener noreferrer" class="text-action news__social">
+						<Icon name={icon} size={16} />
+						<span>{label}</span><span class="sr-only"> (opens in a new tab)</span>
+					</a>
+				))}
 			</div>
 		</div>
 
-		<div class="news__viewport" data-news-viewport>
-			<div class="news__track" data-news-track>
-				{
-					posts.map((post, index) => (
-						<a
-							href={post.data.url}
-							target="_blank"
-							rel="noopener"
-							class="news__card"
-							style={post.data.image && `--ratio: ${post.data.image.width} / ${post.data.image.height}`}
-							data-extra={index >= mobileLimit ? '' : undefined}
-						>
-							{post.data.image ? (
-								<Image
-									src={post.data.image}
-									alt={post.data.title}
-									widths={[480, 960]}
-									sizes="(max-width: 767px) 100vw, 480px"
-									class="news__image"
-								/>
-							) : (
-								<div class="news__placeholder" />
-							)}
-							<div class="news__shade" />
-							<div class="news__text">
-								<div class="news__card-title">{post.data.title}</div>
-								<p class="news__card-description">{post.data.description}</p>
-							</div>
-							<div class="news__external">
-								<Icon name="external-link" />
-							</div>
-						</a>
-					))
-				}
+		<div class="news__viewport" id="latest-news-posts" data-news-viewport>
+			<div class="news__track">
+				{posts.map((post, index) => (
+					<a
+						href={post.data.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="news__card"
+						style={post.data.image && '--news-ratio: ' + (post.data.image.width / post.data.image.height)}
+						data-extra={index >= mobileLimit ? '' : undefined}
+					>
+						{post.data.image ? (
+							<Image
+								src={post.data.image}
+								alt=""
+								widths={[480, 960]}
+								sizes="(max-width: 767px) 95vw, 480px"
+								class="news__image"
+								loading="lazy"
+							/>
+						) : <div class="news__image news__image--placeholder" aria-hidden="true" />}
+						<div class="news__shade" aria-hidden="true"></div>
+						<div class="news__text">
+							<h3 class="news__card-title">{post.data.title}</h3>
+							<p class="news__card-description">{post.data.description}</p>
+							<span class="sr-only"> (opens in a new tab)</span>
+						</div>
+						<div class="news__external"><Icon name="external-link" size={16} /></div>
+					</a>
+				))}
 			</div>
 		</div>
 
-		{
-			posts.length > mobileLimit && (
-				<button class="news__more" data-news-more>
-					Show more
-				</button>
-			)
-		}
+		{posts.length > mobileLimit && (
+			<button class="button button--outline news__more" type="button" data-news-more
+				aria-controls="latest-news-posts" aria-expanded="false" hidden>
+				Show more
+			</button>
+		)}
 	</div>
 </section>
 
 <script>
-	// Desktop: the section is pinned while vertical scrolling slides the cards
-	// sideways. The section is made taller by exactly the horizontal overflow so
-	// the last card arrives as the pin releases.
-	const section = document.querySelector<HTMLElement>('[data-news]');
+	import { motionEnabled, onMotionChange } from '../lib/motion';
 
-	if (section) {
-		const sticky = section.querySelector<HTMLElement>('[data-news-sticky]')!;
-		const viewport = section.querySelector<HTMLElement>('[data-news-viewport]')!;
-		const track = section.querySelector<HTMLElement>('[data-news-track]')!;
-		const desktop = window.matchMedia('(min-width: 768px)');
-		const headerHeight = document.querySelector<HTMLElement>('.nav')?.offsetHeight ?? 0;
+	const news = document.querySelector<HTMLElement>('[data-news]');
+	if (news) {
+		const sticky = news.querySelector<HTMLElement>('[data-news-sticky]')!;
+		const viewport = news.querySelector<HTMLElement>('[data-news-viewport]')!;
+		const more = news.querySelector<HTMLButtonElement>('[data-news-more]');
+		const extra = [...news.querySelectorAll<HTMLElement>('[data-extra]')];
+		const compact = matchMedia('(width < 768px)');
+		const pointer = matchMedia('(hover: hover) and (pointer: fine)');
+		const header = document.querySelector<HTMLElement>('.nav');
+		let expanded = false;
+		let manualScroll = false;
+		let distance = 0;
+		let headerHeight = 0;
 		let frame = 0;
 
-		const overflow = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
-
-		const update = () => {
-			const distance = overflow();
-			if (!desktop.matches || distance === 0) {
-				track.style.transform = '';
-				return;
+		const followScroll = () => {
+			frame = 0;
+			if (news.hasAttribute('data-scroll-linked')) {
+				viewport.scrollLeft = Math.min(distance, Math.max(0, headerHeight - news.getBoundingClientRect().top));
 			}
-			const start = section.getBoundingClientRect().top + window.scrollY - headerHeight;
-			// Near the bottom of the page there may be less scroll left than the
-			// pinned range, so finish the slide within whatever is reachable.
-			const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-			const range = Math.min(section.offsetHeight - sticky.offsetHeight, maxScroll - start);
-			const progress = range > 0 ? Math.min(1, Math.max(0, (window.scrollY - start) / range)) : 0;
-			track.style.transform = `translateX(-${progress * distance}px)`;
 		};
 
-		const resize = () => {
-			section.style.height = desktop.matches ? `${sticky.offsetHeight + overflow()}px` : '';
-			update();
+		const updateLayout = () => {
+			headerHeight = header?.offsetHeight ?? 0;
+			distance = viewport.scrollWidth - viewport.clientWidth;
+			const pin = !manualScroll && !compact.matches && pointer.matches &&
+				motionEnabled() && distance > 0 && sticky.offsetHeight + headerHeight <= innerHeight;
+			news.toggleAttribute('data-scroll-linked', pin);
+			news.style.height = pin ? sticky.offsetHeight + distance + 'px' : '';
+			followScroll();
 		};
 
-		window.addEventListener(
-			'scroll',
-			() => {
-				if (frame) return;
-				frame = requestAnimationFrame(() => {
-					frame = 0;
-					update();
-				});
-			},
-			{ passive: true },
-		);
-		new ResizeObserver(resize).observe(viewport);
-		desktop.addEventListener('change', resize);
-		resize();
+		const updateCompact = () => {
+			if (compact.matches && extra.some((card) => card.contains(document.activeElement))) expanded = true;
+			const collapse = compact.matches && !expanded;
+			const moveFocus = !collapse && document.activeElement === more;
+			extra.forEach((card) => { card.hidden = collapse; });
+			if (more) {
+				more.hidden = !collapse;
+				more.setAttribute('aria-expanded', String(!collapse));
+			}
+			if (moveFocus) {
+				extra[0].focus({ preventScroll: true });
+				extra[0].scrollIntoView({ block: 'start' });
+			}
+			updateLayout();
+		};
 
-		section.querySelector('[data-news-more]')?.addEventListener('click', (event) => {
-			section.classList.add('news--expanded');
-			(event.currentTarget as HTMLElement).remove();
+		more?.addEventListener('click', () => {
+			expanded = true;
+			updateCompact();
 		});
+		compact.addEventListener('change', updateCompact);
+
+		// Keyboard and horizontal trackpad scrolling use the native rail.
+		viewport.addEventListener('focusin', (event) => {
+			if (compact.matches || !(event.target instanceof HTMLElement)) return;
+			manualScroll = true;
+			updateLayout();
+			event.target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+		});
+		viewport.addEventListener('wheel', (event) => {
+			if (!news.hasAttribute('data-scroll-linked') || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+			manualScroll = true;
+			updateLayout();
+		}, { passive: true });
+		window.addEventListener('scroll', () => {
+			if (!frame && news.hasAttribute('data-scroll-linked')) frame = requestAnimationFrame(followScroll);
+		}, { passive: true });
+		window.addEventListener('resize', updateLayout);
+		pointer.addEventListener('change', updateLayout);
+		new ResizeObserver(updateLayout).observe(sticky);
+		onMotionChange(updateLayout);
+		updateCompact();
 	}
 </script>
 
 <style>
-	.news {
-		position: relative;
-	}
-
-	.news__sticky {
-		padding-block: var(--space-28);
-	}
+	.news { position: relative; }
+	.news__sticky { padding-block-start: var(--home-partner-gap); }
 
 	.news__header {
 		display: flex;
 		flex-wrap: wrap;
-		align-items: flex-end;
+		align-items: end;
 		gap: var(--space-4) var(--space-6);
 		margin-bottom: var(--space-12);
 	}
 
 	.news__title {
 		margin: 0;
-		font-size: var(--type-home-section);
+		font-size: var(--type-news-title);
 		font-weight: var(--weight-display);
 		line-height: 1;
 		text-transform: uppercase;
@@ -179,28 +187,19 @@ const socials = [
 	}
 
 	.news__social {
-		display: flex;
-		align-items: center;
-		gap: var(--space-2);
-		padding: 0.625rem var(--space-5);
-		font-size: var(--text-sm);
-		font-weight: var(--weight-medium);
-		line-height: 1.25rem;
-		background: var(--surface-control);
+		padding: var(--space-2) var(--space-5);
 		border: var(--border-width) solid var(--border-subtle);
 		border-radius: var(--radius-pill);
+		background: var(--surface-control);
+		font-weight: var(--weight-medium);
+		text-decoration: none;
 		transition: background-color var(--duration-panel), border-color var(--duration-panel), color var(--duration-panel);
 	}
 
-	.news__social svg {
-		width: 1rem;
-		height: 1rem;
-	}
-
 	.news__social:hover {
-		color: var(--color-accent);
-		background: var(--surface-accent);
 		border-color: var(--border-accent-soft);
+		background: var(--surface-accent);
+		color: var(--color-accent);
 	}
 
 	.news__track {
@@ -211,143 +210,121 @@ const socials = [
 
 	.news__card {
 		position: relative;
-		display: block;
-		/* Each card keeps its post image's proportions; 4:5 when there is no image. */
-		aspect-ratio: var(--ratio, 4 / 5);
+		display: grid;
+		grid-template-areas: 'card';
+		grid-template-columns: minmax(0, 1fr);
+		isolation: isolate;
+		min-inline-size: 0;
 		overflow: hidden;
-		border-radius: var(--radius-media);
+		border-radius: var(--radius-news-card);
 	}
 
-	.news__card[data-extra] {
-		display: none;
-	}
-
-	.news--expanded .news__card[data-extra] {
-		display: block;
+	/* The image sets the preferred height. The text on that same grid area can make the card taller. */
+	.news__card::before {
+		content: '';
+		grid-area: card;
+		align-self: start;
+		inline-size: 100%;
+		aspect-ratio: var(--news-ratio, var(--ratio-portrait));
 	}
 
 	.news__image,
-	.news__placeholder {
+	.news__shade {
 		position: absolute;
 		inset: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	.news__image {
+		z-index: -2;
 		object-fit: cover;
 		transition: transform var(--duration-image);
 	}
 
-	.news__placeholder {
-		background: var(--gradient-placeholder);
-	}
-
-	.news__card:hover .news__image {
-		transform: scale(1.05);
-	}
+	.news__image--placeholder { background: var(--gradient-placeholder); }
 
 	.news__shade {
-		position: absolute;
-		inset: 0;
-		/* Stronger than Munich's fade: most post images are graphics with their own
-		   text near the bottom, which would otherwise clash with the card title. */
+		z-index: -1;
 		background: var(--gradient-news-shade);
 	}
 
+	.news__card:hover .news__image { transform: scale(1.05); }
+
 	.news__text {
+		position: relative;
+		grid-area: card;
+		align-self: end;
+		margin-block-start: var(--space-16);
+		padding: var(--space-6);
+	}
+
+	/* Size the fade to the actual copy so longer descriptions keep contrast. */
+	.news__text::before {
+		content: '';
 		position: absolute;
-		right: 1.5rem;
-		bottom: 1.5rem;
-		left: 1.5rem;
+		z-index: -1;
+		inset: calc(-1 * var(--space-4)) 0 0;
+		background: var(--gradient-news-copy);
 	}
 
 	.news__card-title {
-		margin-bottom: var(--space-1);
+		margin: 0 0 var(--space-1);
 		font-size: var(--text-xl);
 		font-weight: var(--weight-bold);
-		line-height: 1.75rem;
+		line-height: var(--leading-ui);
 	}
 
 	.news__card-description {
 		margin: 0;
-		font-size: var(--text-sm);
-		line-height: 1.25rem;
 		color: var(--text-muted);
+		font-size: var(--text-sm);
+		line-height: var(--leading-ui);
 	}
 
 	.news__external {
 		position: absolute;
-		top: 1.5rem;
-		right: 1.5rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 2rem;
-		height: 2rem;
-		background: var(--surface-image-action);
+		inset-block-start: var(--space-6);
+		inset-inline-end: var(--space-6);
+		display: grid;
+		place-items: center;
+		width: var(--space-8);
+		height: var(--space-8);
 		border-radius: var(--radius-pill);
-		backdrop-filter: blur(4px);
+		background: var(--surface-image-action);
+		backdrop-filter: blur(var(--blur-icon));
 		opacity: 0;
 		transition: opacity var(--duration-fast);
 	}
 
-	.news__external svg {
-		width: 1rem;
-		height: 1rem;
-	}
-
-	.news__card:hover .news__external {
-		opacity: 1;
-	}
+	.news__card:is(:hover, :focus-visible) .news__external { opacity: 1; }
 
 	.news__more {
 		width: 100%;
 		margin-top: var(--space-6);
 		padding-block: var(--space-4);
+		font-size: var(--text-base);
 		font-weight: var(--weight-medium);
-		color: var(--text-muted);
-		border: var(--border-width) solid var(--border-strong);
-		border-radius: var(--radius-control);
-		transition: background-color var(--duration-panel), border-color var(--duration-panel), color var(--duration-panel);
-	}
-
-	.news__more:hover {
-		color: var(--color-white);
-		border-color: var(--border-accent-soft);
-	}
-
-	@media (min-width: 640px) {
-		.news__title {
-			font-size: var(--type-home-section-wide);
-		}
 	}
 
 	@media (min-width: 768px) {
-		.news__sticky {
-			position: sticky;
-			top: var(--header-height);
-		}
-
 		.news__viewport {
-			overflow: hidden;
+			overflow-x: auto;
+			scrollbar-color: var(--border-control) var(--surface-control);
 		}
 
-		.news__track {
-			flex-direction: row;
-			width: max-content;
-			will-change: transform;
+		.news__track { flex-direction: row; }
+		.news__card {
+			flex: 0 0 auto;
+			inline-size: min(100%, calc(min(var(--news-card-height), 65svh) * (var(--news-ratio, var(--ratio-portrait)))));
 		}
+		.news__card:focus-visible { outline-offset: calc(-1 * var(--focus-offset)); }
 
-		.news__card,
-		.news__card[data-extra] {
-			display: block;
-			/* Same height for every card; the width follows the image. */
-			width: auto;
-			height: 475px;
-			flex-shrink: 0;
-		}
-
-		.news__more {
-			display: none;
-		}
+		[data-scroll-linked] .news__sticky { position: sticky; top: var(--header-height); }
+		[data-scroll-linked] .news__viewport { scrollbar-width: none; }
 	}
 
+	@media (prefers-reduced-motion: reduce) {
+		.news__card:hover .news__image { transform: none; }
+	}
 </style>

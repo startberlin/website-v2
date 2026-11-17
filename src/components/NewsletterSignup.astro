@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './icons/Icon.astro';
+import SectionHeading from './SectionHeading.astro';
+import workshopPhoto from '../assets/events/workshops.jpg';
+---
+
+<section class="newsletter" id="newsletter" aria-labelledby="newsletter-title" tabindex="-1">
+	<Image src={workshopPhoto} alt="" widths={[640, 1080, 1600]} sizes="100vw" format="webp" loading="lazy" class="newsletter__image" />
+	<div class="newsletter__shade" aria-hidden="true"></div>
+	<div class="newsletter__content page-container">
+		<div class="newsletter__copy">
+			<SectionHeading id="newsletter-title">
+				The next round.<br />
+				<span data-outline>In your inbox.</span>
+				<Fragment slot="lead">Join the START Berlin newsletter and we'll let you know when applications open.</Fragment>
+			</SectionHeading>
+			<fieldset class="newsletter__fields" disabled>
+				<legend class="sr-only">Newsletter sign-up</legend>
+				<div>
+					<label class="newsletter__label" for="newsletter-email">Email address</label>
+					<input class="ui-control" id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" />
+				</div>
+				<button class="button" data-accent type="button">
+					Join the newsletter <Icon name="arrow-right" size={16} />
+				</button>
+			</fieldset>
+			<p class="newsletter__status">Online sign-up is coming soon.</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.newsletter {
+		position: relative;
+		isolation: isolate;
+	}
+
+	.newsletter:focus-visible { outline-offset: calc(-1 * var(--focus-offset)); }
+
+	.newsletter__image,
+	.newsletter__shade {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.newsletter__image { z-index: -2; object-fit: cover; }
+	.newsletter__shade { z-index: -1; background: var(--gradient-hero-bottom), var(--gradient-photo-band); }
+	.newsletter__content { padding-block: var(--space-page-start); }
+	.newsletter__copy { max-width: var(--layout-reading); container-type: inline-size; }
+
+	.newsletter__fields {
+		display: grid;
+		align-items: end;
+		gap: var(--space-3);
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	.newsletter__fields .button { text-transform: uppercase; letter-spacing: var(--tracking-label); }
+
+	.newsletter__label {
+		display: block;
+		margin-bottom: var(--space-2);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-bold);
+	}
+
+	.newsletter__status {
+		margin: var(--space-3) 0 0;
+		color: var(--text-copy);
+		font-size: var(--text-sm);
+		line-height: var(--leading-ui);
+	}
+
+	@container (min-width: 34rem) {
+		.newsletter__fields { grid-template-columns: minmax(0, 1fr) auto; }
+	}
+
+	@media (max-width: 639.98px) {
+		.newsletter__shade { background: var(--gradient-hero-mobile), var(--gradient-photo-band); }
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		:global(html[data-motion='running']:has(#newsletter:target)) { scroll-behavior: smooth; }
+	}
+
+</style>

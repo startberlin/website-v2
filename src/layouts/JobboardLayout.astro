@@ -1,27 +1,28 @@
 ---
 import Layout from './Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import companyVisit from '../assets/jobboard/company-visit.webp';
 import '../styles/jobboard.css';
 import type { PageSeo } from '../lib/seo/metadata';
 
 interface Props {
 	seo: PageSeo;
+	title: readonly [string, string];
+	description: string;
+	compactTitle?: boolean;
 }
 
-const { seo } = Astro.props;
-const hasHero = Astro.slots.has('hero');
+const { seo, title, description, compactTitle } = Astro.props;
 ---
 
 <Layout seo={seo}>
-	<div class:list={['jobboard', { 'jobboard--hero': hasHero }]}>
-		<a class="jb-skip" href="#jobboard-content">Skip to jobs content</a>
-		<slot name="hero" />
-		<div class="jb-page page-container" id="jobboard-content">
+	<div class="jobboard">
+		<PageHero title={title} image={companyVisit} imagePosition="50% 57%" mobileImagePosition="58% 55%" compactTitle={compactTitle}>
+			<Fragment slot="description">{description}</Fragment>
+			<Fragment slot="aside"><slot name="hero-action" /></Fragment>
+		</PageHero>
+		<div class="jb-page page-container page-flow" id="jobboard-content">
 			<slot />
 		</div>
 	</div>
 </Layout>
-
-<style>
-	.jb-skip { position: absolute; top: -6rem; left: 1rem; padding: var(--space-3) var(--space-4); background: var(--color-white); color: var(--color-dark-blue); z-index: var(--z-skip-link); }
-	.jb-skip:focus { top: 5.5rem; }
-</style>

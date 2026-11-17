@@ -1,4 +1,5 @@
 import type { ImageMetadata } from 'astro';
+import memberJourneyGroup from '../assets/member-journey/start-berlin-member-journey-group.jpg';
 import sapCrowd from '../assets/member-journey/start-x-sap-crowd.jpg';
 import sprintCeremony from '../assets/member-journey/start-sprint-award-ceremony.jpg';
 import cofounderNight from '../assets/member-journey/cofounder-matching-night.jpg';
@@ -46,9 +47,10 @@ export interface MemberStory {
 }
 
 export const hero = {
-	// Rendered as two lines: the first in the accent colour, the second outlined.
-	accent: 'Your START Berlin',
-	outline: 'Journey',
+	title: ['Your START Berlin', 'Journey'] as const,
+	photo: { src: memberJourneyGroup, alt: 'START Berlin members making the START hand sign in a group photo.' },
+	imagePosition: '50% 45%',
+	mobileImagePosition: '53% 50%',
 };
 
 export const membershipFee = '€40 per year, paid annually';
@@ -63,7 +65,7 @@ export const stages: JourneyStage[] = [
 			'Apply in April or October',
 			'Stage 1: Written application',
 			'Stage 2: Personal interview',
-			'Open to students at any university in Berlin',
+			'Open to students at any university in Berlin or Potsdam',
 		],
 		photo: { src: sapCrowd, alt: 'Students filling an event room for a START Berlin and SAP talk' },
 	},
@@ -193,7 +195,7 @@ export const memberStories: MemberStory[] = [
 	},
 	{
 		name: 'Lion Abboud Herbert',
-		role: 'President 2026',
+		role: 'President 2025/26',
 		portrait: lionAbboudHerbert,
 		quote: 'I had never experienced such a concentrated amount of inspiring, curious and driven people before. People with different stories and backgrounds, but the same desire to learn, build and grow. This is not something you simply find at university or anywhere. It happens when you build a community like START Berlin, a place that brings these people together and gives them space to grow.',
 	},

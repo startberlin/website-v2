@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import PageHero from './PageHero.astro';
+import teamPhoto from '../assets/hero/hero-3.jpg';
 import Icon from './icons/Icon.astro';
 import type { BoardMember } from '../lib/board-members';
 import { memberEmailUrl, memberLinkedinUrl } from '../lib/member-profiles';
@@ -12,6 +14,8 @@ interface Props {
 
 const { member, portrait } = Astro.props;
 const { name, role, season, content, linkedin, email } = member;
+const lastSpace = name.lastIndexOf(' ');
+const title = lastSpace > 0 ? [name.slice(0, lastSpace), name.slice(lastSpace + 1)] as const : [name, role] as const;
 const initials = name.split(/\s+/).filter((_, index, parts) => index === 0 || index === parts.length - 1).map((part) => part[0]).join('');
 const experience = [
 	...content.experience,
@@ -24,18 +28,26 @@ const sections = [
 ];
 ---
 
-<article class="profile page-container" aria-labelledby="profile-name">
+<PageHero
+	title={title}
+	titleId="profile-name"
+	image={teamPhoto}
+	imagePosition="50% 10%"
+	mobileImagePosition="58% 35%"
+	compactTitle
+/>
+
+<article class="profile page-container page-flow" aria-labelledby="profile-name">
 	<div class="profile__layout">
 		<div class="profile__portrait-column">
 			<div class="profile__portrait">
-				{portrait ? <Image src={portrait} alt={`Portrait of ${name}`} width={256} height={256} widths={[128, 256]} sizes="(min-width: 960px) 256px, 160px" format="webp" loading="eager" fetchpriority="high" decoding="async" class="profile__image" /> : <span class="profile__initials" role="img" aria-label={`Portrait unavailable for ${name}`}>{initials}</span>}
+				{portrait ? <Image src={portrait} alt={`Portrait of ${name}`} width={256} height={256} widths={[128, 256]} sizes="(min-width: 960px) 256px, 160px" format="webp" loading="eager" decoding="async" class="profile__image" /> : <span class="profile__initials" role="img" aria-label={`Portrait unavailable for ${name}`}>{initials}</span>}
 			</div>
 		</div>
 		<div class="profile__content">
 			<header class="profile__hero">
 				<div class="profile__identity">
 					<p class="profile__eyebrow">Board {season}</p>
-					<h1 id="profile-name">{name}</h1>
 					<p class="profile__role">{role}</p>
 					<div class="profile__contacts">
 						{linkedin && <a class="button button--outline" href={memberLinkedinUrl(linkedin, name)} target="_blank" rel="noopener noreferrer"><Icon name="linkedin" size={18} /> LinkedIn <span class="visually-hidden">for {name} (opens in a new tab)</span><Icon name="arrow-up-right" size={16} /></a>}
@@ -62,7 +74,7 @@ const sections = [
 								{entry.period && <p class="profile__period">{entry.period}</p>}
 							</div>
 							{entry.organisation && <p class="profile__organisation">{entry.organisation}</p>}
-							{entry.url && <a class="profile__entry-link" href={entry.url} target="_blank" rel="noopener noreferrer">{`Visit ${entry.organisation ?? entry.title}`}<Icon name="arrow-up-right" size={16} /><span class="visually-hidden"> (opens in a new tab)</span></a>}
+							{entry.url && <a class="text-action profile__entry-link" href={entry.url} target="_blank" rel="noopener noreferrer">{`Visit ${entry.organisation ?? entry.title}`}<Icon name="arrow-up-right" size={16} /><span class="visually-hidden"> (opens in a new tab)</span></a>}
 						</li>
 					))}
 				</ul> : <p class="profile__pending">Details to follow.</p>}
@@ -75,16 +87,20 @@ const sections = [
 </article>
 
 <style>
-	.profile { padding-block: var(--space-8) var(--space-20); container-type: inline-size; container-name: board-profile; }
+	.profile {
+		--profile-column: 16rem;
+		container-type: inline-size;
+		container-name: board-profile;
+	}
 	.profile__layout { display: grid; gap: var(--space-8); }
 	.profile__portrait-column, .profile__content { min-width: 0; }
 	.profile__content { padding-bottom: var(--space-8); }
 	.profile__hero { display: grid; gap: var(--space-8); align-items: start; }
 	.profile__portrait {
 		width: min(100%, 10rem);
-		aspect-ratio: 1;
+		aspect-ratio: var(--ratio-square);
 		background: var(--surface-card);
-		border-radius: var(--radius-media);
+		border-radius: var(--radius-card);
 		overflow: hidden;
 	}
 	.profile__portrait :global(.profile__image) { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -100,8 +116,7 @@ const sections = [
 	}
 	.profile__identity { min-width: 0; }
 	.profile__eyebrow { margin: 0 0 var(--space-3); font-size: var(--text-xs); font-weight: var(--weight-bold); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-accent); }
-	h1 { margin: 0; max-width: 20ch; font-size: var(--type-member-name); line-height: 1.08; font-weight: var(--weight-heavy); letter-spacing: var(--tracking-member-name); text-wrap: balance; }
-	.profile__role { margin: var(--space-4) 0 0; font-size: var(--text-xl); line-height: var(--leading-ui); color: var(--text-muted); }
+	.profile__role { margin: 0; font-size: var(--text-xl); line-height: var(--leading-ui); color: var(--text-muted); }
 	.profile__contacts { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
 	.profile__contacts a { flex-shrink: 0; max-width: 100%; flex-wrap: wrap; }
 	.profile__introduction { min-width: 0; max-width: var(--layout-reading); }
@@ -115,17 +130,13 @@ const sections = [
 	.profile__entry-heading h3 { margin: 0; font-size: var(--text-lg); font-weight: var(--weight-semibold); line-height: var(--leading-ui); }
 	.profile__period { margin: 0; font-size: var(--text-xs); color: var(--text-subtle); line-height: var(--leading-copy); }
 	.profile__organisation { margin: var(--space-1) 0 0; font-size: var(--text-base); color: var(--text-muted); line-height: var(--leading-copy); }
-	.profile__entry-link { display: inline-flex; align-items: center; gap: var(--space-2); min-height: var(--target-min); max-width: 100%; margin-top: var(--space-2); font-size: var(--text-sm); color: var(--color-accent); text-decoration: underline; text-underline-offset: var(--space-1); }
-	.profile__entry-link svg { flex-shrink: 0; }
+	.profile__entry-link { margin-top: var(--space-2); }
 	.profile__return { margin-top: var(--space-10); }
 	@container board-profile (min-width: 60rem) {
-		.profile__layout { grid-template-columns: 16rem minmax(0, 1fr); column-gap: var(--space-16); }
+		.profile__layout { grid-template-columns: var(--profile-column) minmax(0, 1fr); column-gap: var(--space-columns); }
 		.profile__portrait { position: sticky; top: calc(var(--header-height) + var(--space-10)); width: 16rem; }
-		.profile__section { grid-template-columns: 16rem minmax(0, 1fr); column-gap: var(--space-16); }
-		.profile__return { margin-left: calc(16rem + var(--space-16)); }
-	}
-	@media (min-width: 960px) {
-		.profile { padding-block: var(--space-10) var(--space-24); }
+		.profile__section { grid-template-columns: var(--profile-column) minmax(0, 1fr); column-gap: var(--space-columns); }
+		.profile__return { margin-inline-start: calc(var(--profile-column) + var(--space-columns)); }
 	}
 	@media (max-height: 600px) {
 		.profile__portrait { position: static; }

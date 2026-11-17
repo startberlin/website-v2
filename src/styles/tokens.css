@@ -1,4 +1,4 @@
-/* START Berlin V2. Usage and exceptions: docs/STYLE_GUIDE.md. */
+/* START Berlin V2. Usage and exceptions: design.md. */
 :root {
 	/* Brand primitives. V2 cyan differs from the legacy site's cyan. */
 	--color-dark-blue: #00002c;
@@ -30,8 +30,11 @@
 
 	/* Approved image treatments and decorative network lettering. */
 	--gradient-hero: linear-gradient(to right, rgb(0 0 44 / 0.94), rgb(0 0 44 / 0.65) 55%, rgb(0 0 44 / 0.2));
+	--gradient-hero-bottom: linear-gradient(to top, var(--color-dark-blue), transparent 75%);
+	--gradient-hero-mobile: linear-gradient(to bottom, transparent, var(--surface-photo-shade) var(--space-12), var(--color-dark-blue));
 	--gradient-photo-band: linear-gradient(to right, rgb(0 0 44 / 0.95), rgb(0 0 44 / 0.75) 50%, rgb(0 0 44 / 0.3));
 	--gradient-news-shade: linear-gradient(to top, rgb(0 0 0 / 0.9), rgb(0 0 0 / 0.65) 25%, transparent 55%);
+	--gradient-news-copy: linear-gradient(to bottom, transparent, rgb(0 0 0 / 0.76) var(--space-8), rgb(0 0 0 / 0.76));
 	--gradient-placeholder: linear-gradient(to bottom right, color-mix(in srgb, var(--color-accent) 30%, transparent), var(--color-dark-blue));
 	--gradient-avatar: radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--color-accent) 35%, transparent), color-mix(in srgb, var(--color-accent) 8%, transparent) 70%);
 	--gradient-network-silver: linear-gradient(to right, rgb(156 163 175), rgb(229 231 235));
@@ -58,25 +61,18 @@
 	--text-compact: 0.9375rem;
 	--text-lead: 1.0625rem;
 	--text-status-title: 1.375rem;
-	--text-badge: 0.6875rem;
-	--text-badge-small: 0.625rem;
-	--type-hero: clamp(2.5rem, 7vw, 5.5rem);
-	--type-hero-landing: clamp(2rem, 7.5vw, 6.5rem);
+	--type-hero: clamp(1.75rem, 7vw, 5.5rem);
+	--type-hero-landing: clamp(1.75rem, 7.5vw, 6.5rem);
+	--type-hero-detail: clamp(1.75rem, 5vw, 4rem);
 	--type-section: clamp(2.25rem, 5vw, 3.75rem);
-	--type-home-section: 3rem;
-	--type-home-section-wide: 3.75rem;
-	--type-legal-title: 2.25rem;
-	--type-network-city-wide: 4.5rem;
+	--type-news-title: 3rem;
 	--type-stat: clamp(1.75rem, 5vw, 3rem);
-	--type-closing-title: clamp(1.75rem, 4vw, 2.5rem);
 	--type-step-number: 3.5rem;
-	--type-job-page: clamp(2.75rem, 5.5vw, 4rem);
-	--type-job-detail: clamp(2rem, 4vw, 3.5rem);
 	--type-job-row: clamp(1.0625rem, 1.8vw, 1.3125rem);
 	--type-member-name: clamp(2.25rem, 4.5vw, 4rem);
-	--tracking-member-name: -0.03em;
 	--leading-copy: 1.65;
 	--leading-ui: 1.4;
+	--leading-display: 1.05;
 	--tracking-label: 0.025em;
 	--tracking-wide: 0.1em;
 	--tracking-eyebrow: 0.2em;
@@ -90,6 +86,7 @@
 	--space-6: 1.5rem;
 	--space-7: 1.75rem;
 	--space-8: 2rem;
+	--space-9: 2.25rem;
 	--space-10: 2.5rem;
 	--space-12: 3rem;
 	--space-14: 3.5rem;
@@ -97,26 +94,53 @@
 	--space-20: 5rem;
 	--space-24: 6rem;
 	--space-28: 7rem;
+	--space-32: 8rem;
+	--space-40: 10rem;
 	--layout-page: 80rem;
 	--layout-reading: 44rem;
+	--layout-form: 52rem;
+	--layout-lead: 32rem;
+	--news-card-height: 29.6875rem;
 	--page-gutter: var(--space-4);
+	--space-page-start: var(--space-10);
+	--space-section: var(--space-16);
+	--space-heading: var(--space-6);
+	--space-grid: var(--space-4);
+	--space-grid-dense: var(--space-3);
+	--space-card: var(--space-grid);
+	--space-columns: var(--space-8);
 	--header-height: 5rem;
+	--announcement-height: var(--target-min);
+	--hero-height-mobile: 22.5rem;
+	--hero-height: clamp(25rem, 35vw, 32rem);
+	--hero-photo-space-mobile: clamp(5rem, 28vw, 9rem);
+	--home-partner-gap: var(--space-32);
 	--target-min: 2.75rem;
-	--target-hero-mobile: 3.125rem;
-	--company-mark-size: 40px;
-	--inline-icon-size: 20px;
+	--control-height: 3rem;
+	--company-mark-size: 2.5rem;
+	--inline-icon-size: 1.25rem;
+	--ratio-square: 1;
+	--ratio-photo: 16 / 10;
+	--ratio-portrait: 4 / 5;
 
 	/* Radius is determined by purpose, never by the page. */
 	--radius-control: 0.25rem;
 	--radius-field: 0.5rem;
 	--radius-card: 0.75rem;
-	--radius-media: 1rem;
+	--radius-news-card: 1rem;
 	--radius-pill: 9999px;
 	--border-width: 1px;
 	--border-width-accent: 2px;
+	--nav-cta-divider: var(--border-width-accent);
 	--focus-width: 2px;
 	--focus-offset: 4px;
-	--shadow-dropdown: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+	--shadow-overlay: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+	--ring-status: 0 0 0 var(--space-1) color-mix(in srgb, var(--color-accent) 25%, transparent);
+	--bleed-rail: 0 0 0 100vmax var(--color-dark-blue), 0 var(--border-width) 0 100vmax var(--border-subtle);
+	--blur-sticky: 12px;
+	--blur-status: 8px;
+	--blur-icon: 4px;
+	--opacity-disabled: 0.55;
 	--z-decoration: 10;
 	--z-filters: 40;
 	--z-navigation: 50;
@@ -126,17 +150,34 @@
 	--duration-panel: 300ms;
 	--duration-image: 500ms;
 	--duration-slideshow: 2000ms;
+	--duration-announcement: 95s;
+	--duration-city-list: 20s;
+	--duration-story: 560ms;
+	--ease-story: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* CSS custom properties cannot be used as media-query conditions. */
 @media (min-width: 640px) {
-	:root { --page-gutter: var(--space-6); }
-}
-
-@media (min-width: 1024px) {
-	:root { --page-gutter: var(--space-8); }
+	:root {
+		--page-gutter: var(--space-6);
+		--home-partner-gap: var(--space-40);
+		--type-news-title: 3.75rem;
+	}
 }
 
 @media (min-width: 768px) {
-	:root { --type-legal-title: 3rem; }
+	:root {
+		--space-grid: var(--space-6);
+		--space-grid-dense: var(--space-4);
+	}
+}
+
+@media (min-width: 1024px) {
+	:root {
+		--page-gutter: var(--space-8);
+		--space-page-start: var(--space-16);
+		--space-section: var(--space-24);
+		--space-heading: var(--space-8);
+		--space-columns: var(--space-16);
+	}
 }

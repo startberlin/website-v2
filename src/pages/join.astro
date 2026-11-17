@@ -3,7 +3,9 @@ import Icon from '../components/icons/Icon.astro';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 import MemberStories from '../components/MemberStories.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
 import groupPhoto from '../assets/hero/hero-1.jpg';
 import teamPhoto from '../assets/hero/hero-3.jpg';
 import audiencePhoto from '../assets/hero/hero-4.jpg';
@@ -68,23 +70,16 @@ const steps: { title: string; text: string; date?: string }[] = [
 ---
 
 <Layout seo={pageSeo('/join')}>
-	<PageHero image={groupPhoto} alt="START Berlin members posing together for a group photo.">
-			<p slot="status" class:list={['status', { 'status--open': applicationsOpen }]}>
-				<span class="status__dot"></span>
-				{applicationsOpen ? 'Applications are open' : 'Applications are closed'}
-			</p>
-			<Fragment slot="title">
-				<span data-hero-line>How to join</span>
-				<span data-hero-line data-hero-accent>START Berlin</span>
-			</Fragment>
-			<Fragment slot="description">
-				Become part of Berlin’s leading student entrepreneurship network and take your first step
-				toward building the future.
-			</Fragment>
-			<div slot="actions" class="actions actions--hero">
-				<a href={primaryCta.href} class="button button--primary">{primaryCta.label}</a>
-				<a href="#process" class="button button--ghost">See the process</a>
-			</div>
+	<PageHero title={['How to join', 'START Berlin']} image={groupPhoto} alt="START Berlin members posing together for a group photo.">
+		<p slot="status" class:list={['status', { 'status--open': applicationsOpen }]}>
+			<span class="status__dot"></span>
+			{applicationsOpen ? 'Applications are open' : 'Applications are closed'}
+		</p>
+		<Fragment slot="description">Become part of Berlin's student entrepreneurship network.</Fragment>
+		<div slot="actions" class="actions actions--hero">
+			<a href={primaryCta.href} class="button">{primaryCta.label}</a>
+			<a href="#process" class="button button--outline">See the process</a>
+		</div>
 	</PageHero>
 
 	<div class="stats page-container">
@@ -98,146 +93,152 @@ const steps: { title: string; text: string; date?: string }[] = [
 		}
 	</div>
 
-	<section class="section page-container split">
-		<div class="split__text">
-			<p class="eyebrow">Why you should apply</p>
-			<h2 class="heading">Dive into Berlin’s <span class="accent">startup ecosystem</span></h2>
-			<p class="lead">
-				Whether you’re just starting out or looking to take your venture to the next level, at START
-				Berlin you dive deep into a vibrant ecosystem of innovation, collaboration and growth. Explore
-				our network, connect with industry experts and learn from peers to sharpen your skills and bring
-				your ideas to life.
-			</p>
-			<ul class="benefits">
+	<div class="section-stack page-flow">
+		<section class="page-container split" aria-labelledby="join-benefits-heading">
+			<div class="split__text">
+				<SectionHeading id="join-benefits-heading" eyebrow="Why you should apply">
+					Dive into Berlin's <span class="accent">startup ecosystem</span>
+					<Fragment slot="lead">
+						Whether you're just starting out or looking to take your venture to the next level, at START
+						Berlin you dive deep into a vibrant ecosystem of innovation, collaboration and growth. Explore
+						our network, connect with industry experts and learn from peers to sharpen your skills and bring
+						your ideas to life.
+					</Fragment>
+				</SectionHeading>
+				<ul class="benefits">
+					{
+						benefits.map((benefit) => (
+							<li class="benefits__item">
+								<Icon name="chevron-right" />
+								{benefit}
+							</li>
+						))
+					}
+				</ul>
+				<p class="fee">
+					To provide these benefits and keep the organisation financially sustainable, active members pay
+					a membership fee of <strong>{membershipFee}</strong>.
+				</p>
+			</div>
+			<div class="split__media">
+				<Image src={teamFourPhoto} alt="Four START Berlin members in team shirts" widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 40vw, 100vw" class="photo" />
+			</div>
+		</section>
+
+		<section class="page-container split split--reverse" aria-labelledby="join-eligibility-heading">
+			<div class="split__text">
+				<SectionHeading id="join-eligibility-heading" eyebrow="Who we are looking for">
+					Is this <span class="accent">you?</span>
+					<Fragment slot="lead">We look forward to your application if:</Fragment>
+				</SectionHeading>
+				<ul class="checklist">
+					{
+						requirements.map((requirement) => (
+							<li class="checklist__item">
+								<span class="checklist__icon" aria-hidden="true">
+									<Icon name="check" stroke-width={3} />
+								</span>
+								{requirement}
+							</li>
+						))
+					}
+				</ul>
+			</div>
+			<div class="split__media">
+				<Image src={teamLiftingPhoto} alt="START Berlin members lifting a teammate and laughing" widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 40vw, 100vw" class="photo photo--landscape" />
+			</div>
+		</section>
+
+		<section class="page-container" id="process" aria-labelledby="join-process-heading">
+			<SectionHeading id="join-process-heading" eyebrow="Application process">
+				Your path to <span class="accent">START Berlin</span>
+			</SectionHeading>
+			<ol class="steps" role="list">
 				{
-					benefits.map((benefit) => (
-						<li class="benefits__item">
-							<Icon name="chevron-right" />
-							{benefit}
+					steps.map((step, index) => (
+						<li class="step">
+							<span class="step__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+							<h3 class="step__title">{step.title}</h3>
+							{step.date && <p class="step__date">{step.date}</p>}
+							<p class="step__text">{step.text}</p>
 						</li>
 					))
 				}
-			</ul>
-			<p class="fee">
-				To provide these benefits and keep the organisation financially sustainable, active members pay
-				a membership fee of <strong>{membershipFee}</strong>.
+			</ol>
+			<p class="note">
+				We share the dates for interviews and onboarding with each application round. Please block the
+				onboarding in your calendar as soon as you know it, and we strongly encourage you to join the
+				network trip as well.
 			</p>
-		</div>
-		<div class="split__media">
-			<Image src={teamFourPhoto} alt="Four START Berlin members in team shirts" widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 40vw, 100vw" class="photo" />
-		</div>
-	</section>
+		</section>
 
-	<section class="section page-container split split--reverse">
-		<div class="split__text">
-			<p class="eyebrow">Who we are looking for</p>
-			<h2 class="heading">Is this <span class="accent">you?</span></h2>
-			<p class="lead">We look forward to your application if:</p>
-			<ul class="checklist">
+		<section class="banner" aria-labelledby="join-events-heading">
+			<Image src={audiencePhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="banner__image" />
+			<div class="banner__shade"></div>
+			<div class="banner__content page-container">
+				<SectionHeading id="join-events-heading" eyebrow="Want to get to know us?" flush>
+					Meet us <span class="accent">in person</span>
+					<Fragment slot="lead">
+						Around every application round we host online and in-person info events. Drop by, ask your
+						questions and meet current members before you apply.
+					</Fragment>
+				</SectionHeading>
+				<div class="actions">
+					<a href="/events" class="button">See upcoming events</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="page-container" aria-labelledby="join-departments-heading">
+			<SectionHeading id="join-departments-heading" eyebrow="About START Berlin">
+				Our <span class="accent">departments</span>
+				<Fragment slot="lead">
+					Every member is part of a department. Together they drive the organisation's success and its
+					impact on the Berlin startup ecosystem.
+				</Fragment>
+			</SectionHeading>
+			<div class="departments">
 				{
-					requirements.map((requirement) => (
-						<li class="checklist__item">
-							<span class="checklist__icon" aria-hidden="true">
-								<Icon name="check" stroke-width={3} />
-							</span>
-							{requirement}
-						</li>
+					departments.map((department) => (
+						<article class="department">
+							<h3 class="department__name">{department.name}</h3>
+							{department.paragraphs.map((paragraph) => <p class="department__text">{paragraph}</p>)}
+						</article>
 					))
 				}
-			</ul>
-		</div>
-		<div class="split__media">
-			<Image src={teamLiftingPhoto} alt="START Berlin members lifting a teammate and laughing" widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 40vw, 100vw" class="photo photo--landscape" />
-		</div>
-	</section>
+			</div>
+		</section>
 
-	<section class="section page-container" id="process">
-		<div class="section__head">
-			<p class="eyebrow">Application process</p>
-			<h2 class="heading">Your path to <span class="accent">START Berlin</span></h2>
-		</div>
-		<ol class="steps">
-			{
-				steps.map((step, index) => (
-					<li class="step">
-						<span class="step__number">{String(index + 1).padStart(2, '0')}</span>
-						<h3 class="step__title">{step.title}</h3>
-						{step.date && <p class="step__date">{step.date}</p>}
-						<p class="step__text">{step.text}</p>
-					</li>
-				))
-			}
-		</ol>
-		<p class="note">
-			We share the dates for interviews and onboarding with each application round. Please block the
-			onboarding in your calendar as soon as you know it, and we strongly encourage you to join the
-			network trip as well.
-		</p>
-	</section>
+		<NewsletterSignup />
+		<MemberStories />
 
-	<section class="banner">
-		<Image src={audiencePhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="banner__image" />
-		<div class="banner__shade"></div>
-		<div class="banner__content page-container">
-			<p class="eyebrow">Want to get to know us?</p>
-			<h2 class="heading">Meet us <span class="accent">in person</span></h2>
-			<p class="lead">
-				Around every application round we host online and in-person info events. Drop by, ask your
-				questions and meet current members before you apply.
-			</p>
-			<div class="actions">
-				<a href="/events" class="button button--primary">See upcoming events</a>
+		<div class="closing">
+			<Image src={teamPhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="closing__image" />
+			<div class="closing__shade"></div>
+			<div class="closing__grid page-container">
+				<div class="closing__card">
+					<SectionHeading id="join-talent-pool-heading" eyebrow="Stay up to date" compact flush>
+						Join our talent pool
+					</SectionHeading>
+					<p class="closing__text">
+						Get a reminder when applications open again, hear about upcoming events and stay up to date
+						with START Berlin.
+					</p>
+					<a href={links.talentPool} class="button">Sign up</a>
+				</div>
+				<div class="closing__card">
+					<SectionHeading id="join-contact-heading" eyebrow="Any questions left?" compact flush>
+						Get in touch
+					</SectionHeading>
+					<p class="closing__text">
+						Unsure about the application process, your eligibility or what START Berlin is all about?
+						Just reach out.
+					</p>
+					<a href={links.contact} class="button button--outline">Contact us</a>
+				</div>
 			</div>
 		</div>
-	</section>
-
-	<section class="section page-container">
-		<div class="section__head">
-			<p class="eyebrow">About START Berlin</p>
-			<h2 class="heading">Our <span class="accent">departments</span></h2>
-			<p class="lead">
-				Every member is part of a department. Together they drive the organisation’s success and its
-				impact on the Berlin startup ecosystem.
-			</p>
-		</div>
-		<div class="departments">
-			{
-				departments.map((department) => (
-					<article class="department">
-						<h3 class="department__name">{department.name}</h3>
-						{department.paragraphs.map((paragraph) => <p class="department__text">{paragraph}</p>)}
-					</article>
-				))
-			}
-		</div>
-	</section>
-
-	<MemberStories />
-
-	<section class="closing">
-		<Image src={teamPhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="closing__image" />
-		<div class="closing__shade"></div>
-		<div class="closing__grid page-container">
-			<div class="closing__card">
-				<p class="eyebrow">Stay up to date</p>
-				<h2 class="closing__title">Join our talent pool</h2>
-				<p class="closing__text">
-					Get a reminder when applications open again, hear about upcoming events and stay up to date
-					with START Berlin.
-				</p>
-				<a href={links.talentPool} class="button button--primary">Sign up</a>
-			</div>
-			<div class="closing__card">
-				<p class="eyebrow">Any questions left?</p>
-				<h2 class="closing__title">Get in touch</h2>
-				<p class="closing__text">
-					Unsure about the application process, your eligibility or what START Berlin is all about?
-					Just reach out.
-				</p>
-				<a href={links.contact} class="button button--ghost">Contact us</a>
-			</div>
-		</div>
-	</section>
+	</div>
 </Layout>
 
 <style>
@@ -259,13 +260,13 @@ const steps: { title: string; text: string; date?: string }[] = [
 		align-items: center;
 		gap: var(--space-2);
 		margin: 0 0 var(--space-6);
-		padding: 0.375rem var(--space-4);
+		padding: var(--space-1) var(--space-4);
 		border: var(--border-width) solid var(--border-strong);
 		border-radius: var(--radius-pill);
 		background: var(--surface-status);
-		backdrop-filter: blur(8px);
+		backdrop-filter: blur(var(--blur-status));
 		font-size: var(--text-xs);
-		line-height: 1rem;
+		line-height: var(--leading-ui);
 		font-weight: var(--weight-bold);
 		letter-spacing: var(--tracking-eyebrow);
 		text-transform: uppercase;
@@ -286,7 +287,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 
 	.status--open .status__dot {
 		background: var(--color-accent);
-		box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 25%, transparent);
+		box-shadow: var(--ring-status);
 	}
 
 	.actions {
@@ -294,6 +295,11 @@ const steps: { title: string; text: string; date?: string }[] = [
 		flex-wrap: wrap;
 		gap: var(--space-3);
 		margin-top: var(--space-8);
+	}
+
+	.actions .button, .closing__card .button {
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-label);
 	}
 
 	/* Stats */
@@ -319,68 +325,32 @@ const steps: { title: string; text: string; date?: string }[] = [
 		margin: 0;
 		font-size: var(--type-stat);
 		font-weight: var(--weight-display);
-		line-height: 1;
+		line-height: var(--leading-display);
+		font-variant-numeric: tabular-nums;
 		color: var(--color-accent);
 	}
 
 	.stat__label {
 		margin: var(--space-2) 0 0;
 		font-size: var(--text-xs);
-		line-height: 1rem;
-		letter-spacing: 0.15em;
+		line-height: var(--leading-ui);
+		letter-spacing: var(--tracking-label);
 		text-transform: uppercase;
 		color: var(--text-subtle);
-	}
-
-	/* Shared section type */
-
-	.section {
-		padding-block: var(--space-20);
-	}
-
-	.section__head {
-		max-width: var(--layout-reading);
-		margin-bottom: var(--space-12);
-	}
-
-	.eyebrow {
-		margin: 0 0 var(--space-4);
-		font-size: var(--text-caption);
-		line-height: 1.25rem;
-		font-weight: var(--weight-bold);
-		letter-spacing: var(--tracking-eyebrow);
-		text-transform: uppercase;
-		color: var(--color-accent);
-	}
-
-	.heading {
-		margin: 0 0 var(--space-6);
-		font-size: var(--type-section);
-		font-weight: var(--weight-display);
-		line-height: 0.95;
-		letter-spacing: -0.025em;
-		text-transform: uppercase;
-	}
-
-	.lead {
-		margin: 0 0 var(--space-6);
-		font-size: var(--text-lead);
-		line-height: 1.7;
-		color: var(--text-copy);
 	}
 
 	/* Text + photo */
 
 	.split {
 		display: grid;
-		gap: var(--space-12);
+		gap: var(--space-columns);
 		align-items: center;
 	}
 
 	.photo {
 		width: 100%;
 		height: auto;
-		aspect-ratio: 4 / 5;
+		aspect-ratio: var(--ratio-portrait);
 		object-fit: cover;
 		border: var(--border-width) solid var(--border-subtle);
 		border-radius: var(--radius-card);
@@ -388,7 +358,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 
 	/* Keeps the whole group in frame; a portrait crop cuts off the person being lifted. */
 	.photo--landscape {
-		aspect-ratio: 3 / 2;
+		aspect-ratio: var(--ratio-photo);
 	}
 
 	.benefits,
@@ -404,11 +374,11 @@ const steps: { title: string; text: string; date?: string }[] = [
 	.benefits__item {
 		display: flex;
 		gap: var(--space-3);
-		padding: 0.875rem var(--space-4);
+		padding: var(--space-3) var(--space-card);
 		background: var(--surface-card);
 		border: var(--border-width) solid var(--border-subtle);
 		border-radius: var(--radius-field);
-		line-height: 1.5;
+		line-height: var(--leading-copy);
 		transition: border-color var(--duration-ui);
 	}
 
@@ -429,7 +399,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 		padding-left: var(--space-4);
 		border-left: var(--border-width-accent) solid var(--color-accent);
 		font-size: var(--text-compact);
-		line-height: 1.6;
+		line-height: var(--leading-copy);
 		color: var(--text-muted);
 	}
 
@@ -442,7 +412,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 		align-items: flex-start;
 		gap: var(--space-4);
 		font-size: var(--text-lead);
-		line-height: 1.5;
+		line-height: var(--leading-copy);
 	}
 
 	.checklist__icon {
@@ -466,7 +436,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 
 	.steps {
 		display: grid;
-		gap: var(--space-4);
+		gap: var(--space-grid);
 		margin: 0 0 var(--space-8);
 		padding: 0;
 		list-style: none;
@@ -474,7 +444,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 
 	.step {
 		position: relative;
-		padding: var(--space-8) var(--space-6);
+		padding: var(--space-card);
 		background: var(--surface-card);
 		border: var(--border-width) solid var(--border-subtle);
 		border-radius: var(--radius-card);
@@ -491,8 +461,8 @@ const steps: { title: string; text: string; date?: string }[] = [
 		margin-bottom: var(--space-6);
 		font-size: var(--type-step-number);
 		font-weight: var(--weight-display);
-		line-height: 1;
-		-webkit-text-stroke: 1.5px var(--color-accent);
+		line-height: var(--leading-display);
+		-webkit-text-stroke: var(--border-width-accent) var(--color-accent);
 		-webkit-text-fill-color: transparent;
 	}
 
@@ -515,7 +485,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 
 	.step__text {
 		margin: 0;
-		line-height: 1.6;
+		line-height: var(--leading-copy);
 		color: var(--text-copy);
 	}
 
@@ -523,7 +493,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 		max-width: var(--layout-reading);
 		margin: 0;
 		font-size: var(--text-compact);
-		line-height: 1.6;
+		line-height: var(--leading-copy);
 		color: var(--text-subtle);
 	}
 
@@ -543,22 +513,18 @@ const steps: { title: string; text: string; date?: string }[] = [
 
 	.banner__content {
 		position: relative;
-		padding-block: var(--space-24);
-	}
-
-	.banner__content .lead {
-		max-width: 32rem;
+		padding-block: var(--space-page-start);
 	}
 
 	/* Departments */
 
 	.departments {
 		display: grid;
-		gap: var(--space-4);
+		gap: var(--space-grid);
 	}
 
 	.department {
-		padding: var(--space-7) var(--space-6);
+		padding: var(--space-card);
 		background: var(--surface-card);
 		border: var(--border-width) solid var(--border-subtle);
 		border-top: var(--border-width-accent) solid var(--color-accent);
@@ -576,7 +542,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 	.department__text {
 		margin: 0;
 		font-size: var(--text-compact);
-		line-height: 1.6;
+		line-height: var(--leading-copy);
 		color: var(--text-muted);
 	}
 
@@ -595,34 +561,26 @@ const steps: { title: string; text: string; date?: string }[] = [
 	.closing__grid {
 		position: relative;
 		display: grid;
-		gap: var(--space-4);
-		padding-block: var(--space-24);
+		gap: var(--space-grid);
+		padding-block: var(--space-page-start);
 	}
 
 	.closing__card {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		padding: var(--space-10) var(--space-8);
+		gap: var(--space-4);
+		padding: var(--space-card);
 		background: var(--surface-photo-card);
-		backdrop-filter: blur(12px);
+		backdrop-filter: blur(var(--blur-sticky));
 		border: var(--border-width) solid var(--border-default);
 		border-radius: var(--radius-card);
 	}
 
-	.closing__title {
-		margin: 0 0 var(--space-4);
-		font-size: var(--type-closing-title);
-		font-weight: var(--weight-display);
-		line-height: 1;
-		letter-spacing: -0.025em;
-		text-transform: uppercase;
-	}
-
 	.closing__text {
 		flex-grow: 1;
-		margin: 0 0 var(--space-8);
-		line-height: 1.6;
+		margin: 0;
+		line-height: var(--leading-copy);
 		color: var(--text-copy);
 	}
 
@@ -635,23 +593,14 @@ const steps: { title: string; text: string; date?: string }[] = [
 
 	@media (max-width: 639.98px) {
 		.actions--hero { display: grid; grid-template-columns: minmax(0, 1fr); }
-		.actions--hero .button { width: 100%; min-height: var(--target-hero-mobile); }
+		.actions--hero .button { width: 100%; }
 		.stat { padding-inline: var(--space-1); }
-		.stat__label { letter-spacing: 0.05em; }
-	}
 
-	@media (max-width: 359px) {
-		.stat__label { font-size: var(--text-badge); }
 	}
 
 	@media (min-width: 1024px) {
-		.section {
-			padding-block: var(--space-28);
-		}
-
 		.split {
 			grid-template-columns: 7fr 5fr;
-			gap: var(--space-20);
 		}
 
 		.split--reverse {

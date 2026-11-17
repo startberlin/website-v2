@@ -28,7 +28,7 @@ export function JobPagination({ page, pageCount, total, onPageChange }: JobPagin
 			{pageCount > 1 ? (
 				<ul className="jb-pagination__controls">
 					<li>
-						<button className="jb-pagination__button" type="button" aria-controls="job-results" aria-label="Previous page" disabled={current === 1} onClick={() => onPageChange(current - 1)}>
+						<button className="icon-action jb-pagination__button" type="button" aria-controls="job-results" aria-label="Previous page" disabled={current === 1} onClick={() => onPageChange(current - 1)}>
 							<Icon name="arrow-left" size={18} />
 						</button>
 					</li>
@@ -36,7 +36,7 @@ export function JobPagination({ page, pageCount, total, onPageChange }: JobPagin
 						<li key={token} className={!mobile.includes(token) ? 'jb-pagination__desktop-only' : !desktop.includes(token) ? 'jb-pagination__mobile-only' : undefined}>
 							{typeof token === 'number' ? (
 								<button
-									className="jb-pagination__button"
+									className="icon-action jb-pagination__button"
 									type="button" aria-controls="job-results"
 									aria-label={token === current ? `Page ${token}` : `Go to page ${token}`}
 									aria-current={token === current ? 'page' : undefined}
@@ -48,7 +48,7 @@ export function JobPagination({ page, pageCount, total, onPageChange }: JobPagin
 						</li>
 					))}
 					<li>
-						<button className="jb-pagination__button" type="button" aria-controls="job-results" aria-label="Next page" disabled={current === pageCount} onClick={() => onPageChange(current + 1)}>
+						<button className="icon-action jb-pagination__button" type="button" aria-controls="job-results" aria-label="Next page" disabled={current === pageCount} onClick={() => onPageChange(current + 1)}>
 							<Icon name="arrow-right" size={18} />
 						</button>
 					</li>

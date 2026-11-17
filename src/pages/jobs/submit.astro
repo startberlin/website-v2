@@ -7,13 +7,21 @@ export const prerender = false;
 Astro.response.headers.set('Cache-Control', 'no-store');
 ---
 
-<JobboardLayout seo={pageSeo('/jobs/submit')}>
-	<header class="jb-intro">
-		<div>
-			<h1 class="jb-page-heading">Post a role</h1>
-			<p class="jb-intro-text">Share an opening with the START network. We will review your role and contact you to agree on publication terms.</p>
-		</div>
-		<a class="jb-link" href="/jobs">All jobs <span aria-hidden="true">↗</span></a>
-	</header>
+<JobboardLayout
+	seo={pageSeo('/jobs/submit')}
+	title={['Post a', 'role']}
+	description="Share an opening with the START network."
+>
+	<a slot="hero-action" class="text-action" href="/jobs">All jobs <span aria-hidden="true">↗</span></a>
+	<p class="submission-introduction">We will review your role and contact you to agree on publication terms.</p>
 	<SubmissionForm client:load />
 </JobboardLayout>
+
+<style>
+	.submission-introduction {
+		max-width: var(--layout-reading);
+		margin: 0;
+		color: var(--text-copy);
+		line-height: var(--leading-copy);
+	}
+</style>

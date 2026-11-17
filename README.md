@@ -6,7 +6,7 @@ Home, Members and Join remain prerendered. Jobboard listings and details render 
 
 ## Design and contributor onboarding
 
-Read [AGENTS.md](AGENTS.md) and the [design guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
+Read [AGENTS.md](AGENTS.md), [design values](design.md) and the [component guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for the PR workflow and [docs/RELEASE.md](docs/RELEASE.md) for staging, production and domain cutover. GitHub `main` and `production` require successful checks and one admin authorization, through review or intentional PR merge, including on the admin's own PR. Production uses that release-PR authorization without a second environment approval.
 

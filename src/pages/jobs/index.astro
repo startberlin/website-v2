@@ -1,6 +1,6 @@
 ---
 import JobboardLayout from '../../layouts/JobboardLayout.astro';
-import JobboardHero from '../../components/jobboard/JobboardHero.astro';
+import Icon from '../../components/icons/Icon.astro';
 import { JobBrowserIsland } from '../../components/jobboard/JobBrowserIsland';
 import { summarizeJob } from '../../components/jobboard/JobRow';
 import { getJobs } from '../../lib/jobboard/api';
@@ -22,13 +22,13 @@ const source = sourceFrom(Astro.url.searchParams.get('source'));
 const seo = { ...pageSeo('/jobs'), noindex: jobs === null || isJobFilterUrl(Astro.url.searchParams) };
 ---
 
-<JobboardLayout seo={seo}>
-	<JobboardHero slot="hero" />
+<JobboardLayout seo={seo} title={['START', 'Jobs']} description="Find open roles in the START Berlin network.">
+	<a slot="hero-action" class="button" href="/jobs/submit">Post a role <Icon name="arrow-up-right" size={20} /></a>
 	{jobs === null ? (
 		<section class="jb-status" role="status">
 			<h2>Jobs could not be loaded.</h2>
 			<p>Please try again shortly.</p>
-			<a class="jb-button" href="/jobs">Try again</a>
+			<a class="button" href="/jobs">Try again</a>
 		</section>
 	) : (
 		<JobBrowserIsland jobs={jobs.map(summarizeJob)} initialSource={source} serverSearch={Astro.url.search} client:load />
