@@ -1,0 +1,115 @@
+---
+import Icon from './icons/Icon.astro';
+
+const message = 'Applications for the Winter Semester are now closed. Summer Semester applications open in April 2027.';
+const items = Array.from({ length: 12 }, () => message);
+---
+
+<div class="announcement">
+	<a class="announcement__link" href="/join#newsletter" aria-label={message}>
+		<span class="announcement__track" aria-hidden="true">
+			{items.map((item) => <span class="announcement__item">{item}</span>)}
+		</span>
+		<span class="announcement__static" aria-hidden="true">{message}</span>
+	</a>
+	<button class="announcement__motion icon-action" type="button" aria-label="Pause animations" aria-pressed="false"
+		title="Pause animations" data-motion-control hidden>
+		<Icon name="pause" size={20} class="announcement__pause" />
+		<Icon name="play" size={20} class="announcement__play" />
+	</button>
+</div>
+
+<script>
+	import { reducedMotion, setMotionPaused } from '../lib/motion';
+
+	const control = document.querySelector<HTMLButtonElement>('[data-motion-control]');
+	if (control) {
+		const storageKey = 'start-motion-paused';
+		let paused = false;
+		try { paused = sessionStorage.getItem(storageKey) === 'true'; } catch {}
+
+		const update = () => {
+			setMotionPaused(paused);
+			control.hidden = reducedMotion.matches;
+			control.setAttribute('aria-pressed', String(paused));
+			control.title = paused ? 'Resume animations' : 'Pause animations';
+		};
+
+		control.addEventListener('click', () => {
+			paused = !paused;
+			try { sessionStorage.setItem(storageKey, String(paused)); } catch {}
+			update();
+		});
+		reducedMotion.addEventListener('change', update);
+		update();
+	}
+</script>
+
+<style>
+	.announcement {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+		font-size: var(--text-xs);
+		font-weight: var(--weight-medium);
+		line-height: var(--leading-ui);
+		letter-spacing: var(--tracking-label);
+	}
+
+	.announcement__link {
+		display: grid;
+		align-content: center;
+		min-height: var(--announcement-height);
+		overflow: hidden;
+		padding-block: var(--space-2);
+		transition: background-color var(--duration-fast);
+	}
+
+	.announcement__motion {
+		border-inline-start: var(--border-width) solid currentColor;
+		border-radius: 0;
+	}
+
+	.announcement__link:hover,
+	.announcement__motion:hover {
+		background: color-mix(in srgb, var(--color-accent), var(--color-white) 15%);
+		color: var(--color-dark-blue);
+	}
+
+	.announcement :is(a, button):focus-visible {
+		outline-color: currentColor;
+		outline-offset: calc(-1 * var(--focus-offset));
+	}
+
+	.announcement__track,
+	.announcement__play,
+	.announcement__motion[aria-pressed='true'] .announcement__pause { display: none; }
+	.announcement__motion[aria-pressed='true'] .announcement__play { display: block; }
+
+	.announcement__item { margin-inline: var(--space-8); }
+
+	.announcement__static {
+		padding-inline: var(--page-gutter);
+		text-align: center;
+	}
+
+	@media (min-width: 640px) {
+		.announcement { font-size: var(--text-sm); }
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		:global(html[data-motion='running']) .announcement__link:not(:focus-visible) .announcement__track {
+			display: flex;
+			width: max-content;
+			white-space: nowrap;
+			animation: announcement-scroll var(--duration-announcement) linear infinite;
+		}
+
+		:global(html[data-motion='running']) .announcement__link:not(:focus-visible) .announcement__static { display: none; }
+	}
+
+	@keyframes announcement-scroll {
+		to { transform: translateX(-50%); }
+	}
+</style>

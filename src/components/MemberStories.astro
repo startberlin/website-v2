@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import SectionHeading from './SectionHeading.astro';
 import Testimonial from './Testimonial.astro';
 import { memberStories, storiesSection } from '../data/member-journey';
@@ -7,41 +8,323 @@ import { memberStories, storiesSection } from '../data/member-journey';
 const orderedStories = [...memberStories.filter((story) => story.featured), ...memberStories.filter((story) => !story.featured)];
 ---
 
-<section class="member-stories page-container" id="member-stories" aria-labelledby="member-stories-heading">
+<section class="member-stories page-container" id="member-stories" aria-labelledby="member-stories-heading" data-member-stories>
 	<SectionHeading id="member-stories-heading">
 		{storiesSection.heading}
 		<Fragment slot="lead">{storiesSection.subheading}</Fragment>
 	</SectionHeading>
-	<ul class="stories">
-		{orderedStories.map((story) => (
-			<li class:list={['stories__item', { 'stories__item--featured': story.featured }]}>
-				<Testimonial {...story} />
-			</li>
-		))}
-	</ul>
+	<div class="stories__frame">
+		<ul class="stories" role="list" data-story-stage>
+			{orderedStories.map(({ quote, name, role, portrait }, index) => (
+				<li class="stories__item" id={`member-story-${index}`} data-story-panel>
+					<Testimonial {quote} {name} {role} {portrait} featured />
+				</li>
+			))}
+		</ul>
+		<div class="stories__controls" data-story-controls hidden>
+			<p class="sr-only" id="member-stories-selection">Choose a portrait to keep that story open.</p>
+			<div class="stories__choices" role="group" aria-label="Choose a member story" aria-describedby="member-stories-selection" data-story-choices>
+				{orderedStories.map(({ name, portrait, quote }, index) => (
+					<button
+						type="button"
+						class="stories__choice"
+						aria-label={name}
+						title={name}
+						aria-controls={`member-story-${index}`}
+						aria-pressed={index === 0 ? 'true' : 'false'}
+						data-story-choice
+						data-reading-time={Math.max(9_000, quote.split(/\s+/).length * 250)}
+					>
+						<span class="stories__progress" data-story-progress aria-hidden="true"></span>
+						{portrait ? (
+							<Image src={portrait} alt="" width={48} height={48} widths={[40, 48, 80, 96]} sizes="(min-width: 768px) 48px, 40px" format="webp" loading="lazy" class="stories__portrait" />
+						) : <span class="stories__portrait stories__initial" aria-hidden="true">{name[0]}</span>}
+					</button>
+				))}
+			</div>
+		</div>
+	</div>
+	<p class="sr-only" role="status" data-story-status></p>
 </section>
 
+<script>
+	import { motionEnabled, onMotionChange } from '../lib/motion';
+
+	const root = document.querySelector<HTMLElement>('[data-member-stories]');
+	if (root && 'IntersectionObserver' in window && 'ResizeObserver' in window && typeof Element.prototype.animate === 'function') {
+		const stage = root.querySelector<HTMLElement>('[data-story-stage]')!;
+		const panels = [...stage.querySelectorAll<HTMLElement>('[data-story-panel]')];
+		const controls = root.querySelector<HTMLElement>('[data-story-controls]')!;
+		const choices = root.querySelector<HTMLElement>('[data-story-choices]')!;
+		const buttons = [...choices.querySelectorAll<HTMLButtonElement>('[data-story-choice]')];
+		const status = root.querySelector<HTMLElement>('[data-story-status]')!;
+		const header = document.querySelector<HTMLElement>('.nav');
+		const progressFrames = typeof CSS.registerProperty === 'function'
+			? [{ '--story-progress-turn': '0turn' }, { '--story-progress-turn': '1turn' }]
+			: [{ opacity: 0.6 }, { opacity: 1 }];
+
+		let current = 0;
+		let inView = false;
+		let hovered = false;
+		let pinned = false;
+		let countdown: Animation | undefined;
+
+		const canRotate = () => inView && !hovered && !pinned && !document.hidden && motionEnabled();
+
+		const fitQuote = () => {
+			stage.style.height = `${panels[current].offsetHeight}px`;
+		};
+		const resizeQuote = new ResizeObserver(fitQuote);
+
+		const syncPlayback = () => {
+			if (!canRotate()) {
+				countdown?.pause();
+				return;
+			}
+			if (!countdown) {
+				const button = buttons[current];
+				const progress = button.querySelector<HTMLElement>('[data-story-progress]')!;
+				countdown = progress.animate(
+					progressFrames,
+					{ duration: Number(button.dataset.readingTime), fill: 'both' },
+				);
+				countdown.onfinish = () => {
+					if (canRotate()) selectStory((current + 1) % panels.length);
+				};
+			}
+			countdown.play();
+		};
+
+		const renderSelection = () => {
+			panels.forEach((panel, index) => {
+				const selected = index === current;
+				panel.toggleAttribute('data-active', selected);
+				panel.inert = !selected;
+				panel.tabIndex = selected ? 0 : -1;
+				buttons[index].setAttribute('aria-pressed', String(selected));
+			});
+		};
+
+		const selectStory = (index: number) => {
+			countdown?.cancel();
+			countdown = undefined;
+			resizeQuote.unobserve(panels[current]);
+			current = index;
+			renderSelection();
+			fitQuote();
+			resizeQuote.observe(panels[current]);
+
+			const selection = buttons[current].getBoundingClientRect();
+			const rail = choices.getBoundingClientRect();
+			const offset = Math.min(0, selection.left - rail.left) + Math.max(0, selection.right - rail.right);
+			if (offset) choices.scrollBy({ left: offset, behavior: motionEnabled() ? 'smooth' : 'instant' });
+			syncPlayback();
+		};
+
+		const pinStory = () => {
+			pinned = true;
+			root.dataset.pinned = '';
+			countdown?.cancel();
+			countdown = undefined;
+		};
+
+		buttons.forEach((button, index) => {
+			button.addEventListener('click', () => {
+				pinStory();
+				selectStory(index);
+				status.textContent = `Showing ${button.getAttribute('aria-label')}'s story.`;
+				if (stage.getBoundingClientRect().top < (header?.getBoundingClientRect().bottom ?? 0)) {
+					panels[current].focus({ preventScroll: true });
+					stage.scrollIntoView({ block: 'start', behavior: motionEnabled() ? 'smooth' : 'instant' });
+				}
+			});
+		});
+
+		root.addEventListener('focusin', pinStory);
+		root.addEventListener('pointerenter', (event) => {
+			if (event.pointerType !== 'mouse') return;
+			hovered = true;
+			syncPlayback();
+		});
+		root.addEventListener('pointerleave', () => {
+			hovered = false;
+			syncPlayback();
+		});
+		document.addEventListener('visibilitychange', syncPlayback);
+		new IntersectionObserver(([entry]) => {
+			inView = entry.intersectionRatio >= 0.35;
+			syncPlayback();
+		}, { threshold: 0.35 }).observe(stage);
+
+		renderSelection();
+		root.dataset.enhanced = '';
+		fitQuote();
+		resizeQuote.observe(panels[current]);
+		controls.hidden = false;
+		onMotionChange(syncPlayback);
+	}
+</script>
+
 <style>
+	@property --story-progress-turn {
+		syntax: '<angle>';
+		inherits: false;
+		initial-value: 0turn;
+	}
+
 	.member-stories {
-		padding-block: var(--space-16);
+		--story-target: var(--space-14);
+		--story-portrait: var(--space-10);
 	}
 
 	.stories {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
-		gap: var(--space-4);
+		gap: var(--space-grid);
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
-	@media (min-width: 640px) {
-		.stories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-		.stories__item--featured { grid-column: 1 / -1; }
+	[data-enhanced] .stories__frame {
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		background: var(--surface-card);
+		overflow: hidden;
 	}
 
-	@media (min-width: 1024px) {
-		.member-stories { padding-block: var(--space-24); }
-		.stories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	[data-enhanced] .stories__item :global(.testimonial--featured) {
+		border: 0;
+		border-radius: 0;
+		background: transparent;
 	}
+
+	[data-enhanced] .stories {
+		display: block;
+		position: relative;
+		overflow: hidden;
+		transition: height var(--duration-story) var(--ease-story);
+	}
+
+	/* Absolute positioning keeps inactive quotes out of the measured height. */
+	[data-enhanced] .stories__item {
+		position: absolute;
+		inset: 0 0 auto;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(var(--space-2));
+		transition:
+			opacity var(--duration-panel) var(--ease-story),
+			transform var(--duration-story) var(--ease-story),
+			visibility 0s linear var(--duration-panel);
+	}
+
+	[data-enhanced] .stories__item[data-active] {
+		z-index: 1;
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		transition-delay: 0s;
+	}
+
+	[data-enhanced] .stories__item :global(.testimonial__cover) {
+		transform: scale(1.04);
+		transition: transform var(--duration-story) var(--ease-story);
+	}
+
+	[data-enhanced] .stories__item[data-active] :global(.testimonial__cover) { transform: scale(1); }
+
+	.stories__controls {
+		margin-inline: var(--space-3);
+		padding-block: var(--space-2);
+		border-top: var(--border-width) solid var(--border-subtle);
+	}
+
+	.stories__choices {
+		display: flex;
+		justify-content: safe center;
+		min-width: 0;
+		overflow-x: auto;
+		overscroll-behavior-inline: contain;
+		scrollbar-width: none;
+	}
+
+	.stories__choice {
+		display: grid;
+		place-items: center;
+		position: relative;
+		flex: 0 0 var(--story-target);
+		height: var(--story-target);
+		border-radius: var(--radius-pill);
+		touch-action: manipulation;
+	}
+
+	.stories__choice:focus-visible,
+	.stories__item:focus-visible {
+		outline-offset: calc(-1 * var(--focus-width));
+	}
+
+	.stories__portrait {
+		position: relative;
+		display: block;
+		width: var(--story-portrait);
+		height: var(--story-portrait);
+		border-radius: var(--radius-pill);
+		object-fit: cover;
+		opacity: 0.62;
+		transition: opacity var(--duration-panel), transform var(--duration-panel) var(--ease-story);
+	}
+
+	.stories__initial {
+		display: grid;
+		place-items: center;
+		background: var(--gradient-avatar);
+		font-size: var(--text-sm);
+	}
+
+	.stories__choice:hover .stories__portrait,
+	.stories__choice:focus-visible .stories__portrait,
+	.stories__choice[aria-pressed='true'] .stories__portrait { opacity: 1; }
+
+	.stories__choice[aria-pressed='true'] .stories__portrait { transform: scale(1.06); }
+
+	.stories__progress {
+		--story-progress-turn: 0turn;
+		position: absolute;
+		inset: var(--space-1);
+		border-radius: var(--radius-pill);
+		background: conic-gradient(var(--color-accent) var(--story-progress-turn), var(--border-accent-soft) 0);
+		mask-image: radial-gradient(farthest-side, transparent calc(100% - var(--border-width-accent)), var(--color-white) 0);
+		opacity: 0;
+		transition: opacity var(--duration-panel);
+	}
+
+	.stories__choice[aria-pressed='true'] .stories__progress { opacity: 1; }
+
+	[data-pinned] .stories__choice[aria-pressed='true'] .stories__progress { --story-progress-turn: 1turn; }
+
+	@media (forced-colors: active) {
+		.stories__progress {
+			border: var(--border-width-accent) solid Highlight;
+			mask-image: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		[data-enhanced] .stories,
+		[data-enhanced] .stories__item,
+		.stories__portrait,
+		.stories__progress { transition: none; }
+		[data-enhanced] .stories__item :global(.testimonial__cover) { transition: none; }
+		.stories__choice[aria-pressed='true'] .stories__portrait { transform: none; }
+		.stories__choice[aria-pressed='true'] .stories__progress { --story-progress-turn: 1turn; }
+	}
+
+	@media (min-width: 768px) {
+		.member-stories {
+			--story-target: var(--space-16);
+			--story-portrait: var(--space-12);
+		}
+	}
+
 </style>

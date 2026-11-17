@@ -1,15 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import eventAudience from '../assets/hero/hero-4.jpg';
 import { pageSeo } from '../lib/seo/pages';
 
 Astro.response.status = 404;
 ---
 
 <Layout seo={pageSeo('/404')}>
-  <PageHero>
-    <Fragment slot="title">Page not found</Fragment>
-    <Fragment slot="description">This address could not be found. Return to our homepage or browse the current opportunities in our network.</Fragment>
+  <PageHero title={['Page', 'not found']} image={eventAudience} imagePosition="50% 45%" mobileImagePosition="68% 50%">
     <Fragment slot="actions">
       <div class="error-actions">
         <a class="button" href="/">Back to home</a>

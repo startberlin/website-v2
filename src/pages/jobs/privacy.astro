@@ -4,9 +4,12 @@ import { pageSeo } from '../../lib/seo/pages';
 export const prerender = false;
 ---
 
-<JobboardLayout seo={pageSeo('/jobs/privacy')}>
-	<header class="jb-intro"><div><p class="jb-kicker">START BERLIN</p><h1 class="jb-page-heading">Jobboard privacy</h1><p class="jb-intro-text">How this jobboard handles listings and submissions.</p></div></header>
-	<article class="jb-privacy">
+<JobboardLayout
+	seo={pageSeo('/jobs/privacy')}
+	title={['Jobboard', 'privacy']}
+	description="How this jobboard handles listings and submissions."
+>
+	<article class="jb-privacy readable">
 		<h2>Who operates this jobboard</h2>
 		<p>START Berlin e.V., Luisenstraße 53, c/o HU-Gründerhaus, 10117 Berlin, Germany. For questions about your data, contact <a href="mailto:vorstand@start-berlin.com">vorstand@start-berlin.com</a>. Our <a href="/legal-notice">legal notice</a> and <a href="/privacy-policy">general privacy information</a> provide further details.</p>
 		<h2>Browsing roles</h2>
@@ -25,8 +28,7 @@ export const prerender = false;
 </JobboardLayout>
 
 <style>
-	.jb-privacy { max-width: 48rem; }
-	.jb-privacy h2 { font-size: var(--text-xl); margin: var(--space-10) 0 var(--space-4); }
-	.jb-privacy p { font-size: var(--text-base); line-height: 1.8; color: var(--text-copy); }
+	.jb-privacy h2 { font-size: var(--text-xl); margin: var(--space-heading) 0 var(--space-4); }
+	.jb-privacy p { font-size: var(--text-base); line-height: var(--leading-copy); color: var(--text-copy); }
 	.jb-privacy a { color: var(--color-accent); text-decoration: underline; text-underline-offset: .2em; }
 </style>

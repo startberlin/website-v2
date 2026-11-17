@@ -10,6 +10,12 @@ import { pageSeo } from '../lib/seo/pages';
 <Layout seo={pageSeo('/')}>
 	<Hero />
 	<PartnerStrip />
-	<News />
-	<Network />
+	<div class="section-stack home-content">
+		<News />
+		<Network />
+	</div>
 </Layout>
+
+<style>
+	.home-content { padding-block-end: var(--space-section); }
+</style>

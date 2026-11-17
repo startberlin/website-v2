@@ -48,6 +48,8 @@ export const icons = {
 	'search': outline(["M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"]),
 	'menu': outline(["M4 6h16M4 12h16M4 18h16"]),
 	'close': outline(["M6 18L18 6M6 6l12 12"]),
+	'pause': outline(["M9 5v14M15 5v14"]),
+	'play': outline(["m8 5 12 7-12 7z"]),
 	'chevron-down': outline(["M19 9l-7 7-7-7"]),
 	'chevron-right': outline(["M9 5l7 7-7 7"]),
 	'arrow-left': outline(["M19 12H5m7 7-7-7 7-7"]),

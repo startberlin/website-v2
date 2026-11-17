@@ -6,7 +6,7 @@ Home, Members and Join remain prerendered. Jobboard listings and details render 
 
 ## Design and contributor onboarding
 
-Read [AGENTS.md](AGENTS.md) and the [design guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
+Read [AGENTS.md](AGENTS.md), [design values](design.md) and the [component guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for the PR workflow and [docs/RELEASE.md](docs/RELEASE.md) for staging, production and domain cutover. GitHub `main` and `production` require successful checks and one admin authorization, through review or intentional PR merge, including on the admin's own PR. Production uses that release-PR authorization without a second environment approval.
 
@@ -51,7 +51,7 @@ HOST=127.0.0.1 PORT=4337 node --env-file=.env .astro/jobboard-build/server/entry
 
 The separate verification output preserves the tracked upstream `dist/`. Serve the generated Node entrypoint with its client assets; uploading static HTML alone does not provide the live Jobboard routes. Production variables must be supplied by the host. Built output does not automatically load `.env`.
 
-Dependency security overrides live in `package.json` for npm and `pnpm-workspace.yaml` for pnpm. Keep both configurations and lockfiles aligned. Run `pnpm audit`, `npm audit --package-lock-only` and `test:dependencies` after dependency changes. The Vercel adapter is pinned to 11.0.16 and passes isolated function startup. Keep that check mandatory for future updates; 11.0.13 previously failed it.
+Dependency security overrides live in `package.json` for npm and `pnpm-workspace.yaml` for pnpm. Keep both configurations and lockfiles aligned. Run `pnpm audit`, `npm audit --package-lock-only` and `test:dependencies` after dependency changes. The Vercel adapter must pass isolated function startup on each update. Version 11.0.13 previously failed that check.
 
 The `http-cache-semantics` 4.3.0 update clears the reported version range of [GHSA-ch52-4w7c-c8xp](https://github.com/advisories/GHSA-ch52-4w7c-c8xp), but retains the reported generic `max-stale` behaviour. Current Astro image builds use `storable()` and `timeToLive()` without visitor cache headers. The dependency tests check that actual image-cache boundary, source-map offset validation and Vercel routing. They do not establish a generic cache-library fix or replace magicast's embedded source-map copy, which is used by Astro's configuration-editing CLI.
 

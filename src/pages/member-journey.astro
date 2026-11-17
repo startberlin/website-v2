@@ -13,39 +13,36 @@ import { departments, departmentsSection, game, hero, stages } from '../data/mem
 ---
 
 <Layout seo={pageSeo('/member-journey')}>
-	<PageHero>
-		<Fragment slot="title">
-			<span data-hero-line data-hero-accent>{hero.accent}</span>{' '}
-			<span data-hero-line data-hero-outline>{hero.outline}</span>
-		</Fragment>
-	</PageHero>
+	<PageHero
+		title={hero.title}
+		accentFirst
+		image={hero.photo.src}
+		alt={hero.photo.alt}
+		imagePosition={hero.imagePosition}
+		mobileImagePosition={hero.mobileImagePosition}
+	/>
 
-	<JourneyStages stages={stages} />
+	<div class="section-stack page-flow">
+		<JourneyStages stages={stages} />
 
-	<section class="section page-container" id="departments" aria-labelledby="departments-heading">
-		<SectionHeading id="departments-heading">
-			{departmentsSection.headingSolid}{' '}<span data-outline>{departmentsSection.headingOutline}</span>
-			<Fragment slot="lead">{departmentsSection.subheading}</Fragment>
-		</SectionHeading>
-		<DepartmentTabs departments={departments} />
-	</section>
+		<section class="page-container" id="departments" aria-labelledby="departments-heading">
+			<SectionHeading id="departments-heading">
+				{departmentsSection.headingSolid}{' '}<span data-outline>{departmentsSection.headingOutline}</span>
+				<Fragment slot="lead">{departmentsSection.subheading}</Fragment>
+			</SectionHeading>
+			<DepartmentTabs departments={departments} />
+		</section>
 
-	{/* Rendered only once the shared game is integrated; see game in src/data/member-journey.ts. */}
-	{game.enabled && <section id={game.id} class="game page-container"></section>}
+		{/* Rendered only once the shared game is integrated; see game in src/data/member-journey.ts. */}
+		{game.enabled && <section id={game.id} class="game page-container"></section>}
 
-	<MemberStories />
+		<MemberStories />
+	</div>
 </Layout>
 
 <style>
-	.section {
-		padding-block: var(--space-16);
-	}
-
 	.game {
 		min-height: 20rem;
 	}
 
-	@media (min-width: 1024px) {
-		.section { padding-block: var(--space-24); }
-	}
 </style>

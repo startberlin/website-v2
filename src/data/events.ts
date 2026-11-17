@@ -2,6 +2,7 @@ import type { ImageMetadata } from 'astro';
 import heroPhoto from '../assets/events/hero.jpg';
 import founderTalksPhoto from '../assets/events/founder-talks.jpg';
 import startupVisitsPhoto from '../assets/events/startup-visits.jpg';
+import vcVisitsPhoto from '../assets/events/vc-visits.jpg';
 import workshopsPhoto from '../assets/events/workshops.jpg';
 // START Berlin's own event graphics, also used as the Luma covers; rights confirmed by the page owner.
 import qontoGraphic from '../assets/events/past/2026-10-21-qonto.jpg';
@@ -30,13 +31,13 @@ export const hero = {
 	// Cropped below the projected title and without the half-cut face at the
 	// right edge; badge text is illegible at this size.
 	photo: { src: heroPhoto, alt: "A large group of students and guests posing together in front of a stage, two of them holding up a winner's board" },
-	// Keeps every head in view on wide screens; the phone position and the
-	// phone shade keep the long description at 4.5:1 over the busy right half.
+	// Keep the group in view on wide screens and the central faces on phones.
 	imagePosition: '50% 0%',
 	mobileImagePosition: '70% 50%',
-	title: 'Events',
-	description: "START Berlin connects students with Berlin's startup ecosystem through founder talks, startup visits and hands-on workshops. Our events offer insights into the realities of entrepreneurship, opportunities to learn directly from founders and teams, and a space to connect with others who share an interest in building something new.",
+	title: ['Meet the', 'Startup Scene'] as const,
 };
+
+export const introduction = "START Berlin connects students with the city's startup scene. We visit startups and venture capital firms to see how they work. At founder talks and hands-on workshops, you can ask questions and try out your own ideas.";
 
 export const formatsSection = {
 	// "Event Formats" is outlined in the heading.
@@ -58,6 +59,12 @@ export const formats: EventFormat[] = [
 		photo: { src: startupVisitsPhoto, alt: 'A group of students posing together in an office, one holding up a large company logo' },
 	},
 	{
+		id: 'vc-visits',
+		title: 'VC Visits',
+		text: 'Meet venture capital investors and hear what they look for when deciding which startups to back.',
+		photo: { src: vcVisitsPhoto, alt: 'START Berlin group posing for a photo during a visit to Antler' },
+	},
+	{
 		id: 'workshops',
 		title: 'Workshops',
 		text: 'Develop practical entrepreneurial skills through interactive workshops, collaborative sessions and exchanges with experienced professionals.',
@@ -68,13 +75,12 @@ export const formats: EventFormat[] = [
 
 export const calendarSection = {
 	id: 'upcoming-events',
-	heading: 'Upcoming Events',
-	lead: 'Register for our public events directly on Luma.',
+	heading: 'Upcoming Public Events',
 };
 
 export const membersOnly = {
-	heading: 'Members Only',
-	text: 'As a START Berlin member, you get access to exclusive workshops, startup visits and internal community events. These formats offer opportunities to learn directly from founders and startup teams, connect more closely with fellow STARTies and take part in experiences that are not generally open to the public.',
+	heading: 'Events for Members',
+	text: 'Most of our events are reserved for members. We open a select few to everyone. As a START Berlin member, you can join every event we host, including all our internal events.',
 	// No application link while applications are closed.
 	link: { label: 'Explore the Member Journey', href: '/member-journey' },
 };
@@ -91,9 +97,9 @@ export interface PastEvent {
 }
 
 export const pastEvents = {
-	heading: 'Past Events',
+	heading: 'Past Public Events',
 	lead: 'Browse the events we have hosted on Luma.',
-	linkLabel: 'View past events on Luma',
+	linkLabel: 'View past public events on Luma',
 };
 
 // Selected events, newest first, as published on Luma.
