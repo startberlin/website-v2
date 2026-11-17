@@ -314,3 +314,11 @@ Regression coverage includes oversized Zod containers, encoded URI schemes, abor
 The presentation changes use local image assets and Astro's escaped text rendering for headings, including employer names and job titles. The stories script changes the visible quote and its controls in the DOM. The new JPEG was exported with embedded metadata stripped. Preview responses retain the shared robots and browser policies.
 
 All 104 repository tests passed. The isolated Node build passed smoke checks for current status codes and security headers. The pnpm audit reported the high-severity `picomatch` advisory in the existing `4.0.7` dependency. [GitHub advisory](https://github.com/advisories/GHSA-fc5q-39xc-vjpf).
+
+## Dependency updates, 17 November 2026
+
+Astro 7.4.12 and Node adapter 11.1.13 include the published security fixes. The React and Vercel adapters use compatible patch releases. The version of `@emnapi/runtime` used by `@napi-rs/wasm-runtime` 1.2.4 stays on 1.11.3 so Astro's type checker uses a runtime compatible with its 1.x core.
+
+Both package managers replace the original Picomatch 2.x and 4.x packages with the integrity-pinned `@ryotsu/picomatch@4.0.7-a` fork for CVE-2026-112366. The npm signature verification passed, and the published JavaScript matched the pinned source commit. The executable differences from Picomatch 4.0.7 are limited to the parser and character constants. Move back to upstream when a patched release passes the same dependency and build checks. [Advisory](https://github.com/advisories/GHSA-fc5q-39xc-vjpf), [reviewed fork source](https://github.com/ryotsu-kankichi/secured-picomatch/tree/3ab5a7627d480259e3d9ca67fbc14c125d374f0e).
+
+Both lockfile audits reported zero known findings. The dependency regression checks confirmed the fork in the Astro, Vite, Vercel tracing, and file-watcher paths under both package managers. The 105 repository tests and both packaged Node 22 runtime checks passed.

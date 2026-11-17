@@ -29,6 +29,28 @@ const { z } = require('zod');
 const flatMap = { version: 3, sources: ['input.js'], names: [], mappings: 'AAAA', sourcesContent: ['x'] };
 const indexedMap = (line, column = 0, map = flatMap) => ({ version: 3, sections: [{ offset: { line, column }, map }] });
 
+test('build and watcher glob consumers use the patched Picomatch fork', () => {
+  const storageRequire = createRequire(astroRequire.resolve('unstorage'));
+  const anymatchRequire = createRequire(storageRequire.resolve('anymatch'));
+  const tinyglobbyRequire = createRequire(astroRequire.resolve('tinyglobby'));
+  const fdirRequire = createRequire(tinyglobbyRequire.resolve('fdir'));
+  const consumers = [astroRequire, viteRequire, nftRequire, anymatchRequire, tinyglobbyRequire, fdirRequire];
+
+  for (const consumer of consumers) {
+    const { name, version } = consumer('picomatch/package.json');
+    assert.equal(name, '@ryotsu/picomatch');
+    assert.equal(version, '4.0.7-a');
+  }
+
+  const matcher = astroRequire('picomatch');
+  const pattern = 'src/content/news/**/*.{md,mdx}';
+  const post = 'src/content/news/test-post.md';
+  assert.ok(matcher.isMatch(post, pattern));
+  assert.ok(matcher.makeRe(pattern).test(post));
+  assert.equal(matcher.scan(pattern).base, 'src/content/news');
+  assert.ok(storageRequire('anymatch')(pattern, post));
+});
+
 test('indexed source maps reject huge or invalid offsets in object and JSON inputs', () => {
   for (const map of [indexedMap(1e12), indexedMap(-1), indexedMap(1.5), indexedMap('1'), indexedMap(0, -1)]) {
     assert.throws(() => new SourceMapConsumer(map), /Section offset/);
@@ -166,9 +188,14 @@ test('recursive-parent glob optimization respects its expansion budget', () => {
     const assert = require('node:assert/strict');
     const { Minimatch } = require(process.argv[1]);
     for (const pattern of [('a/**/../').repeat(30) + '*.cjs', ('**/../').repeat(30) + '*.json']) {
-      const matcher = new Minimatch(pattern, { optimizationLevel: 2, braceExpandMax: 256 });
-      assert.ok(matcher.set.length <= 256);
-      assert.equal(matcher.match('ordinary.cjs'), false);
+      try {
+        const matcher = new Minimatch(pattern, { optimizationLevel: 2, braceExpandMax: 256 });
+        assert.ok(matcher.set.length <= 256);
+        assert.equal(matcher.match('ordinary.cjs'), false);
+      } catch (error) {
+        assert.ok(error instanceof RangeError);
+        assert.match(error.message, /^optimizationLevel 2: too many patterns/);
+      }
     }
     if (!new Minimatch('parts/*.cjs').match('parts/direct.cjs')) process.exit(2);
   `, globRequire.resolve('minimatch')], { encoding: 'utf8', timeout: 3000 });

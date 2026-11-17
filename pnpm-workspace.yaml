@@ -10,3 +10,5 @@ overrides:
   'fast-uri@>=3.0.0 <3.1.9': 3.1.9
   '@vercel/nft>glob': 14.0.2
   '@vercel/routing-utils>path-to-regexp': 6.3.0
+  '@napi-rs/wasm-runtime@1.2.4>@emnapi/runtime': 1.11.3
+  picomatch: 'npm:@ryotsu/picomatch@4.0.7-a'
