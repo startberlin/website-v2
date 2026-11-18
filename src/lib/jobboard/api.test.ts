@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { CockpitError, getJob, getJobs, publicSiteUrl } from "./api";
+import { CockpitError, getJob, getJobFavicon, getJobs, publicSiteUrl } from "./api";
 import { exampleJob } from "./test-fixtures";
 
 const keys = ["COCKPIT_API_URL", "JOBBOARD_READ_API_KEY", "PUBLIC_SITE_URL", "NODE_ENV"] as const;
@@ -104,5 +104,29 @@ test("upstream rate limits retain a bounded retry window", async () => {
     await assert.rejects(() => getJob("job-example"), (error: unknown) => error instanceof CockpitError && error.code === "rate_limited" && error.retryAfter === 3600);
     globalThis.fetch = async () => reply({}, 429, { "retry-after": "invalid" });
     await assert.rejects(() => getJob("job-example"), (error: unknown) => error instanceof CockpitError && error.retryAfter === 60);
+  });
+});
+
+test("published-role favicons use only the read credential and return only PNG content", async () => {
+  await configured(async () => {
+    const bytes = new Uint8Array([137, 80, 78, 71]);
+    const url = "https://cockpit.example.com/api/jobboard/v1/jobs/jbj_case/favicon";
+    globalThis.fetch = async (input, init) => {
+      assert.equal(String(input), url);
+      assert.equal(new Headers(init?.headers).get("authorization"), `Bearer ${process.env.JOBBOARD_READ_API_KEY}`);
+      assert.equal(init?.redirect, "error");
+      return new Response(bytes, {headers: {"content-type":"image/png", "set-cookie":"irrelevant", "vary":"authorization"}});
+    };
+    const result = await getJobFavicon("jbj_case");
+    assert.deepEqual(new Uint8Array(await result.arrayBuffer()), bytes);
+    assert.equal(result.headers.get("content-type"), "image/png");
+    assert.equal(result.headers.get("set-cookie"), null);
+    assert.equal(result.headers.get("vary"), null);
+    globalThis.fetch = async () => new Response("<html>unavailable</html>", {headers: {"content-type":"text/html"}});
+    await assert.rejects(() => getJobFavicon("jbj_case"), (error: unknown) => error instanceof CockpitError && error.code === "unavailable");
+    globalThis.fetch = async () => new Response(null, {status:404});
+    await assert.rejects(() => getJobFavicon("jbj_case"), (error: unknown) => error instanceof CockpitError && error.code === "not_found");
+    globalThis.fetch = async () => { throw new Error("unexpected fetch"); };
+    await assert.rejects(() => getJobFavicon(".."), (error: unknown) => error instanceof CockpitError && error.code === "not_found");
   });
 });

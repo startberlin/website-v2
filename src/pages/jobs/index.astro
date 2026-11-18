@@ -2,7 +2,7 @@
 import JobboardLayout from '../../layouts/JobboardLayout.astro';
 import Icon from '../../components/icons/Icon.astro';
 import { JobBrowserIsland } from '../../components/jobboard/JobBrowserIsland';
-import { summarizeJob } from '../../components/jobboard/JobRow';
+import { summarizeJobs } from '../../components/jobboard/JobRow';
 import { getJobs } from '../../lib/jobboard/api';
 import { isJobFilterUrl } from '../../lib/seo/metadata';
 import { pageSeo } from '../../lib/seo/pages';
@@ -31,6 +31,6 @@ const seo = { ...pageSeo('/jobs'), noindex: jobs === null || isJobFilterUrl(Astr
 			<a class="button" href="/jobs">Try again</a>
 		</section>
 	) : (
-		<JobBrowserIsland jobs={jobs.map(summarizeJob)} initialSource={source} serverSearch={Astro.url.search} client:load />
+		<JobBrowserIsland jobs={summarizeJobs(jobs)} initialSource={source} serverSearch={Astro.url.search} client:load />
 	)}
 </JobboardLayout>

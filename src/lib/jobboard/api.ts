@@ -116,6 +116,31 @@ export async function getJob(id: string): Promise<PublicJob> {
 	).job;
 }
 
+/** Cockpit selects the stored PNG for this published job. */
+export async function getJobFavicon(id: string): Promise<Response> {
+	if (!/^[a-zA-Z0-9_-]{1,80}$/.test(id)) throw new CockpitError("not_found");
+	const { base, key } = apiConfig("read");
+	const upstream = await fetch(`${base}/jobs/${id}/favicon`, {
+		headers: { authorization: `Bearer ${key}`, accept: "image/png" },
+		redirect: "error",
+		cache: "no-store",
+		signal: AbortSignal.timeout(4000),
+	});
+	const mime = upstream.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
+	if (upstream.status !== 200 || mime !== "image/png" || !upstream.body) {
+		await upstream.body?.cancel();
+		throw new CockpitError(upstream.status === 404 ? "not_found" : "unavailable");
+	}
+	return new Response(upstream.body, {
+		headers: {
+			"content-type": "image/png",
+			"cache-control": "private, max-age=3600",
+			"x-content-type-options": "nosniff",
+			"x-robots-tag": "noindex, nofollow",
+		},
+	});
+}
+
 export async function getJobs(): Promise<PublicJob[]> {
 	const jobs = new Map<string, PublicJob>();
 	const cursors = new Set<string>();
