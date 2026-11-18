@@ -9,7 +9,7 @@ export function assertStagingJobboard(env) {
     throw new Error('Set JOBBOARD_METRICS_ENABLED explicitly in the GitHub staging environment.');
   }
   if (env.JOBBOARD_METRICS_ENABLED === 'true') keys.push(env.JOBBOARD_METRICS_API_KEY);
-  if (keys.some((key) => !key || key.trim() !== key || key.length < 32) || new Set(keys).size !== keys.length) {
+  if (keys.some((key) => !key || !/^\S{32,512}$/.test(key)) || new Set(keys).size !== keys.length) {
     throw new Error('Configure distinct credentials for each enabled Jobs capability in the GitHub staging environment.');
   }
 }

@@ -37,7 +37,7 @@ export function publicSiteUrl(requestOrigin?: string): string {
 function apiConfig(scope: "read" | "submit" | "metrics") {
 	const raw = env.COCKPIT_API_URL;
 	const key = env[`JOBBOARD_${scope.toUpperCase()}_API_KEY`];
-	if (!raw || !key || key.length < 32) throw new CockpitError("unavailable");
+	if (!raw || !key || !/^\S{32,512}$/.test(key)) throw new CockpitError("unavailable");
 	let url: URL;
 	try { url = new URL(raw); } catch { throw new CockpitError("unavailable"); }
 	if (
@@ -65,7 +65,7 @@ export function jobboardMetricsState(): "disabled" | "configured" | "misconfigur
 	if (flag !== "true") return "misconfigured";
 	try {
 		const { key } = apiConfig("metrics");
-		if (key.trim() !== key || [env.JOBBOARD_READ_API_KEY, env.JOBBOARD_SUBMIT_API_KEY].includes(key)) {
+		if ([env.JOBBOARD_READ_API_KEY, env.JOBBOARD_SUBMIT_API_KEY].includes(key)) {
 			return "misconfigured";
 		}
 		return "configured";

@@ -16,6 +16,8 @@ test('only the dedicated staging upstream and distinct credentials qualify for s
   for (const invalid of [
     { JOBBOARD_METRICS_ENABLED: 'unexpected' },
     { JOBBOARD_METRICS_API_KEY: undefined },
+    { JOBBOARD_METRICS_API_KEY: 'secret '.repeat(10).trim() },
+    { JOBBOARD_METRICS_API_KEY: 'm'.repeat(513) },
     { JOBBOARD_METRICS_API_KEY: staging.JOBBOARD_READ_API_KEY },
     { COCKPIT_API_URL: 'https://cockpit.start-berlin.com/api/jobboard/v1' },
     { JOBBOARD_SUBMIT_API_KEY: undefined },
