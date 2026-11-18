@@ -24,7 +24,7 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
   const stableAlias = ['staging.start-berlin.com', 'www.start-berlin.com'].includes(origin.hostname);
   const identity = await deploymentHealth(() => get('/api/health', [200]), { commit, tree }, { waitForSource: publicAccess && stableAlias });
   if (identity.deploymentCredentialsExposed !== false) throw new Error('Deployment-management credentials must not be present in application runtime.');
-  if (identity.jobboardMetrics === 'misconfigured' || (metrics && identity.jobboardMetrics !== metrics)) throw new Error('Jobboard measurement configuration does not match the release target.');
+  if (!['disabled', 'configured'].includes(identity.jobboardMetrics) || (metrics && identity.jobboardMetrics !== metrics)) throw new Error('Jobboard measurement configuration does not match the release target.');
   if (identity.nodeMajor !== Number(process.versions.node.split('.')[0])) throw new Error('Deployment Node major differs from the tested CI runtime.');
   let jobsAvailable = false;
   const routes = pageRoutes();

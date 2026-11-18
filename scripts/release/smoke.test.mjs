@@ -34,7 +34,7 @@ test('a ready deployment cannot pass when its actual Node runtime differs from C
       let requests = 0;
       globalThis.fetch = async () => {
         requests++;
-        return Response.json({ ok: true, commit: null, tree: null, nodeMajor, deploymentCredentialsExposed: false }, { headers: applySecurityHeaders(new Headers({ 'Cache-Control': 'no-store' })) });
+        return Response.json({ ok: true, commit: null, tree: null, nodeMajor, jobboardMetrics: 'disabled', deploymentCredentialsExposed: false }, { headers: applySecurityHeaders(new Headers({ 'Cache-Control': 'no-store' })) });
       };
       await assert.rejects(smoke('http://127.0.0.1'), /Node major differs/);
       assert.equal(requests, 1, 'Reject incompatible runtime before accepting pages or assigning domains.');
