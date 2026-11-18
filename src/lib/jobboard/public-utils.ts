@@ -39,13 +39,14 @@ export function sourceFrom(
 // Only treat complete, recognised trailing annotations as part of the display convention.
 const genderCodeSets = new Set(["fm", "mw", "dfm", "dmw", "fmx", "mwx"]);
 export function publicJobTitle(original: string): string {
-	const suffix = /(?:\s+[|·–—-]\s+)?(?:\s*\(([^()]+)\)|\s*\[([^\]]+)\]|\s+([mfwdx]\s*\/\s*[mfwdx]\s*\/\s*[mfwdx]))\s*$/i.exec(original);
+	const suffix = /(?:\s*\(([^()]+)\)|\s*\[([^\]]+)\]|\s+([mfwdx]\s*\/\s*[mfwdx]\s*\/\s*[mfwdx]))\s*$/i.exec(original);
 	if (!suffix) return original;
 	const label = (suffix[1] ?? suffix[2] ?? suffix[3]).trim().toLowerCase();
 	const isCode = /^[mfwdx](?:\s*[/*-]\s*[mfwdx]){1,2}$/.test(label)
 		&& genderCodeSets.has(label.replace(/[^mfwdx]/g, "").split("").sort().join(""));
 	if (!isCode && label !== "all genders" && label !== "alle geschlechter") return original;
-	return original.slice(0, suffix.index).trimEnd() || original;
+	const title = original.slice(0, suffix.index).trimEnd().replace(/\s+[|·–—-]$/, "");
+	return title || original;
 }
 
 export function jobPath(job: Pick<PublicJob, "id" | "slug">): string {

@@ -332,7 +332,7 @@ test("submissions require authorised publishing and reject hidden administration
 });
 
 test("website titles omit only recognised trailing gender annotations", () => {
-	for (const suffix of ["(m/f/d)", "(F / M / D)", "(w/m/d)", "[m/f/x]", "(all genders)", "(m/w)", "m/w/d", " - (w*m*d)"]) {
+	for (const suffix of ["(m/f/d)", "(F / M / D)", "(w/m/d)", "[m/f/x]", "(all genders)", "(m/w)", "m/w/d", "- m/w/d", "- (w*m*d)"]) {
 		assert.equal(publicJobTitle(`(Senior) Engineer ${suffix}`), "(Senior) Engineer");
 	}
 	for (const title of ["Engineer (C/C++)", "Principal (R&D)", "(Senior) Analyst", "Data Engineer (m/f/d) Berlin", "Engineer (D/M)", "(f/m/d)", "Platform/API/m/f/d"]) {
