@@ -25,7 +25,7 @@ pnpm install --frozen-lockfile
 cp .env.example .env
 ```
 
-Set `COCKPIT_API_URL` to the running Cockpit API prefix. Set distinct `JOBBOARD_READ_API_KEY` and `JOBBOARD_SUBMIT_API_KEY` values matching Cockpit, each at least 32 characters. Set `PUBLIC_SITE_URL` to the website's exact origin, without `/jobs`. To measure Jobs navigation, set `JOBBOARD_METRICS_ENABLED=true` and supply a distinct `JOBBOARD_METRICS_API_KEY` matching that Cockpit environment. Without the flag, the website sends no metrics. Never expose these keys through `PUBLIC_` variables or client code.
+Set `COCKPIT_API_URL` to the running Cockpit API prefix. Set distinct `JOBBOARD_READ_API_KEY` and `JOBBOARD_SUBMIT_API_KEY` values matching Cockpit, each at least 32 characters. Set `PUBLIC_SITE_URL` to the website's exact origin, without `/jobs`. A valid, separate `JOBBOARD_METRICS_API_KEY` for the matching Cockpit environment enables Jobs request counts. Omit the key to disable collection. Never expose these keys through `PUBLIC_` variables or client code.
 
 The server reads runtime environment variables. Start development with the local file explicitly loaded:
 

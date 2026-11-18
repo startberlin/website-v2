@@ -60,9 +60,7 @@ function apiConfig(scope: "read" | "submit" | "metrics") {
 }
 
 export function jobboardMetricsState(): "disabled" | "configured" | "misconfigured" {
-	const flag = env.JOBBOARD_METRICS_ENABLED;
-	if (!flag || flag === "false") return "disabled";
-	if (flag !== "true") return "misconfigured";
+	if (!env.JOBBOARD_METRICS_API_KEY) return "disabled";
 	try {
 		const { key } = apiConfig("metrics");
 		if ([env.JOBBOARD_READ_API_KEY, env.JOBBOARD_SUBMIT_API_KEY].includes(key)) {

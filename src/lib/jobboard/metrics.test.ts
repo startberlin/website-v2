@@ -26,10 +26,9 @@ test("measurement uses a dedicated credential and a bounded, anonymous event aft
       headers: { accept: "text/html", "user-agent":"Mozilla/5.0", cookie:"private-cookie", referer:"https://private.example.test/path", ...override },
     });
     const board = {type:"board_request"} as const;
-    process.env.JOBBOARD_METRICS_ENABLED = "false";
+    delete process.env.JOBBOARD_METRICS_API_KEY;
     assert.equal(jobboardMetricsState(), "disabled");
     assert.equal(recordJobNavigation(browser(), 200, board), undefined);
-    process.env.JOBBOARD_METRICS_ENABLED = "true";
     process.env.JOBBOARD_METRICS_API_KEY = process.env.JOBBOARD_READ_API_KEY;
     assert.equal(jobboardMetricsState(), "misconfigured");
     assert.equal(recordJobNavigation(browser(), 200, board), undefined);
@@ -53,7 +52,7 @@ test("measurement uses a dedicated credential and a bounded, anonymous event aft
     assert.doesNotMatch(JSON.stringify(randomEvents), /private-/);
   } finally {
     globalThis.fetch = originalFetch;
-    for (const key of ["COCKPIT_API_URL","JOBBOARD_METRICS_ENABLED","JOBBOARD_METRICS_API_KEY","JOBBOARD_READ_API_KEY","JOBBOARD_SUBMIT_API_KEY"]) {
+    for (const key of ["COCKPIT_API_URL","JOBBOARD_METRICS_API_KEY","JOBBOARD_READ_API_KEY","JOBBOARD_SUBMIT_API_KEY"]) {
       if (previous[key] === undefined) delete process.env[key]; else process.env[key] = previous[key];
     }
   }
