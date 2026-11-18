@@ -18,6 +18,7 @@ try {
 } catch {
 	Astro.response.status = 503;
 }
+if (jobs !== null) Astro.locals.jobNavigation = { type: 'board_request' };
 const source = sourceFrom(Astro.url.searchParams.get('source'));
 const seo = { ...pageSeo('/jobs'), noindex: jobs === null || isJobFilterUrl(Astro.url.searchParams) };
 ---

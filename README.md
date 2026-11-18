@@ -25,7 +25,7 @@ pnpm install --frozen-lockfile
 cp .env.example .env
 ```
 
-Set `COCKPIT_API_URL` to the running Cockpit API prefix. Set distinct `JOBBOARD_READ_API_KEY` and `JOBBOARD_SUBMIT_API_KEY` values matching Cockpit, each at least 32 characters. Set `PUBLIC_SITE_URL` to the website's exact origin, without `/jobs`. Keep request metrics disabled. Never expose these keys through `PUBLIC_` variables or client code.
+Set `COCKPIT_API_URL` to the running Cockpit API prefix. Set distinct `JOBBOARD_READ_API_KEY` and `JOBBOARD_SUBMIT_API_KEY` values matching Cockpit, each at least 32 characters. Set `PUBLIC_SITE_URL` to the website's exact origin, without `/jobs`. To measure Jobs navigation, set `JOBBOARD_METRICS_ENABLED=true` and supply a distinct `JOBBOARD_METRICS_API_KEY` matching that Cockpit environment. Without the flag, the website sends no metrics. Never expose these keys through `PUBLIC_` variables or client code.
 
 The server reads runtime environment variables. Start development with the local file explicitly loaded:
 
@@ -61,6 +61,6 @@ Navigation pairs `Apply Now` (`/join`) with `Jobs` (`/jobs`). The Jobboard inclu
 
 Cockpit owns all schema migrations. The public website connects through the scoped Jobs API. The staging deployment reads from Cockpit staging and sends employer submissions to its private review queue. Individual PR previews have no service credentials. Keep the standalone public project until the deployed v2 flow passes acceptance.
 
-Production API credentials and backend acceptance remain to be configured. The Node adapter provides local built-server previews; `pnpm run build:vercel` uses the official Vercel adapter and isolated output. Before release, reconcile the migrated legal/privacy text with the actual hosting and services; the legacy privacy policy still names Webflow. Request analytics are disabled.
+Production API credentials and backend acceptance remain to be configured. The Node adapter provides local built-server previews; `pnpm run build:vercel` uses the official Vercel adapter and isolated output. Before release, reconcile the migrated legal/privacy text with the actual hosting and services; the legacy privacy policy still names Webflow. The Jobs privacy page describes the active runtime measurement setting.
 
 START plans to agree compensation with each company before publication; a referral arrangement remains a possibility. Staff follow up manually using the private Cockpit contact, record agreed terms, then review and publish the draft. Pricing is not settled. Commercial agreement enforcement and billing are not implemented.

@@ -73,6 +73,9 @@ test("prefetch and recognised link previews never count as document events", () 
 		["user-agent", "WhatsApp/2.24"],
 		["user-agent", "facebookexternalhit/1.1"],
 		["user-agent", "Googlebot"],
+		["user-agent", ""],
+		["user-agent", "meta-externalagent/1.1"],
+		["user-agent", "Chrome-Lighthouse"],
 		["user-agent", "LinkedInBot"],
 		["sec-fetch-dest", "empty"],
 	]) {
