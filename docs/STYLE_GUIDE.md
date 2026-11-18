@@ -87,3 +87,5 @@ Check portrait and landscape on phones/tablets. Resize between sample widths and
 Run `check:design` and the checks in [AGENTS.md](../AGENTS.md). Combine automated checks with manual visual, keyboard and screen-reader checks. Fix failures before completion and record the tested widths, states and results.
 
 Before release, check the Avenir fallback across platforms and verify spoken output with a screen reader.
+
+Job rows reserve a fixed mark beside each company. When Cockpit supplies a company favicon for the published role, the website serves it from its own origin. The shared company icon fills the same space while the image loads or is unavailable.

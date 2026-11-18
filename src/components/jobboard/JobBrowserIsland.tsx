@@ -128,7 +128,6 @@ function JobBrowser({ jobs, initialSource }: Omit<JobBrowserIslandProps, 'server
 					<div className="jb-empty-state">
 						<h3>{filtered ? 'No roles match your search.' : 'No open roles right now.'}</h3>
 						<p>{filtered ? 'Try a broader search or clear the filters.' : 'Check back for new opportunities from the START network.'}</p>
-						{!filtered && <a className="text-action" href="/jobs/submit">Post a role <span aria-hidden="true">↗</span></a>}
 					</div>
 				)}
 			</div>

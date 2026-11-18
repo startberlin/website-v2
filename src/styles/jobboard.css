@@ -75,7 +75,8 @@
 }
 
 .jobboard .jb-company-icon {
-	display: flex;
+	display: grid;
+	place-items: center;
 	align-items: center;
 	justify-content: center;
 	width: var(--company-mark-size);
@@ -86,6 +87,11 @@
 	font-size: var(--text-base);
 	font-weight: var(--weight-bold);
 }
+
+.jobboard .jb-company-icon > * { grid-area: 1 / 1; }
+.jobboard .jb-company-icon img { object-fit: contain; visibility: hidden; }
+.jobboard .jb-company-icon img[data-loaded] { visibility: visible; }
+.jobboard .jb-company-icon:has(img[data-loaded]) svg { visibility: hidden; }
 
 .jobboard .jb-company-name {
 	margin: 0 0 var(--space-1);
