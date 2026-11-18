@@ -59,6 +59,21 @@ function apiConfig(scope: "read" | "submit" | "metrics") {
 	return { base, key };
 }
 
+export function jobboardMetricsState(): "disabled" | "configured" | "misconfigured" {
+	const flag = env.JOBBOARD_METRICS_ENABLED;
+	if (!flag || flag === "false") return "disabled";
+	if (flag !== "true") return "misconfigured";
+	try {
+		const { key } = apiConfig("metrics");
+		if (key.trim() !== key || [env.JOBBOARD_READ_API_KEY, env.JOBBOARD_SUBMIT_API_KEY].includes(key)) {
+			return "misconfigured";
+		}
+		return "configured";
+	} catch {
+		return "misconfigured";
+	}
+}
+
 async function apiRequest<T>(
 	scope: "read" | "submit" | "metrics",
 	path: string,

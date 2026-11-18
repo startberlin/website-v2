@@ -24,7 +24,7 @@ async function configured(run: () => Promise<void>) {
   }
 }
 function context(url: string, params: Record<string, string> = {}) {
-  return { request: new Request(url), params } as never;
+  return { request: new Request(url), params, locals: {} } as never;
 }
 function reply(body: unknown, status = 200, headers: Record<string, string> = {}) {
   return new Response(JSON.stringify(body), { status, headers });

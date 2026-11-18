@@ -88,10 +88,9 @@ export function isDocumentRequest(method: string, headers: Headers): boolean {
 		)
 	)
 		return false;
+	const agent = headers.get("user-agent");
 	if (
-		/bot|spider|crawler|preview|facebookexternalhit|whatsapp|slackbot|linkedinbot|curl|wget|headless/i.test(
-			headers.get("user-agent") || "",
-		)
+		!agent || /bot|spider|crawler|preview|facebookexternalhit|meta-externalagent|whatsapp|google-inspectiontool|lighthouse|curl|wget|headless|python-requests|go-http-client|^node$/i.test(agent)
 	)
 		return false;
 	const destination = headers.get("sec-fetch-dest");

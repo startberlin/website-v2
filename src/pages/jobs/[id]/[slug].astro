@@ -27,6 +27,7 @@ try {
 if (job && slug !== job.slug) return Astro.redirect(jobHref(job, source), 308);
 const displayTitle = job ? publicJobTitle(job.content.title) : undefined;
 const active = job ? isActive(job) : false;
+if (job && active) Astro.locals.jobNavigation = { type: 'detail_request', jobId: job.id };
 const canonical = job && origin ? new URL(jobPath(job), origin).href : undefined;
 const structured = job && origin ? jobPosting(job, origin) : null;
 const seo = {

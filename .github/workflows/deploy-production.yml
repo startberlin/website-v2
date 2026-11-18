@@ -67,6 +67,7 @@ jobs:
         run: |
           tree=$(git rev-parse 'HEAD^{tree}')
           "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --prod --skip-domain --yes --non-interactive --json \
+            --env COCKPIT_API_URL \
             --meta githubDeployment=1 --meta githubCommitRef=production --meta githubCommitSha="$GITHUB_SHA" \
             --build-env RELEASE_COMMIT_SHA="$GITHUB_SHA" --build-env RELEASE_TREE_SHA="$tree" > "$RUNNER_TEMP/production-deployment.json"
           node scripts/release/deployment-result.mjs "$RUNNER_TEMP/production-deployment.json" production
@@ -75,6 +76,7 @@ jobs:
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          COCKPIT_API_URL: https://cockpit.start-berlin.com/api/jobboard/v1
       - name: Verify the production build and live Jobboard read path
         run: node scripts/release/smoke.mjs
         env:
@@ -82,6 +84,7 @@ jobs:
           RELEASE_COMMIT_SHA: ${{ github.sha }}
           RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
           SMOKE_JOBS: required
+          SMOKE_JOBBOARD_METRICS: ${{ vars.JOBBOARD_METRICS_ENABLED == 'false' && 'disabled' || 'configured' }}
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -107,6 +110,7 @@ jobs:
           RELEASE_COMMIT_SHA: ${{ github.sha }}
           RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
           SMOKE_JOBS: required
+          SMOKE_JOBBOARD_METRICS: ${{ vars.JOBBOARD_METRICS_ENABLED == 'false' && 'disabled' || 'configured' }}
           SMOKE_PUBLIC: 'true'
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
