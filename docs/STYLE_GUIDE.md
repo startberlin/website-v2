@@ -88,4 +88,4 @@ Run `check:design` and the checks in [AGENTS.md](../AGENTS.md). Combine automate
 
 Before release, check the Avenir fallback across platforms and verify spoken output with a screen reader.
 
-Job rows reserve a fixed mark beside each company. When Cockpit supplies a company favicon for the published role, the website serves it from its own origin. The shared company icon fills the same space while the image loads or is unavailable.
+Job rows reserve a 48 px square beside each company, with a 32 px favicon or fallback icon. Public role titles omit a recognised trailing gender annotation. Employer records and canonical job links preserve the original title and slug. When Cockpit supplies a company favicon for the published role, the website serves it from its own origin. The shared company icon fills the same space while the image loads or is unavailable.

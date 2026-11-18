@@ -5,7 +5,9 @@ import {
 	isActive,
 	isDocumentRequest,
 	jobHref,
+	jobPath,
 	jobPosting,
+	publicJobTitle,
 	retryMetric,
 	safeJsonLd,
 	salaryLabel,
@@ -327,4 +329,20 @@ test("submissions require authorised publishing and reject hidden administration
 		}).success,
 		false,
 	);
+});
+
+test("website titles omit only recognised trailing gender annotations", () => {
+	for (const suffix of ["(m/f/d)", "(F / M / D)", "(w/m/d)", "[m/f/x]", "(all genders)", "(m/w)", "m/w/d", " - (w*m*d)"]) {
+		assert.equal(publicJobTitle(`(Senior) Engineer ${suffix}`), "(Senior) Engineer");
+	}
+	for (const title of ["Engineer (C/C++)", "Principal (R&D)", "(Senior) Analyst", "Data Engineer (m/f/d) Berlin", "Engineer (D/M)", "(f/m/d)", "Platform/API/m/f/d"]) {
+		assert.equal(publicJobTitle(title), title);
+	}
+	const job = exampleJob();
+	job.content.title = "(Senior) Product Engineer (m/w/d)";
+	assert.equal(jobPosting(job, "https://jobs.example.com")?.title, "(Senior) Product Engineer");
+	const message = new URL(shareTarget(job, "whatsapp", "https://jobs.example.com")!).searchParams.get("text");
+	assert.ok(message?.startsWith("(Senior) Product Engineer at Example Studio"));
+	assert.equal(job.content.title, "(Senior) Product Engineer (m/w/d)");
+	assert.equal(jobPath(job), "/jobs/job-example/product-intern");
 });
