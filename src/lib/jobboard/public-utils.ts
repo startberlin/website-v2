@@ -36,6 +36,19 @@ export function sourceFrom(
 		: "unknown";
 }
 
+// Only treat complete, recognised trailing annotations as part of the display convention.
+const genderCodeSets = new Set(["fm", "mw", "dfm", "dmw", "fmx", "mwx"]);
+export function publicJobTitle(original: string): string {
+	const suffix = /(?:\s*\(([^()]+)\)|\s*\[([^\]]+)\]|\s+([mfwdx]\s*\/\s*[mfwdx]\s*\/\s*[mfwdx]))\s*$/i.exec(original);
+	if (!suffix) return original;
+	const label = (suffix[1] ?? suffix[2] ?? suffix[3]).trim().toLowerCase();
+	const isCode = /^[mfwdx](?:\s*[/*-]\s*[mfwdx]){1,2}$/.test(label)
+		&& genderCodeSets.has(label.replace(/[^mfwdx]/g, "").split("").sort().join(""));
+	if (!isCode && label !== "all genders" && label !== "alle geschlechter") return original;
+	const title = original.slice(0, suffix.index).trimEnd().replace(/\s+[|·–—-]$/, "");
+	return title || original;
+}
+
 export function jobPath(job: Pick<PublicJob, "id" | "slug">): string {
 	return `/jobs/${encodeURIComponent(job.id)}/${encodeURIComponent(job.slug)}`;
 }
@@ -93,7 +106,7 @@ export function shareTarget(
 	const publicUrl = new URL(jobHref(job, channel), origin).toString();
 	if (channel === "linkedin")
 		return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(publicUrl)}`;
-	const text = `${job.content.title} at ${job.company.name}\n${publicUrl}`;
+	const text = `${publicJobTitle(job.content.title)} at ${job.company.name}\n${publicUrl}`;
 	return `https://wa.me/?text=${encodeURIComponent(text)}`;
 }
 
@@ -175,7 +188,7 @@ export function jobPosting(
 	const data: Record<string, unknown> = {
 		"@context": "https://schema.org",
 		"@type": "JobPosting",
-		title: c.title,
+		title: publicJobTitle(c.title),
 		description: c.description
 			.split(/\n\s*\n/)
 			.map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`)

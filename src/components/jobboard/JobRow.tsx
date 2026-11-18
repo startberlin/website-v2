@@ -2,6 +2,7 @@ import type { PublicJob } from '../../lib/jobboard/contracts';
 import { Icon } from '../icons/Icon';
 import {
 	employmentLabels,
+	publicJobTitle,
 	remoteLabels,
 	salaryLabel,
 	jobHref,
@@ -32,7 +33,7 @@ export function summarizeJobs(jobs: PublicJob[]): JobSummary[] {
 			expiresAt: job.expiresAt,
 			company: { id: job.company.id, name: job.company.name },
 			faviconJobId,
-			content,
+			content: { ...content, title: publicJobTitle(content.title) },
 		};
 	});
 }
@@ -42,10 +43,10 @@ export function JobRow({ job, source = 'direct' }: { job: JobSummary; source?: S
 		<article className="jb-job-row">
 			<a className="jb-job-row-link" href={jobHref(job, source)}>
 				<span className="jb-company-icon" aria-hidden="true">
-					<Icon name="company" size={24} />
+					<Icon name="company" size={32} />
 					<img
 						src={`/jobs/favicon/${encodeURIComponent(job.faviconJobId)}`}
-						width="24" height="24" alt="" loading="lazy" decoding="async"
+						width="32" height="32" alt="" loading="lazy" decoding="async"
 						ref={(image) => {
 							if (image?.complete && image.naturalWidth) image.dataset.loaded = "true";
 						}}
