@@ -76,6 +76,14 @@ const socials = [
 				Show more
 			</button>
 		)}
+
+		<div class="news__footer">
+			<a href="https://www.linkedin.com/company/start-berlin-e-v-/" target="_blank" rel="noopener noreferrer" class="button button--outline">
+				<span>All updates on LinkedIn</span>
+				<Icon name="arrow-up-right" />
+				<span class="sr-only"> (opens in a new tab)</span>
+			</a>
+		</div>
 	</div>
 </section>
 
@@ -161,7 +169,18 @@ const socials = [
 
 <style>
 	.news { position: relative; }
-	.news__sticky { padding-block-start: var(--home-partner-gap); }
+	.news__sticky { padding-block-start: 0; }
+
+	.news__footer {
+		display: flex;
+		justify-content: flex-start;
+		margin-top: var(--space-8);
+	}
+
+	.news__footer .button {
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-label);
+	}
 
 	.news__header {
 		display: flex;

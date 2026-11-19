@@ -32,10 +32,8 @@ const cities = [
 	'St. Gallen',
 ];
 
-// Cycle through four text treatments so neighbouring names differ; our own
-// city always gets the accent colour.
-const tones = ['silver', 'white', 'grey', 'accent'];
-const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' : tones[index % tones.length]);
+// Only our own city gets the accent cyan colour; all other cities stay white.
+const isBerlin = (city: string) => city === 'Berlin';
 ---
 
 <section class="network" aria-labelledby="start-network">
@@ -76,6 +74,10 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 						))
 					}
 				</dl>
+
+				<div class="network__actions">
+					<a href="/member-journey#active-member" class="button button--outline">Explore the network</a>
+				</div>
 			</div>
 
 			<div class="network__cities">
@@ -83,7 +85,7 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 					{
 						[...cities, ...cities].map((city, index) => (
 							<li
-								class:list={['network__city', `network__city--${toneFor(city, index % cities.length)}`]}
+								class:list={['network__city', { 'network__city--accent': isBerlin(city) }]}
 								aria-hidden={index >= cities.length ? 'true' : undefined}
 							>
 								{city}
@@ -140,6 +142,17 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 		margin: 0;
 	}
 
+	.network__actions {
+		position: relative;
+		z-index: var(--z-decoration);
+		margin-top: var(--space-8);
+	}
+
+	.network__actions .button {
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-label);
+	}
+
 	.network__stats > div {
 		display: flex;
 		flex-direction: column-reverse;
@@ -177,6 +190,7 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 		font-size: var(--text-base);
 		font-weight: var(--weight-semibold);
 		line-height: var(--leading-ui);
+		color: var(--color-white);
 	}
 
 	.network__city[aria-hidden='true'] { display: none; }
@@ -232,14 +246,5 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 			font-weight: var(--weight-display);
 			text-transform: uppercase;
 		}
-	}
-
-	@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
-		:global(html[data-motion='running']) :is(.network__city--silver, .network__city--grey) {
-			background-clip: text;
-			color: transparent;
-		}
-		:global(html[data-motion='running']) .network__city--silver { background-image: var(--gradient-network-silver); }
-		:global(html[data-motion='running']) .network__city--grey { background-image: var(--gradient-network-grey); }
 	}
 </style>
