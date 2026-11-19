@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import DepartmentTabs from '../components/member-journey/DepartmentTabs.astro';
 import MemberStories from '../components/MemberStories.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import groupPhoto from '../assets/hero/hero-1.jpg';
@@ -12,7 +13,7 @@ import audiencePhoto from '../assets/hero/hero-4.jpg';
 import teamFourPhoto from '../assets/join/team-four.jpg';
 import teamLiftingPhoto from '../assets/join/team-lifting.jpg';
 import { pageSeo } from '../lib/seo/pages';
-import { departments, membershipFee } from '../data/member-journey';
+import { departments, departmentsSection, membershipFee } from '../data/member-journey';
 
 // Flip when a round opens: swaps the status pill and points the main CTA at the
 // application form instead of the talent pool.
@@ -29,7 +30,8 @@ const primaryCta = applicationsOpen
 	: { label: 'Join the talent pool', href: links.talentPool };
 
 const stats = [
-	{ value: '500+', label: 'Members in Berlin' },
+	{ value: '500+', label: 'Alumni' },
+	{ value: '54', label: 'Active Members' },
 	{ value: '15+', label: 'Nationalities' },
 	{ value: '5', label: 'Departments' },
 ];
@@ -67,11 +69,42 @@ const steps: { title: string; text: string; date?: string }[] = [
 	},
 ];
 
+const faqs: { question: string; answer: string }[] = [
+	{
+		question: 'Do I need to have a startup idea to apply?',
+		answer: 'No. Many of our members join without a specific idea. START Berlin is about exploring the entrepreneurship ecosystem, meeting potential co-founders and learning how to build — whether you already have an idea or are still looking for one.',
+	},
+	{
+		question: 'Which universities can I apply from?',
+		answer: 'You can apply from any university or higher education institution in Berlin or Potsdam. We welcome students from all academic backgrounds.',
+	},
+	{
+		question: 'How much time do I need to commit?',
+		answer: 'Members commit for one full year and contribute to one of our five departments. The exact time varies by role and department, but expect to invest a few hours per week alongside regular events and meetings.',
+	},
+	{
+		question: 'What is the membership fee?',
+		answer: `The annual membership fee is ${membershipFee}. This helps keep the organisation financially sustainable and covers event costs, tools and community activities.`,
+	},
+	{
+		question: 'When do applications open?',
+		answer: 'We recruit new members twice a year, typically in April and October. The next application round opens in April 2027. Subscribe to our newsletter to get notified as soon as applications open.',
+	},
+	{
+		question: 'Can I apply if I am an exchange student?',
+		answer: 'Yes, as long as you are based in Berlin for at least six months and can commit to being an active member for one full year. We have members from many countries and backgrounds.',
+	},
+	{
+		question: 'What happens after I apply?',
+		answer: 'After submitting your application, you will receive a confirmation email. Selected candidates are invited to a short interview with current START Berlin members. Successful applicants then join the mandatory onboarding event.',
+	},
+];
+
 ---
 
 <Layout seo={pageSeo('/join')}>
 	<PageHero title={['How to join', 'START Berlin']} image={groupPhoto} alt="START Berlin members posing together for a group photo.">
-		<p slot="status" class:list={['status', { 'status--open': applicationsOpen }]}>
+		<p slot="status" class:list={['status', { 'status--open': applicationsOpen, 'status--closed': !applicationsOpen }]}>
 			<span class="status__dot"></span>
 			{applicationsOpen ? 'Applications are open' : 'Applications are closed'}
 		</p>
@@ -81,6 +114,25 @@ const steps: { title: string; text: string; date?: string }[] = [
 			<a href="#process" class="button button--outline">See the process</a>
 		</div>
 	</PageHero>
+
+	{!applicationsOpen && (
+		<div class="closed-banner page-container">
+			<div class="closed-card">
+				<span class="closed-card__dot" aria-hidden="true"></span>
+				<div class="closed-card__content">
+					<h2 class="closed-card__title">Applications are currently closed</h2>
+					<p class="closed-card__text">
+						The next application round opens in <strong>April 2027</strong>. Subscribe to our newsletter
+						or join the talent pool to be the first to know when applications open.
+					</p>
+					<div class="closed-card__actions">
+						<a href="#newsletter" class="button">Subscribe to newsletter</a>
+						<a href={links.talentPool} class="button button--outline">Join the talent pool</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	)}
 
 	<div class="stats page-container">
 		{
@@ -97,7 +149,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 		<section class="page-container split" aria-labelledby="join-benefits-heading">
 			<div class="split__text">
 				<SectionHeading id="join-benefits-heading" eyebrow="Why you should apply">
-					Dive into Berlin's <span class="accent">startup ecosystem</span>
+					Dive into Berlin's <span data-outline>startup ecosystem</span>
 					<Fragment slot="lead">
 						Whether you're just starting out or looking to take your venture to the next level, at START
 						Berlin you dive deep into a vibrant ecosystem of innovation, collaboration and growth. Explore
@@ -128,7 +180,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 		<section class="page-container split split--reverse" aria-labelledby="join-eligibility-heading">
 			<div class="split__text">
 				<SectionHeading id="join-eligibility-heading" eyebrow="Who we are looking for">
-					Is this <span class="accent">you?</span>
+					Is this <span data-outline>you?</span>
 					<Fragment slot="lead">We look forward to your application if:</Fragment>
 				</SectionHeading>
 				<ul class="checklist">
@@ -151,7 +203,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 
 		<section class="page-container" id="process" aria-labelledby="join-process-heading">
 			<SectionHeading id="join-process-heading" eyebrow="Application process">
-				Your path to <span class="accent">START Berlin</span>
+				Your path to <span data-outline>START Berlin</span>
 			</SectionHeading>
 			<ol class="steps" role="list">
 				{
@@ -177,7 +229,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 			<div class="banner__shade"></div>
 			<div class="banner__content page-container">
 				<SectionHeading id="join-events-heading" eyebrow="Want to get to know us?" flush>
-					Meet us <span class="accent">in person</span>
+					Meet us <span data-outline>in person</span>
 					<Fragment slot="lead">
 						Around every application round we host online and in-person info events. Drop by, ask your
 						questions and meet current members before you apply.
@@ -189,28 +241,35 @@ const steps: { title: string; text: string; date?: string }[] = [
 			</div>
 		</section>
 
-		<section class="page-container" aria-labelledby="join-departments-heading">
-			<SectionHeading id="join-departments-heading" eyebrow="About START Berlin">
-				Our <span class="accent">departments</span>
-				<Fragment slot="lead">
-					Every member is part of a department. Together they drive the organisation's success and its
-					impact on the Berlin startup ecosystem.
-				</Fragment>
+		<section class="page-container" id="departments" aria-labelledby="join-departments-heading">
+			<SectionHeading id="join-departments-heading">
+				{departmentsSection.headingSolid}{' '}<span data-outline>{departmentsSection.headingOutline}</span>
+				<Fragment slot="lead">{departmentsSection.subheading}</Fragment>
 			</SectionHeading>
-			<div class="departments">
-				{
-					departments.map((department) => (
-						<article class="department">
-							<h3 class="department__name">{department.name}</h3>
-							{department.paragraphs.map((paragraph) => <p class="department__text">{paragraph}</p>)}
-						</article>
-					))
-				}
-			</div>
+			<DepartmentTabs departments={departments} />
 		</section>
 
 		<NewsletterSignup />
 		<MemberStories />
+
+		<section class="page-container" id="faq" aria-labelledby="join-faq-heading">
+			<SectionHeading id="join-faq-heading" eyebrow="Have questions?">
+				Frequently asked <span data-outline>questions</span>
+			</SectionHeading>
+			<div class="faq-list">
+				{
+					faqs.map((faq) => (
+						<details class="faq" name="faq">
+							<summary class="faq__question">
+								<span class="faq__question-text">{faq.question}</span>
+								<Icon name="chevron-down" class="faq__icon" />
+							</summary>
+							<p class="faq__answer">{faq.answer}</p>
+						</details>
+					))
+				}
+			</div>
+		</section>
 
 		<div class="closing">
 			<Image src={teamPhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" class="closing__image" />
@@ -242,10 +301,6 @@ const steps: { title: string; text: string; date?: string }[] = [
 </Layout>
 
 <style>
-	.accent {
-		color: var(--color-accent);
-	}
-
 	.banner__image,
 	.closing__image {
 		position: absolute;
@@ -254,6 +309,68 @@ const steps: { title: string; text: string; date?: string }[] = [
 		height: 100%;
 		object-fit: cover;
 	}
+
+	/* Closed applications banner */
+
+	.closed-banner {
+		margin-top: var(--space-page-start);
+	}
+
+	.closed-card {
+		position: relative;
+		display: flex;
+		gap: var(--space-4);
+		padding: var(--space-card);
+		background: var(--surface-card);
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+	}
+
+	.closed-card__dot {
+		flex-shrink: 0;
+		width: 0.625rem;
+		height: 0.625rem;
+		margin-top: var(--space-2);
+		border-radius: var(--radius-pill);
+		background: var(--color-error);
+	}
+
+	.closed-card__content {
+		min-width: 0;
+	}
+
+	.closed-card__title {
+		margin: 0 0 var(--space-2);
+		font-size: var(--text-lg);
+		font-weight: var(--weight-bold);
+		line-height: var(--leading-ui);
+		color: var(--color-white);
+	}
+
+	.closed-card__text {
+		margin: 0;
+		font-size: var(--text-compact);
+		line-height: var(--leading-copy);
+		color: var(--text-copy);
+	}
+
+	.closed-card__text strong {
+		color: var(--color-white);
+	}
+
+	.closed-card__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3);
+		margin-top: var(--space-6);
+	}
+
+	.closed-card__actions .button {
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-label);
+	}
+
+	/* Status pill */
 
 	.status {
 		display: inline-flex;
@@ -290,6 +407,10 @@ const steps: { title: string; text: string; date?: string }[] = [
 		box-shadow: var(--ring-status);
 	}
 
+	.status--closed .status__dot {
+		background: var(--color-error);
+	}
+
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
@@ -302,23 +423,28 @@ const steps: { title: string; text: string; date?: string }[] = [
 		letter-spacing: var(--tracking-label);
 	}
 
-	/* Stats */
+	/* Stats - Number Cards */
 
 	.stats {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 5.5rem), 1fr));
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--space-grid);
+		margin-top: var(--space-page-start);
 		padding: 0;
 	}
 
 	.stat {
 		min-width: 0;
-		padding: var(--space-6) var(--space-2);
+		padding: var(--space-6) var(--space-4);
 		text-align: center;
-		border-block: var(--border-width) solid var(--border-subtle);
+		background: var(--surface-card);
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		transition: border-color var(--duration-ui);
 	}
 
-	.stat + .stat {
-		border-left: var(--border-width) solid var(--border-subtle);
+	.stat:hover {
+		border-color: var(--border-accent);
 	}
 
 	.stat__value {
@@ -378,7 +504,9 @@ const steps: { title: string; text: string; date?: string }[] = [
 		background: var(--surface-card);
 		border: var(--border-width) solid var(--border-subtle);
 		border-radius: var(--radius-field);
+		font-size: var(--text-base);
 		line-height: var(--leading-copy);
+		color: var(--text-copy);
 		transition: border-color var(--duration-ui);
 	}
 
@@ -413,6 +541,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 		gap: var(--space-4);
 		font-size: var(--text-lead);
 		line-height: var(--leading-copy);
+		color: var(--text-copy);
 	}
 
 	.checklist__icon {
@@ -485,6 +614,7 @@ const steps: { title: string; text: string; date?: string }[] = [
 
 	.step__text {
 		margin: 0;
+		font-size: var(--text-base);
 		line-height: var(--leading-copy);
 		color: var(--text-copy);
 	}
@@ -516,38 +646,63 @@ const steps: { title: string; text: string; date?: string }[] = [
 		padding-block: var(--space-page-start);
 	}
 
-	/* Departments */
+	/* FAQ */
 
-	.departments {
-		display: grid;
-		gap: var(--space-grid);
+	.faq-list {
+		display: flex;
+		flex-direction: column;
+		border-top: var(--border-width) solid var(--border-subtle);
 	}
 
-	.department {
-		padding: var(--space-card);
-		background: var(--surface-card);
-		border: var(--border-width) solid var(--border-subtle);
-		border-top: var(--border-width-accent) solid var(--color-accent);
-		border-radius: var(--radius-card);
+	.faq {
+		border-bottom: var(--border-width) solid var(--border-subtle);
 	}
 
-	.department__name {
-		margin: 0 0 var(--space-3);
+	.faq__question {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+		min-height: var(--target-min);
+		padding: var(--space-5) 0;
+		cursor: pointer;
+		list-style: none;
 		font-size: var(--text-lg);
-		font-weight: var(--weight-display);
-		letter-spacing: var(--tracking-label);
-		text-transform: uppercase;
+		font-weight: var(--weight-bold);
+		line-height: var(--leading-ui);
+		color: var(--text-primary);
 	}
 
-	.department__text {
-		margin: 0;
+	/* Remove the default marker in WebKit / Blink. */
+	.faq__question::-webkit-details-marker { display: none; }
+	.faq__question::marker { content: ''; }
+
+	.faq__question-text {
+		min-width: 0;
+	}
+
+	.faq__icon {
+		flex-shrink: 0;
+		width: 1.25rem;
+		height: 1.25rem;
+		color: var(--text-muted);
+		transition: transform var(--duration-ui), color var(--duration-ui);
+	}
+
+	.faq[open] .faq__icon {
+		transform: rotate(180deg);
+		color: var(--color-accent);
+	}
+
+	.faq__question:hover { color: var(--color-accent); }
+	.faq__question:hover .faq__icon { color: var(--color-accent); }
+
+	.faq__answer {
+		margin: 0 0 var(--space-5);
+		max-width: var(--layout-reading);
 		font-size: var(--text-compact);
 		line-height: var(--leading-copy);
 		color: var(--text-muted);
-	}
-
-	.department__text + .department__text {
-		margin-top: var(--space-4);
 	}
 
 	/* Closing CTAs */
@@ -585,7 +740,6 @@ const steps: { title: string; text: string; date?: string }[] = [
 	}
 
 	@media (min-width: 640px) {
-		.departments,
 		.closing__grid {
 			grid-template-columns: repeat(2, 1fr);
 		}
@@ -594,8 +748,14 @@ const steps: { title: string; text: string; date?: string }[] = [
 	@media (max-width: 639.98px) {
 		.actions--hero { display: grid; grid-template-columns: minmax(0, 1fr); }
 		.actions--hero .button { width: 100%; }
-		.stat { padding-inline: var(--space-1); }
+		.closed-card__actions { display: grid; grid-template-columns: minmax(0, 1fr); }
+		.closed-card__actions .button { width: 100%; }
+	}
 
+	@media (min-width: 768px) {
+		.stats {
+			grid-template-columns: repeat(4, 1fr);
+		}
 	}
 
 	@media (min-width: 1024px) {
@@ -614,19 +774,10 @@ const steps: { title: string; text: string; date?: string }[] = [
 		.steps {
 			grid-template-columns: repeat(3, 1fr);
 		}
+	}
 
-		/* Six columns so the last two of five cards sit centered under the first three. */
-		.departments {
-			grid-template-columns: repeat(6, 1fr);
-		}
-
-		.department {
-			grid-column: span 2;
-		}
-
-		.department:nth-child(4) {
-			grid-column: 2 / span 2;
-		}
+	@media (prefers-reduced-motion: reduce) {
+		.faq__icon { transition: none; }
 	}
 
 </style>
