@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import teamPhoto from '../assets/hero/hero-404.jpg';
@@ -10,11 +11,10 @@ Astro.response.status = 404;
 
 <Layout seo={pageSeo('/404')}>
 	<PageHero
-		title={['404', 'Page not found']}
+		title={['Page', 'not found']}
 		image={teamPhoto}
 		imagePosition="50% 35%"
 		mobileImagePosition="50% 30%"
-		compactTitle
 	>
 		<Fragment slot="description">
 			The page may have moved or the address may be incorrect.
@@ -26,6 +26,15 @@ Astro.response.status = 404;
 			</div>
 		</Fragment>
 	</PageHero>
+
+	<div class="page-container">
+		<p class="error-guidance readable">
+			If you typed the address, check it for typos. You can also{' '}
+			<a href="#error-recovery">browse the current pages</a> for events and membership information.
+		</p>
+	</div>
+
+	<NewsletterSignup />
 
 	<nav class="page-container page-flow" aria-labelledby="error-recovery">
 		<SectionHeading id="error-recovery" compact>Explore START Berlin</SectionHeading>
@@ -44,6 +53,19 @@ Astro.response.status = 404;
 		flex-wrap: wrap;
 		gap: var(--space-4);
 		margin-block-start: var(--space-6);
+	}
+
+	.error-guidance {
+		margin: 0;
+		padding-block: var(--space-page-start);
+		color: var(--text-copy);
+		line-height: var(--leading-copy);
+	}
+
+	.error-guidance a {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
 	}
 
 	.error-links {
