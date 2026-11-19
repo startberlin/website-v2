@@ -1,7 +1,4 @@
 import type { APIRoute } from 'astro';
 
 export const prerender = false;
-export const GET: APIRoute = ({ url, redirect }) => {
-  const target = url.search ? `/${url.search}` : '/';
-  return redirect(target, 301);
-};
+export const ALL: APIRoute = ({ url, redirect }) => redirect(`/${url.search}`, 301);

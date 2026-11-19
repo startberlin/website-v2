@@ -29,14 +29,17 @@ export function withSecurityHeaders(adapter, target) {
         if (target !== 'vercel') return;
         const path = new URL('.vercel/output/config.json', root);
         const configuration = JSON.parse(await readFile(path, 'utf8'));
+        const routes = configuration.routes;
+        const filesystem = routes.findIndex((route) => route.handle === 'filesystem');
+        const homeRedirect = routes.findIndex((route) => route.src === '^/index\\.html$' && route.dest);
+        if (filesystem === -1 || homeRedirect === -1) throw new Error('Missing Vercel filesystem or legacy homepage route.');
+        // The homepage file would shadow the Astro redirect after the filesystem phase.
+        if (homeRedirect > filesystem) {
+          const [route] = routes.splice(homeRedirect, 1);
+          routes.splice(filesystem, 0, route);
+        }
         // Must run before filesystem, redirects and the final 404, including path aliases.
-        configuration.routes.unshift({ src: '/.*', headers: securityHeaders, continue: true });
-        const legacyRedirects = [
-          { src: '^/index\\.html$', headers: { Location: '/' }, status: 301 },
-          { src: '^/for-students\\.html$', headers: { Location: '/member-journey' }, status: 301 },
-          { src: '^/join-start-berlin\\.html$', headers: { Location: '/join' }, status: 301 },
-        ];
-        configuration.routes.splice(1, 0, ...legacyRedirects);
+        routes.unshift({ src: '/.*', headers: securityHeaders, continue: true });
         await writeFile(path, `${JSON.stringify(configuration, null, 2)}\n`);
       },
     },
