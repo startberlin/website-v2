@@ -41,37 +41,9 @@ const socials = [
 				))}
 			</nav>
 		</div>
-		<div class="footer__meta">
-			<p class="footer__copyright">© {new Date().getFullYear()} START Berlin. All rights reserved.</p>
-			<button class="text-action" type="button" data-motion-control hidden>Pause animations</button>
-		</div>
+		<p class="footer__copyright">© {new Date().getFullYear()} START Berlin. All rights reserved.</p>
 	</div>
 </footer>
-
-<script>
-	import { reducedMotion, setMotionPaused } from '../lib/motion';
-
-	const control = document.querySelector<HTMLButtonElement>('[data-motion-control]');
-	if (control) {
-		const storageKey = 'start-motion-paused';
-		let paused = false;
-		try { paused = sessionStorage.getItem(storageKey) === 'true'; } catch {}
-
-		const update = () => {
-			setMotionPaused(paused);
-			control.hidden = reducedMotion.matches;
-			control.textContent = paused ? 'Resume animations' : 'Pause animations';
-		};
-
-		control.addEventListener('click', () => {
-			paused = !paused;
-			try { sessionStorage.setItem(storageKey, String(paused)); } catch {}
-			update();
-		});
-		reducedMotion.addEventListener('change', update);
-		update();
-	}
-</script>
 
 <style>
 	.footer {
@@ -108,16 +80,8 @@ const socials = [
 		gap: var(--space-2) var(--space-6);
 	}
 	.footer__socials { display: flex; gap: var(--space-1); }
-	.footer__meta {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-		gap: 0 var(--space-4);
-		margin-block-start: var(--space-4);
-	}
 	.footer__copyright {
-		margin: 0;
+		margin: var(--space-4) 0 0;
 		color: var(--text-subtle);
 		font-size: var(--text-sm);
 		line-height: var(--leading-copy);
@@ -132,7 +96,6 @@ const socials = [
 		}
 		.footer__donation { align-items: flex-start; }
 		.footer__legal { gap: var(--space-8); }
-		.footer__meta { justify-content: space-between; }
 		.footer__copyright { text-align: left; }
 	}
 </style>

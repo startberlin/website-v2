@@ -1,16 +1,10 @@
-export const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const motionChange = 'start-motion-change';
-
-export function setMotionPaused(paused: boolean) {
-	document.documentElement.dataset.motion = paused || reducedMotion.matches ? 'paused' : 'running';
-	window.dispatchEvent(new Event(motionChange));
-}
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
 export function motionEnabled() {
-	return document.documentElement.dataset.motion === 'running' && !reducedMotion.matches;
+	return !reducedMotion.matches;
 }
 
 export function onMotionChange(update: () => void) {
-	window.addEventListener(motionChange, update);
+	reducedMotion.addEventListener('change', update);
 	update();
 }
