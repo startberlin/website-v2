@@ -1,5 +1,5 @@
 import { pathToFileURL } from 'node:url';
-import { pageRoutes } from './routes.mjs';
+import { assertRedirectLocation, legacyCampaignRedirects, pageRoutes } from './routes.mjs';
 import { vercelGet } from './http.mjs';
 import { deploymentHealth } from './identity.mjs';
 import { assertSecurityHeaders, assertSecurityPolicyVersion } from './security-headers.mjs';
@@ -35,12 +35,22 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
     assertSecurityPolicyVersion(html, path);
     if ((html.match(/<main\b/g) || []).length !== 1 || (html.match(/<h1\b/g) || []).length !== 1) throw new Error(`${path}: missing or duplicated page landmarks.`);
   }
-  for (const [path, destination] of [['/legal/legal-notice.html', '/legal-notice'], ['/legal/privacy.html', '/privacy-policy'], ['/index.html', '/'], ['/for-students.html', '/member-journey'], ['/join-start-berlin.html', '/join']]) {
+  for (const [path, destination] of [
+    ['/legal/legal-notice.html', '/legal-notice'],
+    ['/legal/privacy.html', '/privacy-policy'],
+    ...legacyCampaignRedirects,
+  ]) {
     const response = await get(path, [301]);
-    if (new URL(response.headers.get('location'), origin).pathname !== destination) throw new Error(`${path}: incorrect legacy redirect.`);
+    assertRedirectLocation(response, origin, path, destination);
   }
-  const missing = await get('/security-smoke-missing-route', [404]);
-  assertSecurityPolicyVersion(await missing.text(), '404');
+  for (const path of ['/404', '/404.html', '/security-smoke-missing-route.html']) {
+    const response = await get(path, [404]);
+    const html = await response.text();
+    assertSecurityPolicyVersion(html, path);
+    if (!/<meta name="robots" content="noindex, follow"/.test(html) || /<link rel="canonical"/.test(html)) {
+      throw new Error(`${path}: the error page must be noindex and omit the canonical URL.`);
+    }
+  }
   console.log(`Smoke checks passed for ${routes.length} current pages. Jobs: ${jobsAvailable ? 'available' : 'controlled unavailable state (not backend acceptance)'}.`);
   return { jobsAvailable };
 }

@@ -322,3 +322,7 @@ Astro 7.4.12 and Node adapter 11.1.13 include the published security fixes. The 
 Both package managers replace the original Picomatch 2.x and 4.x packages with the integrity-pinned `@ryotsu/picomatch@4.0.7-a` fork for CVE-2026-112366. The npm signature verification passed, and the published JavaScript matched the pinned source commit. The executable differences from Picomatch 4.0.7 are limited to the parser and character constants. Move back to upstream when a patched release passes the same dependency and build checks. [Advisory](https://github.com/advisories/GHSA-fc5q-39xc-vjpf), [reviewed fork source](https://github.com/ryotsu-kankichi/secured-picomatch/tree/3ab5a7627d480259e3d9ca67fbc14c125d374f0e).
 
 Both lockfile audits reported zero known findings. The dependency regression checks confirmed the fork in the Astro, Vite, Vercel tracing, and file-watcher paths under both package managers. The 105 repository tests and both packaged Node 22 runtime checks passed.
+
+## 404 error page redesign, 19 November 2026
+
+The prerendered 404 page uses the shared layout and `pageSeo('/404')` for `noindex` and an omitted canonical URL. The same document serves every missing path without echoing request data. Both adapters return HTTP 404 for direct requests to `/404.html`. The team photo has no embedded EXIF, IPTC or XMP metadata. Recovery links use fixed internal destinations.
