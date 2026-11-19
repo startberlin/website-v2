@@ -35,7 +35,7 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
     assertSecurityPolicyVersion(html, path);
     if ((html.match(/<main\b/g) || []).length !== 1 || (html.match(/<h1\b/g) || []).length !== 1) throw new Error(`${path}: missing or duplicated page landmarks.`);
   }
-  for (const [path, destination] of [['/legal/legal-notice.html', '/legal-notice'], ['/legal/privacy.html', '/privacy-policy']]) {
+  for (const [path, destination] of [['/legal/legal-notice.html', '/legal-notice'], ['/legal/privacy.html', '/privacy-policy'], ['/index.html', '/'], ['/for-students.html', '/member-journey'], ['/join-start-berlin.html', '/join']]) {
     const response = await get(path, [301]);
     if (new URL(response.headers.get('location'), origin).pathname !== destination) throw new Error(`${path}: incorrect legacy redirect.`);
   }
