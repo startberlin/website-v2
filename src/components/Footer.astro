@@ -1,5 +1,6 @@
 ---
 import Icon from './icons/Icon.astro';
+import NewsletterSignup from './NewsletterSignup.astro';
 
 interface Props {
 	donationUrl?: string;
@@ -19,7 +20,8 @@ const socials = [
 ---
 
 <footer class="footer">
-	<div class="page-container">
+	<NewsletterSignup />
+	<div class="footer__details page-container">
 		<div class="footer__row">
 			<div class="footer__donation" id="footer-donation-status">
 				{donationUrl ? (
@@ -47,9 +49,9 @@ const socials = [
 
 <style>
 	.footer {
-		padding-block: var(--space-10) var(--space-4);
 		background: var(--color-dark-blue);
 	}
+	.footer__details { padding-block: var(--space-10) var(--space-4); }
 	.footer__row {
 		display: flex;
 		flex-direction: column;
