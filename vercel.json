@@ -3,10 +3,5 @@
   "framework": "astro",
   "buildCommand": "npx --yes pnpm@11.25.0 run build:vercel",
   "installCommand": "npx --yes pnpm@11.25.0 install --frozen-lockfile",
-  "git": { "deploymentEnabled": false },
-  "redirects": [
-    { "source": "/index.html", "destination": "/", "statusCode": 301 },
-    { "source": "/for-students.html", "destination": "/member-journey", "statusCode": 301 },
-    { "source": "/join-start-berlin.html", "destination": "/join", "statusCode": 301 }
-  ]
+  "git": { "deploymentEnabled": false }
 }
