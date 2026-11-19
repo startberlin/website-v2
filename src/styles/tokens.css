@@ -24,8 +24,6 @@
 	--border-strong: rgb(255 255 255 / 0.2);
 	--border-control: rgb(255 255 255 / 0.4);
 	--border-error: rgb(255 177 177 / 0.4);
-	--border-error-soft: color-mix(in srgb, var(--color-error) 25%, transparent);
-	--surface-error: color-mix(in srgb, var(--color-error) 8%, transparent);
 	--border-accent: color-mix(in srgb, var(--color-accent) 60%, transparent);
 	--border-accent-soft: color-mix(in srgb, var(--color-accent) 50%, transparent);
 	--surface-accent: color-mix(in srgb, var(--color-accent) 10%, transparent);
@@ -138,7 +136,6 @@
 	--focus-offset: 4px;
 	--shadow-overlay: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 	--ring-status: 0 0 0 var(--space-1) color-mix(in srgb, var(--color-accent) 25%, transparent);
-	--ring-status-error: 0 0 0 var(--space-1) color-mix(in srgb, var(--color-error) 25%, transparent);
 	--bleed-rail: 0 0 0 100vmax var(--color-dark-blue), 0 var(--border-width) 0 100vmax var(--border-subtle);
 	--blur-sticky: 12px;
 	--blur-status: 8px;
