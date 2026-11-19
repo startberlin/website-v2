@@ -7,7 +7,6 @@ interface Props {
 }
 
 const { stages } = Astro.props;
-const total = String(stages.length).padStart(2, '0');
 const last = stages.length - 1;
 
 // The wave alternates low and high nodes across the rail. The SVG stretches to
@@ -58,10 +57,9 @@ const wave = points
 	<ol class="stages">
 		{stages.map((stage) => (
 			<li id={`stage-${stage.id}`} class="stage" data-stage>
-				<span class="stage__node" aria-hidden="true">{stage.number}</span>
+				<span class="stage__node"><span class="sr-only">Stage </span>{stage.number}</span>
 				<div class="stage__body">
 					<div class="stage__head">
-						<p class="stage__eyebrow">Stage {stage.number} / {total}</p>
 						<h2 class="stage__title">{stage.title}</h2>
 						<p class="stage__intro">{stage.intro}</p>
 					</div>
@@ -325,16 +323,6 @@ const wave = points
 
 	.stage__head { grid-area: head; }
 
-	.stage__eyebrow {
-		margin: var(--space-3) 0 var(--space-4);
-		color: var(--color-accent);
-		font-size: var(--text-caption);
-		font-weight: var(--weight-bold);
-		letter-spacing: var(--tracking-eyebrow);
-		line-height: var(--leading-ui);
-		text-transform: uppercase;
-	}
-
 	.stage__title {
 		margin: 0 0 var(--space-6);
 		font-size: var(--type-section);
@@ -415,9 +403,6 @@ const wave = points
 		.stage__node {
 			display: none;
 		}
-
-		/* The offset only aligns the eyebrow with the phone node. */
-		.stage__eyebrow { margin-top: 0; }
 
 		.stage:not(:first-child) {
 			border-top: var(--border-width) solid var(--border-subtle);
