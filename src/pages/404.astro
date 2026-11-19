@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import NewsletterSignup from '../components/NewsletterSignup.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import teamPhoto from '../assets/hero/hero-404.jpg';
@@ -34,8 +33,6 @@ Astro.response.status = 404;
 		</p>
 	</div>
 
-	<NewsletterSignup />
-
 	<nav class="page-container page-flow" aria-labelledby="error-recovery">
 		<SectionHeading id="error-recovery" compact>Explore START Berlin</SectionHeading>
 		<ul class="error-links" role="list">
@@ -57,7 +54,7 @@ Astro.response.status = 404;
 
 	.error-guidance {
 		margin: 0;
-		padding-block: var(--space-page-start);
+		padding-block-start: var(--space-page-start);
 		color: var(--text-copy);
 		line-height: var(--leading-copy);
 	}

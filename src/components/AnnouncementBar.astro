@@ -4,7 +4,7 @@ const items = Array.from({ length: 12 }, () => message);
 ---
 
 <div class="announcement">
-	<a class="announcement__link" href="/join#newsletter" aria-label={message}>
+	<a class="announcement__link" href="#newsletter" aria-label={message}>
 		<span class="announcement__track" aria-hidden="true">
 			{items.map((item) => <span class="announcement__item">{item}</span>)}
 		</span>
