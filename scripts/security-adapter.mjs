@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { securityHeaders } from '../src/lib/security/headers.mjs';
+import { resolveSiteConfig } from '../src/lib/seo/site.mjs';
 
 /**
  * Retain the official adapters and cover responses outside Astro middleware.
@@ -37,6 +38,13 @@ export function withSecurityHeaders(adapter, target) {
         if (homeRedirect > filesystem) {
           const [route] = routes.splice(homeRedirect, 1);
           routes.splice(filesystem, 0, route);
+        }
+        const notFound = routes.find((route) => route.dest === '/404.html' && route.status === 404);
+        if (notFound) {
+          const robots = resolveSiteConfig(process.env).indexable ? 'noindex, follow' : 'noindex, nofollow';
+          notFound.headers = { ...notFound.headers, 'X-Robots-Tag': robots };
+          // An explicit request for the error document must also have status 404.
+          routes.splice(filesystem, 0, { ...notFound, src: '^/404\\.html$' });
         }
         // Must run before filesystem, redirects and the final 404, including path aliases.
         routes.unshift({ src: '/.*', headers: securityHeaders, continue: true });

@@ -14,6 +14,10 @@ const homeRoutes = output.routes.filter((route) => route.src === '^/index\\.html
 if (homeRoutes.length !== 1 || !homeRoutes[0].dest || homeRoutes[0].status || output.routes.indexOf(homeRoutes[0]) >= filesystem) {
   throw new Error('Vercel must send /index.html to Astro before it can serve the homepage file.');
 }
+const errorAlias = output.routes.slice(0, filesystem).find((route) => route.src === '^/404\\.html$');
+if (errorAlias?.dest !== '/404.html' || errorAlias.status !== 404 || !new Headers(errorAlias.headers).get('x-robots-tag')?.startsWith('noindex,')) {
+  throw new Error('Vercel must serve the error document with status 404 and noindex before the filesystem phase.');
+}
 let htmlCount = 0;
 async function verifyStaticHtml(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {

@@ -43,8 +43,14 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
     const response = await get(path, [301]);
     assertRedirectLocation(response, origin, path, destination);
   }
-  const missing = await get('/security-smoke-missing-route', [404]);
-  assertSecurityPolicyVersion(await missing.text(), '404');
+  for (const path of ['/404', '/404.html', '/security-smoke-missing-route.html']) {
+    const response = await get(path, [404]);
+    const html = await response.text();
+    assertSecurityPolicyVersion(html, path);
+    if (!/<meta name="robots" content="noindex, follow"/.test(html) || /<link rel="canonical"/.test(html)) {
+      throw new Error(`${path}: the error page must be noindex and omit the canonical URL.`);
+    }
+  }
   console.log(`Smoke checks passed for ${routes.length} current pages. Jobs: ${jobsAvailable ? 'available' : 'controlled unavailable state (not backend acceptance)'}.`);
   return { jobsAvailable };
 }

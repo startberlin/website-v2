@@ -8,8 +8,11 @@ else process.env.ASTRO_NODE_AUTOSTART = autostart;
 
 function prepareResponse(request, response) {
   applyNodeSecurityHeaders(response);
+  const pathname = request.url?.split('?', 1)[0];
+  // Let native error handling serve the document with HTTP 404 instead of a static 200.
+  if (pathname === '/404.html') request.url = `/404${request.url.slice(pathname.length)}`;
   // The native standalone handler would serve the prerendered homepage at this URL.
-  if (request.url?.split('?', 1)[0] !== '/index.html') return false;
+  if (pathname !== '/index.html') return false;
   const { search } = new URL(request.url, 'http://127.0.0.1');
   if (!resolveSiteConfig(process.env).indexable) response.setHeader('X-Robots-Tag', 'noindex, nofollow');
   response.writeHead(301, { Location: `/${search}` });
