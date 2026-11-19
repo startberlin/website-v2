@@ -31,6 +31,12 @@ export function withSecurityHeaders(adapter, target) {
         const configuration = JSON.parse(await readFile(path, 'utf8'));
         // Must run before filesystem, redirects and the final 404, including path aliases.
         configuration.routes.unshift({ src: '/.*', headers: securityHeaders, continue: true });
+        const legacyRedirects = [
+          { src: '^/index\\.html$', headers: { Location: '/' }, status: 301 },
+          { src: '^/for-students\\.html$', headers: { Location: '/member-journey' }, status: 301 },
+          { src: '^/join-start-berlin\\.html$', headers: { Location: '/join' }, status: 301 },
+        ];
+        configuration.routes.splice(1, 0, ...legacyRedirects);
         await writeFile(path, `${JSON.stringify(configuration, null, 2)}\n`);
       },
     },

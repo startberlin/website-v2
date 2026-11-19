@@ -28,7 +28,7 @@ function location(file, source, offset) {
 
 for (const file of await sourceFiles(path.join(root, 'src'))) {
 	const source = await readFile(file, 'utf8');
-	const relative = path.relative(root, file);
+	const relative = path.relative(root, file).replaceAll(path.sep, '/');
 	// Include custom properties passed in Astro's inline style attributes.
 	for (const match of source.matchAll(/(--[\w-]+)\s*:/g)) definitions.add(match[1]);
 	const regions = file.endsWith('.css')
