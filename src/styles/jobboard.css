@@ -171,6 +171,9 @@
 	line-height: var(--leading-copy);
 }
 
+.jobboard .jb-empty-state p:last-child {
+	margin-block-end: 0;
+}
 
 .jobboard .jb-submission-form {
 	max-width: var(--layout-form);
