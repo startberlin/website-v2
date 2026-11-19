@@ -58,6 +58,10 @@ Set `imagePosition` and `mobileImagePosition` to keep the subject visible at bot
 
 Use SectionHeading for ordinary section titles and the shared reading width for long copy. Keep flexible children shrinkable and let headings and controls wrap where needed.
 
+Join uses the PageHero aside slot for the application link during an open round. The band below the hero shows the next application month when applications are closed. Each section opens with its title. The benefits conclude with a labeled annual fee and prominent price. The figures sit in a cyan panel with navy text before eligibility. The panel uses two columns on phones and four when space allows.
+
+The trip section follows onboarding. The cards use native horizontal scrolling, with arrow controls when JavaScript is available. The START Summit card links to the organizer's St. Gallen event page. The benefits, Events callout and trip cards use photos from the legacy START Berlin website, including the Berlin Road to START Summit event. The page ends with one contact action over a photo.
+
 The Members board uses two separate card rows: President, Vice President and Head of Finance first, then the remaining board members. The rows use the same card sizing as the departments and wrap independently on narrow screens. No additional leadership label is shown. An optional `profileUrl` gives Board members a stretched card link with a visible focus outline; contact links remain independent targets above it. Only current Board members receive profile routes, including links from their department cards.
 
 Members filters switch to one row when their container reaches 40 rem. This preserves the search field with enlarged text instead of shrinking it to zero. Below 600 px viewport height the filter bar scrolls with the page, leaving the content reachable in landscape. A ResizeObserver and resize handler measure the sticky filter bar for the route's keyboard/anchor scroll offset, so wrapping and orientation changes keep focused cards below the visible sticky bars.

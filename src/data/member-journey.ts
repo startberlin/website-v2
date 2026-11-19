@@ -53,7 +53,7 @@ export const hero = {
 	mobileImagePosition: '53% 50%',
 };
 
-export const membershipFee = '€40 per year, paid annually';
+export const membershipFee = { amount: '€40', period: 'per year' };
 
 export const stages: JourneyStage[] = [
 	{
@@ -103,7 +103,7 @@ export const stages: JourneyStage[] = [
 		points: [
 			'Become part of the START Network, with 23 chapters worldwide',
 			'Get access to exclusive, member-only events',
-			'Membership fee: ' + membershipFee,
+			`Membership fee: ${membershipFee.amount} ${membershipFee.period}, paid annually`,
 		],
 		photo: { src: groupPicture, alt: 'START Berlin members in navy team shirts posing and laughing together' },
 	},
