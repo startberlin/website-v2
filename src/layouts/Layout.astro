@@ -32,6 +32,13 @@ const { seo } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+		<script>
+			import { motionEnabled, onMotionChange } from '../lib/motion';
+
+			onMotionChange(() => {
+				document.documentElement.dataset.motion = motionEnabled() ? 'running' : 'paused';
+			});
+		</script>
 	</body>
 </html>
 

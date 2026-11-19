@@ -52,7 +52,6 @@ const slides = Object.entries(
 		transition: opacity var(--duration-slideshow) ease-in-out;
 	}
 	.hero__slide[data-active] { opacity: 1; }
-	:global(html[data-motion='paused']) .hero__slide { transition: none; }
 	.hero__image { width: 100%; height: 100%; object-fit: cover; }
 	@media (prefers-reduced-motion: reduce) {
 		.hero__slide { transition: none; }
