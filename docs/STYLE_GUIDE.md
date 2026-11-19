@@ -44,7 +44,9 @@ Write the H1 as two short parts in a single `title` pair. The first part is soli
 
 Keep the optional description to one short sentence. Omit it when the title carries the introduction, as on Member Journey. Events puts its longer introduction in the page container directly below the photo. Keep job locations and work mode in the listing hero so readers can identify the role at a glance.
 
-Choose an approved START Berlin photo that fits the page subject. Member Journey uses `start-berlin-member-journey-group.jpg`. Board profiles reuse the Members team photo. Jobboard pages reuse the company-visit photo. Legal pages reuse the event audience photo, while the 404 error page uses the playful team photo `hero-404.jpg` with a clear recovery section. Optimize new sources locally and strip embedded metadata. Use empty alt text for decorative reuse and meaningful alt text where the image conveys relevant information.
+Choose an approved START Berlin photo that fits the page subject. Member Journey uses `start-berlin-member-journey-group.jpg`. Board profiles reuse the Members team photo. Jobboard pages reuse the company-visit photo. Legal pages reuse the event audience photo. The 404 page uses `hero-404.jpg` as a decorative team photo. Optimize new sources locally and strip embedded metadata. Use empty alt text for decorative reuse and meaningful alt text where the image conveys relevant information.
+
+The 404 hero offers Home and Jobs as primary destinations. An auxiliary navigation uses SectionHeading and the shared text actions for Events, Our Members, Member Journey and Apply Now.
 
 Set `imagePosition` and `mobileImagePosition` to keep the subject visible at both crops. Astro serves responsive WebP sizes up to the source width, and prioritizes the first visible photo. Shared gradients keep the title and copy readable. On phones the shade sits behind the copy while the photo stays visible above it. Check the actual crops and contrast at the verification widths, especially for long descriptions and enlarged text.
 

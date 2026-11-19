@@ -325,4 +325,4 @@ Both lockfile audits reported zero known findings. The dependency regression che
 
 ## 404 error page redesign, 19 November 2026
 
-The redesigned 404 page (`src/pages/404.astro`) preserves `Astro.response.status = 404` and the `noindex, follow` directive via `pageSeo('/404')` with null canonical path. The requested pathname is decoded with `decodeURIComponent` and sanitized by stripping query strings and fragments; Astro's native text interpolation ensures context-aware HTML entity encoding to prevent XSS. The new hero team photo (`src/assets/hero/hero-404.jpg`) was processed with metadata stripped (EXIF, IPTC, XMP, ICC). All recovery destinations are static, allow-listed internal paths. The security policy meta digest and shared security headers remain fully enforced.
+The prerendered 404 page uses the shared layout and `pageSeo('/404')` for `noindex` and an omitted canonical URL. The same document serves every missing path without echoing request data. Both adapters return HTTP 404 for direct requests to `/404.html`. The team photo has no embedded EXIF, IPTC or XMP metadata. Recovery links use fixed internal destinations.
