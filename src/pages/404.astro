@@ -1,23 +1,101 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import eventAudience from '../assets/hero/hero-4.jpg';
+import teamPhoto from '../assets/hero/hero-404.jpg';
 import { pageSeo } from '../lib/seo/pages';
 
 Astro.response.status = 404;
+
+/**
+ * Show the requested path in a human-readable way.
+ * Decode percent-encoded characters and strip trailing slashes.
+ * Never reflect raw query strings or fragments back into HTML –
+ * Astro's text interpolation handles escaping, but keep the value short
+ * and limited to the pathname so it stays useful without risk.
+ */
+const rawPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const displayPath = decodeURIComponent(rawPath);
 ---
 
 <Layout seo={pageSeo('/404')}>
-  <PageHero title={['Page', 'not found']} image={eventAudience} imagePosition="50% 45%" mobileImagePosition="68% 50%">
-    <Fragment slot="actions">
-      <div class="error-actions">
-        <a class="button" href="/">Back to home</a>
-        <a class="button button--outline" href="/jobs">Browse jobs</a>
-      </div>
-    </Fragment>
-  </PageHero>
+	<PageHero
+		title={['Surprise, surprise…', 'nothing to see here']}
+		image={teamPhoto}
+		imagePosition="50% 35%"
+		mobileImagePosition="50% 30%"
+		compactTitle
+	>
+		<Fragment slot="description">
+			The page at <code class="error-path">{displayPath}</code> does not exist.
+		</Fragment>
+		<Fragment slot="actions">
+			<div class="error-actions">
+				<a class="button" href="/">Back to home</a>
+				<a class="button button--outline" href="/jobs">Browse jobs</a>
+			</div>
+		</Fragment>
+	</PageHero>
+
+	<section class="page-container page-flow error-recovery" aria-label="Explore START Berlin">
+		<h2 class="error-recovery__heading">Looking for something?</h2>
+		<p class="error-recovery__text">
+			The address you followed may have changed or no longer exists.
+			Try one of these instead:
+		</p>
+		<nav class="error-links" aria-label="Suggested pages">
+			<a class="text-action" href="/">Home</a>
+			<a class="text-action" href="/jobs">Startup jobs</a>
+			<a class="text-action" href="/events">Events</a>
+			<a class="text-action" href="/members">Members</a>
+			<a class="text-action" href="/member-journey">Member Journey</a>
+			<a class="text-action" href="/join">Apply now</a>
+		</nav>
+	</section>
 </Layout>
 
 <style>
-  .error-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+	.error-path {
+		display: inline-block;
+		max-width: 100%;
+		padding: var(--space-1) var(--space-2);
+		border-radius: var(--radius-control);
+		background: var(--surface-control);
+		border: var(--border-width) solid var(--border-subtle);
+		font-size: var(--text-sm);
+		word-break: break-all;
+		overflow-wrap: anywhere;
+		vertical-align: baseline;
+	}
+
+	.error-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-4);
+	}
+
+	.error-recovery {
+		padding-block-end: var(--space-section);
+	}
+
+	.error-recovery__heading {
+		margin: 0;
+		font-size: var(--text-2xl);
+		font-weight: var(--weight-bold);
+		line-height: var(--leading-ui);
+	}
+
+	.error-recovery__text {
+		max-width: var(--layout-reading);
+		margin: var(--space-4) 0 0;
+		color: var(--text-copy);
+		font-size: var(--text-base);
+		line-height: var(--leading-copy);
+	}
+
+	.error-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3) var(--space-6);
+		margin-top: var(--space-6);
+	}
 </style>
