@@ -279,6 +279,10 @@ const wave = points
 		scroll-margin-top: calc(var(--journey-band) + var(--space-4));
 	}
 
+	@container journey (width < 40rem) {
+		.stage:not(:last-child) { padding-block-end: var(--space-8); }
+	}
+
 	/* Vertical rail segment from this node to the next one. */
 	.stage:not(:last-child)::before {
 		content: '';
