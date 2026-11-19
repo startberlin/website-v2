@@ -62,6 +62,8 @@ The provider checks use [Vercel's VERCEL_ENV](https://vercel.com/docs/environmen
 
 Set the same public origin and indexing flag for the approved production build and server runtime. Astro config loads local `.env` when present; provider variables take precedence. Production HTML is prerendered for the general pages. Changing runtime variables does not rewrite that HTML. Build previews separately, and do not reuse indexable production HTML on a public preview hostname without hosting-level noindex headers or access protection. Conversely, rebuild when enabling production indexing. Hosting redirects should consolidate HTTP and alternate hosts onto the configured HTTPS origin.
 
+The legacy `/index.html`, `/for-students.html` and `/join-start-berlin.html` routes preserve campaign query strings in their permanent redirects. Vercel routes `/index.html` through Astro before checking the filesystem so it receives the same indexing policy as the other legacy redirects. The Node standalone adapter handles that alias before serving static files.
+
 ```sh
 pnpm --config.verify-deps-before-run=false run check:seo
 pnpm --config.verify-deps-before-run=false run test:seo
