@@ -1,15 +1,15 @@
 ---
-const stats = [
-	{ count: 13, suffix: '', label: 'Years in Berlin' },
-	{ count: 500, suffix: '+', label: 'Members in Berlin' },
-	{ count: 20, suffix: '+', label: 'Nationalities' },
-	{ count: 12, suffix: '+', label: 'Universities' },
-];
+interface Props {
+	id: string;
+	stats: { count: number; suffix?: string; label: string }[];
+}
+
+const { id, stats } = Astro.props;
 ---
 
-<dl class="home-stats" id="home-stats" aria-label="START Berlin in numbers">
+<dl class="community-stats" id={id} data-community-stats aria-label="START Berlin in numbers">
 	{stats.map(({ count, suffix, label }) => (
-		<div class="home-stat">
+		<div class="community-stat">
 			<dt>{label}</dt>
 			<dd>
 				<span class="sr-only">{count}{suffix}</span>
@@ -41,19 +41,19 @@ const stats = [
 			}
 		}, { threshold: 0.6 });
 
-		document.querySelectorAll('#home-stats [data-count-to]').forEach((number) => observer.observe(number));
+		document.querySelectorAll('[data-community-stats] [data-count-to]').forEach((number) => observer.observe(number));
 	}
 </script>
 
 <style>
-	.home-stats {
+	.community-stats {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
 		gap: var(--space-grid);
 		margin: 0;
 	}
 
-	.home-stat {
+	.community-stat {
 		--polygon-size: clamp(var(--space-24), 14vw, var(--space-40));
 		position: relative;
 		isolation: isolate;
@@ -68,7 +68,7 @@ const stats = [
 		text-align: center;
 	}
 
-	.home-stat::before {
+	.community-stat::before {
 		content: '';
 		position: absolute;
 		z-index: -1;
@@ -79,27 +79,27 @@ const stats = [
 		pointer-events: none;
 	}
 
-	.home-stat:nth-child(1)::before {
+	.community-stat:nth-child(1)::before {
 		background-image: url('../assets/home/polygon-top-right.svg');
 		background-position: 106% 0;
 	}
 
-	.home-stat:nth-child(2)::before {
+	.community-stat:nth-child(2)::before {
 		background-image: url('../assets/home/polygon-top-left.svg'), url('../assets/home/polygon-bottom-right.svg');
 		background-position: -8% 0, 100% 100%;
 	}
 
-	.home-stat:nth-child(3)::before {
+	.community-stat:nth-child(3)::before {
 		background-image: url('../assets/home/polygon-bottom-left.svg'), url('../assets/home/polygon-bottom-right.svg');
 		background-position: 0 115%, 114% 100%;
 	}
 
-	.home-stat:nth-child(4)::before {
+	.community-stat:nth-child(4)::before {
 		background-image: url('../assets/home/polygon-bottom-left.svg'), url('../assets/home/polygon-top-right.svg');
 		background-position: -8% 100%, 100% -55%;
 	}
 
-	.home-stat dd {
+	.community-stat dd {
 		margin: 0;
 		color: var(--color-accent);
 		font-size: var(--type-home-stat);
@@ -108,7 +108,7 @@ const stats = [
 		line-height: var(--leading-display);
 	}
 
-	.home-stat dt {
+	.community-stat dt {
 		font-size: var(--text-base);
 		font-weight: var(--weight-bold);
 		line-height: var(--leading-ui);
@@ -116,11 +116,11 @@ const stats = [
 	}
 
 	@media (min-width: 48rem) {
-		.home-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-		.home-stat { min-block-size: clamp(10rem, 22.4vw, 20rem); }
+		.community-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.community-stat { min-block-size: clamp(10rem, 22.4vw, 20rem); }
 	}
 
 	@media (forced-colors: active) {
-		.home-stat::before { display: none; }
+		.community-stat::before { display: none; }
 	}
 </style>

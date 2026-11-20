@@ -4,44 +4,53 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import CommunityStats from '../components/CommunityStats.astro';
+import MembershipBenefits from '../components/MembershipBenefits.astro';
 import DepartmentTabs from '../components/member-journey/DepartmentTabs.astro';
 import JoinTrips from '../components/JoinTrips.astro';
 import MemberStories from '../components/MemberStories.astro';
 import groupPhoto from '../assets/hero/hero-1.jpg';
-import teamPhoto from '../assets/hero/hero-3.jpg';
 import audiencePhoto from '../assets/join/legacy-start-event.jpg';
 import visitPhoto from '../assets/join/legacy-vc-visit.jpg';
 import teamLiftingPhoto from '../assets/join/team-lifting.jpg';
+import cofounderPhoto from '../assets/member-journey/cofounder-matching-night.jpg';
+import workshopPhoto from '../assets/events/workshops.jpg';
 import { pageSeo } from '../lib/seo/pages';
 import { departments, departmentsSection, membershipFee } from '../data/member-journey';
 
 const applicationsOpen = false;
 const nextApplicationRound = { label: 'April 2027', month: '2027-04' };
-
-const links = {
-	apply: 'https://forms.start-berlin.com/apply',
-	contact: 'https://forms.start-berlin.com/contact',
-};
+const applicationUrl = 'https://forms.start-berlin.com/apply';
 
 const stats = [
-	{ value: '500+', label: 'Alumni' },
-	{ value: '54', label: 'Active Members' },
-	{ value: '15+', label: 'Nationalities' },
-	{ value: '5', label: 'Departments' },
+	{ count: 500, suffix: '+', label: 'Alumni' },
+	{ count: 54, label: 'Active Members' },
+	{ count: 15, suffix: '+', label: 'Nationalities' },
+	{ count: 5, label: 'Departments' },
 ];
 
 const benefits = [
 	{
 		title: 'Find potential co-founders',
 		text: 'Meet students in Berlin and across the international START network.',
+		photo: cofounderPhoto,
+		alt: 'Four people at the START Berlin Co-Founder Matching Night in front of the event screen',
+		position: '50% 23%',
 	},
 	{
 		title: 'Get inside Berlin startups',
 		text: 'Visit startups and talk to the founders and investors behind them.',
+		photo: visitPhoto,
+		alt: 'Students around a table during a START Berlin visit',
+		position: '50% 50%',
+		accent: true,
 	},
 	{
 		title: 'Build practical skills',
 		text: 'Learn from industry experts in workshops on topics like sales and legal basics.',
+		photo: workshopPhoto,
+		alt: 'Three students working on laptops around a table in a meeting room',
+		position: '50% 50%',
 	},
 ];
 
@@ -115,7 +124,7 @@ const faqs: { question: string; answer: string }[] = [
 		>
 			<Fragment slot="description">Join Berlin's student startup community.</Fragment>
 			<Fragment slot="aside">
-				{applicationsOpen && <a href={links.apply} class="button hero-action">Apply now</a>}
+				{applicationsOpen && <a href={applicationUrl} class="button hero-action">Apply now</a>}
 			</Fragment>
 		</PageHero>
 	</div>
@@ -128,40 +137,24 @@ const faqs: { question: string; answer: string }[] = [
 			</section>
 		)}
 
-		<section class="page-container benefits-section" aria-labelledby="join-benefits-heading">
-			<div class="split">
-				<div class="split__text">
-					<SectionHeading id="join-benefits-heading">
-						Inside Berlin's <span data-outline>startup scene</span>
-					</SectionHeading>
-					<ul class="benefits" role="list">
-						{benefits.map((benefit) => (
-							<li class="benefits__item">
-								<h3>{benefit.title}</h3>
-								<p>{benefit.text}</p>
-							</li>
-						))}
-					</ul>
-					<p class="fee">
-						<span class="fee__label">Membership fee</span>
-						<span class="fee__price"><strong>{membershipFee.amount}</strong> {membershipFee.period}</span>
-					</p>
-				</div>
-				<div class="split__media">
-					<Image src={visitPhoto} alt="Students around a table during a START Berlin visit" widths={[640, 1080, 1600]} sizes="(min-width: 1344px) 510px, (min-width: 1024px) 40vw, 100vw" format="webp" loading="lazy" class="photo photo--benefits" />
-				</div>
+		<div class="join-benefits">
+			<MembershipBenefits
+				id="join-benefits"
+				headingId="join-benefits-heading"
+				title={["Inside Berlin's", 'startup scene']}
+				benefits={benefits}
+			>
+				<p class="fee" slot="intro">
+					<span class="fee__label">Membership fee</span>
+					<span class="fee__price"><strong>{membershipFee.amount}</strong> {membershipFee.period}</span>
+				</p>
+			</MembershipBenefits>
+			<div class="page-container">
+				<CommunityStats id="join-stats" stats={stats} />
 			</div>
-			<ul class="stats" role="list" aria-label="START Berlin in numbers">
-				{stats.map((stat) => (
-					<li class="stat">
-						<p class="stat__value">{stat.value}</p>
-						<p class="stat__label">{stat.label}</p>
-					</li>
-				))}
-			</ul>
-		</section>
+		</div>
 
-		<section class="page-container split split--reverse" aria-labelledby="join-eligibility-heading">
+		<section class="page-container split" aria-labelledby="join-eligibility-heading">
 			<div class="split__text">
 				<SectionHeading id="join-eligibility-heading">
 					Is this <span data-outline>you?</span>
@@ -181,7 +174,7 @@ const faqs: { question: string; answer: string }[] = [
 				</ul>
 			</div>
 			<div class="split__media">
-				<Image src={teamLiftingPhoto} alt="START Berlin members lifting a teammate and laughing" widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 40vw, 100vw" class="photo photo--landscape" />
+				<Image src={teamLiftingPhoto} alt="START Berlin members lifting a teammate and laughing" widths={[640, 1080, 1600]} sizes="(min-width: 1024px) 40vw, 100vw" class="photo" />
 			</div>
 		</section>
 
@@ -252,19 +245,6 @@ const faqs: { question: string; answer: string }[] = [
 			</div>
 		</section>
 	</div>
-	<section slot="footer-contact" class="banner" id="get-in-touch" aria-labelledby="join-contact-heading">
-		<Image src={teamPhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" format="webp" loading="lazy" class="banner__image" />
-		<div class="banner__shade" aria-hidden="true"></div>
-		<div class="banner__content page-container">
-			<SectionHeading id="join-contact-heading" flush>
-				Get in <span data-outline>touch</span>
-				<Fragment slot="lead">Ask us about eligibility or the application process.</Fragment>
-			</SectionHeading>
-			<div class="actions">
-				<a href={links.contact} class="button button--outline">Contact us <Icon name="arrow-right" size={16} /></a>
-			</div>
-		</div>
-	</section>
 </Layout>
 
 <style>
@@ -328,58 +308,10 @@ const faqs: { question: string; answer: string }[] = [
 
 	/* Membership benefits and figures */
 
-	.benefits-section {
-		container: join-benefits / inline-size;
-	}
-
-	.stats {
+	.join-benefits {
 		display: grid;
-		gap: var(--border-width);
-		margin: var(--space-columns) 0 0;
-		padding: 0;
-		list-style: none;
-		border: var(--border-width) solid var(--border-accent);
-		border-radius: var(--radius-card);
-		background: var(--border-accent);
-		overflow: clip;
-	}
-
-	.stat {
-		display: grid;
-		align-content: center;
-		min-width: 0;
-		padding: var(--space-6) var(--space-card);
-		background: var(--color-accent);
-		color: var(--color-dark-blue);
-	}
-
-	.stat__value {
-		margin: 0;
-		font-size: var(--type-stat);
-		font-weight: var(--weight-display);
-		line-height: var(--leading-display);
-		font-variant-numeric: tabular-nums;
-	}
-
-	.stat:first-child .stat__value { font-size: var(--type-member-name); }
-
-	.stat__label {
-		margin: var(--space-2) 0 0;
-		font-size: var(--text-sm);
-		font-weight: var(--weight-semibold);
-		line-height: var(--leading-ui);
-	}
-
-	@container join-benefits (min-width: 16rem) {
-		.stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-	}
-
-	@container join-benefits (min-width: 42rem) {
-		.stats { grid-template-columns: minmax(0, 1.45fr) repeat(3, minmax(0, 1fr)); }
-	}
-
-	@media (forced-colors: active) {
-		.stat + .stat { border-block-start: var(--border-width) solid GrayText; }
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--space-columns);
 	}
 
 	/* Text + photo */
@@ -393,16 +325,10 @@ const faqs: { question: string; answer: string }[] = [
 	.photo {
 		width: 100%;
 		height: auto;
-		aspect-ratio: var(--ratio-portrait);
+		aspect-ratio: var(--ratio-photo);
 		object-fit: cover;
 		border: var(--border-width) solid var(--border-subtle);
 		border-radius: var(--radius-card);
-	}
-
-	/* Keeps the whole group in frame; a portrait crop cuts off the person being lifted. */
-	.photo--landscape,
-	.photo--benefits {
-		aspect-ratio: var(--ratio-photo);
 	}
 
 	.checklist {
@@ -412,32 +338,6 @@ const faqs: { question: string; answer: string }[] = [
 		margin: 0 0 var(--space-6);
 		padding: 0;
 		list-style: none;
-	}
-
-	.benefits {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.benefits__item {
-		padding-block: var(--space-3);
-		border-block-end: var(--border-width) solid var(--border-subtle);
-	}
-
-	.benefits__item:first-child { padding-block-start: 0; }
-
-	.benefits__item h3 {
-		margin: 0 0 var(--space-1);
-		font-size: var(--text-lg);
-		font-weight: var(--weight-bold);
-		line-height: var(--leading-ui);
-	}
-
-	.benefits__item p {
-		margin: 0;
-		line-height: var(--leading-copy);
-		color: var(--text-muted);
 	}
 
 	.fee {
@@ -649,22 +549,16 @@ const faqs: { question: string; answer: string }[] = [
 
 	@media (min-width: 1024px) {
 		.split {
-			grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-		}
-
-		.split--reverse {
 			grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
 		}
 
-		.split--reverse .split__media {
+		.split__media {
 			order: -1;
 		}
 
 		.steps {
 			grid-template-columns: repeat(3, 1fr);
 		}
-
-		.photo--benefits { aspect-ratio: var(--ratio-square); }
 	}
 
 	@media (prefers-reduced-motion: reduce) {
