@@ -1,12 +1,19 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Icon from './icons/Icon.astro';
 import SectionHeading from './SectionHeading.astro';
 import workshopPhoto from '../assets/events/workshops.jpg';
+
+interface Props {
+	photo?: ImageMetadata;
+}
+
+const { photo = workshopPhoto } = Astro.props;
 ---
 
 <section class="newsletter" id="newsletter" aria-labelledby="newsletter-title" tabindex="-1">
-	<Image src={workshopPhoto} alt="" widths={[640, 1080, 1600]} sizes="100vw" format="webp" loading="lazy" class="newsletter__image" />
+	<Image src={photo} alt="" widths={[640, 1080].filter((width) => width < photo.width).concat(Math.min(photo.width, 1600))} sizes="100vw" format="webp" loading="lazy" class="newsletter__image" />
 	<div class="newsletter__shade" aria-hidden="true"></div>
 	<div class="newsletter__content page-container">
 		<div class="newsletter__copy">

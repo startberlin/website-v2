@@ -1,0 +1,66 @@
+---
+const contactUrl = 'https://forms.start-berlin.com/contact';
+---
+
+<section class="footer-contact" id="get-in-touch" aria-labelledby="footer-contact-heading">
+	<div class="page-container">
+		<div class="footer-contact__card">
+			<div class="footer-contact__copy">
+				<h2 id="footer-contact-heading">Get in touch</h2>
+				<p>We are happy to talk!</p>
+				<a class="button" href={contactUrl}>Contact us</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.footer-contact {
+		padding-block: var(--space-page-start);
+		background: var(--color-white);
+	}
+
+	.footer-contact__card {
+		position: relative;
+		isolation: isolate;
+		display: grid;
+		place-items: center;
+		min-block-size: 20rem;
+		padding: var(--space-page-start) var(--space-card);
+		background: var(--surface-footer-contact);
+		color: var(--color-white);
+	}
+
+	.footer-contact__card::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		background: url('../assets/home/polygon-bottom-left.svg') bottom left / clamp(var(--space-24), 22%, 16rem) no-repeat;
+		opacity: 0.35;
+		pointer-events: none;
+	}
+
+	.footer-contact__copy h2 {
+		margin: 0;
+		font-size: var(--type-home-panel);
+		font-weight: var(--weight-display);
+		line-height: var(--leading-display);
+		text-transform: uppercase;
+	}
+
+	.footer-contact__copy p {
+		margin: var(--space-4) 0 var(--space-6);
+		line-height: var(--leading-copy);
+	}
+
+	.footer-contact__copy .button {
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+	}
+
+	@media (forced-colors: active) {
+		.footer-contact__card { border: var(--border-width) solid CanvasText; }
+		.footer-contact__card::before { display: none; }
+	}
+</style>

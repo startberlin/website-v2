@@ -1,0 +1,126 @@
+---
+const stats = [
+	{ count: 13, suffix: '', label: 'Years in Berlin' },
+	{ count: 500, suffix: '+', label: 'Members in Berlin' },
+	{ count: 20, suffix: '+', label: 'Nationalities' },
+	{ count: 12, suffix: '+', label: 'Universities' },
+];
+---
+
+<dl class="home-stats" id="home-stats" aria-label="START Berlin in numbers">
+	{stats.map(({ count, suffix, label }) => (
+		<div class="home-stat">
+			<dt>{label}</dt>
+			<dd>
+				<span class="sr-only">{count}{suffix}</span>
+				<span aria-hidden="true"><span data-count-to={count}>{count}</span>{suffix}</span>
+			</dd>
+		</div>
+	))}
+</dl>
+
+<script>
+	import { motionEnabled } from '../lib/motion';
+
+	if (motionEnabled() && 'IntersectionObserver' in window) {
+		const observer = new IntersectionObserver((entries) => {
+			for (const { target, isIntersecting } of entries) {
+				if (!isIntersecting || !(target instanceof HTMLElement)) continue;
+				observer.unobserve(target);
+				if (!motionEnabled()) continue;
+
+				const count = Number(target.dataset.countTo);
+				const startedAt = performance.now();
+				const duration = 700;
+				const animate = (now: number) => {
+					const progress = motionEnabled() ? Math.min((now - startedAt) / duration, 1) : 1;
+					target.textContent = String(Math.round(count * (1 - (1 - progress) ** 3)));
+					if (progress < 1) requestAnimationFrame(animate);
+				};
+				requestAnimationFrame(animate);
+			}
+		}, { threshold: 0.6 });
+
+		document.querySelectorAll('#home-stats [data-count-to]').forEach((number) => observer.observe(number));
+	}
+</script>
+
+<style>
+	.home-stats {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--space-grid);
+		margin: 0;
+	}
+
+	.home-stat {
+		--polygon-size: clamp(var(--space-24), 14vw, var(--space-40));
+		position: relative;
+		isolation: isolate;
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-4);
+		min-block-size: clamp(12rem, 70vw, 18rem);
+		padding: var(--space-card);
+		border: var(--border-width) solid var(--border-control);
+		text-align: center;
+	}
+
+	.home-stat::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		opacity: 0.75;
+		background-repeat: no-repeat;
+		background-size: var(--polygon-size);
+		pointer-events: none;
+	}
+
+	.home-stat:nth-child(1)::before {
+		background-image: url('../assets/home/polygon-top-right.svg');
+		background-position: 106% 0;
+	}
+
+	.home-stat:nth-child(2)::before {
+		background-image: url('../assets/home/polygon-top-left.svg'), url('../assets/home/polygon-bottom-right.svg');
+		background-position: -8% 0, 100% 100%;
+	}
+
+	.home-stat:nth-child(3)::before {
+		background-image: url('../assets/home/polygon-bottom-left.svg'), url('../assets/home/polygon-bottom-right.svg');
+		background-position: 0 115%, 114% 100%;
+	}
+
+	.home-stat:nth-child(4)::before {
+		background-image: url('../assets/home/polygon-bottom-left.svg'), url('../assets/home/polygon-top-right.svg');
+		background-position: -8% 100%, 100% -55%;
+	}
+
+	.home-stat dd {
+		margin: 0;
+		color: var(--color-accent);
+		font-size: var(--type-home-stat);
+		font-weight: var(--weight-display);
+		font-variant-numeric: tabular-nums;
+		line-height: var(--leading-display);
+	}
+
+	.home-stat dt {
+		font-size: var(--text-base);
+		font-weight: var(--weight-bold);
+		line-height: var(--leading-ui);
+		text-transform: uppercase;
+	}
+
+	@media (min-width: 48rem) {
+		.home-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.home-stat { min-block-size: clamp(10rem, 22.4vw, 20rem); }
+	}
+
+	@media (forced-colors: active) {
+		.home-stat::before { display: none; }
+	}
+</style>

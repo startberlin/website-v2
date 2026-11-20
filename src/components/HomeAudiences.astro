@@ -1,0 +1,118 @@
+---
+import { Image } from 'astro:assets';
+import studentsPhoto from '../assets/home/for-students.jpg';
+import partnersPhoto from '../assets/home/for-partners.jpg';
+
+const audiences = [
+	{
+		id: 'for-students',
+		title: 'For Students',
+		text: 'Meet students from across Berlin who want to build startups. Join company visits and work on a real project in the START Sprint.',
+		photo: studentsPhoto,
+		href: '/member-journey',
+		linkLabel: 'Learn more about becoming a member',
+	},
+	{
+		id: 'for-partners',
+		title: 'For Partners',
+		text: 'Host a company visit or workshop with START Berlin. Meet students working on startup ideas and show them how your team works.',
+		photo: partnersPhoto,
+		href: 'https://www.start-berlin.com/for-partners.html',
+		linkLabel: 'Learn more about partnering with START Berlin',
+	},
+];
+---
+
+<section class="home-audiences" id="for-students-and-partners" aria-label="For students and partners">
+	{audiences.map(({ id, title, text, photo, href, linkLabel }) => (
+		<div class="home-audience" id={id}>
+			<div class="home-audience__media">
+				<Image
+					src={photo}
+					alt=""
+					widths={[400, 640, 960, 1400].filter((width) => width < photo.width).concat(photo.width)}
+					sizes="(min-width: 56rem) 50vw, 100vw"
+					format="webp"
+					loading="lazy"
+					class="home-audience__photo"
+				/>
+			</div>
+			<div class="home-audience__copy">
+				<h2>{title}</h2>
+				<div>
+					<p>{text}</p>
+					<a class="button button--outline" href={href} aria-label={linkLabel}>Learn more</a>
+				</div>
+			</div>
+		</div>
+	))}
+</section>
+
+<style>
+	.home-audiences { background: var(--color-white); color: var(--color-dark-blue); }
+	.home-audience { display: grid; }
+
+	.home-audience__media {
+		position: relative;
+		aspect-ratio: var(--ratio-photo);
+	}
+
+	.home-audience__photo {
+		position: absolute;
+		inset: 0;
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+	}
+
+	.home-audience__copy {
+		display: grid;
+		align-content: space-between;
+		gap: var(--space-heading);
+		padding: var(--space-page-start) var(--page-gutter);
+	}
+
+	.home-audience__copy h2 {
+		margin: 0;
+		font-size: var(--type-home-panel);
+		font-weight: var(--weight-display);
+		line-height: var(--leading-display);
+		text-transform: uppercase;
+	}
+
+	.home-audience__copy p {
+		max-inline-size: var(--layout-lead);
+		margin: 0 0 var(--space-6);
+		line-height: var(--leading-copy);
+	}
+
+	.home-audience .button--outline {
+		border-color: var(--color-dark-blue);
+		color: var(--color-dark-blue);
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+	}
+
+	.home-audience .button--outline:hover {
+		background: var(--color-dark-blue);
+		color: var(--color-white);
+	}
+
+	.home-audience .button:focus-visible { outline-color: var(--color-dark-blue); }
+
+	@media (min-width: 56rem) {
+		.home-audience {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			min-block-size: clamp(20rem, 37.5vw, 32rem);
+		}
+
+		.home-audience__media { aspect-ratio: auto; }
+		.home-audience__copy { padding: var(--space-columns); }
+		.home-audience:nth-child(even) .home-audience__media { grid-area: 1 / 2; }
+		.home-audience:nth-child(even) .home-audience__copy { grid-area: 1 / 1; }
+	}
+
+	@media (forced-colors: active) {
+		.home-audience .button:focus-visible { outline-color: Highlight; }
+	}
+</style>

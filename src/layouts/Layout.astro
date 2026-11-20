@@ -31,7 +31,7 @@ const { seo } = Astro.props;
 			<AnnouncementBar />
 			<slot />
 		</main>
-		<Footer />
+		<Footer><slot name="footer-content" /></Footer>
 		<script>
 			import { motionEnabled, onMotionChange } from '../lib/motion';
 

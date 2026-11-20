@@ -1,0 +1,170 @@
+---
+import { Image } from 'astro:assets';
+import SectionHeading from './SectionHeading.astro';
+import { formats } from '../data/events';
+---
+
+<section id="home-events" aria-labelledby="home-events-heading" data-home-events>
+	<div class="home-events__heading page-container">
+		<SectionHeading id="home-events-heading" flush>
+			Where ideas meet <span class="home-events__accent">people</span>
+			<Fragment slot="lead">
+				Hear from founders and see how Berlin startups work. At our workshops, you can try out your own ideas.
+			</Fragment>
+		</SectionHeading>
+	</div>
+
+	<div class="home-events__formats" style={`--event-count: ${formats.length}`}>
+		{formats.map(({ title, text, photo }, index) => (
+			<div class="home-event" style={`--event-row: ${index + 1}`}>
+				<div class="home-event__copy" data-event-copy>
+					<h3>{title}</h3>
+					<p>{text}</p>
+				</div>
+				<div class="home-event__media" data-event-photo>
+					<Image
+						src={photo.src}
+						alt={photo.alt}
+						widths={[480, 800].filter((width) => width < photo.src.width).concat(Math.min(photo.src.width, 1600))}
+						sizes="(min-width: 56rem) 60vw, 100vw"
+						format="webp"
+						loading="lazy"
+						class="home-event__image"
+					/>
+				</div>
+			</div>
+		))}
+	</div>
+</section>
+
+<script>
+	import { motionEnabled, onMotionChange } from '../lib/motion';
+
+	const events = document.querySelector<HTMLElement>('[data-home-events]');
+
+	if (events) {
+		const desktop = matchMedia('(min-width: 64rem) and (min-height: 36rem)');
+		const nextCaptions = Array.from(events.querySelectorAll<HTMLElement>('[data-event-copy]')).slice(1);
+		const photos = Array.from(events.querySelectorAll<HTMLElement>('[data-event-photo]'));
+		let frame = 0;
+
+		const update = () => {
+			frame = 0;
+			if (!desktop.matches || !motionEnabled()) return;
+
+			const { top, bottom } = events.getBoundingClientRect();
+			if (top >= innerHeight || bottom <= 0) return;
+
+			// The next photo sits directly beneath the outgoing one, like the legacy reveal.
+			const stageHeight = photos[0]?.offsetHeight;
+			if (!stageHeight) return;
+			const fadeDistance = stageHeight * 0.25;
+			const fadeStart = innerHeight - stageHeight / 2 + fadeDistance / 2;
+			nextCaptions.forEach((caption, index) => {
+				const progress = Math.min(1, Math.max(0, (fadeStart - caption.getBoundingClientRect().top) / fadeDistance));
+				photos[index].style.setProperty('--event-photo-opacity', String(1 - progress));
+				photos[index].style.setProperty('--event-photo-scale', String(1 + progress * 0.2));
+			});
+		};
+
+		const queueUpdate = () => {
+			if (!frame && desktop.matches && motionEnabled()) frame = requestAnimationFrame(update);
+		};
+
+		events.dataset.enhanced = '';
+		window.addEventListener('scroll', queueUpdate, { passive: true });
+		window.addEventListener('resize', queueUpdate);
+		onMotionChange(queueUpdate);
+	}
+</script>
+
+<style>
+	.home-events__heading { margin-block-end: var(--space-heading); }
+
+	.home-events__accent { color: var(--color-accent); }
+
+	.home-events__formats {
+		isolation: isolate;
+		background: var(--color-white);
+		color: var(--color-dark-blue);
+	}
+
+	.home-event__copy {
+		display: grid;
+		align-content: center;
+		min-inline-size: 0;
+		padding: var(--space-page-start) var(--page-gutter);
+	}
+
+	.home-event__copy h3 {
+		margin: 0 0 var(--space-4);
+		font-size: var(--type-home-panel);
+		font-weight: var(--weight-display);
+		line-height: var(--leading-display);
+		text-transform: uppercase;
+	}
+
+	.home-event__copy p {
+		max-inline-size: var(--layout-lead);
+		margin: 0;
+		line-height: var(--leading-copy);
+	}
+
+	.home-event__media {
+		--event-photo-opacity: 1;
+		--event-photo-scale: 1;
+		position: relative;
+		overflow: clip;
+		aspect-ratio: var(--ratio-photo);
+		background: var(--color-dark-blue);
+	}
+
+	.home-event__image {
+		position: absolute;
+		inset: 0;
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+	}
+
+	@media (min-width: 56rem) {
+		.home-event {
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+		}
+
+		.home-event__copy { padding-inline: var(--space-columns); }
+
+		.home-event__media {
+			aspect-ratio: auto;
+			min-block-size: 16rem;
+		}
+	}
+
+	@media (min-width: 64rem) and (min-height: 36rem) and (prefers-reduced-motion: no-preference) {
+		[data-enhanced] .home-events__formats {
+			--event-stage-height: calc(100svh - var(--header-height));
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+			grid-template-rows: repeat(var(--event-count), minmax(var(--event-stage-height), auto));
+		}
+
+		[data-enhanced] .home-event { display: contents; }
+
+		[data-enhanced] .home-event__copy {
+			grid-area: var(--event-row) / 1;
+		}
+
+		[data-enhanced] .home-event__media {
+			position: sticky;
+			inset-block-start: var(--header-height);
+			z-index: calc(var(--event-count) - var(--event-row));
+			grid-area: 1 / 2 / -1;
+			align-self: start;
+			block-size: var(--event-stage-height);
+			opacity: var(--event-photo-opacity);
+		}
+
+		[data-enhanced] .home-event__image { transform: scale(var(--event-photo-scale)); }
+	}
+</style>

@@ -1,51 +1,29 @@
 ---
-import { Image } from 'astro:assets';
-import Icon from '../components/icons/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import PartnerStrip from '../components/PartnerStrip.astro';
 import News from '../components/News.astro';
 import Network from '../components/Network.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import HomeStats from '../components/HomeStats.astro';
+import HomeAudiences from '../components/HomeAudiences.astro';
+import MembershipBenefits from '../components/MembershipBenefits.astro';
+import HomeEvents from '../components/HomeEvents.astro';
+import HomeDepartments from '../components/HomeDepartments.astro';
 import MemberStories from '../components/MemberStories.astro';
 import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { pageSeo } from '../lib/seo/pages';
-import { departments } from '../data/member-journey';
-import { formats } from '../data/events';
-import sprintPhoto from '../assets/member-journey/start-sprint-award-ceremony.jpg';
-
-const stats = [
-	{ value: '13', label: 'Years in Berlin' },
-	{ value: '500+', label: 'Members in Berlin' },
-	{ value: '20+', label: 'Nationalities' },
-	{ value: '12+', label: 'Universities' },
-];
-
-const benefits = [
-	{
-		title: 'Community across universities',
-		description: 'Connect with ambitious students from TU, HU, FU, CODE and beyond who share a drive to build and explore.',
-	},
-	{
-		title: 'The START Sprint',
-		description: 'Turn your idea into a working MVP and pitch in front of an expert jury during your first four weeks.',
-	},
-	{
-		title: 'Founder & investor access',
-		description: "Get direct contact with Berlin's leading founders, VC partners and high-growth startups through exclusive visits and talks.",
-	},
-];
-
-const featuredFormats = formats.slice(0, 3);
+import newsletterPhoto from '../assets/member-journey/start-x-sap-crowd.jpg';
 ---
 
 <Layout seo={pageSeo('/')}>
 	<Hero />
 	<PartnerStrip />
 	<div class="section-stack home-content">
-		{/* 1. Berlin introduction */}
-		<section class="home-intro page-container" aria-labelledby="home-about-heading">
-			<SectionHeading id="home-about-heading" eyebrow="About START Berlin">
+		<News />
+
+		<section class="page-container" aria-labelledby="home-about-heading">
+			<SectionHeading id="home-about-heading">
 				Berlin's student <span data-outline>entrepreneurs</span>
 				<Fragment slot="lead">
 					START Berlin is the city's largest student-run entrepreneurship non-profit. Since 2013, we
@@ -54,414 +32,24 @@ const featuredFormats = formats.slice(0, 3);
 				</Fragment>
 			</SectionHeading>
 
-			<div class="stats">
-				{stats.map((stat) => (
-					<div class="stat">
-						<p class="stat__value">{stat.value}</p>
-						<p class="stat__label">{stat.label}</p>
-					</div>
-				))}
-			</div>
-
-			<div class="actions">
-				<a href="/member-journey" class="button button--outline">Discover our community</a>
-				<a href="/members" class="button button--outline">Meet the team</a>
-			</div>
+			<HomeStats />
 		</section>
 
-		{/* 2. Membership benefits teaser */}
-		<section class="page-container split" aria-labelledby="home-why-join-heading">
-			<div class="split__text">
-				<SectionHeading id="home-why-join-heading" eyebrow="Why join START Berlin?">
-					From idea to <span class="accent">impact</span>
-					<Fragment slot="lead">
-						Whether you want to launch a venture or understand how startups work from the inside,
-						START Berlin is your launchpad. Meet potential co-founders, learn directly from founders
-						and investors, and build a real product during the four-week START Sprint.
-					</Fragment>
-				</SectionHeading>
+		<HomeAudiences />
 
-				<ul class="benefits" role="list">
-					{benefits.map((benefit) => (
-						<li class="benefits__item">
-							<span class="benefits__icon" aria-hidden="true">
-								<Icon name="check" stroke-width={3} />
-							</span>
-							<div class="benefits__body">
-								<h3 class="benefits__title">{benefit.title}</h3>
-								<p class="benefits__description">{benefit.description}</p>
-							</div>
-						</li>
-					))}
-				</ul>
+		<MembershipBenefits />
 
-				<div class="actions">
-					<a href="/about-us" class="button">Membership benefits</a>
-					<a href="/join" class="button button--outline">How to join</a>
-				</div>
-			</div>
-			<div class="split__media">
-				<Image
-					src={sprintPhoto}
-					alt="START Berlin members on stage at the START Sprint award ceremony"
-					widths={[640, 1080, 1600]}
-					sizes="(min-width: 1024px) 40vw, 100vw"
-					class="photo"
-				/>
-			</div>
-		</section>
+		<HomeEvents />
 
-		{/* 3. Events teaser – Home brief's event placement */}
-		<section class="page-container events-teaser" aria-labelledby="home-events-heading">
-			<div class="events-teaser__header">
-				<SectionHeading id="home-events-heading" eyebrow="Events" flush>
-					Where ideas meet <span class="accent">people</span>
-					<Fragment slot="lead">
-						From founder talks and startup visits to workshops and panels — our events bring the
-						ecosystem together. Join us to learn, network and get inspired.
-					</Fragment>
-				</SectionHeading>
-				<div class="events-teaser__action">
-					<a href="/events" class="button">See upcoming events</a>
-				</div>
-			</div>
+		<HomeDepartments />
 
-			<div class="events-grid">
-				{featuredFormats.map((format) => (
-					<article class="event-card">
-						<Image
-							src={format.photo.src}
-							alt={format.photo.alt}
-							widths={[400, 800]}
-							sizes="(min-width: 1024px) 25rem, (min-width: 640px) 50vw, 100vw"
-							format="webp"
-							loading="lazy"
-							class="event-card__photo"
-						/>
-						<div class="event-card__body">
-							<h3 class="event-card__title">{format.title}</h3>
-							<p class="event-card__text">{format.text}</p>
-						</div>
-					</article>
-				))}
-			</div>
-		</section>
-
-		{/* 4. Departments overview */}
-		<section class="page-container" aria-labelledby="home-departments-heading">
-			<SectionHeading id="home-departments-heading" eyebrow="Get involved">
-				Our <span data-outline>departments</span>
-				<Fragment slot="lead">
-					Every member contributes to one of our five departments. Together they drive the
-					organisation's mission and impact in Berlin's startup ecosystem.
-				</Fragment>
-			</SectionHeading>
-
-			<div class="departments">
-				{departments.map((department) => (
-					<article class="department">
-						<h3 class="department__name">{department.name}</h3>
-						<p class="department__text">{department.paragraphs[0]}</p>
-					</article>
-				))}
-			</div>
-
-			<div class="actions actions--center">
-				<a href="/member-journey#departments" class="button button--outline">Explore departments</a>
-				<a href="/members" class="button button--outline">Browse members</a>
-			</div>
-		</section>
-
-		{/* 5. Latest News */}
-		<News />
-
-		{/* 6. The START Network */}
 		<Network />
 
-		{/* 7. Testimonials */}
 		<MemberStories />
-
-		{/* 8. Newsletter */}
-		<NewsletterSignup />
 	</div>
+	<NewsletterSignup slot="footer-content" photo={newsletterPhoto} />
 </Layout>
 
 <style>
-	.home-content { padding-block-end: var(--space-section); }
-
-	.accent { color: var(--color-accent); }
-
-	/* Spacing below partner strip to preserve equal spacing rule */
-	.home-intro {
-		padding-block-start: var(--home-partner-gap);
-	}
-
-	/* Stats */
-
-	.stats {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 5.5rem), 1fr));
-		margin-top: var(--space-heading);
-		padding: 0;
-	}
-
-	.stat {
-		min-width: 0;
-		padding: var(--space-6) var(--space-2);
-		text-align: center;
-		border-block: var(--border-width) solid var(--border-subtle);
-	}
-
-	.stat + .stat { border-left: var(--border-width) solid var(--border-subtle); }
-
-	.stat__value {
-		margin: 0;
-		font-size: var(--type-stat);
-		font-weight: var(--weight-display);
-		line-height: var(--leading-display);
-		font-variant-numeric: tabular-nums;
-		color: var(--color-accent);
-	}
-
-	.stat__label {
-		margin: var(--space-2) 0 0;
-		font-size: var(--text-xs);
-		line-height: var(--leading-ui);
-		letter-spacing: var(--tracking-label);
-		text-transform: uppercase;
-		color: var(--text-subtle);
-	}
-
-	/* Split: text + photo */
-
-	.split {
-		display: grid;
-		gap: var(--space-columns);
-		align-items: center;
-	}
-
-	.photo {
-		width: 100%;
-		height: auto;
-		aspect-ratio: var(--ratio-photo);
-		object-fit: cover;
-		object-position: 70% 50%;
-		border: var(--border-width) solid var(--border-subtle);
-		border-radius: var(--radius-card);
-	}
-
-	/* Benefits list */
-
-	.benefits {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-4);
-		margin: 0 0 var(--space-6);
-		padding: 0;
-		list-style: none;
-	}
-
-	.benefits__item {
-		display: flex;
-		align-items: flex-start;
-		gap: var(--space-4);
-		padding: var(--space-4) var(--space-card);
-		background: var(--surface-card);
-		border: var(--border-width) solid var(--border-subtle);
-		border-radius: var(--radius-card);
-		transition: border-color var(--duration-ui);
-	}
-
-	.benefits__item:hover { border-color: var(--border-accent); }
-
-	.benefits__icon {
-		display: flex;
-		flex-shrink: 0;
-		align-items: center;
-		justify-content: center;
-		width: var(--space-7);
-		height: var(--space-7);
-		margin-top: var(--space-1);
-		border-radius: var(--radius-pill);
-		background: var(--color-accent);
-		color: var(--color-dark-blue);
-	}
-
-	.benefits__icon svg {
-		width: var(--space-4);
-		height: var(--space-4);
-	}
-
-	.benefits__body {
-		min-width: 0;
-	}
-
-	.benefits__title {
-		margin: 0 0 var(--space-1);
-		font-size: var(--text-base);
-		font-weight: var(--weight-bold);
-		line-height: var(--leading-ui);
-		color: var(--color-white);
-	}
-
-	.benefits__description {
-		margin: 0;
-		font-size: var(--text-sm);
-		line-height: var(--leading-copy);
-		color: var(--text-muted);
-	}
-
-	/* Actions */
-
-	.actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-3);
-		margin-top: var(--space-8);
-	}
-
-	.actions .button {
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-label);
-	}
-
-	.actions--center {
-		justify-content: center;
-	}
-
-	/* Events teaser */
-
-	.events-teaser__header {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-end;
-		justify-content: space-between;
-		gap: var(--space-6) var(--space-8);
-		margin-bottom: var(--space-heading);
-	}
-
-	.events-teaser__action .button {
-		text-transform: uppercase;
-		letter-spacing: var(--tracking-label);
-	}
-
-	.events-grid {
-		display: grid;
-		gap: var(--space-grid);
-	}
-
-	.event-card {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-4);
-		padding: var(--space-card);
-		background: var(--surface-card);
-		border: var(--border-width) solid var(--border-subtle);
-		border-radius: var(--radius-card);
-		transition: border-color var(--duration-ui);
-	}
-
-	.event-card:hover {
-		border-color: var(--border-accent);
-	}
-
-	.event-card__photo {
-		display: block;
-		width: 100%;
-		height: auto;
-		aspect-ratio: var(--ratio-photo);
-		object-fit: cover;
-		border-radius: var(--radius-field);
-	}
-
-	.event-card__body {
-		min-width: 0;
-	}
-
-	.event-card__title {
-		margin: 0 0 var(--space-2);
-		font-size: var(--text-xl);
-		font-weight: var(--weight-display);
-		letter-spacing: -0.02em;
-		line-height: var(--leading-display);
-		text-transform: uppercase;
-	}
-
-	.event-card__text {
-		margin: 0;
-		font-size: var(--text-compact);
-		line-height: var(--leading-copy);
-		color: var(--text-muted);
-	}
-
-	/* Departments */
-
-	.departments {
-		display: grid;
-		gap: var(--space-grid);
-	}
-
-	.department {
-		padding: var(--space-card);
-		background: var(--surface-card);
-		border: var(--border-width) solid var(--border-subtle);
-		border-top: var(--border-width-accent) solid var(--color-accent);
-		border-radius: var(--radius-card);
-	}
-
-	.department__name {
-		margin: 0 0 var(--space-3);
-		font-size: var(--text-lg);
-		font-weight: var(--weight-display);
-		letter-spacing: var(--tracking-label);
-		text-transform: uppercase;
-	}
-
-	.department__text {
-		margin: 0;
-		font-size: var(--text-compact);
-		line-height: var(--leading-copy);
-		color: var(--text-muted);
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-
-	/* Responsive */
-
-	@media (max-width: 639.98px) {
-		.stat { padding-inline: var(--space-1); }
-		.events-teaser__action { width: 100%; }
-		.events-teaser__action .button { width: 100%; }
-	}
-
-	@media (min-width: 640px) {
-		.departments {
-			grid-template-columns: repeat(2, 1fr);
-		}
-
-		.events-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.split {
-			grid-template-columns: 7fr 5fr;
-		}
-
-		/* Six columns so the last two of five cards sit centered under the first three. */
-		.departments {
-			grid-template-columns: repeat(6, 1fr);
-		}
-
-		.department {
-			grid-column: span 2;
-		}
-
-		.department:nth-child(4) {
-			grid-column: 2 / span 2;
-		}
-	}
+	.home-content { padding-block: var(--home-partner-gap) var(--space-section); }
 </style>
