@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
 import Footer from '../components/Footer.astro';
+import FooterContact from '../components/FooterContact.astro';
 import SEOHead from '../components/SEOHead.astro';
 import type { PageSeo } from '../lib/seo/metadata';
 import { securityPolicyVersion } from '../lib/security/policy-version.mjs';
@@ -31,7 +32,7 @@ const { seo } = Astro.props;
 			<AnnouncementBar />
 			<slot />
 		</main>
-		<Footer />
+		<Footer><slot name="footer-contact"><FooterContact /></slot></Footer>
 		<script>
 			import { motionEnabled, onMotionChange } from '../lib/motion';
 

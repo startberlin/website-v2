@@ -1,0 +1,172 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import Icon from './icons/Icon.astro';
+import { departments } from '../data/member-journey';
+
+const eventsExcerpt = 'The Events department is the engine room of START Berlin, bringing the startup ecosystem to life through founder talks, startup and VC visits, workshops, panels, and larger-scale events such as RTSS. We create opportunities for students to connect with founders, investors, and fellow entrepreneurs, turning ideas into meaningful experiences. We value ownership, initiative, and out-of-the-box thinking, empowering every team member to take the lead and bring their ideas to life.';
+
+const homeDepartments = departments.map((department) => {
+	if (department.id === 'events') return { ...department, paragraphs: [eventsExcerpt] };
+	if (department.id === 'partnerships') return { ...department, paragraphs: department.paragraphs.slice(0, 1) };
+	return department;
+});
+---
+
+<section class="home-departments page-container" id="home-departments" aria-labelledby="home-departments-heading">
+	<SectionHeading id="home-departments-heading">
+		Our <span data-outline>departments</span>
+		<Fragment slot="lead">Choose a department to see what you'd work on.</Fragment>
+	</SectionHeading>
+
+	<div class="home-departments__panels">
+		{homeDepartments.map((department, index) => (
+			<details class="department-panel" name="home-department" open={index === 0}>
+				<summary class="department-panel__summary">
+					<span class="department-panel__name">{department.name}</span>
+					<span class="department-panel__chevron" aria-hidden="true"><Icon name="chevron-down" size={18} /></span>
+				</summary>
+				<div class="department-panel__copy">
+					{department.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				</div>
+			</details>
+		))}
+	</div>
+
+	<a class="text-action home-departments__members" href="/members">
+		Browse members
+		<Icon name="arrow-right" />
+	</a>
+</section>
+
+<script>
+	const panels = document.querySelector('.home-departments__panels');
+	const navigation = document.querySelector('.nav');
+
+	panels?.addEventListener('click', (event) => {
+		const summary = event.target instanceof Element ? event.target.closest('summary') : null;
+		if (!summary) return;
+
+		requestAnimationFrame(() => {
+			const headerBottom = navigation?.getBoundingClientRect().bottom ?? 0;
+			// Closing the previous panel can move the opened summary behind the sticky navigation.
+			if (summary.parentElement?.hasAttribute('open') && summary.getBoundingClientRect().top < headerBottom) {
+				summary.scrollIntoView({ block: 'start', behavior: 'instant' });
+			}
+		});
+	});
+</script>
+
+<style>
+	.home-departments { container: home-departments / inline-size; }
+
+	.home-departments__panels {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2);
+	}
+
+	.department-panel {
+		min-inline-size: 0;
+		border: var(--border-width) solid var(--border-default);
+		border-radius: var(--radius-card);
+		background: var(--surface-floating);
+	}
+
+	.department-panel:has(> .department-panel__summary:hover) { border-color: var(--color-accent); }
+
+	.department-panel[open] {
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+	}
+
+	.department-panel__summary {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-4);
+		min-block-size: var(--control-height);
+		padding: var(--space-card);
+		border-radius: var(--radius-card);
+		list-style: none;
+		cursor: pointer;
+	}
+
+	.department-panel__summary::-webkit-details-marker { display: none; }
+
+	.department-panel__name {
+		font-size: var(--text-2xl);
+		font-weight: var(--weight-display);
+		line-height: var(--leading-display);
+		text-transform: uppercase;
+	}
+
+	.department-panel__chevron {
+		display: grid;
+		flex: none;
+		place-items: center;
+		inline-size: var(--space-8);
+		block-size: var(--space-8);
+		border: var(--border-width) solid currentColor;
+		border-radius: var(--radius-pill);
+	}
+
+	.department-panel[open] .department-panel__chevron { transform: rotate(180deg); }
+
+	.department-panel__copy {
+		margin-inline: var(--space-card);
+		padding-block: var(--space-4);
+		border-block-start: var(--border-width) solid currentColor;
+	}
+
+	.department-panel__copy p {
+		max-inline-size: var(--layout-reading);
+		margin: 0;
+		font-size: var(--text-base);
+		line-height: var(--leading-copy);
+	}
+
+	.department-panel__copy p + p { margin-block-start: var(--space-4); }
+
+	.home-departments__members { margin-block-start: var(--space-2); }
+
+	@container home-departments (min-width: 58rem) {
+		.home-departments__panels { flex-direction: row; }
+		.home-departments__panels:has(> [open]) { min-block-size: 18rem; }
+
+		.department-panel { flex: 1 1 var(--space-16); }
+		.department-panel[open] { flex-grow: 7; }
+
+		.department-panel[open] .department-panel__name { font-size: var(--text-4xl); }
+
+		.home-departments__panels:has(> [open]) .department-panel:not([open]) .department-panel__summary {
+			flex-direction: column-reverse;
+			gap: var(--space-2);
+			block-size: 100%;
+			padding-block: var(--space-3);
+		}
+
+		.home-departments__panels:has(> [open]) .department-panel:not([open]) .department-panel__name {
+			font-size: var(--text-lg);
+			writing-mode: vertical-rl;
+			transform: rotate(180deg);
+		}
+
+		.department-panel:not([open]) .department-panel__chevron { transform: rotate(-90deg); }
+	}
+
+	@keyframes reveal-department {
+		from { transform: translateY(var(--space-2)); }
+		to { transform: translateY(0); }
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.department-panel[open] .department-panel__copy {
+			animation: reveal-department var(--duration-panel) ease-out;
+		}
+	}
+
+	@media (forced-colors: active) {
+		.department-panel[open] { border-color: Highlight; }
+	}
+</style>

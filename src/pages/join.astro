@@ -251,21 +251,20 @@ const faqs: { question: string; answer: string }[] = [
 				}
 			</div>
 		</section>
-
-		<section class="banner" aria-labelledby="join-contact-heading">
-			<Image src={teamPhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" format="webp" loading="lazy" class="banner__image" />
-			<div class="banner__shade" aria-hidden="true"></div>
-			<div class="banner__content page-container">
-				<SectionHeading id="join-contact-heading" flush>
-					Get in <span data-outline>touch</span>
-					<Fragment slot="lead">Ask us about eligibility or the application process.</Fragment>
-				</SectionHeading>
-				<div class="actions">
-					<a href={links.contact} class="button button--outline">Contact us <Icon name="arrow-right" size={16} /></a>
-				</div>
-			</div>
-		</section>
 	</div>
+	<section slot="footer-contact" class="banner" id="get-in-touch" aria-labelledby="join-contact-heading">
+		<Image src={teamPhoto} alt="" widths={[640, 1080, 1600, 2400]} sizes="100vw" format="webp" loading="lazy" class="banner__image" />
+		<div class="banner__shade" aria-hidden="true"></div>
+		<div class="banner__content page-container">
+			<SectionHeading id="join-contact-heading" flush>
+				Get in <span data-outline>touch</span>
+				<Fragment slot="lead">Ask us about eligibility or the application process.</Fragment>
+			</SectionHeading>
+			<div class="actions">
+				<a href={links.contact} class="button button--outline">Contact us <Icon name="arrow-right" size={16} /></a>
+			</div>
+		</div>
+	</section>
 </Layout>
 
 <style>

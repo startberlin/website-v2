@@ -1,0 +1,160 @@
+---
+import { Image } from 'astro:assets';
+import SectionHeading from './SectionHeading.astro';
+import memberGroup from '../assets/member-journey/start-berlin-member-journey-group.jpg';
+import workingTogether from '../assets/home/working-together.jpg';
+import langdockVisit from '../assets/member-journey/langdock-visit.jpg';
+
+const benefits = [
+	{
+		title: 'Make friends across Berlin',
+		text: 'Get to know students outside your own university. At our internal events and the START Hut Weekend, you get to spend time together away from project meetings.',
+		photo: memberGroup,
+		alt: 'START Berlin members making the START hand sign in a group photo',
+		position: '50% 45%',
+	},
+	{
+		title: 'Coworking and member perks',
+		text: 'Use coworking space to work alongside other STARTies. Members also get selected subscriptions for free.',
+		photo: workingTogether,
+		alt: 'Students working on laptops around a shared table',
+		position: '50% 48%',
+		accent: true,
+	},
+	{
+		title: 'Meet founders and investors',
+		text: 'On startup and VC visits, ask founders how they got started or find out what investors look for in a pitch.',
+		photo: langdockVisit,
+		alt: 'Two guests on stage talking with an audience of students',
+		position: '50% 20%',
+	},
+];
+---
+
+<section class="membership page-container" id="membership-benefits" aria-labelledby="home-why-join-heading">
+	<div class="membership__layout">
+		<div class="membership__intro">
+			<SectionHeading id="home-why-join-heading">
+				What you get as a <span data-outline>member</span>
+				<Fragment slot="lead">Open to students at any university in Berlin or Potsdam.</Fragment>
+			</SectionHeading>
+		</div>
+
+		<ul class="membership__cards" role="list">
+			{benefits.map((benefit) => (
+				<li class:list={['membership__card', { 'membership__card--accent': benefit.accent }]}>
+					<div class="membership__frame">
+						<Image
+							src={benefit.photo}
+							alt={benefit.alt}
+							widths={[400, 720, 1080, 1440]}
+							sizes="(min-width: 52rem) min(56vw, 46rem), 100vw"
+							format="webp"
+							loading="lazy"
+							class="membership__photo"
+							style={`--membership-photo-position: ${benefit.position}`}
+						/>
+					</div>
+					<div class="membership__copy">
+						<h3>{benefit.title}</h3>
+						<p>{benefit.text}</p>
+					</div>
+				</li>
+			))}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.membership { container: membership / inline-size; }
+
+	.membership__layout {
+		display: grid;
+		align-items: start;
+		gap: var(--space-columns);
+	}
+
+	.membership__cards {
+		isolation: isolate;
+		min-inline-size: 0;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.membership__card {
+		overflow: clip;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		background: var(--surface-floating);
+	}
+
+	.membership__card + .membership__card { margin-block-start: var(--space-grid); }
+
+	.membership__card--accent {
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+	}
+
+	.membership__frame {
+		inline-size: 100%;
+		overflow: clip;
+		aspect-ratio: var(--ratio-photo);
+	}
+
+	.membership__photo {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: var(--membership-photo-position);
+	}
+
+	.membership__copy { padding: var(--space-card); }
+
+	.membership__copy h3 {
+		margin: 0 0 var(--space-2);
+		font-size: var(--text-4xl);
+		font-weight: var(--weight-display);
+		line-height: var(--leading-display);
+		letter-spacing: -0.025em;
+		text-wrap: balance;
+	}
+
+	.membership__copy p {
+		max-inline-size: var(--layout-reading);
+		margin: 0;
+		color: var(--text-copy);
+		font-size: var(--text-base);
+		line-height: var(--leading-copy);
+	}
+
+	.membership__card--accent p { color: inherit; }
+
+	@container membership (min-width: 48rem) {
+		.membership__layout { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+	}
+
+	@media (min-height: 42rem) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+		@container membership (min-width: 52rem) {
+			.membership__intro,
+			.membership__card {
+				position: sticky;
+				inset-block-start: calc(var(--header-height) + var(--space-6));
+			}
+
+			.membership__card:nth-child(2) {
+				inset-block-start: calc(var(--header-height) + var(--space-6) + var(--space-3));
+				margin-inline-start: var(--space-3);
+			}
+
+			.membership__card:nth-child(3) {
+				inset-block-start: calc(var(--header-height) + var(--space-6) + var(--space-6));
+				margin-inline-start: var(--space-6);
+			}
+
+			.membership__frame { max-block-size: 42svh; }
+		}
+	}
+</style>

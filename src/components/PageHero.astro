@@ -147,6 +147,10 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 	.page-hero--landing { min-height: calc(100svh - var(--header-height) - var(--announcement-height)); }
 	.page-hero--landing .page-hero__content { padding-block-end: var(--home-partner-gap); }
 
+	@media (max-width: 639.98px) {
+		.page-hero--landing .page-hero__title { font-size: var(--type-hero-landing-mobile); }
+	}
+
 	@media (forced-colors: active) {
 		.page-hero__title span + span {
 			-webkit-text-stroke: 0;
