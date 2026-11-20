@@ -1,6 +1,7 @@
 ---
 import Icon from './icons/Icon.astro';
-import FooterContact from './FooterContact.astro';
+import NewsletterSignup from './NewsletterSignup.astro';
+import homeNewsletterPhoto from '../assets/member-journey/start-x-sap-crowd.jpg';
 
 interface Props {
 	donationUrl?: string;
@@ -20,8 +21,8 @@ const socials = [
 ---
 
 <footer class="footer">
-	<FooterContact />
 	<slot />
+	<NewsletterSignup photo={currentPath === '' ? homeNewsletterPhoto : undefined} />
 	<div class="footer__details page-container">
 		<div class="footer__row">
 			<div class="footer__donation" id="footer-donation-status">

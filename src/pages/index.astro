@@ -11,9 +11,7 @@ import MembershipBenefits from '../components/MembershipBenefits.astro';
 import HomeEvents from '../components/HomeEvents.astro';
 import HomeDepartments from '../components/HomeDepartments.astro';
 import MemberStories from '../components/MemberStories.astro';
-import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { pageSeo } from '../lib/seo/pages';
-import newsletterPhoto from '../assets/member-journey/start-x-sap-crowd.jpg';
 ---
 
 <Layout seo={pageSeo('/')}>
@@ -47,7 +45,6 @@ import newsletterPhoto from '../assets/member-journey/start-x-sap-crowd.jpg';
 
 		<MemberStories />
 	</div>
-	<NewsletterSignup slot="footer-content" photo={newsletterPhoto} />
 </Layout>
 
 <style>
