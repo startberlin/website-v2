@@ -1,0 +1,3854 @@
+[
+  {
+    "path": "/members",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-hero__content page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "filters__inner page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "groups page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320,
+    "controls": {
+      "offset": "587.611px",
+      "position": "sticky",
+      "searchWidth": 255.9943084716797
+    }
+  },
+  {
+    "path": "/members/antonia-hill",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 128.9985809326172,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "text": "LinkedIn for Antonia Hill (opens in a new tab)",
+        "width": 255.9943084716797
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "text": "Email Antonia Hill at antonia.hill@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 255.9943084716797,
+        "loaded": true,
+        "width": 255.9943084716797
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320
+  },
+  {
+    "path": "/members/julia-palm",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 128.9985809326172,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "text": "LinkedIn for Julia Palm (opens in a new tab)",
+        "width": 255.9943084716797
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "text": "Email Julia Palm at julia.palm@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 255.9943084716797,
+        "loaded": true,
+        "width": 255.9943084716797
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320
+  },
+  {
+    "path": "/members/kari-pele-streithoff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 128.9985809326172,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "text": "LinkedIn for Kari-Pele Streithoff (opens in a new tab)",
+        "width": 255.9943084716797
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "text": "Email Kari-Pele Streithoff at kari-pele.streithoff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 255.9943084716797,
+        "loaded": true,
+        "width": 255.9943084716797
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320
+  },
+  {
+    "path": "/members/tobias-burger",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 128.9985809326172,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "text": "LinkedIn for Tobias Burger (opens in a new tab)",
+        "width": 255.9943084716797
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "text": "Email Tobias Burger at tobias.burger@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 255.9943084716797,
+        "loaded": true,
+        "width": 255.9943084716797
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320
+  },
+  {
+    "path": "/members/jannik-schaefer",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 128.9985809326172,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 255.9943084716797
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 255.9943084716797,
+        "loaded": true,
+        "width": 255.9943084716797
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320
+  },
+  {
+    "path": "/members/anna-brinkkoetter",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 128.9985809326172,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "text": "LinkedIn for Anna Brinkkötter (opens in a new tab)",
+        "width": 255.9943084716797
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "text": "Email Anna Brinkkötter at anna.brinkkoetter@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 255.9943084716797,
+        "loaded": true,
+        "width": 255.9943084716797
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320
+  },
+  {
+    "path": "/members/rhema-tamunoiyowuna",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 128.9985809326172,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "text": "LinkedIn for Rhema Tamunoiyowuna (opens in a new tab)",
+        "width": 255.9943084716797
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "text": "Email Rhema Tamunoiyowuna at rhema.tamunoiyowuna@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 255.9943084716797,
+        "loaded": true,
+        "width": 255.9943084716797
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320
+  },
+  {
+    "path": "/members/rocco-yohji-matthew-krippendorff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 128.9985809326172,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "text": "LinkedIn for Rocco Yohji Matthew Krippendorff (opens in a new tab)",
+        "width": 255.9943084716797
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "text": "Email Rocco Yohji Matthew Krippendorff at rocco.krippendorff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 255.9943084716797,
+        "loaded": true,
+        "width": 255.9943084716797
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 287.9971466064453
+      }
+    ],
+    "width": 320
+  },
+  {
+    "path": "/members",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [],
+    "h1": 1,
+    "height": 844,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-hero__content page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "filters__inner page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "groups page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      }
+    ],
+    "width": 390,
+    "controls": {
+      "offset": "587.611px",
+      "position": "sticky",
+      "searchWidth": 325.9942932128906
+    }
+  },
+  {
+    "path": "/members/antonia-hill",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "text": "LinkedIn for Antonia Hill (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "text": "Email Antonia Hill at antonia.hill@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 844,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      }
+    ],
+    "width": 390
+  },
+  {
+    "path": "/members/julia-palm",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "text": "LinkedIn for Julia Palm (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "text": "Email Julia Palm at julia.palm@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 844,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      }
+    ],
+    "width": 390
+  },
+  {
+    "path": "/members/kari-pele-streithoff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "text": "LinkedIn for Kari-Pele Streithoff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "text": "Email Kari-Pele Streithoff at kari-pele.streithoff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 844,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      }
+    ],
+    "width": 390
+  },
+  {
+    "path": "/members/tobias-burger",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "text": "LinkedIn for Tobias Burger (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "text": "Email Tobias Burger at tobias.burger@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 844,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      }
+    ],
+    "width": 390
+  },
+  {
+    "path": "/members/jannik-schaefer",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 844,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      }
+    ],
+    "width": 390
+  },
+  {
+    "path": "/members/anna-brinkkoetter",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "text": "LinkedIn for Anna Brinkkötter (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "text": "Email Anna Brinkkötter at anna.brinkkoetter@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 844,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      }
+    ],
+    "width": 390
+  },
+  {
+    "path": "/members/rhema-tamunoiyowuna",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "text": "LinkedIn for Rhema Tamunoiyowuna (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "text": "Email Rhema Tamunoiyowuna at rhema.tamunoiyowuna@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 844,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      }
+    ],
+    "width": 390
+  },
+  {
+    "path": "/members/rocco-yohji-matthew-krippendorff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "text": "LinkedIn for Rocco Yohji Matthew Krippendorff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "text": "Email Rocco Yohji Matthew Krippendorff at rocco.krippendorff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 844,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "profile page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      },
+      {
+        "class": "page-container",
+        "left": 32.002838134765625,
+        "right": 357.99713134765625
+      }
+    ],
+    "width": 390
+  },
+  {
+    "path": "/members",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [],
+    "h1": 1,
+    "height": 1024,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-hero__content page-container",
+        "left": 48.0042610168457,
+        "right": 720.1846199035645
+      },
+      {
+        "class": "filters__inner page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "groups page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      }
+    ],
+    "width": 768,
+    "controls": {
+      "offset": "587.611px",
+      "position": "sticky",
+      "searchWidth": 672.1803588867188
+    }
+  },
+  {
+    "path": "/members/antonia-hill",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "text": "LinkedIn for Antonia Hill (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "text": "Email Antonia Hill at antonia.hill@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1024,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      }
+    ],
+    "width": 768
+  },
+  {
+    "path": "/members/julia-palm",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "text": "LinkedIn for Julia Palm (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "text": "Email Julia Palm at julia.palm@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1024,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      }
+    ],
+    "width": 768
+  },
+  {
+    "path": "/members/kari-pele-streithoff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "text": "LinkedIn for Kari-Pele Streithoff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "text": "Email Kari-Pele Streithoff at kari-pele.streithoff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1024,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      }
+    ],
+    "width": 768
+  },
+  {
+    "path": "/members/tobias-burger",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "text": "LinkedIn for Tobias Burger (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "text": "Email Tobias Burger at tobias.burger@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1024,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      }
+    ],
+    "width": 768
+  },
+  {
+    "path": "/members/jannik-schaefer",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1024,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      }
+    ],
+    "width": 768
+  },
+  {
+    "path": "/members/anna-brinkkoetter",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "text": "LinkedIn for Anna Brinkkötter (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "text": "Email Anna Brinkkötter at anna.brinkkoetter@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1024,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      }
+    ],
+    "width": 768
+  },
+  {
+    "path": "/members/rhema-tamunoiyowuna",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "text": "LinkedIn for Rhema Tamunoiyowuna (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "text": "Email Rhema Tamunoiyowuna at rhema.tamunoiyowuna@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1024,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      }
+    ],
+    "width": 768
+  },
+  {
+    "path": "/members/rocco-yohji-matthew-krippendorff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "text": "LinkedIn for Rocco Yohji Matthew Krippendorff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "text": "Email Rocco Yohji Matthew Krippendorff at rocco.krippendorff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1024,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 720.1775169372559
+      }
+    ],
+    "width": 768
+  },
+  {
+    "path": "/members",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-hero__content page-container",
+        "left": 64.00567626953125,
+        "right": 960.5468139648438
+      },
+      {
+        "class": "filters__inner page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "groups page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024,
+    "controls": {
+      "offset": "587.611px",
+      "position": "sticky",
+      "searchWidth": 896.5411376953125
+    }
+  },
+  {
+    "path": "/members/antonia-hill",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "text": "LinkedIn for Antonia Hill (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "text": "Email Antonia Hill at antonia.hill@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/julia-palm",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "text": "LinkedIn for Julia Palm (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "text": "Email Julia Palm at julia.palm@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/kari-pele-streithoff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "text": "LinkedIn for Kari-Pele Streithoff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "text": "Email Kari-Pele Streithoff at kari-pele.streithoff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/tobias-burger",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "text": "LinkedIn for Tobias Burger (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "text": "Email Tobias Burger at tobias.burger@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/jannik-schaefer",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/anna-brinkkoetter",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "text": "LinkedIn for Anna Brinkkötter (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "text": "Email Anna Brinkkötter at anna.brinkkoetter@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/rhema-tamunoiyowuna",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "text": "LinkedIn for Rhema Tamunoiyowuna (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "text": "Email Rhema Tamunoiyowuna at rhema.tamunoiyowuna@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/rocco-yohji-matthew-krippendorff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "text": "LinkedIn for Rocco Yohji Matthew Krippendorff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "text": "Email Rocco Yohji Matthew Krippendorff at rocco.krippendorff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-hero__content page-container",
+        "left": 64.00567626953125,
+        "right": 1216.0014038085938
+      },
+      {
+        "class": "filters__inner page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "groups page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      }
+    ],
+    "width": 1280,
+    "controls": {
+      "offset": "363.619px",
+      "position": "sticky",
+      "searchWidth": 466.2144775390625
+    }
+  },
+  {
+    "path": "/members/antonia-hill",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "text": "LinkedIn for Antonia Hill (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "text": "Email Antonia Hill at antonia.hill@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      }
+    ],
+    "width": 1280
+  },
+  {
+    "path": "/members/julia-palm",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "text": "LinkedIn for Julia Palm (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "text": "Email Julia Palm at julia.palm@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      }
+    ],
+    "width": 1280
+  },
+  {
+    "path": "/members/kari-pele-streithoff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "text": "LinkedIn for Kari-Pele Streithoff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "text": "Email Kari-Pele Streithoff at kari-pele.streithoff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      }
+    ],
+    "width": 1280
+  },
+  {
+    "path": "/members/tobias-burger",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "text": "LinkedIn for Tobias Burger (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "text": "Email Tobias Burger at tobias.burger@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      }
+    ],
+    "width": 1280
+  },
+  {
+    "path": "/members/jannik-schaefer",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      }
+    ],
+    "width": 1280
+  },
+  {
+    "path": "/members/anna-brinkkoetter",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "text": "LinkedIn for Anna Brinkkötter (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "text": "Email Anna Brinkkötter at anna.brinkkoetter@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      }
+    ],
+    "width": 1280
+  },
+  {
+    "path": "/members/rhema-tamunoiyowuna",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "text": "LinkedIn for Rhema Tamunoiyowuna (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "text": "Email Rhema Tamunoiyowuna at rhema.tamunoiyowuna@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      }
+    ],
+    "width": 1280
+  },
+  {
+    "path": "/members/rocco-yohji-matthew-krippendorff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "text": "LinkedIn for Rocco Yohji Matthew Krippendorff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "text": "Email Rocco Yohji Matthew Krippendorff at rocco.krippendorff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 900,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1215.9943046569824
+      }
+    ],
+    "width": 1280
+  },
+  {
+    "path": "/members",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [],
+    "h1": 1,
+    "height": 1000,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-hero__content page-container",
+        "left": 64.00567626953125,
+        "right": 1376.0014038085938
+      },
+      {
+        "class": "filters__inner page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "groups page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      }
+    ],
+    "width": 1440,
+    "controls": {
+      "offset": "363.619px",
+      "position": "sticky",
+      "searchWidth": 626.2144775390625
+    }
+  },
+  {
+    "path": "/members/antonia-hill",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "text": "LinkedIn for Antonia Hill (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "text": "Email Antonia Hill at antonia.hill@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1000,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "path": "/members/julia-palm",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "text": "LinkedIn for Julia Palm (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "text": "Email Julia Palm at julia.palm@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1000,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "path": "/members/kari-pele-streithoff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "text": "LinkedIn for Kari-Pele Streithoff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "text": "Email Kari-Pele Streithoff at kari-pele.streithoff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1000,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "path": "/members/tobias-burger",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "text": "LinkedIn for Tobias Burger (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "text": "Email Tobias Burger at tobias.burger@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1000,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "path": "/members/jannik-schaefer",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1000,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "path": "/members/anna-brinkkoetter",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "text": "LinkedIn for Anna Brinkkötter (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "text": "Email Anna Brinkkötter at anna.brinkkoetter@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1000,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "path": "/members/rhema-tamunoiyowuna",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "text": "LinkedIn for Rhema Tamunoiyowuna (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "text": "Email Rhema Tamunoiyowuna at rhema.tamunoiyowuna@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1000,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "path": "/members/rocco-yohji-matthew-krippendorff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "text": "LinkedIn for Rocco Yohji Matthew Krippendorff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "text": "Email Rocco Yohji Matthew Krippendorff at rocco.krippendorff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1000,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1375.9943046569824
+      }
+    ],
+    "width": 1440
+  },
+  {
+    "path": "/members",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [],
+    "h1": 1,
+    "height": 1080,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-hero__content page-container",
+        "left": 64.00567626953125,
+        "right": 1856.0014038085935
+      },
+      {
+        "class": "filters__inner page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "groups page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      }
+    ],
+    "width": 1920,
+    "controls": {
+      "offset": "363.619px",
+      "position": "sticky",
+      "searchWidth": 1106.2144775390625
+    }
+  },
+  {
+    "path": "/members/antonia-hill",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "text": "LinkedIn for Antonia Hill (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "text": "Email Antonia Hill at antonia.hill@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1080,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      }
+    ],
+    "width": 1920
+  },
+  {
+    "path": "/members/julia-palm",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "text": "LinkedIn for Julia Palm (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "text": "Email Julia Palm at julia.palm@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1080,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      }
+    ],
+    "width": 1920
+  },
+  {
+    "path": "/members/kari-pele-streithoff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "text": "LinkedIn for Kari-Pele Streithoff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "text": "Email Kari-Pele Streithoff at kari-pele.streithoff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1080,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      }
+    ],
+    "width": 1920
+  },
+  {
+    "path": "/members/tobias-burger",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "text": "LinkedIn for Tobias Burger (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "text": "Email Tobias Burger at tobias.burger@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1080,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      }
+    ],
+    "width": 1920
+  },
+  {
+    "path": "/members/jannik-schaefer",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1080,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      }
+    ],
+    "width": 1920
+  },
+  {
+    "path": "/members/anna-brinkkoetter",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "text": "LinkedIn for Anna Brinkkötter (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "text": "Email Anna Brinkkötter at anna.brinkkoetter@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1080,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      }
+    ],
+    "width": 1920
+  },
+  {
+    "path": "/members/rhema-tamunoiyowuna",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "text": "LinkedIn for Rhema Tamunoiyowuna (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "text": "Email Rhema Tamunoiyowuna at rhema.tamunoiyowuna@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1080,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      }
+    ],
+    "width": 1920
+  },
+  {
+    "path": "/members/rocco-yohji-matthew-krippendorff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "text": "LinkedIn for Rocco Yohji Matthew Krippendorff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "text": "Email Rocco Yohji Matthew Krippendorff at rocco.krippendorff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 1080,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 1855.9943046569824
+      }
+    ],
+    "width": 1920
+  },
+  {
+    "path": "/members",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [],
+    "h1": 1,
+    "height": 390,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-hero__content page-container",
+        "left": 48.0042610168457,
+        "right": 796.548267364502
+      },
+      {
+        "class": "filters__inner page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "groups page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      }
+    ],
+    "width": 844,
+    "controls": {
+      "offset": "192px",
+      "position": "static",
+      "searchWidth": 748.5440063476562
+    }
+  },
+  {
+    "path": "/members/antonia-hill",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "text": "LinkedIn for Antonia Hill (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "text": "Email Antonia Hill at antonia.hill@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 390,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      }
+    ],
+    "width": 844
+  },
+  {
+    "path": "/members/julia-palm",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "text": "LinkedIn for Julia Palm (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "text": "Email Julia Palm at julia.palm@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 390,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      }
+    ],
+    "width": 844
+  },
+  {
+    "path": "/members/kari-pele-streithoff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "text": "LinkedIn for Kari-Pele Streithoff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "text": "Email Kari-Pele Streithoff at kari-pele.streithoff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 390,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      }
+    ],
+    "width": 844
+  },
+  {
+    "path": "/members/tobias-burger",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "text": "LinkedIn for Tobias Burger (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "text": "Email Tobias Burger at tobias.burger@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 390,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      }
+    ],
+    "width": 844
+  },
+  {
+    "path": "/members/jannik-schaefer",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 390,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      }
+    ],
+    "width": 844
+  },
+  {
+    "path": "/members/anna-brinkkoetter",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "text": "LinkedIn for Anna Brinkkötter (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "text": "Email Anna Brinkkötter at anna.brinkkoetter@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 390,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      }
+    ],
+    "width": 844
+  },
+  {
+    "path": "/members/rhema-tamunoiyowuna",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "text": "LinkedIn for Rhema Tamunoiyowuna (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "text": "Email Rhema Tamunoiyowuna at rhema.tamunoiyowuna@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 390,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      }
+    ],
+    "width": 844
+  },
+  {
+    "path": "/members/rocco-yohji-matthew-krippendorff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "text": "LinkedIn for Rocco Yohji Matthew Krippendorff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "text": "Email Rocco Yohji Matthew Krippendorff at rocco.krippendorff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 390,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "profile page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      },
+      {
+        "class": "page-container",
+        "left": 47.99715805053711,
+        "right": 796.5411643981934
+      }
+    ],
+    "width": 844
+  },
+  {
+    "path": "/members",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [],
+    "h1": 1,
+    "height": 768,
+    "main": 1,
+    "overflow": false,
+    "portrait": [],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-hero__content page-container",
+        "left": 64.00567626953125,
+        "right": 960.5468139648438
+      },
+      {
+        "class": "filters__inner page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "groups page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024,
+    "controls": {
+      "offset": "587.611px",
+      "position": "sticky",
+      "searchWidth": 896.5411376953125
+    }
+  },
+  {
+    "path": "/members/antonia-hill",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/antonia25/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=antonia-hill",
+        "text": "LinkedIn for Antonia Hill (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:antonia.hill@start-berlin.com",
+        "text": "Email Antonia Hill at antonia.hill@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 768,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/julia-palm",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/julia-palm-21a649269/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=julia-palm",
+        "text": "LinkedIn for Julia Palm (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:julia.palm@start-berlin.com",
+        "text": "Email Julia Palm at julia.palm@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 768,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/kari-pele-streithoff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/kari-pel%C3%A9-streithoff-9ba6272a9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=kari-pele-streithoff",
+        "text": "LinkedIn for Kari-Pele Streithoff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:kari-pele.streithoff@start-berlin.com",
+        "text": "Email Kari-Pele Streithoff at kari-pele.streithoff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 768,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/tobias-burger",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/tburgerber/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=tobias-burger",
+        "text": "LinkedIn for Tobias Burger (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:tobias.burger@start-berlin.com",
+        "text": "Email Tobias Burger at tobias.burger@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 768,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/jannik-schaefer",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+        "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:jannik.schaefer@start-berlin.com",
+        "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 768,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/anna-brinkkoetter",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/anna-brinkk%C3%B6tter-4969843b9/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=anna-brinkkoetter",
+        "text": "LinkedIn for Anna Brinkkötter (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:anna.brinkkoetter@start-berlin.com",
+        "text": "Email Anna Brinkkötter at anna.brinkkoetter@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 768,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/rhema-tamunoiyowuna",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rhema-tamunoiyowuna/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rhema-tamunoiyowuna",
+        "text": "LinkedIn for Rhema Tamunoiyowuna (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rhema.tamunoiyowuna@start-berlin.com",
+        "text": "Email Rhema Tamunoiyowuna at rhema.tamunoiyowuna@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 768,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  },
+  {
+    "path": "/members/rocco-yohji-matthew-krippendorff",
+    "font": "32px",
+    "clipped": [],
+    "contacts": [
+      {
+        "height": 89.00567626953125,
+        "href": "https://www.linkedin.com/in/rocco-krippendorff-931b70388/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=rocco-yohji-matthew-krippendorff",
+        "text": "LinkedIn for Rocco Yohji Matthew Krippendorff (opens in a new tab)",
+        "width": 281.491455078125
+      },
+      {
+        "height": 89.00567626953125,
+        "href": "mailto:rocco.krippendorff@start-berlin.com",
+        "text": "Email Rocco Yohji Matthew Krippendorff at rocco.krippendorff@start-berlin.com",
+        "width": 199.16192626953125
+      }
+    ],
+    "h1": 1,
+    "height": 768,
+    "main": 1,
+    "overflow": false,
+    "portrait": [
+      {
+        "height": 320,
+        "loaded": true,
+        "width": 320
+      }
+    ],
+    "regions": [
+      {
+        "class": "nav__bar page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "profile page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      },
+      {
+        "class": "page-container",
+        "left": 63.99857711791992,
+        "right": 960.5397148132324
+      }
+    ],
+    "width": 1024
+  }
+]

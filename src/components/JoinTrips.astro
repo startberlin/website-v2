@@ -1,0 +1,160 @@
+---
+import { Image } from 'astro:assets';
+import Icon from './icons/Icon.astro';
+import SectionHeading from './SectionHeading.astro';
+import communityPhoto from '../assets/join/legacy-community-evening.jpg';
+import summitPhoto from '../assets/join/legacy-road-to-start-summit.jpg';
+
+const trips = [
+	{
+		title: 'START Hut Weekend',
+		text: "Spend a weekend away with the Berlin team and get to know the people you'll work with during the START Sprint.",
+		photo: communityPhoto,
+		alt: 'A group of people posing together around a long dining table',
+	},
+	{
+		title: 'START Summit',
+		text: 'Meet founders and students from across the START Network at its entrepreneurship conference in St. Gallen, Switzerland.',
+		photo: summitPhoto,
+		alt: 'Attendees talking in a blue-lit event space',
+		href: 'https://www.startglobal.org/start-summit',
+	},
+];
+---
+
+<section class="trips page-container" id="trips" aria-labelledby="join-trips-heading" data-join-trips>
+	<div class="trips__header">
+		<SectionHeading id="join-trips-heading" flush>
+			Trips with <span data-outline>START</span>
+		</SectionHeading>
+		<div class="trips__controls" data-trip-controls hidden>
+			<button class="icon-action" type="button" aria-label="Previous trip" aria-controls="join-trips-rail" aria-disabled="true">
+				<Icon name="arrow-left" size={20} />
+			</button>
+			<button class="icon-action" type="button" aria-label="Next trip" aria-controls="join-trips-rail">
+				<Icon name="arrow-right" size={20} />
+			</button>
+		</div>
+	</div>
+	<div class="trips__rail" id="join-trips-rail" tabindex="0" role="group" aria-label="Trip cards, scroll horizontally">
+		{trips.map((trip) => (
+			<article class="trip">
+				<Image
+					src={trip.photo}
+					alt={trip.alt}
+					widths={[640, 1080, 1600]}
+					sizes="(min-width: 1344px) 717px, (min-width: 720px) 56vw, 85vw"
+					format="webp"
+					loading="lazy"
+					class="trip__photo"
+				/>
+				<div class="trip__body">
+					<h3>{trip.title}</h3>
+					<p>{trip.text}</p>
+					{trip.href && <a class="text-action" href={trip.href}>START Summit details <Icon name="arrow-up-right" size={16} /></a>}
+				</div>
+			</article>
+		))}
+	</div>
+</section>
+
+<script>
+	const trips = document.querySelector('[data-join-trips]');
+	const rail = trips?.querySelector<HTMLElement>('#join-trips-rail');
+	const controls = trips?.querySelector<HTMLElement>('[data-trip-controls]');
+	if (rail && controls) {
+		const [previous, next] = controls.querySelectorAll('button');
+		const updateControls = () => {
+			const maxScroll = rail.scrollWidth - rail.clientWidth;
+			previous.setAttribute('aria-disabled', String(rail.scrollLeft < 1));
+			next.setAttribute('aria-disabled', String(rail.scrollLeft >= maxScroll - 1));
+		};
+
+		previous.addEventListener('click', () => rail.scrollTo({ left: 0 }));
+		next.addEventListener('click', () => rail.scrollTo({ left: rail.scrollWidth - rail.clientWidth }));
+		rail.addEventListener('scroll', updateControls, { passive: true });
+		new ResizeObserver(updateControls).observe(rail);
+		updateControls();
+		controls.hidden = false;
+	}
+</script>
+
+<style>
+	.trips {
+		container: join-trips / inline-size;
+	}
+
+	.trips__header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: end;
+		justify-content: space-between;
+		gap: var(--space-4) var(--space-6);
+		margin-block-end: var(--space-heading);
+	}
+
+	.trips__controls {
+		display: flex;
+		gap: var(--space-2);
+	}
+
+	.trips__controls button {
+		border: var(--border-width) solid var(--border-control);
+	}
+
+	.trips__rail {
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: 85%;
+		gap: var(--space-grid);
+		padding-block-end: var(--space-3);
+		overflow-x: auto;
+		scroll-snap-type: x proximity;
+		scrollbar-color: var(--border-control) var(--surface-control);
+	}
+
+	.trip {
+		min-width: 0;
+		overflow: hidden;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		background: var(--surface-card);
+		scroll-snap-align: start;
+	}
+
+	.trip:last-child { scroll-snap-align: end; }
+
+	.trip__photo {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--ratio-photo);
+		object-fit: cover;
+	}
+
+	.trip__body { padding: var(--space-card); }
+
+	.trip__body h3 {
+		margin: 0;
+		font-size: var(--text-3xl);
+		font-weight: var(--weight-display);
+		line-height: var(--leading-display);
+	}
+
+	.trip__body p {
+		margin: var(--space-3) 0 0;
+		font-size: var(--text-base);
+		line-height: var(--leading-copy);
+		color: var(--text-copy);
+	}
+
+	.trip__body .text-action { margin-block-start: var(--space-2); }
+
+	@container join-trips (min-width: 42rem) {
+		.trips__rail { grid-auto-columns: 56%; }
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.trips__rail { scroll-behavior: smooth; }
+	}
+</style>

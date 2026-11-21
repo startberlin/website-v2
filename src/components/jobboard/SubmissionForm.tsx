@@ -191,7 +191,7 @@ export function SubmissionForm() {
 					the email address you provided to agree on publication terms and any
 					referral-based fee before the role goes live.
 				</p>
-				<a className="jb-button jb-button-dark" href="/jobs">
+				<a className="button" href="/jobs">
 					Back to jobs ↗
 				</a>
 			</section>
@@ -214,6 +214,7 @@ export function SubmissionForm() {
 						<label htmlFor="company.name">Company name</label>
 						<input
 							{...register("company.name")}
+							className="ui-control"
 							{...inputProps("company.name")}
 							autoComplete="organization"
 							maxLength={160}
@@ -225,6 +226,7 @@ export function SubmissionForm() {
 						<label htmlFor="company.website">Company website</label>
 						<input
 							{...register("company.website")}
+							className="ui-control"
 							{...inputProps("company.website")}
 							type="url"
 							placeholder="https://"
@@ -239,6 +241,7 @@ export function SubmissionForm() {
 						</label>
 						<textarea
 							{...register("company.description")}
+							className="ui-control"
 							{...inputProps("company.description")}
 							rows={3}
 							maxLength={4000}
@@ -257,6 +260,7 @@ export function SubmissionForm() {
 						<label htmlFor="job.title">Job title</label>
 						<input
 							{...register("job.title")}
+							className="ui-control"
 							{...inputProps("job.title")}
 							maxLength={180}
 							required
@@ -273,6 +277,7 @@ export function SubmissionForm() {
 										setValue("job.internshipDurationMonths", null);
 								},
 							})}
+							className="ui-control"
 							{...inputProps("job.employmentType")}
 						>
 							{employmentTypes.map((value) => (
@@ -287,6 +292,7 @@ export function SubmissionForm() {
 						<label htmlFor="job.seniority">Experience</label>
 						<select
 							{...register("job.seniority")}
+							className="ui-control"
 							{...inputProps("job.seniority")}
 						>
 							{seniorities.map((value) => (
@@ -301,6 +307,7 @@ export function SubmissionForm() {
 						<label htmlFor="job.locations">Locations</label>
 						<input
 							{...register("job.locations", { setValueAs: splitValues })}
+							className="ui-control"
 							{...inputProps("job.locations")}
 							required
 							placeholder="Berlin, Munich"
@@ -338,6 +345,7 @@ export function SubmissionForm() {
 						<label htmlFor="job.remoteMode">Working setup</label>
 						<select
 							{...register("job.remoteMode")}
+							className="ui-control"
 							{...inputProps("job.remoteMode")}
 						>
 							<option value="onsite">On-site</option>
@@ -350,6 +358,7 @@ export function SubmissionForm() {
 						<label htmlFor="job.languages">Working languages</label>
 						<input
 							{...register("job.languages", { setValueAs: splitValues })}
+							className="ui-control"
 							{...inputProps("job.languages")}
 							required
 							placeholder="English, German"
@@ -360,6 +369,7 @@ export function SubmissionForm() {
 						<label htmlFor="job.description">Full job description</label>
 						<textarea
 							{...register("job.description")}
+							className="ui-control"
 							{...inputProps("job.description")}
 							rows={10}
 							minLength={40}
@@ -376,6 +386,7 @@ export function SubmissionForm() {
 						<label htmlFor="job.applyUrl">Direct application link</label>
 						<input
 							{...register("job.applyUrl")}
+							className="ui-control"
 							{...inputProps("job.applyUrl")}
 							type="url"
 							placeholder="https://your-company.com/careers/role"
@@ -402,6 +413,7 @@ export function SubmissionForm() {
 									}
 								},
 							})}
+							className="ui-control"
 							{...inputProps("job.salaryStatus")}
 						>
 							<option value="not_disclosed">Not disclosed</option>
@@ -416,6 +428,7 @@ export function SubmissionForm() {
 						</label>
 						<input
 							{...register("job.weeklyHours", { setValueAs: nullableNumber })}
+							className="ui-control"
 							{...inputProps("job.weeklyHours")}
 							type="number"
 							min={1}
@@ -429,6 +442,7 @@ export function SubmissionForm() {
 								<label htmlFor="job.salaryMin">Salary / lower bound</label>
 								<input
 									{...register("job.salaryMin", { setValueAs: nullableNumber })}
+									className="ui-control"
 									{...inputProps("job.salaryMin")}
 									type="number"
 									step="0.01"
@@ -443,6 +457,7 @@ export function SubmissionForm() {
 								</label>
 								<input
 									{...register("job.salaryMax", { setValueAs: nullableNumber })}
+									className="ui-control"
 									{...inputProps("job.salaryMax")}
 									type="number"
 									step="0.01"
@@ -456,6 +471,7 @@ export function SubmissionForm() {
 									{...register("job.salaryCurrency", {
 										setValueAs: (value) => String(value).trim().toUpperCase(),
 									})}
+									className="ui-control"
 									{...inputProps("job.salaryCurrency")}
 									type="text"
 									list="currency-suggestions"
@@ -484,6 +500,7 @@ export function SubmissionForm() {
 								<label htmlFor="job.salaryPeriod">Salary period</label>
 								<select
 									{...register("job.salaryPeriod")}
+									className="ui-control"
 									{...inputProps("job.salaryPeriod")}
 								>
 									<option value="year">Per year</option>
@@ -503,6 +520,7 @@ export function SubmissionForm() {
 								{...register("job.internshipDurationMonths", {
 									setValueAs: nullableNumber,
 								})}
+								className="ui-control"
 								{...inputProps("job.internshipDurationMonths")}
 								type="number"
 								min="1"
@@ -527,6 +545,7 @@ export function SubmissionForm() {
 						<label htmlFor="contact.name">Your name</label>
 						<input
 							{...register("contact.name")}
+							className="ui-control"
 							{...inputProps("contact.name")}
 							autoComplete="name"
 							maxLength={160}
@@ -538,6 +557,7 @@ export function SubmissionForm() {
 						<label htmlFor="contact.email">Work email</label>
 						<input
 							{...register("contact.email")}
+							className="ui-control"
 							{...inputProps("contact.email")}
 							type="email"
 							spellCheck={false}
@@ -553,6 +573,7 @@ export function SubmissionForm() {
 						</label>
 						<input
 							{...register("contact.role")}
+							className="ui-control"
 							{...inputProps("contact.role")}
 							autoComplete="organization-title"
 							maxLength={160}
@@ -565,6 +586,7 @@ export function SubmissionForm() {
 						</label>
 						<input
 							{...register("contact.phone")}
+							className="ui-control"
 							{...inputProps("contact.phone")}
 							type="tel"
 							autoComplete="tel"
@@ -610,7 +632,7 @@ export function SubmissionForm() {
 					</p>
 				) : null}
 				<button
-					className="jb-button jb-button-dark"
+					className="button"
 					type="submit"
 					disabled={isSubmitting}
 				>

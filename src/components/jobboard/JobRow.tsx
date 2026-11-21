@@ -2,6 +2,7 @@ import type { PublicJob } from '../../lib/jobboard/contracts';
 import { Icon } from '../icons/Icon';
 import {
 	employmentLabels,
+	publicJobTitle,
 	remoteLabels,
 	salaryLabel,
 	jobHref,
@@ -13,20 +14,28 @@ export type JobSummary = Pick<
 	'id' | 'slug' | 'status' | 'publishedAt' | 'expiresAt'
 > & {
 	company: Pick<PublicJob['company'], 'id' | 'name'>;
+	faviconJobId: string;
 	content: Omit<PublicJob['content'], 'description' | 'applyUrl'>;
 };
 
-export function summarizeJob(job: PublicJob): JobSummary {
-	const { description: _, applyUrl: __, ...content } = job.content;
-	return {
-		id: job.id,
-		slug: job.slug,
-		status: job.status,
-		publishedAt: job.publishedAt,
-		expiresAt: job.expiresAt,
-		company: { id: job.company.id, name: job.company.name },
-		content,
-	};
+export function summarizeJobs(jobs: PublicJob[]): JobSummary[] {
+	const faviconJobs = new Map<string, string>();
+	return jobs.map((job) => {
+		const { description: _, applyUrl: __, ...content } = job.content;
+		const companyKey = JSON.stringify([job.company.id, job.company.website]);
+		const faviconJobId = faviconJobs.get(companyKey) ?? job.id;
+		faviconJobs.set(companyKey, faviconJobId);
+		return {
+			id: job.id,
+			slug: job.slug,
+			status: job.status,
+			publishedAt: job.publishedAt,
+			expiresAt: job.expiresAt,
+			company: { id: job.company.id, name: job.company.name },
+			faviconJobId,
+			content: { ...content, title: publicJobTitle(content.title) },
+		};
+	});
 }
 
 export function JobRow({ job, source = 'direct' }: { job: JobSummary; source?: Source }) {
@@ -34,7 +43,16 @@ export function JobRow({ job, source = 'direct' }: { job: JobSummary; source?: S
 		<article className="jb-job-row">
 			<a className="jb-job-row-link" href={jobHref(job, source)}>
 				<span className="jb-company-icon" aria-hidden="true">
-					<Icon name="company" size={24} />
+					<Icon name="company" size={32} />
+					<img
+						src={`/jobs/favicon/${encodeURIComponent(job.faviconJobId)}`}
+						width="32" height="32" alt="" loading="lazy" decoding="async"
+						ref={(image) => {
+							if (image?.complete && image.naturalWidth) image.dataset.loaded = "true";
+						}}
+						onLoad={(event) => { event.currentTarget.dataset.loaded = "true"; }}
+						onError={(event) => { delete event.currentTarget.dataset.loaded; }}
+					/>
 				</span>
 				<div className="jb-job-row-main">
 					<p className="jb-company-name">{job.company.name}</p>

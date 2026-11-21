@@ -4,7 +4,7 @@ import { isSafePublicUrl } from "../../../lib/jobboard/contracts";
 import { isActive, jobPath } from "../../../lib/jobboard/public-utils";
 
 export const prerender = false;
-export const GET: APIRoute = async ({ request, params }) => {
+export const GET: APIRoute = async ({ request, params, locals }) => {
   try {
     const job = await getJob(params.id || "");
     if (!isActive(job))
@@ -17,6 +17,7 @@ export const GET: APIRoute = async ({ request, params }) => {
         status: 503,
         headers: { "cache-control": "no-store", "x-robots-tag": "noindex, nofollow", "content-type": "text/plain; charset=utf-8" },
       });
+    locals.jobNavigation = { type: "apply_redirect", jobId: job.id };
     return new Response(null, {
       status: 303,
       headers: { location: job.content.applyUrl, "cache-control": "no-store", "x-robots-tag": "noindex, nofollow", "referrer-policy": "no-referrer" },

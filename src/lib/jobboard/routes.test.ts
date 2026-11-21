@@ -6,7 +6,7 @@ import { GET as sitemap } from "../../pages/jobs/sitemap.xml";
 import { POST as submit } from "../../pages/api/jobboard/submissions";
 import { exampleJob } from "./test-fixtures";
 
-const envKeys = ["COCKPIT_API_URL", "JOBBOARD_READ_API_KEY", "JOBBOARD_SUBMIT_API_KEY", "PUBLIC_SITE_URL"] as const;
+const envKeys = ["COCKPIT_API_URL", "JOBBOARD_READ_API_KEY", "JOBBOARD_SUBMIT_API_KEY", "PUBLIC_SITE_URL", "SITE_INDEXABLE"] as const;
 async function configured(run: () => Promise<void>) {
   const before = Object.fromEntries(envKeys.map((key) => [key, process.env[key]]));
   const fetchBefore = globalThis.fetch;
@@ -14,6 +14,7 @@ async function configured(run: () => Promise<void>) {
   process.env.JOBBOARD_READ_API_KEY = "test-read-key-that-is-at-least-32-characters";
   process.env.JOBBOARD_SUBMIT_API_KEY = "test-submit-key-that-is-at-least-32-characters";
   process.env.PUBLIC_SITE_URL = "https://www.start-berlin.com";
+  process.env.SITE_INDEXABLE = "true";
   try { await run(); } finally {
     globalThis.fetch = fetchBefore;
     for (const key of envKeys) {
@@ -23,7 +24,7 @@ async function configured(run: () => Promise<void>) {
   }
 }
 function context(url: string, params: Record<string, string> = {}) {
-  return { request: new Request(url), params } as never;
+  return { request: new Request(url), params, locals: {} } as never;
 }
 function reply(body: unknown, status = 200, headers: Record<string, string> = {}) {
   return new Response(JSON.stringify(body), { status, headers });

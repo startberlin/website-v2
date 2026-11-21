@@ -1,0 +1,198 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	quote: string;
+	name: string;
+	role: string;
+	portrait?: ImageMetadata;
+	featured?: boolean;
+}
+
+const { quote, name, role, portrait, featured = false } = Astro.props;
+const avatarWidths = portrait ? [64, 128].filter((width) => width <= portrait.width) : [];
+const coverWidths = portrait ? [...[192, 256, 352, 480].filter((width) => width < portrait.width), portrait.width] : [];
+
+// First and last name, as in MemberCard.
+const parts = name.split(/\s+/);
+const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
+---
+
+<figure class:list={['testimonial', { 'testimonial--featured': featured }]}>
+	{featured && <div class="testimonial__media">
+		{portrait ? (
+			<Image src={portrait} alt={`Portrait of ${name}`} widths={coverWidths} sizes="(min-width: 1024px) 352px, (min-width: 640px) 36vw, calc(100vw - 2rem)" format="webp" loading="lazy" decoding="async" class="testimonial__cover" />
+		) : <span class="testimonial__initials" aria-hidden="true">{initials}</span>}
+	</div>}
+	<blockquote class="testimonial__quote">
+		<p>“{quote}”</p>
+	</blockquote>
+	<figcaption class="testimonial__author">
+		{!featured && <span class="testimonial__avatar">
+			{portrait ? (
+				<Image src={portrait} alt={`Portrait of ${name}`} width={64} height={64} widths={avatarWidths.length ? avatarWidths : undefined} sizes="64px" format="webp" loading="lazy" decoding="async" class="testimonial__portrait" />
+			) : <span aria-hidden="true">{initials}</span>}
+		</span>}
+		<span class="testimonial__meta">
+			<span class="testimonial__name">{name}</span>
+			<span class="testimonial__role">{role}</span>
+		</span>
+	</figcaption>
+</figure>
+
+<style>
+	.testimonial {
+		--avatar-size: 4rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: var(--space-8);
+		height: 100%;
+		margin: 0;
+		padding: var(--space-8) var(--space-6);
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		background: var(--surface-card);
+	}
+
+	.testimonial__quote {
+		margin: 0;
+	}
+
+	.testimonial__quote p {
+		margin: 0;
+		color: var(--text-copy);
+		font-size: var(--text-lg);
+		line-height: var(--leading-copy);
+	}
+
+	.testimonial__author {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--space-4);
+		min-width: 0;
+	}
+
+	.testimonial__avatar {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: var(--avatar-size);
+		max-width: 100%;
+		aspect-ratio: var(--ratio-square);
+		overflow: hidden;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-pill);
+		background: var(--gradient-avatar);
+		font-weight: var(--weight-display);
+	}
+
+	.testimonial__portrait {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.testimonial__meta {
+		min-width: 0;
+	}
+
+	.testimonial__name {
+		display: block;
+		font-weight: var(--weight-bold);
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+	}
+
+	.testimonial__role {
+		display: block;
+		margin-top: var(--space-1);
+		color: var(--text-muted);
+		font-size: var(--text-sm);
+	}
+
+	.testimonial--featured {
+		display: grid;
+		grid-template-areas: "portrait" "quote" "author";
+		gap: 0;
+		height: auto;
+		padding: 0;
+		overflow: hidden;
+	}
+
+	.testimonial__media {
+		grid-area: portrait;
+		position: relative;
+		display: grid;
+		place-items: center;
+		aspect-ratio: var(--ratio-photo);
+		overflow: hidden;
+		background: var(--gradient-avatar);
+	}
+
+	.testimonial__cover {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 50% 32%;
+	}
+
+	.testimonial__initials {
+		font-size: var(--type-hero);
+		font-weight: var(--weight-display);
+	}
+
+	.testimonial--featured .testimonial__quote {
+		grid-area: quote;
+		padding: var(--space-6) var(--space-5) var(--space-4);
+	}
+
+	.testimonial--featured .testimonial__author {
+		grid-area: author;
+		padding: 0 var(--space-5) var(--space-6);
+	}
+
+	.testimonial--featured .testimonial__quote p {
+		max-width: var(--layout-reading);
+		color: var(--text-primary);
+		font-size: var(--text-xl);
+		line-height: var(--leading-copy);
+		text-wrap: pretty;
+	}
+
+	.testimonial--featured .testimonial__meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: var(--space-1) var(--space-3);
+	}
+
+	.testimonial--featured .testimonial__name {
+		font-size: var(--text-base);
+		letter-spacing: normal;
+		text-transform: none;
+	}
+
+	.testimonial--featured .testimonial__role { margin-top: 0; font-size: var(--text-base); }
+
+	@media (min-width: 640px) {
+		.testimonial--featured {
+			grid-template: "portrait quote" 1fr "portrait author" auto / min(36%, 22rem) minmax(0, 1fr);
+		}
+
+		.testimonial__media { aspect-ratio: auto; min-height: calc(2 * var(--space-28)); }
+		.testimonial--featured .testimonial__quote { padding-inline: var(--space-8); align-self: end; }
+		.testimonial--featured .testimonial__author { padding-inline: var(--space-8); }
+	}
+
+	@media (min-width: 1024px) {
+		.testimonial--featured .testimonial__quote { padding-top: var(--space-10); }
+		.testimonial--featured .testimonial__quote p { font-size: var(--text-2xl); }
+		.testimonial--featured .testimonial__author { padding-bottom: var(--space-10); }
+	}
+</style>

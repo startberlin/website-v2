@@ -1,0 +1,10 @@
+{
+  "repository": "startberlin/website-v2",
+  "vercelProject": "website-v2",
+  "vercelProjectId": "prj_kamZS2JZZFZNqzw34uJU3xbbEPkO",
+  "vercelScope": "start-berlin",
+  "stagingOrigin": "https://staging.start-berlin.com",
+  "productionOrigin": "https://www.start-berlin.com",
+  "reservedStagingBranch": "staging",
+  "requiredCheck": "Required checks"
+}

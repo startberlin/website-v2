@@ -1,0 +1,71 @@
+---
+const message = 'Applications for the Winter Semester are now closed. Summer Semester applications open in April 2027.';
+const items = Array.from({ length: 12 }, () => message);
+---
+
+<div class="announcement">
+	<a class="announcement__link" href="#newsletter" aria-label={message}>
+		<span class="announcement__track" aria-hidden="true">
+			{items.map((item) => <span class="announcement__item">{item}</span>)}
+		</span>
+		<span class="announcement__static" aria-hidden="true">{message}</span>
+	</a>
+</div>
+
+<style>
+	.announcement {
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+		font-size: var(--text-xs);
+		font-weight: var(--weight-medium);
+		line-height: var(--leading-ui);
+		letter-spacing: var(--tracking-label);
+	}
+
+	.announcement__link {
+		display: grid;
+		align-content: center;
+		min-height: var(--announcement-height);
+		overflow: hidden;
+		padding-block: var(--space-2);
+		transition: background-color var(--duration-fast);
+	}
+
+	.announcement__link:hover {
+		background: color-mix(in srgb, var(--color-accent), var(--color-white) 15%);
+		color: var(--color-dark-blue);
+	}
+
+	.announcement__link:focus-visible {
+		outline-color: currentColor;
+		outline-offset: calc(-1 * var(--focus-offset));
+	}
+
+	.announcement__track { display: none; }
+
+	.announcement__item { margin-inline: var(--space-8); }
+
+	.announcement__static {
+		padding-inline: var(--page-gutter);
+		text-align: center;
+	}
+
+	@media (min-width: 640px) {
+		.announcement { font-size: var(--text-sm); }
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		:global(html[data-motion='running']) .announcement__link:not(:focus-visible) .announcement__track {
+			display: flex;
+			width: max-content;
+			white-space: nowrap;
+			animation: announcement-scroll var(--duration-announcement) linear infinite;
+		}
+
+		:global(html[data-motion='running']) .announcement__link:not(:focus-visible) .announcement__static { display: none; }
+	}
+
+	@keyframes announcement-scroll {
+		to { transform: translateX(-50%); }
+	}
+</style>

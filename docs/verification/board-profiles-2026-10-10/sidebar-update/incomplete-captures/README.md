@@ -1,0 +1,1 @@
+These returned screenshot buffers omit text or image layers and are not accepted as visual evidence. Native browser observations displayed the complete pages, but these saved frames could not reproduce them reliably. Current plain-CV evidence is the inspected profile-background-desktop.jpg one directory above.

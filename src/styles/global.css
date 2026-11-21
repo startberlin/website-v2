@@ -13,6 +13,12 @@ body {
 	min-height: 100%;
 }
 
+html {
+	--scroll-header: var(--header-height);
+	color-scheme: dark;
+	scroll-padding-block-start: calc(var(--scroll-header) + var(--space-2));
+}
+
 body {
 	background: var(--color-dark-blue);
 	color: var(--color-white);

@@ -1,4 +1,5 @@
 import { env } from "node:process";
+import { validateSiteOrigin } from "../seo/site.mjs";
 import type { z } from "zod";
 import {
 	jobListResponseSchema,
@@ -30,20 +31,13 @@ export function publicSiteUrl(requestOrigin?: string): string {
   const raw = env.PUBLIC_SITE_URL;
   if (!raw && env.NODE_ENV === "production")
     throw new Error("PUBLIC_SITE_URL must be configured.");
-  const url = new URL(raw || requestOrigin || "http://localhost:4321");
-  const local = ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname);
-  if (
-    url.username || url.password || url.pathname !== "/" || url.search || url.hash ||
-    !["http:", "https:"].includes(url.protocol) ||
-    (url.protocol === "http:" && !local)
-  ) throw new Error("PUBLIC_SITE_URL requires an exact HTTPS origin, or local HTTP for development.");
-  return url.origin;
+  return validateSiteOrigin(raw || requestOrigin || "http://localhost:4321");
 }
 
 function apiConfig(scope: "read" | "submit" | "metrics") {
 	const raw = env.COCKPIT_API_URL;
 	const key = env[`JOBBOARD_${scope.toUpperCase()}_API_KEY`];
-	if (!raw || !key || key.length < 32) throw new CockpitError("unavailable");
+	if (!raw || !key || !/^\S{32,512}$/.test(key)) throw new CockpitError("unavailable");
 	let url: URL;
 	try { url = new URL(raw); } catch { throw new CockpitError("unavailable"); }
 	if (
@@ -63,6 +57,19 @@ function apiConfig(scope: "read" | "submit" | "metrics") {
 		? raw.replace(/\/$/, "")
 		: `${raw.replace(/\/$/, "")}/api/jobboard/v1`;
 	return { base, key };
+}
+
+export function jobboardMetricsState(): "disabled" | "configured" | "misconfigured" {
+	if (!env.JOBBOARD_METRICS_API_KEY) return "disabled";
+	try {
+		const { key } = apiConfig("metrics");
+		if ([env.JOBBOARD_READ_API_KEY, env.JOBBOARD_SUBMIT_API_KEY].includes(key)) {
+			return "misconfigured";
+		}
+		return "configured";
+	} catch {
+		return "misconfigured";
+	}
 }
 
 async function apiRequest<T>(
@@ -120,6 +127,31 @@ export async function getJob(id: string): Promise<PublicJob> {
 			jobDetailResponseSchema,
 		)
 	).job;
+}
+
+/** Cockpit selects the stored PNG for this published job. */
+export async function getJobFavicon(id: string): Promise<Response> {
+	if (!/^[a-zA-Z0-9_-]{1,80}$/.test(id)) throw new CockpitError("not_found");
+	const { base, key } = apiConfig("read");
+	const upstream = await fetch(`${base}/jobs/${id}/favicon`, {
+		headers: { authorization: `Bearer ${key}`, accept: "image/png" },
+		redirect: "error",
+		cache: "no-store",
+		signal: AbortSignal.timeout(4000),
+	});
+	const mime = upstream.headers.get("content-type")?.split(";")[0].trim().toLowerCase();
+	if (upstream.status !== 200 || mime !== "image/png" || !upstream.body) {
+		await upstream.body?.cancel();
+		throw new CockpitError(upstream.status === 404 ? "not_found" : "unavailable");
+	}
+	return new Response(upstream.body, {
+		headers: {
+			"content-type": "image/png",
+			"cache-control": "private, max-age=3600",
+			"x-content-type-options": "nosniff",
+			"x-robots-tag": "noindex, nofollow",
+		},
+	});
 }
 
 export async function getJobs(): Promise<PublicJob[]> {

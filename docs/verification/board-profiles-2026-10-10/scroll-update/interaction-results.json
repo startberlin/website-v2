@@ -1,0 +1,63 @@
+[
+  {
+    "state": "LinkedIn focus",
+    "bottom": 330.8664665222168,
+    "headerBottom": 80,
+    "href": "https://www.linkedin.com/in/jannikbln/?utm_source=start-berlin.com&utm_medium=referral&utm_campaign=members&utm_content=jannik-schaefer",
+    "mainInert": false,
+    "outline": "solid",
+    "outlineWidth": "1.81818px",
+    "text": "LinkedIn for Jannik Schaefer (opens in a new tab)",
+    "top": 285.4616394042969,
+    "viewportHeight": 900
+  },
+  {
+    "state": "Email focus",
+    "bottom": 330.8664665222168,
+    "headerBottom": 80,
+    "href": "mailto:jannik.schaefer@start-berlin.com",
+    "mainInert": false,
+    "outline": "solid",
+    "outlineWidth": "1.81818px",
+    "text": "Email Jannik Schaefer at jannik.schaefer@start-berlin.com",
+    "top": 285.4616394042969,
+    "viewportHeight": 900
+  },
+  {
+    "state": "Newsletter focus",
+    "bottom": 471.8465690612793,
+    "headerBottom": 80,
+    "href": "https://www.kiweekly.de/",
+    "mainInert": false,
+    "outline": "solid",
+    "outlineWidth": "1.81818px",
+    "text": "Visit KI Weekly (opens in a new tab)",
+    "top": 427.8479919433594,
+    "viewportHeight": 900
+  },
+  {
+    "state": "Model ranking focus",
+    "bottom": 837.4857597351074,
+    "headerBottom": 80,
+    "href": "https://www.kiweekly.de/ranking",
+    "mainInert": false,
+    "outline": "solid",
+    "outlineWidth": "1.81818px",
+    "text": "Visit KI Weekly model ranking (opens in a new tab)",
+    "top": 793.4871826171875,
+    "viewportHeight": 900
+  },
+  {
+    "state": "mobile menu open",
+    "focus": "",
+    "footerInert": true,
+    "mainInert": true,
+    "portraitPosition": "static"
+  },
+  {
+    "state": "mobile menu Escape",
+    "focus": "Open menu",
+    "footerInert": false,
+    "mainInert": false
+  }
+]

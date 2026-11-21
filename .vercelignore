@@ -1,0 +1,12 @@
+.git
+.github
+.astro
+.vercel
+node_modules
+dist
+first-draft
+design
+docs/verification
+.env
+.env.*
+!.env.example
