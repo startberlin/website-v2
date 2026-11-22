@@ -63,6 +63,11 @@ export const pageDefinitions = {
     description: 'Read START Berlin\'s privacy policy, including information about personal data, website services and your data protection rights.',
     canonicalPath: '/privacy-policy',
   },
+  '/newsletter': {
+    title: 'Newsletter sign-up',
+    description: 'Sign up for the START Berlin newsletter and confirm your email address.',
+    canonicalPath: '/newsletter', noindex: true,
+  },
   '/404': {
     title: 'Page not found',
     description: 'This page could not be found. Return to START Berlin to explore our community, learn how to join or browse current job openings.',

@@ -61,6 +61,8 @@ Individual PR previews follow successful CI automatically once deployments are e
 
 The pinned CLI runs explicitly in JSON/non-interactive mode. Parse its ready deployment object before using the URL, and reject incomplete responses or the wrong environment. In particular, a Production deployment must never count as a PR Preview. Always pass the reviewed project ID explicitly, including when the PR contains a local Vercel configuration file.
 
+The newsletter uses the START Berlin Resend account and the existing Newsletter Subscribers segment used by Cockpit. Store a dedicated `NEWSLETTER_RESEND_API_KEY` and a separate random 32-byte hex `NEWSLETTER_CONFIRMATION_SECRET` in each protected GitHub environment, `staging` and `production`. Resend requires Full access for contact updates. The deployment steps pass these secrets to the selected deployment at runtime. The pair can be omitted to disable submissions. PR previews have no newsletter secrets. Health reports whether the pair is configured. For acceptance, send a confirmation to a Resend test address, confirm it and verify membership in Newsletter Subscribers before removing the test contact.
+
 The release bot opens its PR after successful staging. GitHub may require a human to approve workflow execution on a bot-created PR. Use the Approve workflows to run banner and wait for Required checks; do not count a skipped or approval-pending run as successful CI.
 
 ## Relaunch and domains

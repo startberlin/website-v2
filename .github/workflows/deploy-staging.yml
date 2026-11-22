@@ -61,10 +61,16 @@ jobs:
         id: deploy
         run: |
           node scripts/release/staging-jobboard.mjs >> "$GITHUB_OUTPUT"
+          newsletter_env=()
+          newsletter_state=$(node scripts/release/newsletter-env.mjs)
+          if [[ "$newsletter_state" == configured ]]; then
+            newsletter_env=(--env NEWSLETTER_RESEND_API_KEY --env NEWSLETTER_CONFIRMATION_SECRET)
+          fi
+          echo "newsletter=$newsletter_state" >> "$GITHUB_OUTPUT"
           tree=$(git rev-parse 'HEAD^{tree}')
           "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --target=preview --yes --non-interactive --json \
             --env COCKPIT_API_URL --env JOBBOARD_READ_API_KEY --env JOBBOARD_SUBMIT_API_KEY \
-            --env JOBBOARD_METRICS_API_KEY \
+            --env JOBBOARD_METRICS_API_KEY "${newsletter_env[@]}" \
             --local-config=.astro/vercel-preview.json \
             --meta githubDeployment=1 --meta githubCommitRef=main --meta githubCommitSha="$GITHUB_SHA" \
             --build-env RELEASE_COMMIT_SHA="$GITHUB_SHA" --build-env RELEASE_TREE_SHA="$tree" > "$RUNNER_TEMP/staging-deployment.json"
@@ -78,6 +84,8 @@ jobs:
           JOBBOARD_READ_API_KEY: ${{ secrets.JOBBOARD_READ_API_KEY }}
           JOBBOARD_SUBMIT_API_KEY: ${{ secrets.JOBBOARD_SUBMIT_API_KEY }}
           JOBBOARD_METRICS_API_KEY: ${{ secrets.JOBBOARD_METRICS_API_KEY }}
+          NEWSLETTER_RESEND_API_KEY: ${{ secrets.NEWSLETTER_RESEND_API_KEY }}
+          NEWSLETTER_CONFIRMATION_SECRET: ${{ secrets.NEWSLETTER_CONFIRMATION_SECRET }}
       - name: Check the built pages and exact source
         run: node scripts/release/smoke.mjs
         env:
@@ -87,6 +95,7 @@ jobs:
           SMOKE_PREVIEW: 'true'
           SMOKE_JOBS: required
           SMOKE_JOBBOARD_METRICS: ${{ steps.deploy.outputs.metrics }}
+          SMOKE_NEWSLETTER_SIGNUP: ${{ steps.deploy.outputs.newsletter }}
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -112,6 +121,7 @@ jobs:
           SMOKE_PREVIEW: 'true'
           SMOKE_JOBS: required
           SMOKE_JOBBOARD_METRICS: ${{ steps.deploy.outputs.metrics }}
+          SMOKE_NEWSLETTER_SIGNUP: ${{ steps.deploy.outputs.newsletter }}
           SMOKE_PUBLIC: 'true'
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
