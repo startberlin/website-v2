@@ -92,6 +92,20 @@ test('invalid, cross-origin, oversized and disabled requests never reach Resend'
   assert.equal(newsletterConfig({ NEWSLETTER_RESEND_API_KEY: 're_TEST_ONLY' }), null);
 });
 
+test('native no-referrer form posts require same-origin browser metadata and the configured host', async () => {
+  const provider = resendNewsletter(config.apiKey, async () => Response.json({ id: contactId }));
+  const nativeForm = (fetchSite: string | undefined, target = origin) => new Request(`${target}/newsletter`, {
+    method: 'POST',
+    headers: { Origin: 'null', ...(fetchSite ? { 'Sec-Fetch-Site': fetchSite } : {}) },
+    body: new URLSearchParams({ email }),
+  });
+  assert.equal(await handleNewsletterForm(nativeForm('same-origin'), origin, clientAddress, config, provider), newsletterResults.pending);
+  assert.equal(await handleNewsletterForm(nativeForm('same-site'), origin, clientAddress, config, provider), newsletterResults.forbidden);
+  assert.equal(await handleNewsletterForm(nativeForm('cross-site'), origin, clientAddress, config, provider), newsletterResults.forbidden);
+  assert.equal(await handleNewsletterForm(nativeForm(undefined), origin, clientAddress, config, provider), newsletterResults.forbidden);
+  assert.equal(await handleNewsletterForm(nativeForm('same-origin', 'https://another.example'), origin, clientAddress, config, provider), newsletterResults.forbidden);
+});
+
 test('only a successful or already accepted Resend send acknowledges a request', async (context) => {
   context.mock.method(console, 'error', () => {});
   const rejected = resendNewsletter(config.apiKey, async () => Response.json({ name: 'validation_error' }, { status: 403 }));

@@ -54,7 +54,12 @@ export async function handleNewsletterForm(
   provider = config ? resendNewsletter(config.apiKey) : null,
 ): Promise<Result> {
   const fetchSite = request.headers.get('sec-fetch-site');
-  if (request.headers.get('origin') !== origin || (fetchSite && fetchSite !== 'same-origin')) return results.forbidden;
+  const requestOrigin = request.headers.get('origin');
+  // The site's no-referrer policy can make a native form navigation send Origin: null.
+  // Fetch Metadata is browser-controlled and identifies a same-origin navigation in that case.
+  const privateNavigation = (requestOrigin === 'null' || !requestOrigin)
+    && fetchSite === 'same-origin' && new URL(request.url).origin === origin;
+  if ((requestOrigin !== origin && !privateNavigation) || (fetchSite && fetchSite !== 'same-origin')) return results.forbidden;
   if (request.headers.get('content-type')?.split(';')[0]?.trim().toLowerCase() !== 'application/x-www-form-urlencoded') {
     return { ...results.invalidForm, status: 415 };
   }
