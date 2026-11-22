@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { confirmationEmailMessage } from './confirmation-email';
 
 // The same segment and publication topics used by START Berlin's Cockpit newsletter.
 const newsletterSegment = '5b16d5ad-d436-420e-91ea-eb27dae05b18';
@@ -51,8 +52,7 @@ export function resendNewsletter(apiKey: string, request: typeof fetch = fetch) 
       const response = await call('/emails', {
         from: 'START Berlin <newsletter@emails.start-berlin.com>',
         to: [email],
-        subject: 'Confirm your START Berlin newsletter sign-up',
-        text: `Confirm that you want to receive the START Berlin newsletter and application updates:\n\n${link.href}\n\nThe link is valid for 24 hours. If you did not request this email, you can ignore it.`,
+        ...confirmationEmailMessage(link),
         tags: [{ name: 'source', value: 'website_newsletter_signup' }],
       }, idempotencyKey);
       if (response.status === 409 && (await response.json()).name === 'invalid_idempotent_request') return;

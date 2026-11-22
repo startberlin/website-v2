@@ -36,6 +36,10 @@ test('submitting an address sends confirmation without adding a contact, and con
   assert.ok(!requests[0].key!.includes(email));
   const confirmationUrl = new URL(message.text.match(/https:\/\/\S+/)[0]);
   assert.equal(confirmationUrl.origin, origin);
+  assert.ok(message.html.includes(`href="${confirmationUrl.href}"`));
+  assert.ok(message.html.includes(`src="${origin}/social/start-berlin-logo.png"`));
+  assert.match(message.html, /Confirm my sign-up/);
+  assert.match(message.html, /valid for 24 hours/);
   const token = confirmationUrl.searchParams.get('token')!;
   assert.equal(confirmationEmail(token, config.secret), email);
   const tampered = `${token[0] === 'A' ? 'B' : 'A'}${token.slice(1)}`;
