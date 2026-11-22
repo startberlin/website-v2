@@ -1,5 +1,11 @@
 # SECURITY.md: Universal Security Guideline for AI Coding Agents
 
+## Website newsletter
+
+The anonymous form accepts bounded, same-origin POST requests. It validates the address, uses a honeypot and applies a per-instance request limit. Resend deduplicates confirmation sends by recipient and hour across instances. Confirmation links encrypt the address, expire after 24 hours and require an explicit POST. Provider responses and credentials stay on the server. Resend owns the contacts, topics and existing opt-outs. Protected GitHub environments supply separate credentials to staging and production at runtime.
+
+The newsletter and Jobboard tests exercise invalid or oversized requests, cross-origin rejection, expired or altered links, duplicate submissions, existing opt-outs and provider failures. The release smoke check confirms the deployment receives the expected newsletter configuration. Provider delivery and list membership are validated separately with a disposable test address. The in-memory request limit applies per running instance.
+
 **Priority: Security is the #1 priority.** When security conflicts with convenience, speed, or aesthetics, security wins.
 This document is language-, framework-, and architecture-agnostic. Apply the principles using the idioms of whatever stack the project uses.
 
