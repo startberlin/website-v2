@@ -20,21 +20,56 @@ const { photo = workshopPhoto } = Astro.props;
 			<SectionHeading id="newsletter-title">
 				The next round<br />
 				<span data-outline>In your inbox</span>
-				<Fragment slot="lead">Join the START Berlin newsletter and we'll let you know when applications open.</Fragment>
+				<Fragment slot="lead">Get the START Berlin newsletter and updates on when applications open.</Fragment>
 			</SectionHeading>
-			<fieldset class="newsletter__fields" disabled>
-				<legend class="sr-only">Newsletter sign-up</legend>
-				<div>
-					<label class="newsletter__label" for="newsletter-email">Email address</label>
-					<input class="ui-control" id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" />
+			<form action="/newsletter" method="post" aria-labelledby="newsletter-title" data-newsletter-signup>
+				<div class="newsletter__fields">
+					<div>
+						<label class="newsletter__label" for="newsletter-email">Email address</label>
+						<input class="ui-control" id="newsletter-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="newsletter-privacy-note" />
+					</div>
+					<button class="button" data-accent type="submit">
+						Join the newsletter <Icon name="arrow-right" size={16} />
+					</button>
 				</div>
-				<button class="button" data-accent type="button">
-					Join the newsletter <Icon name="arrow-right" size={16} />
-				</button>
-			</fieldset>
+				<div hidden><label for="newsletter-website">Website</label><input id="newsletter-website" name="website" autocomplete="off" tabindex="-1" /></div>
+				<p class="newsletter__note" id="newsletter-privacy-note">Confirm your sign-up by email. Unsubscribe at any time. <a href="/privacy-policy#newsletter-privacy">Privacy policy</a></p>
+			</form>
+			<p class="newsletter__feedback" role="status" data-newsletter-feedback></p>
 		</div>
 	</div>
 </section>
+
+<script>
+	const form = document.querySelector<HTMLFormElement>('[data-newsletter-signup]');
+	const button = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+	const feedback = document.querySelector<HTMLElement>('[data-newsletter-feedback]');
+	if (form && button && feedback) {
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			if (button.disabled) return;
+			button.disabled = true;
+			feedback.textContent = 'Sending your confirmation email…';
+			const body = new URLSearchParams();
+			for (const [name, value] of new FormData(form)) {
+				if (typeof value === 'string') body.append(name, value);
+			}
+			try {
+				const response = await fetch(form.action, {
+					method: 'POST', body, headers: { Accept: 'application/json' }, signal: AbortSignal.timeout(15_000),
+				});
+				const result = await response.json();
+				if (typeof result.message !== 'string') throw new Error('Missing response message');
+				feedback.textContent = result.message;
+				if (response.status === 202) form.reset();
+			} catch {
+				feedback.textContent = 'The newsletter sign-up is temporarily unavailable. Please try again later.';
+			} finally {
+				button.disabled = false;
+			}
+		});
+	}
+</script>
 
 <style>
 	.newsletter {
@@ -62,9 +97,6 @@ const { photo = workshopPhoto } = Astro.props;
 		align-items: end;
 		gap: var(--space-3);
 		min-width: 0;
-		margin: 0;
-		padding: 0;
-		border: 0;
 	}
 
 	.newsletter__fields .button { text-transform: uppercase; letter-spacing: var(--tracking-label); }
@@ -75,6 +107,12 @@ const { photo = workshopPhoto } = Astro.props;
 		font-size: var(--text-sm);
 		font-weight: var(--weight-bold);
 	}
+
+	.newsletter__note,
+	.newsletter__feedback:not(:empty) { margin: var(--space-3) 0 0; }
+	.newsletter__note { font-size: var(--text-sm); line-height: var(--leading-copy); }
+	.newsletter__note a { color: inherit; text-decoration: underline; }
+	.newsletter__feedback:empty { margin: 0; }
 
 	@container (min-width: 34rem) {
 		.newsletter__fields { grid-template-columns: minmax(0, 1fr) auto; }
