@@ -32,10 +32,10 @@ const cities = [
 	'St. Gallen',
 ];
 
-// Cycle through four text treatments so neighbouring names differ; our own
-// city always gets the accent colour.
-const tones = ['silver', 'white', 'grey', 'accent'];
-const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' : tones[index % tones.length]);
+// Alternate white and the neutral gradients. Berlin is the only accent city.
+const neutralTones = ['silver', 'white', 'grey', 'white'];
+const toneFor = (city: string, index: number) =>
+	city === 'Berlin' ? 'accent' : neutralTones[index % neutralTones.length];
 ---
 
 <section class="network" aria-labelledby="start-network">
