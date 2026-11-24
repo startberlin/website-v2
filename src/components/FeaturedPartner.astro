@@ -1,25 +1,23 @@
 ---
 import { Image } from 'astro:assets';
 import xdeckLogo from '../assets/home/xdeck-logo.webp';
-import Icon from './icons/Icon.astro';
 ---
 
 <section id="featured-partner" class="featured-partner page-container" aria-labelledby="featured-partner-heading">
 	<div class="featured-partner__panel">
 		<h2 id="featured-partner-heading" class="featured-partner__heading">Featured Partner</h2>
-		<div class="featured-partner__content">
+		<div class="featured-partner__brand">
 			<Image src={xdeckLogo} alt="xdeck" width={256} quality="lossless" loading="lazy" class="featured-partner__logo" />
 			<span class="featured-partner__name">xdeck</span>
-			<p class="featured-partner__description">Accelerator and venture fund for early-stage B2B tech founders.</p>
-			<a
-				class="text-action"
-				href="https://xdeck.de/?utm_source=start-berlin.com&amp;utm_medium=referral&amp;utm_campaign=featured-partner"
-				rel="sponsored"
-			>
-				<span>Explore xdeck</span>
-				<Icon name="arrow-up-right" size={16} />
-			</a>
 		</div>
+		<p class="featured-partner__description">Accelerator and venture fund for early-stage B2B tech founders.</p>
+		<a
+			class="button button--outline"
+			href="https://xdeck.de/?utm_source=start-berlin.com&amp;utm_medium=referral&amp;utm_campaign=featured-partner"
+			rel="sponsored"
+		>
+			Explore xdeck
+		</a>
 	</div>
 </section>
 
@@ -28,7 +26,8 @@ import Icon from './icons/Icon.astro';
 
 	.featured-partner__panel {
 		display: grid;
-		gap: var(--space-4);
+		gap: var(--space-3);
+		justify-items: start;
 		padding: var(--space-5);
 		border: var(--border-width) solid var(--border-default);
 		border-radius: var(--radius-card);
@@ -45,14 +44,8 @@ import Icon from './icons/Icon.astro';
 		text-transform: uppercase;
 	}
 
-	.featured-partner__content {
-		display: grid;
-		gap: var(--space-2);
-		justify-items: start;
-		align-items: center;
-	}
-
 	.featured-partner__logo {
+		display: block;
 		inline-size: var(--space-32);
 		max-inline-size: 100%;
 		block-size: auto;
@@ -67,17 +60,45 @@ import Icon from './icons/Icon.astro';
 		text-wrap: balance;
 	}
 
-	@container (min-width: 42rem) {
-		.featured-partner__panel { padding: var(--space-6) var(--space-8); }
+	.featured-partner__panel .button {
+		margin-block-start: var(--space-1);
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+	}
 
-		.featured-partner__content {
+	@container (min-width: 42rem) {
+		.featured-partner__panel {
 			grid-template-columns: auto minmax(0, 1fr) auto;
-			column-gap: var(--space-6);
+			grid-template-areas:
+				'brand heading action'
+				'brand description action';
+			gap: var(--space-1) var(--space-6);
+			align-items: center;
+			padding: var(--space-6) var(--space-8);
+		}
+
+		.featured-partner__brand {
+			grid-area: brand;
+			display: grid;
+			align-self: stretch;
+			align-items: center;
+			padding-inline-end: var(--space-6);
+			border-inline-end: var(--border-width) solid var(--border-default);
+		}
+
+		.featured-partner__heading {
+			grid-area: heading;
+			align-self: end;
 		}
 
 		.featured-partner__description {
-			padding-inline-start: var(--space-6);
-			border-inline-start: var(--border-width) solid var(--border-default);
+			grid-area: description;
+			align-self: start;
+		}
+
+		.featured-partner__panel .button {
+			grid-area: action;
+			margin-block-start: 0;
 		}
 	}
 
