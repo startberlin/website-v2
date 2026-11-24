@@ -75,6 +75,16 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 				<Fragment slot="lead">{organisation.lead}</Fragment>
 			</SectionHeading>
 			<ul class="departments" role="list">
+				{/* The executive board leads the grid, followed by the five departments. */}
+				<li class="department">
+					<h3 class="department__name">{organisation.boardHeading}</h3>
+					<p class="department__text">{organisation.boardText}</p>
+					<ul class="department__people" role="list">
+						{leadership.map((member) => (
+							<li><PersonChip name={member.name} role={member.role} portrait={portraitFor(member.name)} profileUrl={`/members/${member.slug}`} /></li>
+						))}
+					</ul>
+				</li>
 				{departmentRows.map((row) => (
 					<li class="department">
 						<h3 class="department__name">{row.name}</h3>
@@ -86,16 +96,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 						)}
 					</li>
 				))}
-				{/* The executive board completes the grid as a sixth card. */}
-				<li class="department department--board">
-					<h3 class="department__name">{organisation.boardHeading}</h3>
-					<p class="department__text">{organisation.boardText}</p>
-					<ul class="department__people" role="list">
-						{leadership.map((member) => (
-							<li><PersonChip name={member.name} role={member.role} portrait={portraitFor(member.name)} profileUrl={`/members/${member.slug}`} /></li>
-						))}
-					</ul>
-				</li>
 			</ul>
 			<a class="text-link" href={organisation.moreLink.href}>{organisation.moreLink.label} <Icon name="arrow-right" size={18} /></a>
 		</div>
@@ -152,6 +152,12 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		color: var(--text-copy);
 		font-size: var(--text-lg);
 		line-height: var(--leading-copy);
+	}
+
+	/* "are" set larger than "Who we", for more presence in the hero. */
+	:global(.page-hero__title span + span) {
+		font-size: var(--type-hero-emphasis);
+		line-height: var(--leading-display);
 	}
 
 	.hero-actions {
@@ -251,20 +257,51 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		.departments { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 	}
 
+	/* Sharp-edged boxes with START line art, like the statistic tiles and the footer
+	   contact. Hover and keyboard focus brighten the frame and the art. */
 	.department {
+		position: relative;
+		isolation: isolate;
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-4);
 		min-width: 0;
 		padding: var(--space-6);
-		border: var(--border-width) solid var(--border-default);
-		border-radius: var(--radius-card);
-		background: var(--surface-card);
+		border: var(--border-width) solid var(--border-control);
+		background: var(--surface-footer-contact);
+		transition: border-color var(--duration-ui);
 	}
 
-	.department--board {
-		border-color: var(--border-accent-soft);
-		background: var(--surface-accent);
+	.department::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		background: url('../assets/home/polygon-top-right.svg') top right / clamp(var(--space-20), 38%, 9rem) no-repeat;
+		opacity: 0.25;
+		transform-origin: top right;
+		transition: opacity var(--duration-panel), transform var(--duration-panel);
+		pointer-events: none;
+	}
+
+	.department:hover,
+	.department:focus-within {
+		border-color: var(--border-accent);
+	}
+
+	.department:hover::before,
+	.department:focus-within::before {
+		opacity: 0.6;
+		transform: scale(1.08);
+	}
+
+	@media (forced-colors: active) {
+		.department::before { display: none; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.department,
+		.department::before { transition: none; }
 	}
 
 	.department__name {
@@ -343,14 +380,30 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		.network__star { width: 100%; }
 	}
 
-	/* Join: the closing call to action on the accent surface. */
+	/* Join: the closing call to action as a sharp-edged box with START line art, like
+	   the footer contact below it. */
 	.join {
+		position: relative;
+		isolation: isolate;
 		display: grid;
 		gap: var(--space-10);
 		padding: var(--space-10) var(--space-6);
-		border: var(--border-width) solid var(--border-accent);
-		border-radius: var(--radius-card);
-		background: var(--surface-accent);
+		border: var(--border-width) solid var(--border-control);
+		background: var(--surface-footer-contact);
+	}
+
+	.join::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		background: url('../assets/home/polygon-bottom-right.svg') bottom right / clamp(var(--space-24), 22%, 16rem) no-repeat;
+		opacity: 0.35;
+		pointer-events: none;
+	}
+
+	@media (forced-colors: active) {
+		.join::before { display: none; }
 	}
 
 	.join__copy {

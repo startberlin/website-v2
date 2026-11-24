@@ -8,6 +8,8 @@ import sapCrowd from '../assets/member-journey/start-x-sap-crowd.jpg';
 import qontoGraphic from '../assets/events/past/2026-10-21-qonto.jpg';
 import foundersTalkGraphic from '../assets/events/past/2026-10-19-founders-talk.jpg';
 import procurosGraphic from '../assets/events/past/2026-10-14-procuros.jpg';
+import { pastEventList } from './events';
+import type { LumaEvent } from '../lib/luma-feed';
 
 // Partners page content and the shared partner inventory.
 // DRAFT: all `text` and `lead` fields are draft copy, and groups, current status
@@ -152,39 +154,67 @@ export const offers: Offer[] = [
 
 export interface Collaboration {
 	title: string;
-	text: string;
+	/** Calendar date in Berlin, YYYY-MM-DD. */
 	date: string;
-	photo: { src: ImageMetadata; alt: string };
-	link: { label: string; href: string };
+	/** The event's page on Luma. */
+	url: string;
+	text?: string;
+	/** START Berlin's own event graphic; decorative, because the title names the card. */
+	graphic?: ImageMetadata;
 }
 
-// Recent collaborations as evidence, from the Events past-event list; confirm each
-// partner may be named. The graphics are START Berlin's own event graphics and
-// decorative, because the title names the card.
-export const collaborations: Collaboration[] = [
+// Hand-picked collaborations with their own wording and graphics; confirm each
+// partner may be named. The page merges them with collaboration events from START
+// Berlin's Luma feed and shows the three most recent, so new events appear without
+// a code change. Events hosted on a partner's own calendar, like Qonto's, only
+// appear through this list.
+export const curatedCollaborations: Collaboration[] = [
 	{
 		title: 'Qonto x START Berlin',
 		text: "A founders' finance webinar on banking, tools and insights for startups.",
-		date: '21 October 2026',
-		photo: { src: qontoGraphic, alt: '' },
-		link: { label: 'View on Luma', href: 'https://luma.com/ffitsdbl' },
+		date: '2026-10-21',
+		url: 'https://luma.com/ffitsdbl',
+		graphic: qontoGraphic,
 	},
 	{
 		title: 'Founders Talk at EDGE',
 		text: 'A founders talk hosted at EDGE Grand Central, one of the venues that supports our community.',
-		date: '19 October 2026',
-		photo: { src: foundersTalkGraphic, alt: '' },
-		link: { label: 'View on Luma', href: 'https://luma.com/i573fz95' },
+		date: '2026-10-19',
+		url: 'https://luma.com/i573fz95',
+		graphic: foundersTalkGraphic,
 	},
 	{
 		title: 'Startup visit: Procuros',
 		text: 'STARTies visited Procuros in Mitte for a look at how the team builds and grows its business.',
-		date: '14 October 2026',
-		photo: { src: procurosGraphic, alt: '' },
-		link: { label: 'View on Luma', href: 'https://luma.com/7a9xzzap' },
+		date: '2026-10-14',
+		url: 'https://luma.com/7a9xzzap',
+		graphic: procurosGraphic,
 	},
 ];
 
+// Which Luma events count as collaborations: partner formats in the title, such as
+// "Qonto x START Berlin", "Startup Visit: …", founder talks, workshops and panels.
+export const collaborationPattern = /\sx\s|visit|talk|workshop|panel|masterclass|webinar/i;
+
+const berlinDate = (date: Date) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Berlin' }).format(date);
+
+// The most recent past collaborations from the curated list and the Luma feed.
+// Feed events reuse the Events graphic for the same Luma link when there is one.
+export function recentCollaborations(events: LumaEvent[], now = new Date(), limit = 3): Collaboration[] {
+	const graphics = new Map(pastEventList.filter((event) => event.graphic).map((event) => [event.url, event.graphic!]));
+	const byUrl = new Map(curatedCollaborations.map((item) => [item.url, item]));
+	for (const event of events) {
+		if (event.start >= now || byUrl.has(event.url) || !collaborationPattern.test(event.title)) continue;
+		byUrl.set(event.url, { title: event.title, date: berlinDate(event.start), url: event.url, graphic: graphics.get(event.url) });
+	}
+	const today = berlinDate(now);
+	return [...byUrl.values()]
+		.filter((item) => item.date <= today)
+		.sort((a, b) => b.date.localeCompare(a.date))
+		.slice(0, limit);
+}
+
+// Replaces the general footer contact on this page, so there is one contact box.
 export const contact = {
 	heading: 'Talk to our Partnerships team',
 	// Head of Partnerships in the current season (src/data/team.json).

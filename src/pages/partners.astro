@@ -6,11 +6,13 @@ import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import PersonChip from '../components/PersonChip.astro';
 import Marquee from '../components/Marquee.astro';
-import StartStar from '../components/StartStar.astro';
+import FooterContact from '../components/FooterContact.astro';
+import CollaborationList from '../components/partners/CollaborationList.astro';
+import RecentCollaborations from '../components/partners/RecentCollaborations.astro';
 import Icon from '../components/icons/Icon.astro';
 import { pageSeo } from '../lib/seo/pages';
 import { boardMembers } from '../lib/board-members';
-import { collaborations, contact, hero, offers, offersIntro, partnerGroups, partners } from '../data/partners';
+import { contact, hero, offers, offersIntro, partnerGroups, partners, recentCollaborations } from '../data/partners';
 
 const portraits = import.meta.glob<{ default: ImageMetadata }>('../assets/members/*.webp', { eager: true });
 const contactPerson = boardMembers.find((member) => member.name === contact.person);
@@ -41,7 +43,7 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 	<PageHero title={hero.title} image={hero.photo.src} alt={hero.photo.alt} imagePosition="50% 40%">
 		<Fragment slot="description">{hero.description}</Fragment>
 		<div slot="actions" class="hero-actions">
-			<a class="button" href="#contact">Talk to us</a>
+			<a class="button" href="#get-in-touch">Talk to us</a>
 			<a class="button button--outline" href="#offers">See ways to work together</a>
 		</div>
 	</PageHero>
@@ -89,27 +91,16 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 					</article>
 				))}
 			</div>
-			<a class="button button--outline offers__cta" href="#contact">Talk to us about a format <Icon name="arrow-right" size={18} /></a>
+			<a class="button button--outline offers__cta" href="#get-in-touch">Talk to us about a format <Icon name="arrow-right" size={18} /></a>
 		</div>
 	</section>
 
 	<section class="section page-container" id="stories" aria-labelledby="stories-heading">
 		<SectionHeading id="stories-heading">Recent collaborations</SectionHeading>
-		<ul class="stories" role="list">
-			{collaborations.map((story) => (
-				<li class="story">
-					<Image src={story.photo.src} alt={story.photo.alt} width={192} height={192} widths={[192, 384]} sizes="(min-width: 64rem) 7rem, 6rem" format="webp" loading="lazy" class="story__photo" />
-					<div class="story__body">
-						<h3 class="story__title">{story.title}</h3>
-						<p class="story__date">{story.date}</p>
-						<p class="story__text">{story.text}</p>
-						<a class="story__link" href={story.link.href} target="_blank" rel="noopener noreferrer">
-							{story.link.label} <Icon name="arrow-up-right" size={16} /><span class="sr-only"> (opens in a new tab)</span>
-						</a>
-					</div>
-				</li>
-			))}
-		</ul>
+		{/* Reads the Luma feed on request; the curated list shows until then or if Luma is unreachable. */}
+		<RecentCollaborations server:defer>
+			<CollaborationList slot="fallback" items={recentCollaborations([])} />
+		</RecentCollaborations>
 	</section>
 
 	<section class="band" aria-labelledby="our-partners-heading">
@@ -145,23 +136,9 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		</div>
 	</section>
 
-	<section class="contact-section" id="contact" aria-labelledby="contact-heading">
-		<div class="contact-section__glow" aria-hidden="true"></div>
-		<div class="section page-container">
-			<div class="contact">
-				<div class="contact__star"><StartStar sizes="(min-width: 64rem) 24rem, 40vw" /></div>
-				<div class="contact__copy">
-					<h2 class="contact__heading" id="contact-heading">{contact.heading}</h2>
-					<p class="contact__promise">{contact.promise}</p>
-					<p class="contact__text">{contact.text}</p>
-					<PersonChip name={contactPerson.name} role={contact.role} portrait={contactPortrait} profileUrl={`/members/${contactPerson.slug}`} email={contactPerson.email} linkedin={contactPerson.linkedin} size="large" />
-					<a class="button contact__button" href={contact.form.href} target="_blank" rel="noopener noreferrer">
-						{contact.form.label} <Icon name="arrow-up-right" size={18} /><span class="sr-only"> (opens in a new tab)</span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+	<FooterContact slot="footer-contact" heading={contact.heading} text={`${contact.promise} ${contact.text}`} action={contact.form}>
+		<PersonChip name={contactPerson.name} role={contact.role} portrait={contactPortrait} profileUrl={`/members/${contactPerson.slug}`} email={contactPerson.email} linkedin={contactPerson.linkedin} size="large" />
+	</FooterContact>
 </Layout>
 
 <style>
@@ -247,8 +224,7 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		.intro { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; }
 	}
 
-	.offer__title,
-	.story__title {
+	.offer__title {
 		margin: 0;
 		font-size: var(--text-2xl);
 		font-weight: var(--weight-display);
@@ -258,8 +234,7 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		hyphens: auto;
 	}
 
-	.offer__text,
-	.story__text {
+	.offer__text {
 		margin: 0;
 		color: var(--text-muted);
 		line-height: var(--leading-copy);
@@ -303,13 +278,25 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		margin-top: var(--space-4);
 	}
 
-	/* The offer without a photo is a direct action, set apart like the featured Testimonial. */
+	/* The offer without a photo is a direct action: a sharp-edged box with START line
+	   art, like the footer contact and the statistic tiles. */
 	.offer--action {
+		position: relative;
+		isolation: isolate;
 		align-content: center;
 		padding: var(--space-10) var(--space-8);
-		border: var(--border-width) solid var(--border-accent);
-		border-radius: var(--radius-card);
-		background: var(--surface-accent);
+		border: var(--border-width) solid var(--border-control);
+		background: var(--surface-footer-contact);
+	}
+
+	.offer--action::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		background: url('../assets/home/polygon-top-right.svg') top right / clamp(var(--space-24), 45%, 12rem) no-repeat;
+		opacity: 0.35;
+		pointer-events: none;
 	}
 
 	.offers__cta {
@@ -322,66 +309,6 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 
 	@container offers (min-width: 64rem) {
 		.offers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-14) var(--space-10); }
-	}
-
-	/* Collaborations: compact cards, the square event graphic beside the text. */
-	.stories {
-		display: grid;
-		gap: var(--space-8);
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.story {
-		display: grid;
-		grid-template-columns: 6rem minmax(0, 1fr);
-		gap: var(--space-5);
-		align-items: start;
-		min-width: 0;
-	}
-
-	.story__photo {
-		display: block;
-		width: 100%;
-		height: auto;
-		aspect-ratio: 1;
-		object-fit: cover;
-		border: var(--border-width) solid var(--border-subtle);
-		border-radius: var(--radius-field);
-	}
-
-	.story__body {
-		display: grid;
-		gap: var(--space-2);
-		justify-items: start;
-		min-width: 0;
-	}
-
-	.story .story__title {
-		font-size: var(--text-lg);
-		letter-spacing: 0;
-	}
-
-	.story__date {
-		margin: 0;
-		color: var(--color-accent);
-		font-size: var(--text-sm);
-		font-weight: var(--weight-bold);
-	}
-
-	.story__link {
-		display: inline-flex;
-		align-items: center;
-		gap: var(--space-1);
-		min-height: var(--target-min);
-		color: var(--color-accent);
-		font-weight: var(--weight-bold);
-	}
-
-	@media (min-width: 1024px) {
-		.stories { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); }
-		.story { grid-template-columns: 7rem minmax(0, 1fr); }
 	}
 
 	/* Partner wall: one row per group, label beside the logos, no tiles. */
@@ -473,74 +400,8 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		.logos { gap: var(--space-8) var(--space-12); }
 	}
 
-	/* Contact: one clear action on a star-blue glow. */
-	.contact-section {
-		position: relative;
-		overflow: hidden;
-		isolation: isolate;
-	}
-
-	.contact-section__glow {
-		position: absolute;
-		inset: 0;
-		z-index: -1;
-		background: var(--gradient-glow-deep) 10% 50% / 70% 110% no-repeat, var(--gradient-glow) 15% 50% / 40% 70% no-repeat;
-	}
-
-	.contact {
-		display: grid;
-		gap: var(--space-10);
-		align-items: center;
-	}
-
-	/* Decorative; hidden on phones so the heading stays near the top of the section. */
-	.contact__star {
-		display: none;
-	}
-
-	.contact__copy {
-		display: grid;
-		gap: var(--space-6);
-		justify-items: start;
-		min-width: 0;
-	}
-
-	.contact__heading {
-		margin: 0;
-		font-size: var(--type-section);
-		font-weight: var(--weight-display);
-		letter-spacing: -0.025em;
-		line-height: 0.95;
-		text-transform: uppercase;
-		hyphens: auto;
-	}
-
-	.contact__promise {
-		max-width: var(--layout-reading);
-		margin: 0;
-		font-size: var(--text-xl);
-		font-weight: var(--weight-medium);
-		line-height: 1.45;
-	}
-
-	.contact__text {
-		margin: 0;
-		color: var(--text-muted);
-		line-height: var(--leading-copy);
-	}
-
-	.contact__button {
-		margin-top: var(--space-2);
-	}
-
-	@media (min-width: 768px) {
-		.contact__star { display: block; width: min(100%, 18rem); justify-self: center; }
-	}
-
 	@media (min-width: 1024px) {
 		.section { padding-block: var(--space-24); }
-		.contact { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-16); }
-		.contact__star { width: 100%; }
 	}
 
 	@media (prefers-reduced-motion: reduce) {

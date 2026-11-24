@@ -1,8 +1,8 @@
 // Animated START star for StartStar.astro: the real START star artwork, drawn with
 // a small WebGL shader. Its spikes grow out of the core, each direction at its own
-// moment, then the star turns slowly and can be spun with heavy inertia by moving
-// the cursor across it. No library is needed; the component loads this module only
-// when the star is near the viewport.
+// moment. Then it rests; moving the cursor across it spins it with heavy inertia.
+// No library is needed; the component loads this module only when the star is near
+// the viewport.
 
 // Measured on src/assets/brand/start-star.webp: the dark core sits at (0.445, 0.5)
 // and the farthest tip lies 0.542 from it, so drawing at 0.885 keeps every tip
@@ -14,7 +14,6 @@ const coreRadius = 0.07;
 
 // Spin feel: cursor movement drives the star, which picks up speed slowly and
 // coasts for a few seconds, so it feels heavy rather than twitchy.
-const idleSpeed = 0.06; // rad/s, clockwise
 const spinGain = 9; // rad/s per radian of cursor sweep around the centre
 const maxSpin = 4; // rad/s
 const pickUp = 2.2; // how quickly the star follows the drive (1/s)
@@ -138,7 +137,7 @@ export async function mountStar(root: HTMLElement): Promise<StarControl> {
 		elapsed += delta;
 		spin += (drive - spin) * (1 - Math.exp(-delta * pickUp));
 		drive *= Math.exp(-delta * coast);
-		rotation += (idleSpeed + spin) * delta;
+		rotation += spin * delta;
 		render();
 		frame = requestAnimationFrame(tick);
 	}

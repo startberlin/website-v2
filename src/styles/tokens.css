@@ -76,6 +76,8 @@
 	--type-hero-landing: clamp(1.75rem, 7.5vw, 6.5rem);
 	--type-hero-landing-mobile: clamp(2.125rem, 9.6vw, 3rem);
 	--type-hero-detail: clamp(1.75rem, 5vw, 4rem);
+	/* About Us: the outlined "are" set larger than the first title part. */
+	--type-hero-emphasis: clamp(3.5rem, 15vw, 10rem);
 	--type-section: clamp(2.25rem, 5vw, 3.75rem);
 	--type-news-title: 3rem;
 	--type-stat: clamp(1.75rem, 5vw, 3rem);
