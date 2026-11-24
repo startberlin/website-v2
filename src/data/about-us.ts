@@ -1,4 +1,5 @@
 import groupPicture from '../assets/member-journey/start-group-picture.jpg';
+import heroPhoto from '../assets/hero/hero-2.jpg';
 import { departments, memberStories, type MemberStory } from './member-journey';
 
 // About Us page content. Member quotes are approved Member Stories, quoted verbatim
@@ -14,10 +15,11 @@ const story = (name: string): MemberStory => {
 };
 
 export const hero = {
-	accent: 'Who we',
-	outline: 'are',
-	// Confirm: founding year 2013 (legacy site and earlier drafts).
-	description: 'START Berlin is a student-run entrepreneurship community. Since 2013 we have brought together students from universities across Berlin to learn from founders and work on real projects together.',
+	// PageHero: solid first part, cyan outlined second part.
+	title: ['Who we', 'are'] as const,
+	photo: { src: heroPhoto, alt: 'A large group of START Berlin members posing together, several holding up certificates' },
+	// One short sentence, as the hero guide asks. Home counts 13 years in Berlin (since 2013).
+	description: "Berlin's student-run entrepreneurship community, bringing students and founders together since 2013.",
 };
 
 export const purpose = {
@@ -74,14 +76,15 @@ export const network = {
 		'START began in 1996 as a student initiative at the University of St. Gallen and has grown into a network of chapters across Europe and Latin America, including START Global.',
 		'Members exchange ideas across chapters and meet at international events like the START Summit. After their active seasons they stay part of it: alumni find co-founders and investors, mentor new STARTies and open doors for the next batch.',
 	],
-	// 22 cities plus the START Global chapter make 23 chapters. Countries and members
-	// match the homepage Network section, including its "+1800" notation.
+	// Shown with the shared CommunityStats tiles. 22 cities plus the START Global
+	// chapter make 23 chapters; countries and members match the homepage Network section.
 	stats: [
-		{ value: '23', label: 'Chapters' },
-		{ value: '22', label: 'Cities' },
-		{ value: '17', label: 'Countries' },
-		{ value: '+1800', label: 'Members' },
+		{ count: 23, label: 'Chapters' },
+		{ count: 22, label: 'Cities' },
+		{ count: 17, label: 'Countries' },
+		{ count: 1800, suffix: '+', label: 'Members' },
 	],
+	statsLabel: 'The START Network in numbers',
 	voice: story('Rhema Tamunoiyowuna'),
 };
 

@@ -2,9 +2,11 @@
 // The calendar embed lists upcoming events only; it ignores period=past, so
 // past events are linked on Luma instead.
 const calendarUrl = 'https://luma.com/STARTBerlin';
+const embedUrl = 'https://luma.com/embed/calendar/cal-bl55Ki232KTKkOd/events';
 
 export const lumaCalendar = {
-	embedUrl: 'https://luma.com/embed/calendar/cal-bl55Ki232KTKkOd/events',
+	embedUrl,
+	darkEmbedUrl: `${embedUrl}?lt=dark`,
 	calendarUrl,
 	pastEventsUrl: `${calendarUrl}?period=past`,
 	frameTitle: 'Upcoming public events hosted by START Berlin',

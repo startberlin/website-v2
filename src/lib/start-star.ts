@@ -72,9 +72,13 @@ function compile(gl: WebGLRenderingContext, type: number, source: string) {
 	return shader;
 }
 
-export async function mountStar(root: HTMLElement) {
+export interface StarControl {
+	/** Stops or resumes the animation, e.g. when the system motion setting changes. */
+	setActive(active: boolean): void;
+}
+
+export async function mountStar(root: HTMLElement): Promise<StarControl> {
 	const canvas = root.querySelector<HTMLCanvasElement>('.star__canvas')!;
-	const toggle = root.querySelector<HTMLButtonElement>('[data-star-toggle]')!;
 
 	const image = new Image();
 	image.src = root.dataset.texture!;
@@ -118,7 +122,7 @@ export async function mountStar(root: HTMLElement) {
 	let elapsed = 0;
 	let frame = 0;
 	let last = 0;
-	let paused = false;
+	let active = true;
 	let onScreen = true;
 
 	function render() {
@@ -140,7 +144,7 @@ export async function mountStar(root: HTMLElement) {
 	}
 
 	function start() {
-		if (frame || paused || !onScreen || document.hidden) return;
+		if (frame || !active || !onScreen || document.hidden) return;
 		last = performance.now();
 		frame = requestAnimationFrame(tick);
 	}
@@ -163,18 +167,6 @@ export async function mountStar(root: HTMLElement) {
 	new ResizeObserver(resize).observe(root);
 	resize();
 
-	// Animation runs longer than five seconds, so it needs a pause control.
-	const pauseLabel = toggle.querySelector<HTMLElement>('[data-star-pause]')!;
-	const playLabel = toggle.querySelector<HTMLElement>('[data-star-play]')!;
-	toggle.hidden = false;
-	toggle.addEventListener('click', () => {
-		paused = !paused;
-		pauseLabel.hidden = paused;
-		playLabel.hidden = !paused;
-		if (paused) stop();
-		else start();
-	});
-
 	// Moving the cursor across the star (or swiping on touch) turns it like a wheel:
 	// the sweep of the pointer around the centre adds to the spin.
 	let previous: { x: number; y: number } | undefined;
@@ -186,7 +178,7 @@ export async function mountStar(root: HTMLElement) {
 			previous = undefined;
 			return;
 		}
-		if (previous && !paused) {
+		if (previous && active) {
 			const sweep = Math.atan2(previous.x * point.y - previous.y * point.x, previous.x * point.x + previous.y * point.y);
 			drive = Math.max(-maxSpin, Math.min(maxSpin, drive + sweep * spinGain));
 		}
@@ -204,4 +196,11 @@ export async function mountStar(root: HTMLElement) {
 	document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
 
 	start();
+	return {
+		setActive(value) {
+			active = value;
+			if (active) start();
+			else stop();
+		},
+	};
 }

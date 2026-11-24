@@ -7,7 +7,6 @@ interface Props {
 }
 
 const { stages } = Astro.props;
-const total = String(stages.length).padStart(2, '0');
 const last = stages.length - 1;
 
 // The wave alternates low and high nodes across the rail. The SVG stretches to
@@ -58,10 +57,9 @@ const wave = points
 	<ol class="stages">
 		{stages.map((stage) => (
 			<li id={`stage-${stage.id}`} class="stage" data-stage>
-				<span class="stage__node" aria-hidden="true">{stage.number}</span>
+				<span class="stage__node"><span class="sr-only">Stage </span>{stage.number}</span>
 				<div class="stage__body">
 					<div class="stage__head">
-						<p class="stage__eyebrow">Stage {stage.number} / {total}</p>
 						<h2 class="stage__title">{stage.title}</h2>
 						<p class="stage__intro">{stage.intro}</p>
 					</div>
@@ -153,7 +151,6 @@ const wave = points
 		--rail-height: 8rem;
 		--journey-progress: 0;
 		container: journey / inline-size;
-		padding-bottom: var(--space-16);
 	}
 
 	/* Rail: hidden on narrow containers, where each stage shows its own node. */
@@ -229,7 +226,7 @@ const wave = points
 	.rail__number {
 		font-size: var(--text-xl);
 		font-weight: var(--weight-display);
-		line-height: 1;
+		line-height: var(--leading-display);
 	}
 
 	.rail__label {
@@ -240,7 +237,7 @@ const wave = points
 		font-size: var(--text-sm);
 		font-weight: var(--weight-bold);
 		letter-spacing: var(--tracking-wide);
-		line-height: 1.25rem;
+		line-height: var(--leading-ui);
 		text-transform: uppercase;
 		white-space: nowrap;
 		transition: color var(--duration-ui);
@@ -278,9 +275,12 @@ const wave = points
 		display: grid;
 		grid-template-columns: var(--stage-node) minmax(0, 1fr);
 		gap: var(--space-4);
-		padding-bottom: var(--space-16);
 		--journey-band: 0px;
-		scroll-margin-top: calc(var(--header-height) + var(--journey-band) + var(--space-6));
+		scroll-margin-top: calc(var(--journey-band) + var(--space-4));
+	}
+
+	@container journey (width < 40rem) {
+		.stage:not(:last-child) { padding-block-end: var(--space-8); }
 	}
 
 	/* Vertical rail segment from this node to the next one. */
@@ -327,22 +327,12 @@ const wave = points
 
 	.stage__head { grid-area: head; }
 
-	.stage__eyebrow {
-		margin: var(--space-3) 0 var(--space-4);
-		color: var(--color-accent);
-		font-size: var(--text-caption);
-		font-weight: var(--weight-bold);
-		letter-spacing: var(--tracking-eyebrow);
-		line-height: 1.25rem;
-		text-transform: uppercase;
-	}
-
 	.stage__title {
 		margin: 0 0 var(--space-6);
 		font-size: var(--type-section);
 		font-weight: var(--weight-display);
 		letter-spacing: -0.025em;
-		line-height: 0.95;
+		line-height: var(--leading-display);
 		text-transform: uppercase;
 		hyphens: auto;
 	}
@@ -375,7 +365,7 @@ const wave = points
 		padding: var(--space-5) 0 var(--space-5) var(--space-8);
 		border-bottom: var(--border-width) solid var(--border-subtle);
 		font-size: var(--text-lg);
-		line-height: 1.5;
+		line-height: var(--leading-copy);
 	}
 
 	/* Decorative diamond marker. */
@@ -394,7 +384,7 @@ const wave = points
 		grid-area: photo;
 		width: 100%;
 		height: auto;
-		aspect-ratio: 4 / 3;
+		aspect-ratio: var(--ratio-photo);
 		object-fit: cover;
 		border: var(--border-width) solid var(--border-subtle);
 		border-radius: var(--radius-card);
@@ -418,9 +408,6 @@ const wave = points
 			display: none;
 		}
 
-		/* The offset only aligns the eyebrow with the phone node. */
-		.stage__eyebrow { margin-top: 0; }
-
 		.stage:not(:first-child) {
 			border-top: var(--border-width) solid var(--border-subtle);
 		}
@@ -432,7 +419,7 @@ const wave = points
 			/* Text column on the left, photo top-aligned beside it. */
 			grid-template-areas: 'head photo' 'points photo';
 			grid-template-rows: auto 1fr;
-			column-gap: var(--space-16);
+			column-gap: var(--space-columns);
 			row-gap: var(--space-8);
 		}
 
@@ -452,7 +439,7 @@ const wave = points
 				padding-block: var(--space-10);
 				background: var(--color-dark-blue);
 				/* Extends the band background and a divider into the page gutters without affecting layout. */
-				box-shadow: 0 0 0 100vmax var(--color-dark-blue), 0 var(--border-width) 0 100vmax var(--border-subtle);
+				box-shadow: var(--bleed-rail);
 				clip-path: inset(0 -100vmax calc(var(--border-width) * -1));
 			}
 		}

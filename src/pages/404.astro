@@ -1,24 +1,76 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import teamPhoto from '../assets/hero/hero-404.jpg';
 import { pageSeo } from '../lib/seo/pages';
 
 Astro.response.status = 404;
 ---
 
 <Layout seo={pageSeo('/404')}>
-  <PageHero>
-    <Fragment slot="title">Page not found</Fragment>
-    <Fragment slot="description">This address could not be found. Return to our homepage or browse the current opportunities in our network.</Fragment>
-    <Fragment slot="actions">
-      <div class="error-actions">
-        <a class="button" href="/">Back to home</a>
-        <a class="button button--outline" href="/jobs">Browse jobs</a>
-      </div>
-    </Fragment>
-  </PageHero>
+	<PageHero
+		title={['Page', 'not found']}
+		image={teamPhoto}
+		imagePosition="50% 35%"
+		mobileImagePosition="50% 30%"
+	>
+		<Fragment slot="description">
+			The page may have moved or the address may be incorrect.
+		</Fragment>
+		<Fragment slot="actions">
+			<div class="error-actions">
+				<a class="button" href="/">Back to home</a>
+				<a class="button button--outline" href="/jobs">Browse jobs</a>
+			</div>
+		</Fragment>
+	</PageHero>
+
+	<div class="page-container">
+		<p class="error-guidance readable">
+			If you typed the address, check it for typos. You can also{' '}
+			<a href="#error-recovery">browse the current pages</a> for events and membership information.
+		</p>
+	</div>
+
+	<nav class="page-container page-flow" aria-labelledby="error-recovery">
+		<SectionHeading id="error-recovery" compact>Explore START Berlin</SectionHeading>
+		<ul class="error-links" role="list">
+			<li><a class="text-action" href="/events">Events</a></li>
+			<li><a class="text-action" href="/members">Our Members</a></li>
+			<li><a class="text-action" href="/member-journey">Member Journey</a></li>
+			<li><a class="text-action" href="/join">Apply Now</a></li>
+		</ul>
+	</nav>
 </Layout>
 
 <style>
-  .error-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+	.error-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-4);
+		margin-block-start: var(--space-6);
+	}
+
+	.error-guidance {
+		margin: 0;
+		padding-block-start: var(--space-page-start);
+		color: var(--text-copy);
+		line-height: var(--leading-copy);
+	}
+
+	.error-guidance a {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.error-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3) var(--space-6);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
 </style>

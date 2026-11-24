@@ -10,7 +10,7 @@ const slides = Object.entries(
 	.map(([, module]) => module.default);
 ---
 
-<PageHero landing>
+<PageHero landing title={['Student-led', 'Founder-minded']}>
 	<Fragment slot="background">
 		{slides.map((slide, index) => (
 			<div class="hero__slide" data-hero-slide data-active={index === 0 ? '' : undefined}>
@@ -18,27 +18,29 @@ const slides = Object.entries(
 			</div>
 		))}
 	</Fragment>
-	<Fragment slot="title">
-		<span data-hero-line data-hero-accent>Student-led.</span>
-		<span data-hero-line class="hero__title--outline">Founder-minded.</span>
-	</Fragment>
 	<Fragment slot="description">
-		START Berlin is Berlin's largest student-run entrepreneurship non-profit. As part of the START
-		Network we offer students direct access to the startup world.
+		Berlin's largest student-run entrepreneurship non-profit.
 	</Fragment>
 </PageHero>
 
 <script>
-	const slides = document.querySelectorAll<HTMLElement>('[data-hero-slide]');
-	let current = 0;
+	import { motionEnabled, onMotionChange } from '../lib/motion';
 
-	if (slides.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-		setInterval(() => {
+	const slides = [...document.querySelectorAll<HTMLElement>('[data-hero-slide]')];
+	let current = 0;
+	let timer: number | undefined;
+
+	const update = () => {
+		window.clearInterval(timer);
+		if (!motionEnabled() || slides.length < 2 || document.hidden) return;
+		timer = window.setInterval(() => {
 			slides[current].removeAttribute('data-active');
 			current = (current + 1) % slides.length;
 			slides[current].setAttribute('data-active', '');
 		}, 5000);
-	}
+	};
+	onMotionChange(update);
+	document.addEventListener('visibilitychange', update);
 </script>
 
 <style>
@@ -51,11 +53,6 @@ const slides = Object.entries(
 	}
 	.hero__slide[data-active] { opacity: 1; }
 	.hero__image { width: 100%; height: 100%; object-fit: cover; }
-	.hero__title--outline {
-		-webkit-text-stroke: 2px var(--color-white);
-		-webkit-text-fill-color: transparent;
-		paint-order: stroke fill;
-	}
 	@media (prefers-reduced-motion: reduce) {
 		.hero__slide { transition: none; }
 	}

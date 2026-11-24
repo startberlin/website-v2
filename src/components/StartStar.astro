@@ -1,12 +1,13 @@
 ---
 import { Image, getImage } from 'astro:assets';
-import Icon from './icons/Icon.astro';
 import artwork from '../assets/brand/start-star.webp';
 
 // Decorative START star: the real artwork, animated by src/lib/start-star.ts once it
 // is near the viewport (spikes grow out of the core, then a slow, spinnable turn).
-// The still artwork shows only when the animation cannot run: without JavaScript or
-// WebGL, with reduced motion, or if loading fails. So nothing flashes before it grows.
+// The animation follows the system motion setting, including changes while the page
+// is open. The still artwork shows only when the animation cannot run: without
+// JavaScript or WebGL, with reduced motion, or if loading fails. So nothing flashes
+// before the star grows.
 interface Props {
 	/** Sizes hint for the still artwork. */
 	sizes?: string;
@@ -22,17 +23,13 @@ const texture = await getImage({ src: artwork, width: 960, format: 'webp' });
 	<Image src={artwork} alt="" widths={[480, 960]} sizes={sizes} format="webp" loading="lazy" decoding="async" class="star__still" hidden data-star-still />
 	<noscript><Image src={artwork} alt="" widths={[480, 960]} sizes={sizes} format="webp" loading="lazy" decoding="async" class="star__still" /></noscript>
 	<canvas class="star__canvas" aria-hidden="true"></canvas>
-	<button type="button" class="star__toggle" hidden data-star-toggle>
-		<span data-star-pause><Icon name="pause" size={18} /><span class="sr-only">Pause star animation</span></span>
-		<span data-star-play hidden><Icon name="play" size={18} /><span class="sr-only">Play star animation</span></span>
-	</button>
 </div>
 
 <style>
 	.star {
 		position: relative;
 		width: 100%;
-		aspect-ratio: 1;
+		aspect-ratio: var(--ratio-square);
 		/* Vertical swipes still scroll the page; other moves spin the star. */
 		touch-action: pan-y;
 	}
@@ -51,36 +48,24 @@ const texture = await getImage({ src: artwork, width: 960, format: 'webp' });
 		object-fit: contain;
 	}
 
-	.star :global(.star__still[hidden]) { display: none; }
-
-	.star__toggle {
-		position: absolute;
-		right: 0;
-		bottom: 0;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: var(--target-min);
-		height: var(--target-min);
-		padding: 0;
-		color: var(--text-copy);
-		border: var(--border-width) solid var(--border-default);
-		border-radius: var(--radius-pill);
-		background: var(--surface-status);
-		cursor: pointer;
-		transition: border-color var(--duration-fast), color var(--duration-fast);
-	}
-
-	.star__toggle:hover {
-		color: var(--color-white);
-		border-color: var(--border-accent);
-	}
-
-	.star__toggle > span { display: inline-flex; }
-	.star__toggle > span[hidden] { display: none; }
+	.star :global(.star__still[hidden]),
+	.star__canvas[hidden] { display: none; }
 </style>
 
 <script>
+	import { motionEnabled, onMotionChange } from '../lib/motion';
+	import type { StarControl } from '../lib/start-star';
+
+	interface Star {
+		root: HTMLElement;
+		still: HTMLImageElement | null;
+		canvas: HTMLCanvasElement;
+		near: boolean;
+		loading: boolean;
+		failed: boolean;
+		control?: StarControl;
+	}
+
 	function webglAvailable() {
 		try {
 			return Boolean(document.createElement('canvas').getContext('webgl'));
@@ -89,25 +74,47 @@ const texture = await getImage({ src: artwork, width: 960, format: 'webp' });
 		}
 	}
 
-	const stars = [...document.querySelectorAll<HTMLElement>('[data-start-star]')];
-	const showStill = (root: HTMLElement) => {
-		const still = root.querySelector<HTMLImageElement>('[data-star-still]');
-		if (still) still.hidden = false;
-	};
+	const webgl = webglAvailable();
+	const stars: Star[] = [...document.querySelectorAll<HTMLElement>('[data-start-star]')].map((root) => ({
+		root,
+		still: root.querySelector<HTMLImageElement>('[data-star-still]'),
+		canvas: root.querySelector<HTMLCanvasElement>('.star__canvas')!,
+		near: false,
+		loading: false,
+		failed: false,
+	}));
 
-	if (matchMedia('(prefers-reduced-motion: reduce)').matches || !webglAvailable()) {
-		stars.forEach(showStill);
-	} else {
-		const loader = new IntersectionObserver((entries) => {
-			for (const entry of entries) {
-				if (!entry.isIntersecting) continue;
-				const root = entry.target as HTMLElement;
-				loader.unobserve(root);
-				import('../lib/start-star')
-					.then(({ mountStar }) => mountStar(root))
-					.catch(() => showStill(root));
-			}
-		}, { rootMargin: '200px' });
-		stars.forEach((root) => loader.observe(root));
+	// Animate when possible; otherwise show the still artwork. Loads the module the
+	// first time an animated star comes near the viewport.
+	function update(star: Star) {
+		const animate = webgl && motionEnabled() && !star.failed;
+		if (star.still) star.still.hidden = animate;
+		star.canvas.hidden = !animate;
+		star.control?.setActive(animate);
+		if (!animate || !star.near || star.control || star.loading) return;
+		star.loading = true;
+		import('../lib/start-star')
+			.then(({ mountStar }) => mountStar(star.root))
+			.then((control) => {
+				star.control = control;
+				update(star);
+			})
+			.catch(() => {
+				star.failed = true;
+				update(star);
+			});
 	}
+
+	const loader = new IntersectionObserver((entries) => {
+		for (const entry of entries) {
+			const star = stars.find((candidate) => candidate.root === entry.target);
+			if (!star || !entry.isIntersecting) continue;
+			loader.unobserve(entry.target);
+			star.near = true;
+			update(star);
+		}
+	}, { rootMargin: '200px' });
+
+	stars.forEach((star) => loader.observe(star.root));
+	onMotionChange(() => stars.forEach(update));
 </script>

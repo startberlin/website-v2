@@ -1,9 +1,11 @@
+import { recordJobNavigation } from './lib/jobboard/metrics';
 import { defineMiddleware } from 'astro:middleware';
 import { getSiteConfig, isUtilityRoute } from './lib/seo/metadata';
 import { applySecurityHeaders } from './lib/security/headers.mjs';
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const response = await next();
+  if (context.locals.jobNavigation) recordJobNavigation(context.request, response.status, context.locals.jobNavigation);
   const pathname = context.url.pathname;
   const jobboard = pathname === '/jobs' || pathname.startsWith('/jobs/') || pathname.startsWith('/api/jobboard/');
   const preview = !getSiteConfig().indexable;

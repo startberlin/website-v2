@@ -1,0 +1,151 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+	id: string;
+	headingId: string;
+	title: [string, string];
+	lead?: string;
+	benefits: {
+		title: string;
+		text: string;
+		photo: ImageMetadata;
+		alt: string;
+		position: string;
+		accent?: boolean;
+	}[];
+}
+
+const { id, headingId, title, lead, benefits } = Astro.props;
+---
+
+<section class="membership page-container" id={id} aria-labelledby={headingId}>
+	<div class="membership__layout">
+		<div class="membership__intro">
+			<SectionHeading id={headingId} flush={Astro.slots.has('intro')}>
+				{title[0]}{' '}<span data-outline>{title[1]}</span>
+				{lead && <Fragment slot="lead">{lead}</Fragment>}
+			</SectionHeading>
+			<slot name="intro" />
+		</div>
+
+		<ul class="membership__cards" role="list">
+			{benefits.map((benefit) => (
+				<li class:list={['membership__card', { 'membership__card--accent': benefit.accent }]}>
+					<div class="membership__frame">
+						<Image
+							src={benefit.photo}
+							alt={benefit.alt}
+							widths={[400, 720, 1080, 1440]}
+							sizes="(min-width: 52rem) min(56vw, 46rem), 100vw"
+							format="webp"
+							loading="lazy"
+							class="membership__photo"
+							style={`--membership-photo-position: ${benefit.position}`}
+						/>
+					</div>
+					<div class="membership__copy">
+						<h3>{benefit.title}</h3>
+						<p>{benefit.text}</p>
+					</div>
+				</li>
+			))}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.membership { container: membership / inline-size; }
+
+	.membership__layout {
+		display: grid;
+		align-items: start;
+		gap: var(--space-columns);
+	}
+
+	.membership__cards {
+		isolation: isolate;
+		min-inline-size: 0;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.membership__card {
+		overflow: clip;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		background: var(--surface-floating);
+	}
+
+	.membership__card + .membership__card { margin-block-start: var(--space-grid); }
+
+	.membership__card--accent {
+		border-color: var(--color-accent);
+		background: var(--color-accent);
+		color: var(--color-dark-blue);
+	}
+
+	.membership__frame {
+		inline-size: 100%;
+		overflow: clip;
+		aspect-ratio: var(--ratio-photo);
+	}
+
+	.membership__photo {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: var(--membership-photo-position);
+	}
+
+	.membership__copy { padding: var(--space-card); }
+
+	.membership__copy h3 {
+		margin: 0 0 var(--space-2);
+		font-size: var(--text-4xl);
+		font-weight: var(--weight-display);
+		line-height: var(--leading-display);
+		letter-spacing: -0.025em;
+		text-wrap: balance;
+	}
+
+	.membership__copy p {
+		max-inline-size: var(--layout-reading);
+		margin: 0;
+		color: var(--text-copy);
+		font-size: var(--text-base);
+		line-height: var(--leading-copy);
+	}
+
+	.membership__card--accent p { color: inherit; }
+
+	@container membership (min-width: 48rem) {
+		.membership__layout { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+	}
+
+	@media (min-height: 42rem) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+		@container membership (min-width: 52rem) {
+			.membership__intro,
+			.membership__card {
+				position: sticky;
+				inset-block-start: calc(var(--header-height) + var(--space-6));
+			}
+
+			.membership__card:nth-child(2) {
+				inset-block-start: calc(var(--header-height) + var(--space-6) + var(--space-3));
+				margin-inline-start: var(--space-3);
+			}
+
+			.membership__card:nth-child(3) {
+				inset-block-start: calc(var(--header-height) + var(--space-6) + var(--space-6));
+				margin-inline-start: var(--space-6);
+			}
+
+			.membership__frame { max-block-size: 42svh; }
+		}
+	}
+</style>

@@ -1,10 +1,10 @@
 import { pathToFileURL } from 'node:url';
-import { pageRoutes } from './routes.mjs';
+import { assertRedirectLocation, legacyCampaignRedirects, pageRoutes } from './routes.mjs';
 import { vercelGet } from './http.mjs';
 import { deploymentHealth } from './identity.mjs';
 import { assertSecurityHeaders, assertSecurityPolicyVersion } from './security-headers.mjs';
 
-export async function smoke(base, { commit = null, tree = null, jobs = 'optional', preview = false, publicAccess = false } = {}) {
+export async function smoke(base, { commit = null, tree = null, jobs = 'optional', metrics = null, newsletter = null, preview = false, publicAccess = false } = {}) {
   const origin = new URL(base);
   const local = ['127.0.0.1', 'localhost', '[::1]'].includes(origin.hostname);
   if (origin.username || origin.password || origin.pathname !== '/' || origin.search || origin.hash || (!local && (origin.protocol !== 'https:' || !(origin.hostname.endsWith('.vercel.app') || ['staging.start-berlin.com', 'www.start-berlin.com'].includes(origin.hostname))))) throw new Error('Smoke checks require an exact allowed deployment origin.');
@@ -24,6 +24,8 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
   const stableAlias = ['staging.start-berlin.com', 'www.start-berlin.com'].includes(origin.hostname);
   const identity = await deploymentHealth(() => get('/api/health', [200]), { commit, tree }, { waitForSource: publicAccess && stableAlias });
   if (identity.deploymentCredentialsExposed !== false) throw new Error('Deployment-management credentials must not be present in application runtime.');
+  if (!['disabled', 'configured'].includes(identity.jobboardMetrics) || (metrics && identity.jobboardMetrics !== metrics)) throw new Error('Jobboard measurement configuration does not match the release target.');
+  if (newsletter && identity.newsletterSignup !== newsletter) throw new Error('Newsletter configuration does not match the release target.');
   if (identity.nodeMajor !== Number(process.versions.node.split('.')[0])) throw new Error('Deployment Node major differs from the tested CI runtime.');
   let jobsAvailable = false;
   const routes = pageRoutes();
@@ -34,18 +36,28 @@ export async function smoke(base, { commit = null, tree = null, jobs = 'optional
     assertSecurityPolicyVersion(html, path);
     if ((html.match(/<main\b/g) || []).length !== 1 || (html.match(/<h1\b/g) || []).length !== 1) throw new Error(`${path}: missing or duplicated page landmarks.`);
   }
-  for (const [path, destination] of [['/legal/legal-notice.html', '/legal-notice'], ['/legal/privacy.html', '/privacy-policy']]) {
+  for (const [path, destination] of [
+    ['/legal/legal-notice.html', '/legal-notice'],
+    ['/legal/privacy.html', '/privacy-policy'],
+    ...legacyCampaignRedirects,
+  ]) {
     const response = await get(path, [301]);
-    if (new URL(response.headers.get('location'), origin).pathname !== destination) throw new Error(`${path}: incorrect legacy redirect.`);
+    assertRedirectLocation(response, origin, path, destination);
   }
-  const missing = await get('/security-smoke-missing-route', [404]);
-  assertSecurityPolicyVersion(await missing.text(), '404');
+  for (const path of ['/404', '/404.html', '/security-smoke-missing-route.html']) {
+    const response = await get(path, [404]);
+    const html = await response.text();
+    assertSecurityPolicyVersion(html, path);
+    if (!/<meta name="robots" content="noindex, follow"/.test(html) || /<link rel="canonical"/.test(html)) {
+      throw new Error(`${path}: the error page must be noindex and omit the canonical URL.`);
+    }
+  }
   console.log(`Smoke checks passed for ${routes.length} current pages. Jobs: ${jobsAvailable ? 'available' : 'controlled unavailable state (not backend acceptance)'}.`);
   return { jobsAvailable };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   try {
-    await smoke(process.env.DEPLOYMENT_URL, { commit: process.env.RELEASE_COMMIT_SHA || null, tree: process.env.RELEASE_TREE_SHA || null, jobs: process.env.SMOKE_JOBS || 'optional', preview: process.env.SMOKE_PREVIEW === 'true', publicAccess: process.env.SMOKE_PUBLIC === 'true' });
+    await smoke(process.env.DEPLOYMENT_URL, { commit: process.env.RELEASE_COMMIT_SHA || null, tree: process.env.RELEASE_TREE_SHA || null, jobs: process.env.SMOKE_JOBS || 'optional', metrics: process.env.SMOKE_JOBBOARD_METRICS || null, newsletter: process.env.SMOKE_NEWSLETTER_SIGNUP || null, preview: process.env.SMOKE_PREVIEW === 'true', publicAccess: process.env.SMOKE_PUBLIC === 'true' });
   } catch (error) { console.error(error.message); process.exitCode = 1; }
 }

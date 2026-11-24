@@ -127,7 +127,7 @@ const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] :
 		overflow-wrap: anywhere;
 	}
 
-	/* A 44-px target that does not push the name row apart. */
+	/* A 44-px target; the negative margin keeps it from pushing the name row apart. */
 	.person__icon {
 		display: inline-flex;
 		flex-shrink: 0;
@@ -135,7 +135,7 @@ const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] :
 		justify-content: center;
 		width: var(--target-min);
 		height: var(--target-min);
-		margin-block: calc((var(--target-min) - 1.5rem) / -2);
+		margin-block: calc(-1 * var(--space-3));
 		color: var(--text-copy);
 		transition: color var(--duration-fast);
 	}

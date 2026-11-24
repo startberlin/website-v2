@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { securityHeaders } from '../src/lib/security/headers.mjs';
+import { resolveSiteConfig } from '../src/lib/seo/site.mjs';
 
 /**
  * Retain the official adapters and cover responses outside Astro middleware.
@@ -29,8 +30,24 @@ export function withSecurityHeaders(adapter, target) {
         if (target !== 'vercel') return;
         const path = new URL('.vercel/output/config.json', root);
         const configuration = JSON.parse(await readFile(path, 'utf8'));
+        const routes = configuration.routes;
+        const filesystem = routes.findIndex((route) => route.handle === 'filesystem');
+        const homeRedirect = routes.findIndex((route) => route.src === '^/index\\.html$' && route.dest);
+        if (filesystem === -1 || homeRedirect === -1) throw new Error('Missing Vercel filesystem or legacy homepage route.');
+        // The homepage file would shadow the Astro redirect after the filesystem phase.
+        if (homeRedirect > filesystem) {
+          const [route] = routes.splice(homeRedirect, 1);
+          routes.splice(filesystem, 0, route);
+        }
+        const notFound = routes.find((route) => route.dest === '/404.html' && route.status === 404);
+        if (notFound) {
+          const robots = resolveSiteConfig(process.env).indexable ? 'noindex, follow' : 'noindex, nofollow';
+          notFound.headers = { ...notFound.headers, 'X-Robots-Tag': robots };
+          // An explicit request for the error document must also have status 404.
+          routes.splice(filesystem, 0, { ...notFound, src: '^/404\\.html$' });
+        }
         // Must run before filesystem, redirects and the final 404, including path aliases.
-        configuration.routes.unshift({ src: '/.*', headers: securityHeaders, continue: true });
+        routes.unshift({ src: '/.*', headers: securityHeaders, continue: true });
         await writeFile(path, `${JSON.stringify(configuration, null, 2)}\n`);
       },
     },

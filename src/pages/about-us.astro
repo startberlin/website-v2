@@ -7,6 +7,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import Testimonial from '../components/Testimonial.astro';
 import PersonChip from '../components/PersonChip.astro';
 import StartStar from '../components/StartStar.astro';
+import CommunityStats from '../components/CommunityStats.astro';
 import Icon from '../components/icons/Icon.astro';
 import { pageSeo } from '../lib/seo/pages';
 import { boardMembers, boardProfilePath, type TeamSeason } from '../lib/board-members';
@@ -35,18 +36,12 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 ---
 
 <Layout seo={pageSeo('/about-us')}>
-	<PageHero>
-		<div slot="background" class="hero-glow" aria-hidden="true"></div>
-		<Fragment slot="title">
-			<span data-hero-line data-hero-accent>{hero.accent}</span>{' '}
-			<span data-hero-line data-hero-outline>{hero.outline}</span>
-		</Fragment>
+	<PageHero title={hero.title} image={hero.photo.src} alt={hero.photo.alt} imagePosition="50% 35%">
 		<Fragment slot="description">{hero.description}</Fragment>
 		<div slot="actions" class="hero-actions">
 			<a class="button" href={join.primary.href}>{join.primary.label}</a>
 			<a class="button button--outline" href="/members">Meet our members</a>
 		</div>
-		<div slot="aside" class="hero-star"><StartStar sizes="(min-width: 64rem) 28rem, 60vw" /></div>
 	</PageHero>
 
 	<section class="section page-container purpose" id="purpose" aria-labelledby="purpose-heading">
@@ -108,25 +103,20 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 
 	<section class="network" id="network" aria-labelledby="network-heading">
 		<div class="network__glow" aria-hidden="true"></div>
-		<div class="section page-container network__layout">
-			<div class="network__copy">
-				<SectionHeading id="network-heading">{network.heading}</SectionHeading>
-				<div class="prose">
-					{network.text.map((paragraph) => <p>{paragraph}</p>)}
+		<div class="section page-container">
+			<div class="network__layout">
+				<div class="network__copy">
+					<SectionHeading id="network-heading">{network.heading}</SectionHeading>
+					<div class="prose">
+						{network.text.map((paragraph) => <p>{paragraph}</p>)}
+					</div>
+					<div class="network__voice"><Testimonial {...network.voice} variant="pull" /></div>
 				</div>
-				<dl class="stats" data-count-group>
-					{network.stats.map((stat) => (
-						<div class="stat">
-							<dt class="stat__label">{stat.label}</dt>
-							<dd class="stat__value">
-								<span aria-hidden="true" data-count={stat.value}>{stat.value}</span>
-								<span class="sr-only">{stat.value}</span>
-							</dd>
-						</div>
-					))}
-				</dl>
+				<div class="network__star"><StartStar sizes="(min-width: 64rem) 28rem, 70vw" /></div>
 			</div>
-			<div class="network__voice"><Testimonial {...network.voice} variant="pull" /></div>
+			<div class="network__stats">
+				<CommunityStats id="network-stats" label={network.statsLabel} stats={network.stats} />
+			</div>
 		</div>
 	</section>
 
@@ -164,31 +154,11 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		line-height: var(--leading-copy);
 	}
 
-	/* Hero: a soft star-blue glow behind the star instead of flat navy. */
-	.hero-glow {
-		position: absolute;
-		inset: 0;
-		z-index: -2;
-		background: var(--gradient-glow-deep) 85% 40% / 70% 120% no-repeat, var(--gradient-glow) 80% 45% / 40% 70% no-repeat;
-	}
-
 	.hero-actions {
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--space-3);
 		margin-top: var(--space-6);
-	}
-
-	.hero-star {
-		width: clamp(13rem, 36vw, 28rem);
-		margin-inline: auto;
-	}
-
-	/* Below 640 px the hero aside wraps under the copy; let it span the row so the
-	   star centres instead of hugging the left edge. */
-	@media (max-width: 639px) {
-		:global(.page-hero__aside:has(> .hero-star)) { width: 100%; }
-		.hero-star { width: min(16rem, 70%); }
 	}
 
 	/* Purpose: copy beside the featured quote. */
@@ -330,7 +300,7 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		font-weight: var(--weight-bold);
 	}
 
-	/* Network: copy and figures beside Rhema's view from across the chapters. */
+	/* Network: copy and Rhema's view beside the star, the shared figure tiles below. */
 	.network {
 		container: network / inline-size;
 		position: relative;
@@ -342,62 +312,35 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		position: absolute;
 		inset: 0;
 		z-index: -1;
-		background: var(--gradient-glow) 0% 60% / 60% 90% no-repeat, var(--gradient-glow-deep) 100% 30% / 70% 100% no-repeat;
+		background: var(--gradient-glow-deep) 100% 25% / 70% 80% no-repeat, var(--gradient-glow) 85% 20% / 45% 50% no-repeat;
 	}
 
 	.network__layout {
 		display: grid;
-		gap: var(--space-14);
+		gap: var(--space-12);
+		align-items: center;
 	}
 
-	.network__copy,
-	.network__voice {
+	.network__copy {
 		min-width: 0;
 	}
 
 	.network__voice {
-		align-self: center;
+		margin-top: var(--space-12);
+	}
+
+	.network__star {
+		width: min(100%, 18rem);
+		justify-self: center;
+	}
+
+	.network__stats {
+		margin-top: var(--space-section);
 	}
 
 	@container network (min-width: 60rem) {
 		.network__layout { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-16); }
-	}
-
-	/* Four figures as a 2 × 2 grid so no value wraps. */
-	.stats {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: var(--space-8) var(--space-6);
-		max-width: var(--layout-reading);
-		margin: var(--space-10) 0 0;
-		padding-top: var(--space-8);
-		border-top: var(--border-width) solid var(--border-default);
-	}
-
-	.stat {
-		display: flex;
-		flex-direction: column-reverse;
-		gap: var(--space-2);
-		min-width: 0;
-	}
-
-	.stat__label {
-		color: var(--text-muted);
-		font-size: var(--text-xs);
-		font-weight: var(--weight-bold);
-		letter-spacing: var(--tracking-wide);
-		text-transform: uppercase;
-	}
-
-	.stat__value {
-		margin: 0;
-		color: var(--color-accent);
-		font-size: var(--type-stat);
-		font-weight: var(--weight-display);
-		/* Equal-width digits so counting up does not jitter. */
-		font-variant-numeric: tabular-nums;
-		line-height: 1;
-		white-space: nowrap;
+		.network__star { width: 100%; }
 	}
 
 	/* Join: the closing call to action on the accent surface. */
@@ -406,7 +349,7 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		gap: var(--space-10);
 		padding: var(--space-10) var(--space-6);
 		border: var(--border-width) solid var(--border-accent);
-		border-radius: var(--radius-media);
+		border-radius: var(--radius-card);
 		background: var(--surface-accent);
 	}
 
@@ -475,36 +418,3 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		.join__link { transition: none; }
 	}
 </style>
-
-<script>
-	// Count the network figures up once when they scroll into view, slightly staggered.
-	// The final values stay in the HTML (search engines, no JavaScript, slow devices)
-	// and screen readers read the hidden copy; reduced motion shows them still.
-	const group = document.querySelector<HTMLElement>('[data-count-group]');
-
-	if (group && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-		const counters = [...group.querySelectorAll<HTMLElement>('[data-count]')];
-		const observer = new IntersectionObserver(([entry]) => {
-			if (!entry.isIntersecting) return;
-			observer.disconnect();
-			counters.forEach((counter, index) => {
-				// Keep prefixes, suffixes and digit grouping, e.g. "+1800" or "1,800+".
-				const [, prefix = '', digits = '', suffix = ''] = counter.dataset.count?.match(/^(\D*)([\d,]+)(\D*)$/) ?? [];
-				const target = Number(digits.replace(/,/g, ''));
-				if (!target) return;
-				const format = (value: number) => prefix + (digits.includes(',') ? value.toLocaleString('en-GB') : String(value)) + suffix;
-				const delay = index * 120;
-				let start: number | undefined;
-				// The first frame sets 0, so a count that never gets a frame keeps the final value.
-				const step = (now: number) => {
-					start ??= now + delay;
-					const progress = Math.min(Math.max((now - start) / 1600, 0), 1);
-					counter.textContent = format(Math.round(target * (1 - (1 - progress) ** 3)));
-					if (progress < 1) requestAnimationFrame(step);
-				};
-				requestAnimationFrame(step);
-			});
-		}, { threshold: 0.4 });
-		observer.observe(group);
-	}
-</script>

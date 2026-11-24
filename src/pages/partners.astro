@@ -38,11 +38,7 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 ---
 
 <Layout seo={pageSeo('/partners')}>
-	<PageHero image={hero.photo.src} alt={hero.photo.alt} imagePosition="50% 40%" phoneShade>
-		<Fragment slot="title">
-			<span data-hero-line data-hero-accent>{hero.accent}</span>{' '}
-			<span data-hero-line data-hero-outline>{hero.outline}</span>
-		</Fragment>
+	<PageHero title={hero.title} image={hero.photo.src} alt={hero.photo.alt} imagePosition="50% 40%">
 		<Fragment slot="description">{hero.description}</Fragment>
 		<div slot="actions" class="hero-actions">
 			<a class="button" href="#contact">Talk to us</a>
@@ -293,7 +289,7 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		aspect-ratio: 16 / 9;
 		object-fit: cover;
 		border: var(--border-width) solid var(--border-subtle);
-		border-radius: var(--radius-media);
+		border-radius: var(--radius-card);
 	}
 
 	.offer__body {
@@ -312,7 +308,7 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		align-content: center;
 		padding: var(--space-10) var(--space-8);
 		border: var(--border-width) solid var(--border-accent);
-		border-radius: var(--radius-media);
+		border-radius: var(--radius-card);
 		background: var(--surface-accent);
 	}
 

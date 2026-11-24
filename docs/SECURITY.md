@@ -1,5 +1,11 @@
 # SECURITY.md: Universal Security Guideline for AI Coding Agents
 
+## Website newsletter
+
+The anonymous form accepts bounded, same-origin POST requests. It validates the address, uses a honeypot and applies a per-instance request limit. Resend deduplicates confirmation sends by recipient and hour across instances. Confirmation links encrypt the address, expire after 24 hours and require an explicit POST. Provider responses and credentials stay on the server. Resend owns the contacts, topics and existing opt-outs. Protected GitHub environments supply separate credentials to staging and production at runtime.
+
+The newsletter and Jobboard tests exercise invalid or oversized requests, cross-origin rejection, expired or altered links, duplicate submissions, existing opt-outs and provider failures. The release smoke check confirms the deployment receives the expected newsletter configuration. Provider delivery and list membership are validated separately with a disposable test address. The in-memory request limit applies per running instance.
+
 **Priority: Security is the #1 priority.** When security conflicts with convenience, speed, or aesthetics, security wins.
 This document is language-, framework-, and architecture-agnostic. Apply the principles using the idioms of whatever stack the project uses.
 
@@ -308,3 +314,21 @@ The shared Layout puts a digest of the actual baseline policy on its existing ge
 The dependency fix pins Zod 4.6.7 and patches vulnerable transitive copies of Zod, undici and fast-uri in both package managers. The glob 14.0.2 override is scoped to `@vercel/nft`: its current parent still requests vulnerable glob 13. Remove or revise that override when the parent adopts a safe version. Validate dynamic dependency tracing and the isolated packaged Vercel function when changing it. Node remains on the supported 22.x runtime.
 
 Regression coverage includes oversized Zod containers, encoded URI schemes, aborted filesystem walks and bounded minimatch expansion, with ordinary controls. Release checks enforce the header contract on current pages, redirects and a missing route. Node smoke checks also cover encoded/direct-file aliases, malformed URLs, HEAD and conditional 304 responses, and immutable stylesheets. CI audits production and build dependencies at every severity. An audit finding is a package advisory; it does not by itself establish reachability through an HTTP request.
+
+## Photo heroes and Member Stories, 17 November 2026
+
+The presentation changes use local image assets and Astro's escaped text rendering for headings, including employer names and job titles. The stories script changes the visible quote and its controls in the DOM. The new JPEG was exported with embedded metadata stripped. Preview responses retain the shared robots and browser policies.
+
+All 104 repository tests passed. The isolated Node build passed smoke checks for current status codes and security headers. The pnpm audit reported the high-severity `picomatch` advisory in the existing `4.0.7` dependency. [GitHub advisory](https://github.com/advisories/GHSA-fc5q-39xc-vjpf).
+
+## Dependency updates, 17 November 2026
+
+Astro 7.4.12 and Node adapter 11.1.13 include the published security fixes. The React and Vercel adapters use compatible patch releases. The version of `@emnapi/runtime` used by `@napi-rs/wasm-runtime` 1.2.4 stays on 1.11.3 so Astro's type checker uses a runtime compatible with its 1.x core.
+
+Both package managers replace the original Picomatch 2.x and 4.x packages with the integrity-pinned `@ryotsu/picomatch@4.0.7-a` fork for CVE-2026-112366. The npm signature verification passed, and the published JavaScript matched the pinned source commit. The executable differences from Picomatch 4.0.7 are limited to the parser and character constants. Move back to upstream when a patched release passes the same dependency and build checks. [Advisory](https://github.com/advisories/GHSA-fc5q-39xc-vjpf), [reviewed fork source](https://github.com/ryotsu-kankichi/secured-picomatch/tree/3ab5a7627d480259e3d9ca67fbc14c125d374f0e).
+
+Both lockfile audits reported zero known findings. The dependency regression checks confirmed the fork in the Astro, Vite, Vercel tracing, and file-watcher paths under both package managers. The 105 repository tests and both packaged Node 22 runtime checks passed.
+
+## 404 error page redesign, 19 November 2026
+
+The prerendered 404 page uses the shared layout and `pageSeo('/404')` for `noindex` and an omitted canonical URL. The same document serves every missing path without echoing request data. Both adapters return HTTP 404 for direct requests to `/404.html`. The team photo has no embedded EXIF, IPTC or XMP metadata. Recovery links use fixed internal destinations.

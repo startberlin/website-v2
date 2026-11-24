@@ -6,7 +6,7 @@ Home, Members and Join remain prerendered. Jobboard listings and details render 
 
 ## Design and contributor onboarding
 
-Read [AGENTS.md](AGENTS.md) and the [design guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
+Read [AGENTS.md](AGENTS.md), [design values](design.md) and the [component guide](docs/STYLE_GUIDE.md) before UI changes. Use [tokens.css](src/styles/tokens.css) for visual values and [primitives.css](src/styles/primitives.css) for native controls. Run `pnpm --config.verify-deps-before-run=false run check:design` to detect style drift.
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for the PR workflow and [docs/RELEASE.md](docs/RELEASE.md) for staging, production and domain cutover. GitHub `main` and `production` require successful checks and one admin authorization, through review or intentional PR merge, including on the admin's own PR. Production uses that release-PR authorization without a second environment approval.
 
@@ -25,7 +25,7 @@ pnpm install --frozen-lockfile
 cp .env.example .env
 ```
 
-Set `COCKPIT_API_URL` to the running Cockpit API prefix. Set distinct `JOBBOARD_READ_API_KEY` and `JOBBOARD_SUBMIT_API_KEY` values matching Cockpit, each at least 32 characters. Set `PUBLIC_SITE_URL` to the website's exact origin, without `/jobs`. Keep request metrics disabled. Never expose these keys through `PUBLIC_` variables or client code.
+Set `COCKPIT_API_URL` to the running Cockpit API prefix. Set distinct `JOBBOARD_READ_API_KEY` and `JOBBOARD_SUBMIT_API_KEY` values matching Cockpit, each at least 32 characters. Set `PUBLIC_SITE_URL` to the website's exact origin, without `/jobs`. A valid, separate `JOBBOARD_METRICS_API_KEY` for the matching Cockpit environment enables Jobs request counts. Omit the key to disable collection. Never expose these keys through `PUBLIC_` variables or client code.
 
 The server reads runtime environment variables. Start development with the local file explicitly loaded:
 
@@ -51,7 +51,7 @@ HOST=127.0.0.1 PORT=4337 node --env-file=.env .astro/jobboard-build/server/entry
 
 The separate verification output preserves the tracked upstream `dist/`. Serve the generated Node entrypoint with its client assets; uploading static HTML alone does not provide the live Jobboard routes. Production variables must be supplied by the host. Built output does not automatically load `.env`.
 
-Dependency security overrides live in `package.json` for npm and `pnpm-workspace.yaml` for pnpm. Keep both configurations and lockfiles aligned. Run `pnpm audit`, `npm audit --package-lock-only` and `test:dependencies` after dependency changes. The Vercel adapter is pinned to 11.0.16 and passes isolated function startup. Keep that check mandatory for future updates; 11.0.13 previously failed it.
+Dependency security overrides live in `package.json` for npm and `pnpm-workspace.yaml` for pnpm. Keep both configurations and lockfiles aligned. Run `pnpm audit`, `npm audit --package-lock-only` and `test:dependencies` after dependency changes. The Vercel adapter must pass isolated function startup on each update. Version 11.0.13 previously failed that check.
 
 The `http-cache-semantics` 4.3.0 update clears the reported version range of [GHSA-ch52-4w7c-c8xp](https://github.com/advisories/GHSA-ch52-4w7c-c8xp), but retains the reported generic `max-stale` behaviour. Current Astro image builds use `storable()` and `timeToLive()` without visitor cache headers. The dependency tests check that actual image-cache boundary, source-map offset validation and Vercel routing. They do not establish a generic cache-library fix or replace magicast's embedded source-map copy, which is used by Astro's configuration-editing CLI.
 
@@ -59,8 +59,8 @@ The `http-cache-semantics` 4.3.0 update clears the reported version range of [GH
 
 Navigation pairs `Apply Now` (`/join`) with `Jobs` (`/jobs`). The Jobboard includes filters with 25-role URL pagination, canonical detail pages, employer submissions, application/share redirects and an active-role sitemap. The shared website footer appears on all pages, including Jobs. It links to `/legal-notice` and `/privacy-policy`, which preserve the legacy Berlin texts in the START Munich layout. Legacy `/legal/*.html` URLs redirect to these pages. Donate is present but disabled until a donation destination is provided. See the [approved plan and implementation update](docs/plans/2026-09-29-jobboard-integration.md) and [local verification evidence](docs/verification/jobboard-2026-09-29/browser.md).
 
-Release Newsletter in Cockpit before Jobboard. Newsletter owns migrations `0058` through `0060`; Jobboard follows with `0061`. The public migration requires no database-provider reconfiguration. Keep the standalone public project until the deployed v2 flow passes acceptance.
+Cockpit owns all schema migrations. The public website connects through the scoped Jobs API. The staging deployment reads from Cockpit staging and sends employer submissions to its private review queue. Individual PR previews have no service credentials. Keep the standalone public project until the deployed v2 flow passes acceptance.
 
-Production API credentials and backend acceptance remain to be configured. The Node adapter provides local built-server previews; `pnpm run build:vercel` uses the official Vercel adapter and isolated output. Before release, reconcile the migrated legal/privacy text with the actual hosting and services; the legacy privacy policy still names Webflow. Request analytics are disabled.
+Production API credentials and backend acceptance remain to be configured. The Node adapter provides local built-server previews; `pnpm run build:vercel` uses the official Vercel adapter and isolated output. Before release, reconcile the migrated legal/privacy text with the actual hosting and services; the legacy privacy policy still names Webflow. The Jobs privacy page describes the active runtime measurement setting.
 
 START plans to agree compensation with each company before publication; a referral arrangement remains a possibility. Staff follow up manually using the private Cockpit contact, record agreed terms, then review and publish the draft. Pricing is not settled. Commercial agreement enforcement and billing are not implemented.

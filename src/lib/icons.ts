@@ -48,6 +48,8 @@ export const icons = {
 	'search': outline(["M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"]),
 	'menu': outline(["M4 6h16M4 12h16M4 18h16"]),
 	'close': outline(["M6 18L18 6M6 6l12 12"]),
+	'pause': outline(["M9 5v14M15 5v14"]),
+	'play': outline(["m8 5 12 7-12 7z"]),
 	'chevron-down': outline(["M19 9l-7 7-7-7"]),
 	'chevron-right': outline(["M9 5l7 7-7 7"]),
 	'arrow-left': outline(["M19 12H5m7 7-7-7 7-7"]),
@@ -55,8 +57,6 @@ export const icons = {
 	'arrow-up-right': outline(["M7 17 17 7M7 7h10v10"]),
 	'external-link': outline(["M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"]),
 	'check': outline(["M5 13l4 4L19 7"]),
-	'pause': outline(["M9 5v14M15 5v14"]),
-	'play': outline(["M7 4.5v15l12-7.5-12-7.5z"]),
 } satisfies Record<string, IconDefinition>;
 
 export type IconName = keyof typeof icons;

@@ -65,8 +65,15 @@ jobs:
       - name: Stage a production build without assigning domains
         id: deploy
         run: |
+          newsletter_env=()
+          newsletter_state=$(node scripts/release/newsletter-env.mjs)
+          if [[ "$newsletter_state" == configured ]]; then
+            newsletter_env=(--env NEWSLETTER_RESEND_API_KEY --env NEWSLETTER_CONFIRMATION_SECRET)
+          fi
+          echo "newsletter=$newsletter_state" >> "$GITHUB_OUTPUT"
           tree=$(git rev-parse 'HEAD^{tree}')
           "$VERCEL_CLI" deploy --project="$VERCEL_PROJECT_ID" --prod --skip-domain --yes --non-interactive --json \
+            --env COCKPIT_API_URL "${newsletter_env[@]}" \
             --meta githubDeployment=1 --meta githubCommitRef=production --meta githubCommitSha="$GITHUB_SHA" \
             --build-env RELEASE_COMMIT_SHA="$GITHUB_SHA" --build-env RELEASE_TREE_SHA="$tree" > "$RUNNER_TEMP/production-deployment.json"
           node scripts/release/deployment-result.mjs "$RUNNER_TEMP/production-deployment.json" production
@@ -75,6 +82,9 @@ jobs:
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          COCKPIT_API_URL: https://cockpit.start-berlin.com/api/jobboard/v1
+          NEWSLETTER_RESEND_API_KEY: ${{ secrets.NEWSLETTER_RESEND_API_KEY }}
+          NEWSLETTER_CONFIRMATION_SECRET: ${{ secrets.NEWSLETTER_CONFIRMATION_SECRET }}
       - name: Verify the production build and live Jobboard read path
         run: node scripts/release/smoke.mjs
         env:
@@ -82,6 +92,7 @@ jobs:
           RELEASE_COMMIT_SHA: ${{ github.sha }}
           RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
           SMOKE_JOBS: required
+          SMOKE_NEWSLETTER_SIGNUP: ${{ steps.deploy.outputs.newsletter }}
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
@@ -107,6 +118,7 @@ jobs:
           RELEASE_COMMIT_SHA: ${{ github.sha }}
           RELEASE_TREE_SHA: ${{ steps.deploy.outputs.tree }}
           SMOKE_JOBS: required
+          SMOKE_NEWSLETTER_SIGNUP: ${{ steps.deploy.outputs.newsletter }}
           SMOKE_PUBLIC: 'true'
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}

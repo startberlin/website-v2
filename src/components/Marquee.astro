@@ -1,10 +1,9 @@
 ---
-import Icon from './icons/Icon.astro';
-
 // Horizontally scrolling banner for any inline content (logos, cities, a short
 // announcement). The slot renders twice for a seamless loop; the copy is hidden
-// from assistive technology and keyboard focus. Hover or the pause button stops
-// it; with reduced motion it becomes a still row that scrolls sideways.
+// from assistive technology and keyboard focus. It stops on hover and keyboard
+// focus and follows the system motion setting: with reduced motion it becomes a
+// still row that scrolls sideways.
 interface Props {
 	/** Accessible name of the banner region. */
 	label: string;
@@ -16,30 +15,16 @@ const { label, duration = 50 } = Astro.props;
 const content = await Astro.slots.render('default');
 ---
 
-<div class="marquee" role="region" aria-label={label} style={`--marquee-duration: ${duration}s`} data-marquee>
-	<div class="marquee__viewport">
-		<div class="marquee__track">
-			<div class="marquee__group"><Fragment set:html={content} /></div>
-			<div class="marquee__group" aria-hidden="true" inert><Fragment set:html={content} /></div>
-		</div>
+<div class="marquee" role="region" aria-label={label} style={`--marquee-duration: ${duration}s`}>
+	<div class="marquee__track">
+		<div class="marquee__group"><Fragment set:html={content} /></div>
+		<div class="marquee__group" aria-hidden="true" inert><Fragment set:html={content} /></div>
 	</div>
-	<button type="button" class="marquee__toggle" data-marquee-toggle>
-		<span data-marquee-pause><Icon name="pause" size={16} /><span class="sr-only">Pause scrolling banner</span></span>
-		<span data-marquee-play hidden><Icon name="play" size={16} /><span class="sr-only">Play scrolling banner</span></span>
-	</button>
 </div>
 
 <style>
-	.marquee {
-		display: flex;
-		align-items: center;
-		gap: var(--space-4);
-	}
-
 	/* Fade the content out at both edges. */
-	.marquee__viewport {
-		flex: 1;
-		min-width: 0;
+	.marquee {
 		overflow: hidden;
 		mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
 	}
@@ -51,7 +36,7 @@ const content = await Astro.slots.render('default');
 	}
 
 	.marquee:hover .marquee__track,
-	.marquee[data-paused] .marquee__track {
+	.marquee:focus-within .marquee__track {
 		animation-play-state: paused;
 	}
 
@@ -66,48 +51,9 @@ const content = await Astro.slots.render('default');
 		to { transform: translateX(-50%); }
 	}
 
-	.marquee__toggle {
-		display: inline-flex;
-		flex-shrink: 0;
-		align-items: center;
-		justify-content: center;
-		width: var(--target-min);
-		height: var(--target-min);
-		padding: 0;
-		color: var(--text-copy);
-		border: var(--border-width) solid var(--border-default);
-		border-radius: var(--radius-pill);
-		background: transparent;
-		cursor: pointer;
-		transition: border-color var(--duration-fast), color var(--duration-fast);
-	}
-
-	.marquee__toggle:hover {
-		color: var(--color-white);
-		border-color: var(--border-accent);
-	}
-
-	.marquee__toggle > span { display: inline-flex; }
-	.marquee__toggle > span[hidden] { display: none; }
-
 	@media (prefers-reduced-motion: reduce) {
-		.marquee__viewport { overflow-x: auto; mask-image: none; }
+		.marquee { overflow-x: auto; mask-image: none; }
 		.marquee__track { animation: none; }
 		.marquee__group[aria-hidden] { display: none; }
-		.marquee__toggle { display: none; }
 	}
 </style>
-
-<script>
-	for (const marquee of document.querySelectorAll<HTMLElement>('[data-marquee]')) {
-		const toggle = marquee.querySelector<HTMLButtonElement>('[data-marquee-toggle]')!;
-		const pause = toggle.querySelector<HTMLElement>('[data-marquee-pause]')!;
-		const play = toggle.querySelector<HTMLElement>('[data-marquee-play]')!;
-		toggle.addEventListener('click', () => {
-			const paused = !marquee.hasAttribute('data-paused');
-			marquee.toggleAttribute('data-paused', paused);
-			pause.hidden = paused;
-			play.hidden = !paused;
-		});
-	}
-</script>

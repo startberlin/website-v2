@@ -8,6 +8,9 @@ const violations = [];
 const definitions = new Set();
 const references = [];
 let checked = 0;
+const spacingProperty = /^(?:(?:margin|padding)(?:-[a-z-]+)?|(?:row-|column-)?gap)$/;
+const literalLength = /(?:^|[\s(,+*/-])(?:\d*\.)?\d+(?:px|r?em|ch|[dls]?v[wh])\b/i;
+const tokenValue = /^var\(--[\w-]+\)$/;
 
 async function sourceFiles(directory) {
 	const entries = await readdir(directory, { withFileTypes: true });
@@ -25,7 +28,7 @@ function location(file, source, offset) {
 
 for (const file of await sourceFiles(path.join(root, 'src'))) {
 	const source = await readFile(file, 'utf8');
-	const relative = path.relative(root, file);
+	const relative = path.relative(root, file).replaceAll(path.sep, '/');
 	// Include custom properties passed in Astro's inline style attributes.
 	for (const match of source.matchAll(/(--[\w-]+)\s*:/g)) definitions.add(match[1]);
 	const regions = file.endsWith('.css')
@@ -36,6 +39,7 @@ for (const file of await sourceFiles(path.join(root, 'src'))) {
 		checked++;
 		// Preserve comment length so reported line numbers remain correct.
 		const clean = css.replace(/\/\*[\s\S]*?\*\//g, (comment) => comment.replace(/[^\n]/g, ' '));
+		for (const match of clean.matchAll(/@property\s+(--[\w-]+)\s*\{/g)) definitions.add(match[1]);
 		for (const match of clean.matchAll(/var\(\s*(--[\w-]+)/g)) {
 			references.push({ token: match[1], at: location(file, source, offset + match.index) });
 		}
@@ -47,9 +51,15 @@ for (const file of await sourceFiles(path.join(root, 'src'))) {
 			if (/#[\da-f]{3,8}\b|\brgba?\(|\bhsla?\(/i.test(value)) {
 				violations.push(`${at} - raw colour in ${property}; use a semantic token from ${tokenPath}`);
 			}
-			if (['font-size', 'font-family', 'font-weight', 'border-radius'].includes(property)
-				&& !/^(var\(--[\w-]+\)|inherit|0)$/.test(value)) {
+			if ((['font-size', 'font-family', 'font-weight'].includes(property) || /^border(?:-[a-z]+)*-radius$/.test(property))
+				&& !tokenValue.test(value) && value !== 'inherit' && value !== '0') {
 				violations.push(`${at} - ${property}: ${value}; use a documented token`);
+			}
+			if (spacingProperty.test(property) && literalLength.test(value)) {
+				violations.push(`${at} - ${property}: ${value}; use the spacing scale or a documented layout token`);
+			}
+			if (['box-shadow', 'text-shadow'].includes(property) && !tokenValue.test(value) && value !== 'none') {
+				violations.push(`${at} - ${property}: ${value}; use a documented shadow or ring token`);
 			}
 			if (property === 'transition' && /\ball\b/.test(value)) {
 				violations.push(`${at} - transition: all; list the properties that change`);

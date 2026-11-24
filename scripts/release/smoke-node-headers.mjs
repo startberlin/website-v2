@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { request } from 'node:http';
+import { assertRedirectLocation, legacyCampaignRedirects } from './routes.mjs';
 import { assertSecurityHeaders } from './security-headers.mjs';
 
 // Use raw HTTP so conditional requests are not changed by fetch's cache behavior.
@@ -25,6 +26,12 @@ export async function smokeNodeHeaders(base) {
   assert.ok(page.headers.get('etag'), 'static HTML must retain its ETag');
   for (const [path, status] of [['/join/index.html', 200], ['/%6Aoin', 200], ['/%256Aoin', 404], ['/%E0%A4%A', 400], ['/join/', 301]]) await get(path, status);
   for (const result of [await get('/join', 200, { method: 'HEAD' }), await get('/join', 304, { headers: { 'If-None-Match': page.headers.get('etag') } })]) assert.equal(result.body, '');
+  for (const [path, destination] of legacyCampaignRedirects) {
+    const redirect = await get(path, 301, { method: 'HEAD' });
+    assertRedirectLocation(redirect, base, path, destination);
+    assert.equal(redirect.headers.get('x-robots-tag'), 'noindex, nofollow', path);
+    assert.equal(redirect.body, '', path);
+  }
   const asset = page.body.match(/href="(\/_astro\/[^"<>]+\.css)"/)?.[1];
   assert.ok(asset, 'the built page must include its hashed stylesheet');
   const stylesheet = await get(asset, 200);

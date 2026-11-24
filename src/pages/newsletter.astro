@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import workshopPhoto from '../assets/events/workshops.jpg';
+import { getSiteConfig } from '../lib/seo/metadata';
+import { pageSeo } from '../lib/seo/pages';
+import { newsletterConfig } from '../lib/newsletter/config.mjs';
+import { confirmationEmail, handleNewsletterForm, newsletterResults } from '../lib/newsletter/signup';
+
+export const prerender = false;
+
+const { request, response } = Astro;
+const config = newsletterConfig();
+const submitted = request.method === 'POST';
+if (!submitted && !['GET', 'HEAD'].includes(request.method)) {
+  return new Response(null, { status: 405, headers: { Allow: 'GET, HEAD, POST', 'Cache-Control': 'no-store' } });
+}
+const token = !submitted ? Astro.url.searchParams.get('token') : null;
+const canConfirm = Boolean(config && token && confirmationEmail(token, config.secret));
+const result = submitted
+  ? await handleNewsletterForm(request, getSiteConfig().origin, Astro.clientAddress, config)
+  : token && !config ? newsletterResults.unavailable
+    : token !== null && !canConfirm ? newsletterResults.invalidLink : null;
+
+const headers = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' };
+if (submitted && request.headers.get('accept') === 'application/json' && result) {
+  return Response.json({ message: result.message }, { status: result.status, headers });
+}
+for (const [name, value] of Object.entries(headers)) response.headers.set(name, value);
+if (result) response.status = result.status;
+---
+
+<Layout seo={pageSeo('/newsletter')}>
+	<PageHero title={['START Berlin', 'Newsletter']} image={workshopPhoto}>
+		<Fragment slot="description">
+			{result?.message ?? (canConfirm
+				? 'Confirm that you want to receive the START Berlin newsletter and application updates.'
+				: 'Get the START Berlin newsletter and updates on when applications open.')}
+		</Fragment>
+		<Fragment slot="actions">
+			{canConfirm ? (
+				<form action="/newsletter" method="post">
+					<input type="hidden" name="token" value={token} />
+					<button class="button" data-accent type="submit">Confirm my sign-up</button>
+				</form>
+			) : result === newsletterResults.confirmed || result === newsletterResults.pending ? (
+				<a class="button" href="/">Back to home</a>
+			) : (
+				<a class="button" href="#newsletter">Go to the sign-up form</a>
+			)}
+		</Fragment>
+	</PageHero>
+</Layout>

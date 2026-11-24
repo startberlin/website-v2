@@ -46,12 +46,12 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		{(linkedinUrl || emailUrl) && (
 			<div class="card__contacts">
 				{linkedinUrl && (
-					<a class="card__contact" href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} on LinkedIn (opens in a new tab)`} title="View LinkedIn profile">
+					<a class="icon-action card__contact" href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label={`${name} on LinkedIn (opens in a new tab)`} title="View LinkedIn profile">
 						<Icon name="linkedin" size={18} />
 					</a>
 				)}
 				{emailUrl && (
-					<a class="card__contact" href={emailUrl} aria-label={`Email ${name} at ${email}`} title={`Email ${email}`}>
+					<a class="icon-action card__contact" href={emailUrl} aria-label={`Email ${name} at ${email}`} title={`Email ${email}`}>
 						<Icon name="mail" size={18} />
 					</a>
 				)}
@@ -98,11 +98,11 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	.card__badge-row {
 		position: absolute;
 		inset-inline: 0;
-		top: calc(100% - 1.3125rem);
+		top: calc(100% - var(--target-min) / 2);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 2.625rem;
+		height: var(--target-min);
 	}
 
 	.card__avatar {
@@ -146,7 +146,7 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	.card__name {
 		margin: 0;
 		font-size: var(--text-compact);
-		line-height: 1.25rem;
+		line-height: var(--leading-ui);
 		font-weight: var(--weight-bold);
 		text-transform: uppercase;
 		letter-spacing: var(--tracking-label);
@@ -156,10 +156,10 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 
 	.card__role {
 		margin: 0;
-		max-width: calc(100% + 1.5rem);
+		max-width: calc(100% + var(--space-6));
 		padding-inline: var(--space-3);
 		font-size: var(--text-caption);
-		line-height: 1.25rem;
+		line-height: var(--leading-ui);
 		color: var(--text-muted);
 		overflow-wrap: anywhere;
 	}
@@ -167,19 +167,19 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	.card__batch {
 		margin: 0;
 		font-size: var(--text-xs);
-		line-height: 1rem;
+		line-height: var(--leading-ui);
 		color: var(--text-subtle);
 	}
 
 	.card__chip {
 		min-width: 0;
 		max-width: 100%;
-		padding: var(--space-1) 0.625rem;
+		padding: var(--space-1) var(--space-2);
 		border: var(--border-width) solid var(--border-subtle);
 		border-radius: var(--radius-pill);
 		background: var(--surface-floating);
-		font-size: var(--text-badge);
-		line-height: 1rem;
+		font-size: var(--text-xs);
+		line-height: var(--leading-ui);
 		font-weight: var(--weight-bold);
 		text-transform: uppercase;
 		letter-spacing: var(--tracking-label);
@@ -201,16 +201,8 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 	.card__contact {
 		position: relative;
 		z-index: 2;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: var(--target-min);
-		height: var(--target-min);
 		flex-shrink: 0;
-		border-radius: var(--radius-control);
 		color: var(--text-subtle);
-		touch-action: manipulation;
-		transition: color var(--duration-fast);
 	}
 
 	.card__contact:hover,
@@ -242,13 +234,6 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		color: var(--color-accent);
 		font-size: var(--text-xs);
 		line-height: var(--leading-ui);
-	}
-
-	@media (max-width: 359px) {
-		.card__chip {
-			font-size: var(--text-badge-small);
-			letter-spacing: 0.02em;
-		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {

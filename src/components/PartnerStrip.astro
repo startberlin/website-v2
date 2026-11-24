@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import Icon from './icons/Icon.astro';
 
 // Every file in src/assets/partners is shown; add a name here when the
 // filename doesn't read well as alt text.
@@ -45,38 +46,67 @@ const rows = [
 ];
 ---
 
-<a href="/partners" class="partners">
-	<div class="partners__rows">
-		{
-			rows.map((row, rowIndex) => (
-				<div class="partners__row">
-					<div
-						class:list={['partners__track', { 'partners__track--reverse': rowIndex === 1 }]}
-						style={`--duration: ${row.length * 3}s`}
-					>
-						{[...row, ...row].map((partner, index) => (
-							<div class="partners__logo" aria-hidden={index >= row.length ? 'true' : undefined}>
-								<Image
-									src={partner.logo}
-									alt={index < row.length ? partner.name : ''}
-									height={partner.height * 2}
-									style={`height: ${partner.height}px`}
-								/>
-							</div>
-						))}
+<div class="partners-wrap">
+	<a href="/partners" class="partners" aria-label="See START Berlin partners">
+		<div class="partners__rows">
+			{
+				rows.map((row, rowIndex) => (
+					<div class="partners__row">
+						<div
+							class:list={['partners__track', { 'partners__track--reverse': rowIndex === 1 }]}
+							style={`--duration: ${row.length * 3.75}s`}
+						>
+							{[...row, ...row].map((partner, index) => (
+								<div class="partners__logo" aria-hidden={index >= row.length ? 'true' : undefined}>
+									<Image
+										src={partner.logo}
+										alt={index < row.length ? partner.name : ''}
+										height={partner.height * 2}
+										style={`height: ${partner.height}px`}
+									/>
+								</div>
+							))}
+						</div>
 					</div>
-				</div>
-			))
-		}
+				))
+			}
+		</div>
+	</a>
+	<div class="partners__actions page-container">
+		<a href="#get-in-touch" class="button button--outline">Partner with us</a>
+		<a href="#for-partners" class="text-action">
+			<span>Explore partnerships</span>
+			<Icon name="arrow-right" />
+		</a>
 	</div>
-</a>
+</div>
 
 <style>
+	.partners-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-8);
+	}
+
+	.partners__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-4) var(--space-8);
+	}
+
+	.partners__actions .button {
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-label);
+	}
+
 	.partners {
 		display: block;
-		padding-bottom: var(--space-16);
 		overflow: hidden;
 	}
+
+	.partners:focus-visible { outline-offset: calc(-1 * var(--focus-offset)); }
 
 	.partners__rows {
 		position: relative;
@@ -85,40 +115,12 @@ const rows = [
 		gap: var(--space-8);
 	}
 
-	/* Fade the logos out at both edges. */
-	.partners__rows::before,
-	.partners__rows::after {
-		content: '';
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		z-index: var(--z-decoration);
-		width: 8rem;
-		pointer-events: none;
-	}
-
-	.partners__rows::before {
-		left: 0;
-		background: linear-gradient(to right, var(--color-dark-blue), transparent);
-	}
-
-	.partners__rows::after {
-		right: 0;
-		background: linear-gradient(to left, var(--color-dark-blue), transparent);
-	}
-
 	.partners__track {
 		display: flex;
-		width: max-content;
-		animation: scroll var(--duration) linear infinite;
-	}
-
-	.partners__track--reverse {
-		animation-direction: reverse;
-	}
-
-	.partners__track:hover {
-		animation-play-state: paused;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: var(--space-4) var(--space-8);
+		padding-inline: var(--page-gutter);
 	}
 
 	.partners__logo {
@@ -126,7 +128,6 @@ const rows = [
 		align-items: center;
 		justify-content: center;
 		height: 60px;
-		margin-inline: 2.25rem;
 		opacity: 0.8;
 		transition: opacity var(--duration-ui), transform var(--duration-ui);
 	}
@@ -144,6 +145,39 @@ const rows = [
 		filter: brightness(0) invert(1);
 	}
 
+	.partners__logo[aria-hidden='true'] { display: none; }
+
+	@media (prefers-reduced-motion: no-preference) {
+		:global(html[data-motion='running']) .partners__rows::before,
+		:global(html[data-motion='running']) .partners__rows::after {
+			content: '';
+			position: absolute;
+			inset-block: 0;
+			z-index: var(--z-decoration);
+			width: 8rem;
+			pointer-events: none;
+		}
+		:global(html[data-motion='running']) .partners__rows::before {
+			left: 0;
+			background: linear-gradient(to right, var(--color-dark-blue), transparent);
+		}
+		:global(html[data-motion='running']) .partners__rows::after {
+			right: 0;
+			background: linear-gradient(to left, var(--color-dark-blue), transparent);
+		}
+		:global(html[data-motion='running']) .partners__track {
+			width: max-content;
+			flex-wrap: nowrap;
+			gap: 0;
+			padding-inline: 0;
+			animation: scroll var(--duration) linear infinite;
+		}
+		:global(html[data-motion='running']) .partners__track--reverse { animation-direction: reverse; }
+		:global(html[data-motion='running']) .partners__track:hover,
+		:global(html[data-motion='running']) .partners:focus-visible .partners__track { animation-play-state: paused; }
+		:global(html[data-motion='running']) .partners__logo { display: flex; margin-inline: var(--space-9); }
+	}
+
 	@keyframes scroll {
 		from {
 			transform: translateX(0);
@@ -153,9 +187,4 @@ const rows = [
 		}
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		.partners__track {
-			animation: none;
-		}
-	}
 </style>

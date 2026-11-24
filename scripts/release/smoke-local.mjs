@@ -12,8 +12,8 @@ await once(reservation, 'listening');
 const port = reservation.address().port;
 await new Promise(resolve => reservation.close(resolve));
 const base = `http://127.0.0.1:${port}`;
-const env = { ...process.env, HOST: '127.0.0.1', PORT: String(port), NODE_ENV: 'production', PUBLIC_SITE_URL: base };
-for (const key of ['COCKPIT_API_URL', 'JOBBOARD_READ_API_KEY', 'JOBBOARD_SUBMIT_API_KEY', 'JOBBOARD_METRICS_API_KEY', 'VERCEL_TOKEN', 'VERCEL_AUTOMATION_BYPASS_SECRET']) delete env[key];
+const env = { ...process.env, HOST: '127.0.0.1', PORT: String(port), NODE_ENV: 'production', PUBLIC_SITE_URL: base, SITE_INDEXABLE: 'false' };
+for (const key of ['COCKPIT_API_URL', 'JOBBOARD_READ_API_KEY', 'JOBBOARD_SUBMIT_API_KEY', 'JOBBOARD_METRICS_API_KEY', 'NEWSLETTER_RESEND_API_KEY', 'NEWSLETTER_CONFIRMATION_SECRET', 'VERCEL_TOKEN', 'VERCEL_AUTOMATION_BYPASS_SECRET']) delete env[key];
 const directory = process.argv.slice(2).filter(arg => arg !== '--')[0] || '.astro/ci-node';
 const server = spawn(process.execPath, [resolve(directory, 'server/entry.mjs')], { env, stdio: ['ignore', 'ignore', 'pipe'] });
 let errors = '';
@@ -25,7 +25,7 @@ try {
     try { await fetch(`${base}/api/health`, { signal: AbortSignal.timeout(1000) }); ready = true; break; } catch { await setTimeout(150); }
   }
   if (!ready) throw new Error('Local built server did not start.');
-  await smoke(base, { commit: process.env.RELEASE_COMMIT_SHA || null, tree: process.env.RELEASE_TREE_SHA || null });
+  await smoke(base, { commit: process.env.RELEASE_COMMIT_SHA || null, tree: process.env.RELEASE_TREE_SHA || null, newsletter: 'disabled' });
   await smokeNodeHeaders(base);
 } finally {
   if (server.exitCode === null) { server.kill('SIGTERM'); await once(server, 'exit'); }

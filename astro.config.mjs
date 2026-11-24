@@ -26,6 +26,12 @@ export default defineConfig({
     : withSecurityHeaders(node({ mode: 'standalone' }), 'node'),
   integrations: [react(), seoContract],
   vite: {
+    // Build the isolated server with its dependencies. In dev, Node loads the CommonJS helpers.
+    plugins: [{
+      name: 'bundle-vercel-runtime',
+      apply: 'build',
+      config: () => ({ ssr: { noExternal: ['@vercel/functions', '@vercel/oidc'] } }),
+    }],
     define: {
       __RELEASE_COMMIT__: JSON.stringify(process.env.RELEASE_COMMIT_SHA || process.env.VERCEL_GIT_COMMIT_SHA || null),
       __RELEASE_TREE__: JSON.stringify(process.env.RELEASE_TREE_SHA || null),

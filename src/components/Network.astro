@@ -1,4 +1,6 @@
 ---
+import SectionHeading from './SectionHeading.astro';
+
 // Shared across the START Network; content matches startmunich.de.
 const stats = [
 	{ value: '22', label: 'Cities' },
@@ -36,9 +38,9 @@ const tones = ['silver', 'white', 'grey', 'accent'];
 const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' : tones[index % tones.length]);
 ---
 
-<section class="network">
+<section class="network" aria-labelledby="start-network">
 	<div class="network__inner page-container">
-		<h2 class="network__title">The START Network</h2>
+		<SectionHeading id="start-network">The START Network</SectionHeading>
 
 		<div class="network__grid">
 			<div class="network__info">
@@ -98,22 +100,13 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 	.network {
 		position: relative;
 		overflow: hidden;
-		padding-block: var(--space-28);
-	}
-
-	.network__title {
-		margin: 0 0 var(--space-10);
-		font-size: var(--type-home-section);
-		font-weight: var(--weight-display);
-		line-height: 1;
-		text-transform: uppercase;
 	}
 
 	.network__grid {
 		display: grid;
 		grid-template-columns: 1fr;
 		align-items: center;
-		gap: var(--space-16);
+		gap: var(--space-columns);
 	}
 
 	.network__info {
@@ -121,17 +114,17 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 	}
 
 	.network__text {
-		max-width: 28rem;
-		margin: 0 0 var(--space-16);
+		max-width: var(--layout-reading);
+		margin: 0 0 var(--space-heading);
 		font-size: var(--text-lg);
-		line-height: 1.625;
+		line-height: var(--leading-copy);
 		color: var(--text-copy);
 	}
 
 	.network__globe {
 		position: absolute;
-		bottom: -2.5rem;
-		left: -2.5rem;
+		bottom: calc(-1 * var(--space-10));
+		left: calc(-1 * var(--space-10));
 		width: 18rem;
 		height: 18rem;
 		color: var(--color-white);
@@ -142,7 +135,8 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 		position: relative;
 		z-index: var(--z-decoration);
 		display: flex;
-		gap: var(--space-8);
+		flex-wrap: wrap;
+		gap: var(--space-grid);
 		margin: 0;
 	}
 
@@ -153,82 +147,40 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 
 	.network__stat-value {
 		margin: 0;
-		font-size: var(--type-home-section);
+		font-size: var(--type-stat);
 		font-weight: var(--weight-display);
-		line-height: 1;
+		line-height: var(--leading-display);
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
 	}
 
 	.network__stat-label {
 		font-size: var(--text-sm);
-		line-height: 1.25rem;
+		line-height: var(--leading-ui);
 		color: var(--text-subtle);
 	}
 
 	.network__cities {
 		position: relative;
-		height: 400px;
-		overflow: hidden;
-	}
-
-	/* Fade the list in and out at the top and bottom edges. */
-	.network__cities::before,
-	.network__cities::after {
-		content: '';
-		position: absolute;
-		right: 0;
-		left: 0;
-		z-index: var(--z-decoration);
-		height: var(--header-height);
-		pointer-events: none;
-	}
-
-	.network__cities::before {
-		top: 0;
-		background: linear-gradient(to bottom, var(--color-dark-blue), transparent);
-	}
-
-	.network__cities::after {
-		bottom: 0;
-		background: linear-gradient(to top, var(--color-dark-blue), transparent);
 	}
 
 	.network__city-list {
-		margin: var(--space-12) 0 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+		gap: var(--space-2) var(--space-4);
+		margin: 0;
 		padding: 0;
 		list-style: none;
-		text-align: right;
-		animation: scroll-up 20s linear infinite;
 	}
 
 	.network__city {
-		font-size: var(--type-home-section);
-		font-weight: var(--weight-display);
-		line-height: 1.2;
-		text-transform: uppercase;
+		font-size: var(--text-base);
+		font-weight: var(--weight-semibold);
+		line-height: var(--leading-ui);
 	}
 
-	.network__city--white {
-		color: var(--color-white);
-	}
-
-	.network__city--accent {
-		color: var(--color-accent);
-	}
-
-	.network__city--silver,
-	.network__city--grey {
-		background-clip: text;
-		-webkit-background-clip: text;
-		color: transparent;
-	}
-
-	.network__city--silver {
-		background-image: var(--gradient-network-silver);
-	}
-
-	.network__city--grey {
-		background-image: var(--gradient-network-grey);
-	}
+	.network__city[aria-hidden='true'] { display: none; }
+	.network__city--accent { color: var(--color-accent); }
 
 	@keyframes scroll-up {
 		from {
@@ -239,31 +191,55 @@ const toneFor = (city: string, index: number) => (city === 'Berlin' ? 'accent' :
 		}
 	}
 
-	@media (min-width: 640px) {
-		.network__title,
-		.network__stat-value,
-		.network__city {
-			font-size: var(--type-home-section-wide);
-		}
-
-		.network__stats {
-			gap: var(--space-16);
-		}
-	}
-
 	@media (min-width: 1024px) {
 		.network__grid {
 			grid-template-columns: 1fr 1fr;
 		}
 
-		.network__city {
-			font-size: var(--type-network-city-wide);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		:global(html[data-motion='running']) .network__cities {
+			height: 25rem;
+			overflow: hidden;
+		}
+		:global(html[data-motion='running']) .network__cities::before,
+		:global(html[data-motion='running']) .network__cities::after {
+			content: '';
+			position: absolute;
+			inset-inline: 0;
+			z-index: var(--z-decoration);
+			height: var(--header-height);
+			pointer-events: none;
+		}
+		:global(html[data-motion='running']) .network__cities::before {
+			top: 0;
+			background: linear-gradient(to bottom, var(--color-dark-blue), transparent);
+		}
+		:global(html[data-motion='running']) .network__cities::after {
+			bottom: 0;
+			background: linear-gradient(to top, var(--color-dark-blue), transparent);
+		}
+		:global(html[data-motion='running']) .network__city-list {
+			display: block;
+			margin-top: var(--space-12);
+			text-align: right;
+			animation: scroll-up var(--duration-city-list) linear infinite;
+		}
+		:global(html[data-motion='running']) .network__city {
+			display: list-item;
+			font-size: var(--type-section);
+			font-weight: var(--weight-display);
+			text-transform: uppercase;
 		}
 	}
 
-	@media (prefers-reduced-motion: reduce) {
-		.network__city-list {
-			animation: none;
+	@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+		:global(html[data-motion='running']) :is(.network__city--silver, .network__city--grey) {
+			background-clip: text;
+			color: transparent;
 		}
+		:global(html[data-motion='running']) .network__city--silver { background-image: var(--gradient-network-silver); }
+		:global(html[data-motion='running']) .network__city--grey { background-image: var(--gradient-network-grey); }
 	}
 </style>

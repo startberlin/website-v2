@@ -9,6 +9,15 @@ const output = JSON.parse(await readFile('.vercel/output/config.json', 'utf8'));
 const first = output.routes?.[0];
 if (first?.src !== '/.*' || first.continue !== true || first.dest || first.status || first.has || first.missing || first.methods) throw new Error('Global security headers must precede all Vercel filesystem, redirect and error routes.');
 assertSecurityHeaders(new Headers(first.headers), 'Vercel global route');
+const filesystem = output.routes.findIndex((route) => route.handle === 'filesystem');
+const homeRoutes = output.routes.filter((route) => route.src === '^/index\\.html$');
+if (homeRoutes.length !== 1 || !homeRoutes[0].dest || homeRoutes[0].status || output.routes.indexOf(homeRoutes[0]) >= filesystem) {
+  throw new Error('Vercel must send /index.html to Astro before it can serve the homepage file.');
+}
+const errorAlias = output.routes.slice(0, filesystem).find((route) => route.src === '^/404\\.html$');
+if (errorAlias?.dest !== '/404.html' || errorAlias.status !== 404 || !new Headers(errorAlias.headers).get('x-robots-tag')?.startsWith('noindex,')) {
+  throw new Error('Vercel must serve the error document with status 404 and noindex before the filesystem phase.');
+}
 let htmlCount = 0;
 async function verifyStaticHtml(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {

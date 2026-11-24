@@ -6,7 +6,7 @@ import { pageSeo } from '../lib/seo/pages';
 // Hosting and service disclosures need reconciliation with the selected V2 host before release.
 ---
 
-<LegalLayout title="Privacy Policy" seo={pageSeo('/privacy-policy')}>
+<LegalLayout title={['Privacy', 'Policy']} seo={pageSeo('/privacy-policy')}>
 	<section class="legal-chapter">
 		<h2>1. Data protection at a glance</h2>
 		<div class="legal-section">
@@ -176,6 +176,11 @@ import { pageSeo } from '../lib/seo/pages';
 			<p>This data is processed on the basis of Art. 6 para. 1 lit. b GDPR if your request is related to the performance of a contract or is necessary for the implementation of pre-contractual measures. In all other cases, the processing is based on our legitimate interest in the effective processing of the inquiries addressed to us (Art. 6 para. 1 lit. f GDPR) or on your consent (Art. 6 para. 1 lit. a GDPR) if this has been requested; consent can be revoked at any time.</p>
 			<p>The data you send to us via contact requests will remain with us until you ask us to delete it, revoke your consent to storage or the purpose for data storage no longer applies (e.g. after your request has been processed). Mandatory statutory provisions - in particular statutory retention periods - remain unaffected.</p>
 		</div>
+	</section>
+	<section class="legal-chapter" aria-labelledby="newsletter-privacy">
+		<h2 id="newsletter-privacy">Newsletter</h2>
+		<p>We use your email address to send you a confirmation link when you request the START Berlin newsletter and application updates. The link expires after 24 hours. Once you confirm, we add your address to our newsletter list. Resend processes your email address and subscription preferences for confirmation, newsletter delivery and unsubscribe requests.</p>
+		<p>You can withdraw your consent at any time through the unsubscribe link in each newsletter. We use your unsubscribe preference to honour your request. For questions about your data, email <a href="mailto:vorstand@start-berlin.com">vorstand@start-berlin.com</a>. See <a href="https://resend.com/legal/privacy-policy">Resend's privacy policy</a>.</p>
 	</section>
 	<section class="legal-chapter">
 		<div class="legal-section">

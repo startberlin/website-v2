@@ -1,9 +1,9 @@
 import type { ImageMetadata } from 'astro';
-import startupVisitsPhoto from '../assets/events/startup-visits.jpg';
+import vcVisitsPhoto from '../assets/events/vc-visits.jpg';
 import founderTalksPhoto from '../assets/events/founder-talks.jpg';
 import workshopsPhoto from '../assets/events/workshops.jpg';
-import eventsHeroPhoto from '../assets/events/hero.jpg';
-import teamFourPhoto from '../assets/join/team-four.jpg';
+import summitPhoto from '../assets/join/legacy-road-to-start-summit.jpg';
+import workingTogetherPhoto from '../assets/home/working-together.jpg';
 import sapCrowd from '../assets/member-journey/start-x-sap-crowd.jpg';
 import qontoGraphic from '../assets/events/past/2026-10-21-qonto.jpg';
 import foundersTalkGraphic from '../assets/events/past/2026-10-19-founders-talk.jpg';
@@ -75,9 +75,10 @@ export const partners: Partner[] = [
 
 export const hero = {
 	photo: { src: sapCrowd, alt: 'Students filling an event room for a START Berlin and SAP talk' },
-	accent: 'Partner with',
-	outline: 'START Berlin',
-	description: 'Work with a student-run entrepreneurship community from universities across Berlin. Meet future founders and hires, share what your team knows and be part of the START Network.',
+	// PageHero: solid first part, cyan outlined second part.
+	title: ['Partner with', 'START Berlin'] as const,
+	// One short sentence, as the hero guide asks.
+	description: 'Meet future founders and hires from universities across Berlin and share what your team knows.',
 };
 
 export interface Reason {
@@ -112,7 +113,8 @@ export const offers: Offer[] = [
 		id: 'startup-visits',
 		title: 'Startup & VC visits',
 		text: 'Open your office to a group of STARTies for a behind-the-scenes look at how your team builds, invests or scales.',
-		photo: { src: startupVisitsPhoto, alt: 'A group of students posing together in an office, one holding up a large company logo' },
+		// Approved Events photo of the Antler visit; Antler is in the partner inventory.
+		photo: { src: vcVisitsPhoto, alt: 'START Berlin group posing for a photo during a visit to Antler' },
 	},
 	{
 		id: 'talks',
@@ -130,13 +132,15 @@ export const offers: Offer[] = [
 		id: 'road-to-start-summit',
 		title: 'Road to START Summit',
 		text: 'Get involved in our pitch event, for example on the jury, and meet some of the most promising student founders in Berlin.',
-		photo: { src: eventsHeroPhoto, alt: "A large group of students and guests posing together in front of a stage, two of them holding up a winner's board", position: '50% 30%' },
+		// Road to START Summit photo from the legacy website, also used on Join.
+		photo: { src: summitPhoto, alt: 'Attendees talking in a blue-lit event space' },
 	},
 	{
 		id: 'mentorship',
 		title: 'Female Mentorship Program',
 		text: 'Pair experienced people from your team with women in our community who are starting their careers in tech and business.',
-		photo: { src: teamFourPhoto, alt: 'Four START Berlin members in team shirts standing together and smiling', position: '50% 25%' },
+		// Stand-in until the photo pool has a mentoring photo.
+		photo: { src: workingTogetherPhoto, alt: 'START Berlin members working together on laptops around a table' },
 	},
 	{
 		id: 'hiring',

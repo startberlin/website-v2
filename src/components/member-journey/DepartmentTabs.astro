@@ -93,7 +93,7 @@ const { departments } = Astro.props;
 
 	.departments__layout {
 		display: grid;
-		gap: var(--space-8);
+		gap: var(--space-columns);
 	}
 
 	.departments__list {
@@ -118,7 +118,7 @@ const { departments } = Astro.props;
 		min-width: 0;
 		font-size: var(--text-2xl);
 		font-weight: var(--weight-display);
-		line-height: 1.1;
+		line-height: var(--leading-display);
 		text-transform: uppercase;
 		text-wrap: balance;
 		transition: color var(--duration-ui), padding-left var(--duration-ui);
@@ -149,12 +149,12 @@ const { departments } = Astro.props;
 
 	.departments__panels {
 		display: grid;
-		gap: var(--space-4);
+		gap: var(--space-grid);
 		align-self: start;
 	}
 
 	.department {
-		padding: var(--space-8) var(--space-6);
+		padding: var(--space-card);
 		border-radius: var(--radius-card);
 		background: var(--color-accent);
 		color: var(--color-dark-blue);
@@ -164,7 +164,7 @@ const { departments } = Astro.props;
 		margin: 0 0 var(--space-6);
 		font-size: var(--text-3xl);
 		font-weight: var(--weight-display);
-		line-height: 1.1;
+		line-height: var(--leading-display);
 		text-transform: uppercase;
 	}
 
@@ -181,13 +181,12 @@ const { departments } = Astro.props;
 
 	@container departments (min-width: 40rem) {
 		.departments__name { font-size: var(--text-4xl); }
-		.department { padding: var(--space-10) var(--space-10); }
 	}
 
 	@container departments (min-width: 48rem) {
 		[data-enhanced] .departments__layout {
 			grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-			column-gap: var(--space-16);
+			column-gap: var(--space-columns);
 			align-items: start;
 		}
 	}

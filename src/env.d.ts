@@ -1,5 +1,8 @@
 declare namespace App {
-  interface Locals { seoNoindex?: boolean; }
+  interface Locals {
+    seoNoindex?: boolean;
+    jobNavigation?: import('./lib/jobboard/metrics').JobNavigation;
+  }
 }
 interface ImportMetaEnv {
   readonly PUBLIC_SITE_URL?: string;
