@@ -6,18 +6,26 @@ import teamPhoto from '../assets/hero/hero-404.jpg';
 import { pageSeo } from '../lib/seo/pages';
 
 Astro.response.status = 404;
+
+/**
+ * Show the requested path in a human-readable way.
+ * Decode percent-encoded characters and strip trailing slashes.
+ * Never reflect raw query strings or fragments back into HTML –
+ * Astro's text interpolation handles escaping, but keep the value short
+ * and limited to the pathname so it stays useful without risk.
+ */
+const rawPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const displayPath = decodeURIComponent(rawPath);
 ---
 
 <Layout seo={pageSeo('/404')}>
 	<PageHero
-		title={['Page', 'not found']}
+		title={['Surprise, surprise…', 'nothing to see here']}		title={['Surprise, surprise…', 'nothing to see here']}
 		image={teamPhoto}
 		imagePosition="50% 35%"
 		mobileImagePosition="50% 30%"
+		compactTitle
 	>
-		<Fragment slot="description">
-			The page may have moved or the address may be incorrect.
-		</Fragment>
 		<Fragment slot="actions">
 			<div class="error-actions">
 				<a class="button" href="/">Back to home</a>
@@ -45,6 +53,38 @@ Astro.response.status = 404;
 </Layout>
 
 <style>
+	.error-path {
+		display: inline-block;
+		max-width: 100%;
+		padding: var(--space-1) var(--space-2);
+		border-radius: var(--radius-control);
+		background: var(--surface-control);
+		border: var(--border-width) solid var(--border-subtle);
+		font-size: var(--text-sm);
+		word-break: break-all;
+		overflow-wrap: anywhere;
+		vertical-align: baseline;
+	}
+
+	.error-recovery {
+		padding-block-end: var(--space-section);
+	}
+
+	.error-recovery__heading {
+		margin: 0;
+		font-size: var(--text-2xl);
+		font-weight: var(--weight-bold);
+		line-height: var(--leading-ui);
+	}
+
+	.error-recovery__text {
+		max-width: var(--layout-reading);
+		margin: var(--space-4) 0 0;
+		color: var(--text-copy);
+		font-size: var(--text-base);
+		line-height: var(--leading-copy);
+	}
+
 	.error-actions {
 		display: flex;
 		flex-wrap: wrap;
