@@ -2,12 +2,14 @@
 interface Props {
 	id: string;
 	stats: { count: number; suffix?: string; label: string }[];
+	/** Accessible name of the figures; About Us uses it for the START Network. */
+	label?: string;
 }
 
-const { id, stats } = Astro.props;
+const { id, stats, label = 'START Berlin in numbers' } = Astro.props;
 ---
 
-<dl class="community-stats" id={id} data-community-stats aria-label="START Berlin in numbers">
+<dl class="community-stats" id={id} data-community-stats aria-label={label}>
 	{stats.map(({ count, suffix, label }) => (
 		<div class="community-stat">
 			<dt>{label}</dt>

@@ -6,6 +6,10 @@
 	--color-white: #ffffff;
 	--color-error: #ffb1b1;
 
+	/* Blues sampled from the START star artwork, for the band and glow surfaces. */
+	--color-star-mid: #0092ce;
+	--color-star-deep: #004d99;
+
 	/* Semantic roles on the dark background. */
 	--text-primary: var(--color-white);
 	--text-copy: rgb(255 255 255 / 0.86);
@@ -41,6 +45,12 @@
 	--gradient-network-silver: linear-gradient(to right, rgb(156 163 175), rgb(229 231 235));
 	--gradient-network-grey: linear-gradient(to right, rgb(107 114 128), rgb(209 213 219));
 
+	/* Depth on the navy page: a clearly bluer band for alternating sections, and
+	   soft glows in the START star blues behind key visuals. */
+	--surface-band: color-mix(in srgb, var(--color-dark-blue) 78%, var(--color-star-deep));
+	--gradient-glow: radial-gradient(closest-side, color-mix(in srgb, var(--color-star-mid) 30%, transparent), transparent);
+	--gradient-glow-deep: radial-gradient(closest-side, color-mix(in srgb, var(--color-star-deep) 45%, transparent), transparent);
+
 	/* Font availability depends on the device. No font binaries are bundled. */
 	--font-sans: "Avenir Next", "Avenir Next LT Pro", Avenir, system-ui, sans-serif;
 	--weight-regular: 400;
@@ -66,6 +76,8 @@
 	--type-hero-landing: clamp(1.75rem, 7.5vw, 6.5rem);
 	--type-hero-landing-mobile: clamp(2.125rem, 9.6vw, 3rem);
 	--type-hero-detail: clamp(1.75rem, 5vw, 4rem);
+	/* About Us: the outlined "are" set larger than the first title part. */
+	--type-hero-emphasis: clamp(3.5rem, 15vw, 10rem);
 	--type-section: clamp(2.25rem, 5vw, 3.75rem);
 	--type-news-title: 3rem;
 	--type-stat: clamp(1.75rem, 5vw, 3rem);

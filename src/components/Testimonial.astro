@@ -8,10 +8,17 @@ interface Props {
 	role: string;
 	portrait?: ImageMetadata;
 	featured?: boolean;
+	/** card: framed quote card. pull: editorial quote without a frame, for story sections. */
+	variant?: 'card' | 'pull';
 }
 
-const { quote, name, role, portrait, featured = false } = Astro.props;
-const avatarWidths = portrait ? [64, 128].filter((width) => width <= portrait.width) : [];
+const { quote, name, role, portrait, featured = false, variant = 'card' } = Astro.props;
+const pull = variant === 'pull';
+// Cards: the featured card shows a cover portrait, the others a 64-px avatar.
+// Pull quotes always show an avatar, larger when featured.
+const coverCard = featured && !pull;
+const avatarSize = pull ? (featured ? 80 : 56) : 64;
+const avatarWidths = portrait ? [avatarSize, avatarSize * 2].filter((width) => width <= portrait.width) : [];
 const coverWidths = portrait ? [...[192, 256, 352, 480].filter((width) => width < portrait.width), portrait.width] : [];
 
 // First and last name, as in MemberCard.
@@ -19,19 +26,26 @@ const parts = name.split(/\s+/);
 const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
 ---
 
-<figure class:list={['testimonial', { 'testimonial--featured': featured }]}>
-	{featured && <div class="testimonial__media">
+<figure class:list={['testimonial', { 'testimonial--featured': coverCard, 'testimonial--pull': pull, 'testimonial--pull-featured': featured && pull }]}>
+	{pull && (
+		// Drawn, not typed: the quotation mark keeps its shape when Avenir is missing.
+		<svg class="testimonial__mark" viewBox="0 0 56 42" aria-hidden="true" focusable="false">
+			<path d="M1 28C1 14 9 4 22 1L23.5 5C16 7.5 12 11 10.9 16.2A12 12 0 1 1 1 28Z" />
+			<path d="M1 28C1 14 9 4 22 1L23.5 5C16 7.5 12 11 10.9 16.2A12 12 0 1 1 1 28Z" transform="translate(30 0)" />
+		</svg>
+	)}
+	{coverCard && <div class="testimonial__media">
 		{portrait ? (
 			<Image src={portrait} alt={`Portrait of ${name}`} widths={coverWidths} sizes="(min-width: 1024px) 352px, (min-width: 640px) 36vw, calc(100vw - 2rem)" format="webp" loading="lazy" decoding="async" class="testimonial__cover" />
 		) : <span class="testimonial__initials" aria-hidden="true">{initials}</span>}
 	</div>}
 	<blockquote class="testimonial__quote">
-		<p>“{quote}”</p>
+		<p>{pull ? quote : `“${quote}”`}</p>
 	</blockquote>
 	<figcaption class="testimonial__author">
-		{!featured && <span class="testimonial__avatar">
+		{!coverCard && <span class="testimonial__avatar">
 			{portrait ? (
-				<Image src={portrait} alt={`Portrait of ${name}`} width={64} height={64} widths={avatarWidths.length ? avatarWidths : undefined} sizes="64px" format="webp" loading="lazy" decoding="async" class="testimonial__portrait" />
+				<Image src={portrait} alt={`Portrait of ${name}`} width={avatarSize} height={avatarSize} widths={avatarWidths.length ? avatarWidths : undefined} sizes={`${avatarSize}px`} format="webp" loading="lazy" decoding="async" class="testimonial__portrait" />
 			) : <span aria-hidden="true">{initials}</span>}
 		</span>}
 		<span class="testimonial__meta">
@@ -194,5 +208,66 @@ const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] :
 		.testimonial--featured .testimonial__quote { padding-top: var(--space-10); }
 		.testimonial--featured .testimonial__quote p { font-size: var(--text-2xl); }
 		.testimonial--featured .testimonial__author { padding-bottom: var(--space-10); }
+	}
+
+	/* Pull: the quote as a sharp-edged box like the CommunityStats tiles: hairline
+	   border and START line art in a corner, with a solid accent quotation mark where
+	   a tile shows its figure. Regular weight keeps longer quotes calm. */
+	.testimonial--pull {
+		--avatar-size: 3.5rem;
+		--polygon-size: clamp(var(--space-24), 14vw, var(--space-40));
+		position: relative;
+		isolation: isolate;
+		justify-content: start;
+		gap: var(--space-6);
+		height: auto;
+		padding: var(--space-card);
+		border: var(--border-width) solid var(--border-control);
+		border-radius: 0;
+		background: none;
+	}
+
+	/* Bottom right, where the author row leaves room, so the art never sits behind text. */
+	.testimonial--pull::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		opacity: 0.75;
+		background: url('../assets/home/polygon-bottom-right.svg') 100% 100% / var(--polygon-size) no-repeat;
+		pointer-events: none;
+	}
+
+	.testimonial__mark {
+		display: block;
+		width: var(--space-12);
+		height: auto;
+		fill: var(--color-accent);
+	}
+
+	.testimonial--pull-featured .testimonial__mark {
+		width: var(--space-16);
+	}
+
+	.testimonial--pull .testimonial__quote p {
+		max-width: var(--layout-reading);
+		color: var(--text-primary);
+		/* The same size as the page copy; the box and mark set the quote apart. */
+		font-size: var(--text-lg);
+		line-height: var(--leading-copy);
+		text-wrap: pretty;
+	}
+
+	.testimonial--pull .testimonial__avatar {
+		border: var(--border-width-accent) solid var(--color-accent);
+	}
+
+	.testimonial--pull-featured {
+		--avatar-size: 5rem;
+	}
+
+	@media (forced-colors: active) {
+		.testimonial--pull::before { display: none; }
+		.testimonial__mark { fill: CanvasText; }
 	}
 </style>
