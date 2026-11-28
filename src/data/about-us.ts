@@ -38,7 +38,6 @@ export const community = {
 		'Our members study business, engineering, computer science, law and more at universities across Berlin. They come from different countries and backgrounds and share the same drive to create something.',
 		'Every season a new batch joins through the START Sprint and works side by side with members who have been here longer.',
 	],
-	voice: story('Antonia Hill'),
 	photo: { src: groupPicture, alt: 'START Berlin members in navy team shirts posing and laughing together' },
 };
 
