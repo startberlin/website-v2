@@ -47,9 +47,9 @@ export const partnerGroups: PartnerGroup[] = [
 	{ id: 'community', name: 'Community & venues' },
 ];
 
-// One inventory for the Partners page and the homepage strip. Only current
-// partners belong here; historical logo files stay in src/assets/partners.
-// DRAFT: all 22 existing logos are listed until Partnerships confirms which are current.
+// The Partners page lists current partners here. The homepage strip loads the
+// same logo files from src/assets/partners.
+// DRAFT: keep the previously listed logos until Partnerships confirms the full list.
 export const partners: Partner[] = [
 	{ slug: 'antler', name: 'Antler', group: 'investors' },
 	{ slug: 'atlantic-labs', name: 'Atlantic Labs', group: 'investors' },
@@ -58,8 +58,10 @@ export const partners: Partner[] = [
 	{ slug: 'lakestar', name: 'Lakestar', group: 'investors', stripHeight: 60 },
 	{ slug: 'project-a', name: 'Project A', group: 'investors' },
 	{ slug: 'ey', name: 'EY', group: 'corporates' },
+	{ slug: 'ibm', name: 'IBM', group: 'corporates' },
 	{ slug: 'sap', name: 'SAP', group: 'corporates' },
 	{ slug: 'flaschenpost', name: 'flaschenpost', group: 'startups' },
+	{ slug: 'iceye', name: 'ICEYE', group: 'startups' },
 	{ slug: 'koro', name: 'KoRo', group: 'startups' },
 	{ slug: 'lanch', name: 'LANCH', group: 'startups' },
 	{ slug: 'langdock', name: 'Langdock', group: 'startups' },
