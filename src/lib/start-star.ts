@@ -1,23 +1,20 @@
-// Animated START star for StartStar.astro: the real START star artwork, drawn with
-// a small WebGL shader. Its spikes grow out of the core, each direction at its own
-// moment. Then it rests; moving the cursor across it spins it with heavy inertia.
-// No library is needed; the component loads this module only when the star is near
-// the viewport.
+// Scroll parallax for StartStar.astro: the real START star artwork, drawn with a
+// small WebGL shader that shifts every pixel by its estimated depth while the page
+// scrolls, so the flat image gains a slight sense of depth. No 3D model and no
+// library; the component loads this module only when the star is near the viewport.
 
-// Measured on src/assets/brand/start-star.webp: the dark core sits at (0.445, 0.5)
-// and the farthest tip lies 0.542 from it, so drawing at 0.885 keeps every tip
-// inside the canvas at any rotation.
-const coreCentre = [0.445, 0.5];
+// The still artwork is drawn at 88.5 % of the box (padding 5.75 %); the canvas uses
+// the same fit, so the two line up exactly.
 const fit = 1 / 0.885;
-// Radius around the core that stays put while the spikes grow (texture units).
-const coreRadius = 0.07;
-
-// Spin feel: cursor movement drives the star, which picks up speed slowly and
-// coasts for a few seconds, so it feels heavy rather than twitchy.
-const spinGain = 9; // rad/s per radian of cursor sweep around the centre
-const maxSpin = 4; // rad/s
-const pickUp = 2.2; // how quickly the star follows the drive (1/s)
-const coast = 0.9; // how quickly the drive fades (1/s)
+// Largest shift of the nearest pixels, in texture units, and how much of it goes
+// sideways, so the movement reads as a slight diagonal tilt.
+const maxShift = 0.06;
+const sideways = 0.35;
+// Depth that stays in place; nearer pixels move with the shift, deeper ones against it.
+const pivot = 0.4;
+// After the canvas takes over from the still image, the parallax eases in over this
+// many milliseconds, so the swap shows no jump.
+const easeIn = 400;
 
 const vertexSource = `
 attribute vec2 a_position;
@@ -27,41 +24,68 @@ void main() {
 	gl_Position = vec4(a_position, 0.0, 1.0);
 }`;
 
-// Each display point is turned back by the rotation, then mapped to the artwork:
-// the core scales in first, and outside it every direction stretches from a
-// compressed stub to full length, so spikes grow out of the middle without seams.
+// One refinement step: the depth is sampled again where the pixel actually comes
+// from, which keeps edges between near and deep parts from smearing.
 const fragmentSource = `
 precision mediump float;
 uniform sampler2D u_image;
-uniform vec2 u_core;
+uniform sampler2D u_depth;
 uniform float u_fit;
-uniform float u_coreRadius;
-uniform float u_time;
-uniform float u_rotation;
+uniform float u_pivot;
+uniform vec2 u_shift;
 varying vec2 v_uv;
 
-float easeOut(float value) { return 1.0 - pow(1.0 - clamp(value, 0.0, 1.0), 3.0); }
-
 void main() {
-	vec2 p = v_uv - 0.5;
-	float c = cos(u_rotation);
-	float s = sin(u_rotation);
-	p = vec2(c * p.x + s * p.y, -s * p.x + c * p.y);
-	float r = length(p) * u_fit;
-	float angle = atan(p.y, p.x);
-
-	// Integer frequencies keep the delay continuous all the way round.
-	float delay = 0.18 + 0.12 * sin(angle * 3.0 + 1.3) + 0.08 * sin(angle * 7.0 + 0.4);
-	float grow = max(easeOut((u_time - delay) / 1.3), 0.0001);
-	float core = max(easeOut(u_time / 0.45), 0.0001);
-
-	float shown = u_coreRadius * core;
-	float source = r <= shown ? r / core : u_coreRadius + (r - shown) / grow;
-	vec2 uv = u_core + (r > 0.0 ? normalize(p) : vec2(0.0)) * source;
-	vec4 colour = texture2D(u_image, uv);
-	bool inside = uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0;
-	gl_FragColor = inside ? colour : vec4(0.0);
+	vec2 uv = (v_uv - 0.5) * u_fit + 0.5;
+	vec2 offset = u_shift * (texture2D(u_depth, uv).r - u_pivot);
+	offset = u_shift * (texture2D(u_depth, uv - offset).r - u_pivot);
+	vec2 source = uv - offset;
+	bool inside = source.x >= 0.0 && source.x <= 1.0 && source.y >= 0.0 && source.y <= 1.0;
+	gl_FragColor = inside ? texture2D(u_image, source) : vec4(0.0);
 }`;
+
+// Estimated depth from the artwork itself: lit faces are near, the black hollow and
+// shadows are deep, the transparent surround sits in between. Blurred, so neighbouring
+// pixels move together and the image never tears.
+function depthMap(image: HTMLImageElement) {
+	const size = 240;
+	const canvas = document.createElement('canvas');
+	canvas.width = canvas.height = size;
+	const paint = canvas.getContext('2d', { willReadFrequently: true })!;
+	paint.drawImage(image, 0, 0, size, size);
+	const pixels = paint.getImageData(0, 0, size, size);
+	const data = pixels.data;
+	let depth = new Float32Array(size * size);
+	for (let i = 0; i < depth.length; i++) {
+		const [r, g, b, a] = [data[i * 4], data[i * 4 + 1], data[i * 4 + 2], data[i * 4 + 3]];
+		const lightness = (Math.max(r, g, b) + Math.min(r, g, b)) / 510;
+		depth[i] = a > 128 ? Math.min(1, Math.max(0, (lightness - 0.04) / 0.45)) : 0.35;
+	}
+	// Two box-blur passes in each direction (close to a Gaussian blur of about 1.5 px).
+	const blur = (from: Float32Array, step: number, across: number) => {
+		const to = new Float32Array(from.length);
+		const radius = 2;
+		for (let line = 0; line < size; line++) {
+			for (let i = 0; i < size; i++) {
+				let sum = 0;
+				for (let k = -radius; k <= radius; k++) {
+					const j = Math.min(size - 1, Math.max(0, i + k));
+					sum += from[line * across + j * step];
+				}
+				to[line * across + i * step] = sum / (radius * 2 + 1);
+			}
+		}
+		return to;
+	};
+	for (let pass = 0; pass < 2; pass++) depth = blur(blur(depth, 1, size), size, 1);
+	for (let i = 0; i < depth.length; i++) {
+		const value = Math.round(depth[i] * 255);
+		data[i * 4] = data[i * 4 + 1] = data[i * 4 + 2] = value;
+		data[i * 4 + 3] = 255;
+	}
+	paint.putImageData(pixels, 0, 0);
+	return canvas;
+}
 
 function compile(gl: WebGLRenderingContext, type: number, source: string) {
 	const shader = gl.createShader(type)!;
@@ -71,8 +95,18 @@ function compile(gl: WebGLRenderingContext, type: number, source: string) {
 	return shader;
 }
 
+function texture(gl: WebGLRenderingContext, unit: number, source: TexImageSource) {
+	gl.activeTexture(gl.TEXTURE0 + unit);
+	gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+}
+
 export interface StarControl {
-	/** Stops or resumes the animation, e.g. when the system motion setting changes. */
+	/** Stops or resumes the parallax, e.g. when the system motion setting changes. */
 	setActive(active: boolean): void;
 }
 
@@ -100,57 +134,44 @@ export async function mountStar(root: HTMLElement): Promise<StarControl> {
 	gl.enableVertexAttribArray(position);
 	gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
 
-	gl.bindTexture(gl.TEXTURE_2D, gl.createTexture());
 	gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
-	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+	texture(gl, 0, image);
+	texture(gl, 1, depthMap(image));
 
 	const uniform = (name: string) => gl.getUniformLocation(program, name);
-	gl.uniform2f(uniform('u_core'), coreCentre[0], coreCentre[1]);
+	gl.uniform1i(uniform('u_image'), 0);
+	gl.uniform1i(uniform('u_depth'), 1);
 	gl.uniform1f(uniform('u_fit'), fit);
-	gl.uniform1f(uniform('u_coreRadius'), coreRadius);
-	const timeUniform = uniform('u_time');
-	const rotationUniform = uniform('u_rotation');
+	gl.uniform1f(uniform('u_pivot'), pivot);
+	const shiftUniform = uniform('u_shift');
 
-	let rotation = 0;
-	let drive = 0;
-	let spin = 0;
-	let elapsed = 0;
-	let frame = 0;
-	let last = 0;
 	let active = true;
 	let onScreen = true;
+	let frame = 0;
+	let shownAt = performance.now();
+
+	// -1 when the star sits at the top of the screen, 0 in the middle, 1 at the bottom.
+	function scrollPosition() {
+		const rect = root.getBoundingClientRect();
+		const centre = rect.top + rect.height / 2;
+		return Math.min(1, Math.max(-1, (centre - innerHeight / 2) / (innerHeight / 2)));
+	}
 
 	function render() {
-		gl!.viewport(0, 0, canvas.width, canvas.height);
-		gl!.uniform1f(timeUniform, elapsed);
-		gl!.uniform1f(rotationUniform, rotation);
-		gl!.drawArrays(gl!.TRIANGLE_STRIP, 0, 4);
-	}
-
-	function tick(now: number) {
-		const delta = Math.min((now - last) / 1000, 0.05);
-		last = now;
-		elapsed += delta;
-		spin += (drive - spin) * (1 - Math.exp(-delta * pickUp));
-		drive *= Math.exp(-delta * coast);
-		rotation += spin * delta;
-		render();
-		frame = requestAnimationFrame(tick);
-	}
-
-	function start() {
-		if (frame || !active || !onScreen || document.hidden) return;
-		last = performance.now();
-		frame = requestAnimationFrame(tick);
-	}
-
-	function stop() {
-		cancelAnimationFrame(frame);
 		frame = 0;
+		const blend = Math.min(1, (performance.now() - shownAt) / easeIn);
+		const amount = active ? scrollPosition() * blend * (2 - blend) : 0;
+		gl!.viewport(0, 0, canvas.width, canvas.height);
+		gl!.clearColor(0, 0, 0, 0);
+		gl!.clear(gl!.COLOR_BUFFER_BIT);
+		// Near parts move against the scroll direction, deep parts with it.
+		gl!.uniform2f(shiftUniform, -amount * maxShift * sideways, -amount * maxShift);
+		gl!.drawArrays(gl!.TRIANGLE_STRIP, 0, 4);
+		if (active && blend < 1) schedule();
+	}
+
+	function schedule() {
+		if (!frame && onScreen) frame = requestAnimationFrame(render);
 	}
 
 	function resize() {
@@ -166,40 +187,18 @@ export async function mountStar(root: HTMLElement): Promise<StarControl> {
 	new ResizeObserver(resize).observe(root);
 	resize();
 
-	// Moving the cursor across the star (or swiping on touch) turns it like a wheel:
-	// the sweep of the pointer around the centre adds to the spin.
-	let previous: { x: number; y: number } | undefined;
-	root.addEventListener('pointermove', (event) => {
-		const rect = root.getBoundingClientRect();
-		const point = { x: event.clientX - (rect.left + rect.width / 2), y: event.clientY - (rect.top + rect.height / 2) };
-		// Close to the centre a small move sweeps a large angle; ignore the core.
-		if (Math.hypot(point.x, point.y) < rect.width * 0.12) {
-			previous = undefined;
-			return;
-		}
-		if (previous && active) {
-			const sweep = Math.atan2(previous.x * point.y - previous.y * point.x, previous.x * point.x + previous.y * point.y);
-			drive = Math.max(-maxSpin, Math.min(maxSpin, drive + sweep * spinGain));
-		}
-		previous = point;
-	}, { passive: true });
-	const release = () => (previous = undefined);
-	root.addEventListener('pointerleave', release);
-	root.addEventListener('pointercancel', release);
-
+	addEventListener('scroll', schedule, { passive: true });
+	addEventListener('resize', schedule);
 	new IntersectionObserver(([entry]) => {
 		onScreen = entry.isIntersecting;
-		if (onScreen) start();
-		else stop();
+		schedule();
 	}).observe(root);
-	document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
 
-	start();
 	return {
 		setActive(value) {
+			if (value && !active) shownAt = performance.now();
 			active = value;
-			if (active) start();
-			else stop();
+			render();
 		},
 	};
 }

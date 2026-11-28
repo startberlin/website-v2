@@ -27,7 +27,13 @@ const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] :
 ---
 
 <figure class:list={['testimonial', { 'testimonial--featured': coverCard, 'testimonial--pull': pull, 'testimonial--pull-featured': featured && pull }]}>
-	{pull && <span class="testimonial__mark" aria-hidden="true">“</span>}
+	{pull && (
+		// Drawn, not typed: the quotation mark keeps its shape when Avenir is missing.
+		<svg class="testimonial__mark" viewBox="0 0 56 42" aria-hidden="true" focusable="false">
+			<path d="M1 28C1 14 9 4 22 1L23.5 5C16 7.5 12 11 10.9 16.2A12 12 0 1 1 1 28Z" />
+			<path d="M1 28C1 14 9 4 22 1L23.5 5C16 7.5 12 11 10.9 16.2A12 12 0 1 1 1 28Z" transform="translate(30 0)" />
+		</svg>
+	)}
 	{coverCard && <div class="testimonial__media">
 		{portrait ? (
 			<Image src={portrait} alt={`Portrait of ${name}`} widths={coverWidths} sizes="(min-width: 1024px) 352px, (min-width: 640px) 36vw, calc(100vw - 2rem)" format="webp" loading="lazy" decoding="async" class="testimonial__cover" />
@@ -204,38 +210,51 @@ const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] :
 		.testimonial--featured .testimonial__author { padding-bottom: var(--space-10); }
 	}
 
-	/* Pull: an editorial quote without a frame. A large accent mark opens it, a thin
-	   accent rule runs beside the text and the portrait carries the accent ring. */
+	/* Pull: the quote as a sharp-edged box like the CommunityStats tiles: hairline
+	   border and START line art in a corner, with a solid accent quotation mark where
+	   a tile shows its figure. Regular weight keeps longer quotes calm. */
 	.testimonial--pull {
 		--avatar-size: 3.5rem;
+		--polygon-size: clamp(var(--space-24), 14vw, var(--space-40));
+		position: relative;
+		isolation: isolate;
 		justify-content: start;
 		gap: var(--space-6);
 		height: auto;
-		padding: 0 0 0 var(--space-6);
-		border: 0;
-		border-left: var(--border-width-accent) solid var(--border-accent);
+		padding: var(--space-card);
+		border: var(--border-width) solid var(--border-control);
 		border-radius: 0;
 		background: none;
 	}
 
-	/* The mark opens the quote inside the accent rule; its box is cropped to the
-	   glyph so it sits directly above the first line. */
+	/* Bottom right, where the author row leaves room, so the art never sits behind text. */
+	.testimonial--pull::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		opacity: 0.75;
+		background: url('../assets/home/polygon-bottom-right.svg') 100% 100% / var(--polygon-size) no-repeat;
+		pointer-events: none;
+	}
+
 	.testimonial__mark {
 		display: block;
-		height: 0.42em;
-		margin-bottom: calc(-1 * var(--space-2));
-		color: var(--color-accent);
-		font-size: var(--type-section);
-		font-weight: var(--weight-display);
-		line-height: 1;
+		width: var(--space-12);
+		height: auto;
+		fill: var(--color-accent);
+	}
+
+	.testimonial--pull-featured .testimonial__mark {
+		width: var(--space-16);
 	}
 
 	.testimonial--pull .testimonial__quote p {
 		max-width: var(--layout-reading);
-		color: var(--color-white);
-		font-size: var(--text-xl);
-		font-weight: var(--weight-medium);
-		line-height: 1.5;
+		color: var(--text-primary);
+		font-size: var(--text-base);
+		line-height: var(--leading-copy);
+		text-wrap: pretty;
 	}
 
 	.testimonial--pull .testimonial__avatar {
@@ -246,20 +265,17 @@ const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] :
 		--avatar-size: 5rem;
 	}
 
-	/* Featured pull quotes grow with the viewport, from 20 px on phones to 28 px. */
 	.testimonial--pull-featured .testimonial__quote p {
-		max-width: 40rem;
-		font-size: var(--text-xl);
-		font-weight: var(--weight-semibold);
-		letter-spacing: -0.01em;
-		line-height: 1.4;
+		font-size: var(--text-lg);
 	}
 
 	@media (min-width: 768px) {
-		.testimonial--pull-featured .testimonial__quote p { font-size: var(--text-2xl); }
+		.testimonial--pull .testimonial__quote p { font-size: var(--text-lg); }
+		.testimonial--pull-featured .testimonial__quote p { font-size: var(--text-xl); }
 	}
 
-	@media (min-width: 1024px) {
-		.testimonial--pull-featured .testimonial__quote p { font-size: var(--text-3xl); line-height: 1.35; }
+	@media (forced-colors: active) {
+		.testimonial--pull::before { display: none; }
+		.testimonial__mark { fill: CanvasText; }
 	}
 </style>

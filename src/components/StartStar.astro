@@ -2,12 +2,11 @@
 import { Image, getImage } from 'astro:assets';
 import artwork from '../assets/brand/start-star.webp';
 
-// Decorative START star: the real artwork, animated by src/lib/start-star.ts once it
-// is near the viewport (spikes grow out of the core; the cursor can then spin it).
-// The animation follows the system motion setting, including changes while the page
-// is open. The still artwork shows only when the animation cannot run: without
-// JavaScript or WebGL, with reduced motion, or if loading fails. So nothing flashes
-// before the star grows.
+// Decorative START star: the real artwork. Once it is near the viewport,
+// src/lib/start-star.ts takes over with a WebGL canvas that adds a slight depth
+// parallax while the page scrolls. The still artwork shows first and stays without
+// JavaScript or WebGL, with reduced motion, or if loading fails. The parallax follows
+// the system motion setting, including changes while the page is open.
 interface Props {
 	/** Sizes hint for the still artwork. */
 	sizes?: string;
@@ -20,9 +19,8 @@ const texture = await getImage({ src: artwork, width: 960, format: 'webp' });
 ---
 
 <div class:list={['star', className]} data-start-star data-texture={texture.src}>
-	<Image src={artwork} alt="" widths={[480, 960]} sizes={sizes} format="webp" loading="lazy" decoding="async" class="star__still" hidden data-star-still />
-	<noscript><Image src={artwork} alt="" widths={[480, 960]} sizes={sizes} format="webp" loading="lazy" decoding="async" class="star__still" /></noscript>
-	<canvas class="star__canvas" aria-hidden="true"></canvas>
+	<Image src={artwork} alt="" widths={[480, 960]} sizes={sizes} format="webp" loading="lazy" decoding="async" class="star__still" data-star-still />
+	<canvas class="star__canvas" aria-hidden="true" hidden></canvas>
 </div>
 
 <style>
@@ -30,8 +28,6 @@ const texture = await getImage({ src: artwork, width: 960, format: 'webp' });
 		position: relative;
 		width: 100%;
 		aspect-ratio: var(--ratio-square);
-		/* Vertical swipes still scroll the page; other moves spin the star. */
-		touch-action: pan-y;
 	}
 
 	.star :global(.star__still),
@@ -84,12 +80,14 @@ const texture = await getImage({ src: artwork, width: 960, format: 'webp' });
 		failed: false,
 	}));
 
-	// Animate when possible; otherwise show the still artwork. Loads the module the
-	// first time an animated star comes near the viewport.
+	// Use the parallax canvas when possible; otherwise keep the still artwork. Loads the
+	// module the first time a star comes near the viewport, and swaps to the canvas
+	// only once it has drawn, so the star never disappears in between.
 	function update(star: Star) {
 		const animate = webgl && motionEnabled() && !star.failed;
-		if (star.still) star.still.hidden = animate;
-		star.canvas.hidden = !animate;
+		const ready = animate && Boolean(star.control);
+		if (star.still) star.still.hidden = ready;
+		star.canvas.hidden = !ready;
 		star.control?.setActive(animate);
 		if (!animate || !star.near || star.control || star.loading) return;
 		star.loading = true;
