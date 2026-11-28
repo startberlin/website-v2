@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../icons/Icon.astro';
+import type { Collaboration } from '../../data/partners';
+
+// Compact collaboration cards: the square event graphic (or START line art when an
+// event has none) beside title, date, optional text and the Luma link.
+interface Props {
+	items: Collaboration[];
+}
+
+const { items } = Astro.props;
+const dateLabel = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const formatDate = (isoDate: string) => dateLabel.format(new Date(`${isoDate}T00:00:00Z`));
+---
+
+<ul class="stories" role="list">
+	{items.map((item) => (
+		<li class="story">
+			{item.graphic ? (
+				<Image src={item.graphic} alt="" width={192} height={192} widths={[192, 384]} sizes="(min-width: 64rem) 7rem, 6rem" format="webp" loading="lazy" class="story__graphic" />
+			) : <span class="story__graphic story__graphic--art" aria-hidden="true"></span>}
+			<div class="story__body">
+				<h3 class="story__title">{item.title}</h3>
+				<time class="story__date" datetime={item.date}>{formatDate(item.date)}</time>
+				{item.text && <p class="story__text">{item.text}</p>}
+				<a class="story__link" href={item.url} target="_blank" rel="noopener noreferrer">
+					View on Luma <Icon name="arrow-up-right" size={16} /><span class="sr-only"> (opens in a new tab)</span>
+				</a>
+			</div>
+		</li>
+	))}
+</ul>
+
+<style>
+	.stories {
+		display: grid;
+		gap: var(--space-8);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.story {
+		display: grid;
+		grid-template-columns: 6rem minmax(0, 1fr);
+		gap: var(--space-5);
+		align-items: start;
+		min-width: 0;
+	}
+
+	.story :global(.story__graphic) {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--ratio-square);
+		object-fit: cover;
+		border: var(--border-width) solid var(--border-subtle);
+	}
+
+	.story__graphic--art {
+		background: url('../../assets/home/polygon-bottom-left.svg') bottom left / 90% no-repeat, var(--surface-footer-contact);
+	}
+
+	.story__body {
+		display: grid;
+		gap: var(--space-2);
+		justify-items: start;
+		min-width: 0;
+	}
+
+	.story__title {
+		margin: 0;
+		font-size: var(--text-lg);
+		font-weight: var(--weight-display);
+		line-height: var(--leading-display);
+		text-transform: uppercase;
+	}
+
+	.story__date {
+		color: var(--color-accent);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-bold);
+	}
+
+	.story__text {
+		margin: 0;
+		color: var(--text-muted);
+		line-height: var(--leading-copy);
+	}
+
+	.story__link {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+		min-height: var(--target-min);
+		color: var(--color-accent);
+		font-weight: var(--weight-bold);
+	}
+
+	@media (min-width: 1024px) {
+		.stories { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10); }
+		.story { grid-template-columns: 7rem minmax(0, 1fr); }
+	}
+</style>

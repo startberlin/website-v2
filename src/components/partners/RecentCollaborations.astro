@@ -1,0 +1,12 @@
+---
+import CollaborationList from './CollaborationList.astro';
+import { lumaEvents } from '../../lib/luma-feed';
+import { recentCollaborations } from '../../data/partners';
+
+// Server island on /partners (server:defer): reads START Berlin's Luma feed on
+// request, so new collaborations appear without a code change while the page itself
+// stays prerendered. The page supplies the curated list as the fallback.
+const items = recentCollaborations(await lumaEvents());
+---
+
+<CollaborationList items={items} />
