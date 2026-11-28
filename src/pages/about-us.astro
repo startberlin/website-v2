@@ -47,13 +47,13 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 	<PageIntroduction>{hero.description}</PageIntroduction>
 
 	<section class="section page-container purpose" id="purpose" aria-labelledby="purpose-heading">
-		<div class="purpose__copy">
+		<div>
 			<SectionHeading id="purpose-heading">{purpose.heading}</SectionHeading>
 			<div class="prose">
 				{purpose.text.map((paragraph) => <p>{paragraph}</p>)}
 			</div>
 		</div>
-		<div class="purpose__voice"><Testimonial {...purpose.voice} featured variant="pull" /></div>
+		<div class="wide-quote"><Testimonial {...purpose.voice} featured variant="pull" /></div>
 	</section>
 
 	<section class="photo-band" id="community" aria-labelledby="community-heading">
@@ -66,7 +66,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 			<div class="prose">
 				{community.text.map((paragraph) => <p>{paragraph}</p>)}
 			</div>
-			<div class="photo-band__voice"><Testimonial {...community.voice} variant="pull" /></div>
 		</div>
 	</section>
 
@@ -104,7 +103,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 	</section>
 
 	<section class="network" id="network" aria-labelledby="network-heading">
-		<div class="network__glow" aria-hidden="true"></div>
 		<div class="section page-container">
 			<div class="network__layout">
 				<div class="network__copy">
@@ -112,11 +110,11 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 					<div class="prose">
 						{network.text.map((paragraph) => <p>{paragraph}</p>)}
 					</div>
-					<div class="network__voice"><Testimonial {...network.voice} variant="pull" /></div>
 				</div>
-				<div class="network__star"><StartStar sizes="(min-width: 64rem) 28rem, 70vw" /></div>
+				<div class="network__star"><StartStar sizes="(min-width: 60rem) 26rem, (min-width: 28rem) 18rem, 72vw" /></div>
 			</div>
-			<div class="network__stats">
+			<div class="network__panels">
+				<div class="wide-quote network__voice"><Testimonial {...network.voice} variant="pull" /></div>
 				<CommunityStats id="network-stats" label={network.statsLabel} stats={network.stats} />
 			</div>
 		</div>
@@ -149,19 +147,25 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		line-height: var(--leading-copy);
 	}
 
-	/* Purpose: copy beside the featured quote. */
 	.purpose {
 		display: grid;
+		grid-template-columns: minmax(0, 1fr);
 		gap: var(--space-12);
 	}
 
-	.purpose__copy,
-	.purpose__voice {
-		min-width: 0;
-	}
+	@media (min-width: 60rem) {
+		.purpose { gap: var(--space-8); }
 
-	@media (min-width: 1024px) {
-		.purpose { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-16); align-items: center; }
+		.wide-quote :global(.testimonial--pull) {
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr);
+			align-items: start;
+			padding: var(--space-8);
+		}
+
+		.wide-quote :global(.testimonial__author) {
+			grid-column: 1 / -1;
+		}
 	}
 
 	/* Community: the page's photo band, as on Join. */
@@ -193,10 +197,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 
 	.photo-band__content > :global(*) {
 		max-width: 40rem;
-	}
-
-	.photo-band__voice {
-		margin-top: var(--space-10);
 	}
 
 	@media (min-width: 768px) {
@@ -319,47 +319,66 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		font-weight: var(--weight-bold);
 	}
 
-	/* Network: copy and Rhema's view beside the star, the shared figure tiles below. */
+	/* Network introduction and star above a shared grid of quote and figures. */
 	.network {
 		container: network / inline-size;
-		position: relative;
 		overflow: hidden;
-		isolation: isolate;
-	}
-
-	.network__glow {
-		position: absolute;
-		inset: 0;
-		z-index: -1;
-		background: var(--gradient-glow-deep) 100% 25% / 70% 80% no-repeat, var(--gradient-glow) 85% 20% / 45% 50% no-repeat;
 	}
 
 	.network__layout {
 		display: grid;
-		gap: var(--space-12);
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--space-8);
 		align-items: center;
 	}
 
-	.network__copy {
-		min-width: 0;
-	}
-
-	.network__voice {
-		margin-top: var(--space-12);
-	}
-
 	.network__star {
-		width: min(100%, 18rem);
+		position: relative;
+		isolation: isolate;
+		inline-size: min(72%, 18rem);
 		justify-self: center;
 	}
 
-	.network__stats {
-		margin-top: var(--space-section);
+	.network__star::before {
+		content: '';
+		position: absolute;
+		inset: -28%;
+		z-index: -1;
+		background: var(--gradient-glow) center / 68% 68% no-repeat, var(--gradient-glow-deep);
+		pointer-events: none;
+	}
+
+	.network__panels {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--space-grid);
+		margin-block-start: var(--space-8);
 	}
 
 	@container network (min-width: 60rem) {
-		.network__layout { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-16); }
-		.network__star { width: 100%; }
+		.network__layout { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-columns); }
+		.network__star { inline-size: min(100%, 26rem); }
+
+		.network__panels {
+			--network-crystal: url('../assets/brand/start-crystal-outline.svg');
+			--network-crystal-size: clamp(12rem, 18cqi, 15rem);
+			/* Centre the same artwork in the gap between the quote and the first two tiles. */
+			--network-crystal-offset: calc((var(--network-crystal-size) + var(--space-grid)) / -2 - var(--border-width));
+		}
+
+		.network__voice :global(.testimonial--pull::before) {
+			background: var(--network-crystal) center bottom var(--network-crystal-offset) / var(--network-crystal-size) no-repeat;
+		}
+
+		.network__panels :global(.community-stat:first-child::before) {
+			background: var(--network-crystal) right var(--network-crystal-offset) top var(--network-crystal-offset) / var(--network-crystal-size) no-repeat;
+		}
+
+		.network__panels :global(.community-stat:nth-child(2)::before) {
+			background:
+				var(--network-crystal) left var(--network-crystal-offset) top var(--network-crystal-offset) / var(--network-crystal-size) no-repeat,
+				url('../assets/home/polygon-bottom-right.svg') right bottom / var(--polygon-size) no-repeat;
+		}
 	}
 
 	/* Join: the closing call to action as a sharp-edged box with START line art, like
