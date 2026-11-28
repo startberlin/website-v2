@@ -5,8 +5,6 @@ import sprintCeremony from '../assets/member-journey/start-sprint-award-ceremony
 import cofounderNight from '../assets/member-journey/cofounder-matching-night.jpg';
 import groupPicture from '../assets/member-journey/start-group-picture.jpg';
 import langdockVisit from '../assets/member-journey/langdock-visit.jpg';
-import mahirIsikli from '../assets/member-journey/stories/mahir-isikli.jpg';
-import anouarSpringer from '../assets/member-journey/stories/anouar-springer.jpg';
 import polinaShcheglova from '../assets/member-journey/stories/polina-shcheglova.jpg';
 import lionAbboudHerbert from '../assets/member-journey/stories/lion-abboud-herbert.jpg';
 import soenkePeters from '../assets/member-journey/stories/soenke-peters.jpg';
@@ -174,19 +172,6 @@ export const storiesSection = {
 };
 
 export const memberStories: MemberStory[] = [
-	{
-		name: 'Mahir Isikli',
-		role: 'President 23/24',
-		portrait: mahirIsikli,
-		quote: "START was the best learning environment I've ever been in. At 23, I led a team, made mistakes, and actually learned how to get things done – not just alone, but with others.",
-		featured: true,
-	},
-	{
-		name: 'Anouar Springer',
-		role: 'Head of Partnerships 23/24',
-		portrait: anouarSpringer,
-		quote: "START Berlin changed everything. I found a community of driven, like-minded people who inspired me to grow both personally and professionally. START opened doors I didn't know existed.",
-	},
 	{
 		name: 'Polina Shcheglova',
 		role: 'Member 19/20',
