@@ -122,16 +122,9 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 
 	<section class="section page-container" id="join" aria-labelledby="join-heading">
 		<div class="join">
-			<div class="join__copy">
-				<h2 class="join__heading" id="join-heading">{join.heading}</h2>
-				<p class="join__text">{join.text}</p>
-				<a class="button" href={join.primary.href}>{join.primary.label}</a>
-			</div>
-			<ul class="join__links" role="list">
-				{join.links.map((link) => (
-					<li><a class="join__link" href={link.href}>{link.label} <Icon name="arrow-right" size={20} /></a></li>
-				))}
-			</ul>
+			<h2 class="join__heading" id="join-heading">{join.heading}</h2>
+			<p class="join__text">{join.text}</p>
+			<a class="button" href={join.primary.href}>{join.primary.label}</a>
 		</div>
 	</section>
 </Layout>
@@ -394,7 +387,8 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		position: relative;
 		isolation: isolate;
 		display: grid;
-		gap: var(--space-10);
+		gap: var(--space-5);
+		justify-items: start;
 		padding: var(--space-10) var(--space-6);
 		border: var(--border-width) solid var(--border-control);
 		background: var(--surface-footer-contact);
@@ -414,13 +408,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		.join::before { display: none; }
 	}
 
-	.join__copy {
-		display: grid;
-		gap: var(--space-5);
-		justify-items: start;
-		min-width: 0;
-	}
-
 	.join__heading {
 		margin: 0;
 		font-size: var(--type-section);
@@ -438,44 +425,11 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		line-height: var(--leading-copy);
 	}
 
-	.join__links {
-		display: grid;
-		align-content: center;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.join__link {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-4);
-		min-height: var(--target-min);
-		padding-block: var(--space-4);
-		font-size: var(--text-lg);
-		font-weight: var(--weight-bold);
-		border-bottom: var(--border-width) solid var(--border-default);
-		transition: color var(--duration-fast);
-	}
-
-	.join__link:hover {
-		color: var(--color-accent);
-	}
-
 	@media (min-width: 768px) {
 		.join { padding: var(--space-14) var(--space-12); }
 	}
 
 	@media (min-width: 1024px) {
-		.join { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--space-16); }
-	}
-
-	@media (min-width: 1024px) {
 		.section { padding-block: var(--space-24); }
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.join__link { transition: none; }
 	}
 </style>

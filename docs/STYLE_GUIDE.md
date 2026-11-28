@@ -72,6 +72,8 @@ About Us keeps its page content in `src/data/about-us.ts` and quotes two Member 
 
 The START Network crystal is centred beneath its introduction on smaller screens and sits beside it on desktop. Rhema's quote spans the full width of the statistics grid with the same spacing between panels. At container widths of 60 rem and up, the quote caps a single wireframe motif that continues into the Chapters and Cities tiles.
 
+The closing "Join START Berlin" panel has a single "How to join" link to `/join`.
+
 Partners owns the shared partner inventory in `src/data/partners.ts`: name, group, logo and optional strip size correction for every current partner. The Partners page and the homepage strip should both read it; historical logo files stay in `src/assets/partners/`. A Marquee of all logos (smaller area, about 1,600 px²) follows the introduction. In the partner wall each group is one row, label beside the logos and no tiles; the white logos are sized by visual area (about 2,400 px², 18–52 px high, at most 140 px wide) and flow in a free row, about three per row on phones. Group filter buttons appear only with JavaScript, use `aria-pressed` and announce the visible count; without JavaScript every group stays visible. Offers use 16:9 photos; the offer without a photo is a direct action in a sharp-edged box on the footer contact surface with START polygon art. Recent collaborations come from RecentCollaborations: compact cards with the square Events graphic (6–7 rem) beside title, date, text and its Luma link. The Partnerships contact (Tobias as a PersonChip, one primary action) replaces the general footer contact, so there is one contact box. The legacy `/for-partners.html` URL redirects permanently to `/partners`.
 
 ## Tokens and native controls
