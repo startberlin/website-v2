@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import PageIntroduction from '../components/PageIntroduction.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Testimonial from '../components/Testimonial.astro';
 import PersonChip from '../components/PersonChip.astro';
@@ -36,13 +37,14 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 ---
 
 <Layout seo={pageSeo('/about-us')}>
-	<PageHero title={hero.title} image={hero.photo.src} alt={hero.photo.alt} imagePosition="50% 35%">
-		<Fragment slot="description">{hero.description}</Fragment>
-		<div slot="actions" class="hero-actions">
-			<a class="button" href={join.primary.href}>{join.primary.label}</a>
-			<a class="button button--outline" href="/members">Meet our members</a>
-		</div>
-	</PageHero>
+	<PageHero
+		title={hero.title}
+		image={hero.photo.src}
+		alt={hero.photo.alt}
+		imagePosition="50% 12%"
+		mobileImagePosition="50% 35%"
+	/>
+	<PageIntroduction>{hero.description}</PageIntroduction>
 
 	<section class="section page-container purpose" id="purpose" aria-labelledby="purpose-heading">
 		<div class="purpose__copy">
@@ -152,19 +154,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		color: var(--text-copy);
 		font-size: var(--text-lg);
 		line-height: var(--leading-copy);
-	}
-
-	/* "are" set larger than "Who we", for more presence in the hero. */
-	:global(.page-hero__title span + span) {
-		font-size: var(--type-hero-emphasis);
-		line-height: var(--leading-display);
-	}
-
-	.hero-actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-3);
-		margin-top: var(--space-6);
 	}
 
 	/* Purpose: copy beside the featured quote. */
