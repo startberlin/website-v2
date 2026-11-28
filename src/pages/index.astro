@@ -11,6 +11,7 @@ import MembershipBenefits from '../components/MembershipBenefits.astro';
 import HomeEvents from '../components/HomeEvents.astro';
 import HomeDepartments from '../components/HomeDepartments.astro';
 import MemberStories from '../components/MemberStories.astro';
+import Icon from '../components/icons/Icon.astro';
 import memberGroup from '../assets/member-journey/start-berlin-member-journey-group.jpg';
 import workingTogether from '../assets/home/working-together.jpg';
 import langdockVisit from '../assets/member-journey/langdock-visit.jpg';
@@ -84,10 +85,16 @@ const benefits = [
 
 		<Network />
 
-		<MemberStories />
+		<MemberStories>
+			<a slot="actions" class="text-action home-members-link" href="/members">
+				Browse members
+				<Icon name="arrow-right" />
+			</a>
+		</MemberStories>
 	</div>
 </Layout>
 
 <style>
 	.home-content { padding-block: var(--home-partner-gap) var(--space-section); }
+	.home-members-link { margin-block-start: var(--space-2); }
 </style>

@@ -3,7 +3,7 @@ import Icon from '../components/icons/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import MemberCard from '../components/MemberCard.astro';
 import PageHero from '../components/PageHero.astro';
-import teamPhoto from '../assets/hero/hero-3.jpg';
+import communityPhoto from '../assets/member-journey/start-berlin-member-journey-group.jpg';
 import type { ImageMetadata } from 'astro';
 import { memberProfiles } from '../lib/member-profiles';
 import { boardGroups, boardProfilePath, type TeamSeason } from '../lib/board-members';
@@ -54,7 +54,14 @@ const departments = [
 ---
 
 <Layout seo={pageSeo('/members')}>
-	<PageHero title={['Meet the', 'team']} image={teamPhoto} alt="START Berlin team posing together in START shirts." imagePosition="50% 10%" mobileImagePosition="58% 35%">
+	<PageHero
+		title={['Meet the', 'members']}
+		image={communityPhoto}
+		alt="START Berlin members making the START hand sign in a group photo."
+		imagePosition="50% 58%"
+		mobileImagePosition="50% 56%"
+		widePhoto
+	>
 		<Fragment slot="description">Meet the board and departments behind START Berlin.</Fragment>
 	</PageHero>
 

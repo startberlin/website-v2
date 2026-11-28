@@ -1,5 +1,5 @@
 import groupPicture from '../assets/member-journey/start-group-picture.jpg';
-import heroPhoto from '../assets/hero/hero-2.jpg';
+import heroPhoto from '../assets/join/team-four.jpg';
 import { departments, memberStories, type MemberStory } from './member-journey';
 
 // About Us page content. Member quotes are approved Member Stories, quoted verbatim
@@ -17,7 +17,7 @@ const story = (name: string): MemberStory => {
 export const hero = {
 	// PageHero: solid first part, cyan outlined second part.
 	title: ['Who we', 'are'] as const,
-	photo: { src: heroPhoto, alt: 'A large group of START Berlin members posing together, several holding up certificates' },
+	photo: { src: heroPhoto, alt: 'Four START Berlin members smiling together in navy START shirts.' },
 	// One short sentence, as the hero guide asks. Home counts 13 years in Berlin (since 2013).
 	description: "Berlin's student-run entrepreneurship community, bringing students and founders together since 2013.",
 };
