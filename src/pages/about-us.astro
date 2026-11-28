@@ -47,13 +47,13 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 	<PageIntroduction>{hero.description}</PageIntroduction>
 
 	<section class="section page-container purpose" id="purpose" aria-labelledby="purpose-heading">
-		<div class="purpose__copy">
+		<div>
 			<SectionHeading id="purpose-heading">{purpose.heading}</SectionHeading>
 			<div class="prose">
 				{purpose.text.map((paragraph) => <p>{paragraph}</p>)}
 			</div>
 		</div>
-		<div class="purpose__voice"><Testimonial {...purpose.voice} featured variant="pull" /></div>
+		<div class="wide-quote"><Testimonial {...purpose.voice} featured variant="pull" /></div>
 	</section>
 
 	<section class="photo-band" id="community" aria-labelledby="community-heading">
@@ -66,7 +66,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 			<div class="prose">
 				{community.text.map((paragraph) => <p>{paragraph}</p>)}
 			</div>
-			<div class="photo-band__voice"><Testimonial {...community.voice} variant="pull" /></div>
 		</div>
 	</section>
 
@@ -115,7 +114,7 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 				<div class="network__star"><StartStar sizes="(min-width: 60rem) 26rem, (min-width: 28rem) 18rem, 72vw" /></div>
 			</div>
 			<div class="network__panels">
-				<div class="network__voice"><Testimonial {...network.voice} variant="pull" /></div>
+				<div class="wide-quote network__voice"><Testimonial {...network.voice} variant="pull" /></div>
 				<CommunityStats id="network-stats" label={network.statsLabel} stats={network.stats} />
 			</div>
 		</div>
@@ -155,19 +154,25 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 		line-height: var(--leading-copy);
 	}
 
-	/* Purpose: copy beside the featured quote. */
 	.purpose {
 		display: grid;
+		grid-template-columns: minmax(0, 1fr);
 		gap: var(--space-12);
 	}
 
-	.purpose__copy,
-	.purpose__voice {
-		min-width: 0;
-	}
+	@media (min-width: 60rem) {
+		.purpose { gap: var(--space-8); }
 
-	@media (min-width: 1024px) {
-		.purpose { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-16); align-items: center; }
+		.wide-quote :global(.testimonial--pull) {
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr);
+			align-items: start;
+			padding: var(--space-8);
+		}
+
+		.wide-quote :global(.testimonial__author) {
+			grid-column: 1 / -1;
+		}
 	}
 
 	/* Community: the page's photo band, as on Join. */
@@ -199,10 +204,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 
 	.photo-band__content > :global(*) {
 		max-width: 40rem;
-	}
-
-	.photo-band__voice {
-		margin-top: var(--space-10);
 	}
 
 	@media (min-width: 768px) {
@@ -370,17 +371,6 @@ const bandWidths = [...[640, 1080, 1600].filter((width) => width < community.pho
 			--network-crystal-size: clamp(12rem, 18cqi, 15rem);
 			/* Centre the same artwork in the gap between the quote and the first two tiles. */
 			--network-crystal-offset: calc((var(--network-crystal-size) + var(--space-grid)) / -2 - var(--border-width));
-		}
-
-		.network__voice :global(.testimonial--pull) {
-			display: grid;
-			grid-template-columns: auto minmax(0, 1fr);
-			align-items: start;
-			padding: var(--space-8);
-		}
-
-		.network__voice :global(.testimonial__author) {
-			grid-column: 1 / -1;
 		}
 
 		.network__voice :global(.testimonial--pull::before) {
