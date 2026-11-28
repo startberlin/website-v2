@@ -252,7 +252,8 @@ const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] :
 	.testimonial--pull .testimonial__quote p {
 		max-width: var(--layout-reading);
 		color: var(--text-primary);
-		font-size: var(--text-base);
+		/* The same size as the page copy; the box and mark set the quote apart. */
+		font-size: var(--text-lg);
 		line-height: var(--leading-copy);
 		text-wrap: pretty;
 	}
@@ -263,15 +264,6 @@ const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] :
 
 	.testimonial--pull-featured {
 		--avatar-size: 5rem;
-	}
-
-	.testimonial--pull-featured .testimonial__quote p {
-		font-size: var(--text-lg);
-	}
-
-	@media (min-width: 768px) {
-		.testimonial--pull .testimonial__quote p { font-size: var(--text-lg); }
-		.testimonial--pull-featured .testimonial__quote p { font-size: var(--text-xl); }
 	}
 
 	@media (forced-colors: active) {
