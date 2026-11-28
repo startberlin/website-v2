@@ -27,7 +27,7 @@ const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] :
 const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boolean).join(' ').toLowerCase();
 ---
 
-<article class="card" data-member data-search={search}>
+<article class="card line-art-card" data-member data-search={search}>
 	<div class="card__top">
 		<div class="card__portrait-wrap">
 			<div class="card__avatar">
@@ -41,7 +41,7 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		</div>
 	</div>
 	<div class="card__body">
-		<h3 class="card__name">{profileUrl ? <a class="card__profile-link" href={profileUrl}>{name}</a> : name}</h3>
+		<h3 class="card__name">{name}</h3>
 		<p class="card__role">{roleLabel}</p>
 		{(linkedinUrl || emailUrl) && (
 			<div class="card__contacts">
@@ -58,25 +58,18 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 			</div>
 		)}
 		{batch && <p class="card__batch">Batch #{batch}</p>}
-		{profileUrl && <span class="card__profile-hint" aria-hidden="true">View profile <Icon name="arrow-up-right" size={14} /></span>}
 	</div>
+	{profileUrl && (
+		<a class="text-action card__profile-link" href={profileUrl} aria-label={`View profile for ${name}`}>
+			View profile <Icon name="arrow-right" size={16} />
+		</a>
+	)}
 </article>
 
 <style>
 	.card {
-		position: relative;
 		display: flex;
 		flex-direction: column;
-		overflow: hidden;
-		background: var(--surface-card);
-		border: var(--border-width) solid var(--border-subtle);
-		border-radius: var(--radius-card);
-		transition: border-color var(--duration-ui), transform var(--duration-ui);
-	}
-
-	.card:hover {
-		border-color: var(--border-accent);
-		transform: translateY(-2px);
 	}
 
 	.card__top {
@@ -84,7 +77,6 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		flex-direction: column;
 		align-items: center;
 		padding: var(--space-6) var(--space-3) var(--space-7);
-		background: var(--surface-card);
 	}
 
 	.card__portrait-wrap {
@@ -210,41 +202,31 @@ const search = [name, roleLabel, group, batch && `batch #${batch}`].filter(Boole
 		color: var(--color-accent);
 	}
 
+	.card__profile-link {
+		justify-content: space-between;
+		margin-inline: var(--space-3);
+		padding-block: var(--space-2);
+		border-block-start: var(--border-width) solid var(--border-default);
+		color: var(--text-copy);
+		text-decoration: none;
+	}
+
+	.card__profile-link:is(:hover, :focus-visible) {
+		color: var(--color-accent);
+		text-decoration: underline;
+	}
+
 	.card__profile-link::after {
 		content: '';
 		position: absolute;
 		inset: 0;
 		z-index: 1;
-		border-radius: var(--radius-card);
 	}
 
 	.card__profile-link:focus-visible { outline: none; }
 	.card__profile-link:focus-visible::after {
 		inset: var(--space-1);
-		outline: var(--focus-width) solid var(--color-accent);
+		outline: var(--focus-width) solid currentColor;
 		outline-offset: 0;
-	}
-
-	.card__profile-hint {
-		display: inline-flex;
-		align-items: center;
-		gap: var(--space-1);
-		margin-top: auto;
-		padding-top: var(--space-2);
-		color: var(--color-accent);
-		font-size: var(--text-xs);
-		line-height: var(--leading-ui);
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.card,
-		.card__avatar,
-		.card__contact {
-			transition: none;
-		}
-
-		.card:hover {
-			transform: none;
-		}
 	}
 </style>

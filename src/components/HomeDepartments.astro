@@ -31,11 +31,6 @@ const homeDepartments = departments.map((department) => {
 			</details>
 		))}
 	</div>
-
-	<a class="text-action home-departments__members" href="/members">
-		Browse members
-		<Icon name="arrow-right" />
-	</a>
 </section>
 
 <script>
@@ -127,8 +122,6 @@ const homeDepartments = departments.map((department) => {
 	}
 
 	.department-panel__copy p + p { margin-block-start: var(--space-4); }
-
-	.home-departments__members { margin-block-start: var(--space-2); }
 
 	@container home-departments (min-width: 58rem) {
 		.home-departments__panels { flex-direction: row; }
