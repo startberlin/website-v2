@@ -1,0 +1,114 @@
+---
+import { Image } from 'astro:assets';
+import xdeckLogo from '../assets/home/xdeck-logo.webp';
+---
+
+<section id="featured-partner" class="featured-partner page-container" aria-labelledby="featured-partner-heading">
+	<div class="featured-partner__panel">
+		<h2 id="featured-partner-heading" class="featured-partner__heading">Featured Partner</h2>
+		<div class="featured-partner__brand">
+			<Image src={xdeckLogo} alt="xdeck" width={256} quality="lossless" loading="lazy" class="featured-partner__logo" />
+			<span class="featured-partner__name">xdeck</span>
+		</div>
+		<p class="featured-partner__description">Accelerator and venture fund for early-stage B2B tech founders.</p>
+		<a
+			class="button button--outline"
+			href="https://xdeck.de/?utm_source=start-berlin.com&amp;utm_medium=referral&amp;utm_campaign=featured-partner"
+			rel="sponsored"
+		>
+			Explore xdeck
+		</a>
+	</div>
+</section>
+
+<style>
+	.featured-partner { container-type: inline-size; }
+
+	.featured-partner__panel {
+		display: grid;
+		gap: var(--space-3);
+		justify-items: start;
+		padding: var(--space-5);
+		border: var(--border-width) solid var(--border-default);
+		border-radius: var(--radius-card);
+		background: var(--surface-card);
+	}
+
+	.featured-partner__heading {
+		margin: 0;
+		color: var(--color-accent);
+		font-size: var(--text-caption);
+		font-weight: var(--weight-bold);
+		letter-spacing: var(--tracking-wide);
+		line-height: var(--leading-ui);
+		text-transform: uppercase;
+	}
+
+	.featured-partner__logo {
+		display: block;
+		inline-size: var(--space-32);
+		max-inline-size: 100%;
+		block-size: auto;
+	}
+
+	.featured-partner__name { display: none; }
+
+	.featured-partner__description {
+		margin: 0;
+		color: var(--text-copy);
+		line-height: var(--leading-ui);
+		text-wrap: balance;
+	}
+
+	.featured-partner__panel .button {
+		margin-block-start: var(--space-1);
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+	}
+
+	@container (min-width: 42rem) {
+		.featured-partner__panel {
+			grid-template-columns: auto minmax(0, 1fr) auto;
+			grid-template-areas:
+				'brand heading action'
+				'brand description action';
+			gap: var(--space-1) var(--space-6);
+			align-items: center;
+			padding: var(--space-6) var(--space-8);
+		}
+
+		.featured-partner__brand {
+			grid-area: brand;
+			display: grid;
+			align-self: stretch;
+			align-items: center;
+			padding-inline-end: var(--space-6);
+			border-inline-end: var(--border-width) solid var(--border-default);
+		}
+
+		.featured-partner__heading {
+			grid-area: heading;
+			align-self: end;
+		}
+
+		.featured-partner__description {
+			grid-area: description;
+			align-self: start;
+		}
+
+		.featured-partner__panel .button {
+			grid-area: action;
+			margin-block-start: 0;
+		}
+	}
+
+	@media (forced-colors: active) {
+		.featured-partner__logo { display: none; }
+
+		.featured-partner__name {
+			display: block;
+			font-size: var(--text-2xl);
+			font-weight: var(--weight-bold);
+		}
+	}
+</style>

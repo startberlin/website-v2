@@ -1,30 +1,25 @@
 ---
 import Layout from './Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import eventAudience from '../assets/hero/hero-4.jpg';
+import type { PageSeo } from '../lib/seo/metadata';
 
 interface Props {
-	title: string;
+	title: readonly [string, string];
+	seo: PageSeo;
 }
 
-const { title } = Astro.props;
+const { title, seo } = Astro.props;
 ---
 
-<Layout title={`${title} | START Berlin`}>
-	<article class="legal-page page-container" aria-labelledby="legal-title">
-		<h1 id="legal-title">{title}</h1>
-		<div class="legal-page__content"><slot /></div>
+<Layout seo={seo}>
+	<PageHero title={title} titleId="legal-title" image={eventAudience} imagePosition="50% 45%" mobileImagePosition="68% 50%" />
+	<article class="page-container page-flow" aria-labelledby="legal-title">
+		<div class="legal-page__content readable"><slot /></div>
 	</article>
 </Layout>
 
 <style>
-	.legal-page { padding-block: var(--space-20); }
-	h1 {
-		margin: 0 0 var(--space-12);
-		font-size: var(--type-legal-title);
-		font-weight: var(--weight-display);
-		line-height: 1.1;
-		text-transform: uppercase;
-		overflow-wrap: anywhere;
-	}
 	.legal-page__content {
 		color: var(--text-copy);
 		font-size: var(--text-lg);
@@ -39,7 +34,7 @@ const { title } = Astro.props;
 	.legal-page__content :global(h4) {
 		color: var(--color-white);
 		font-weight: var(--weight-display);
-		line-height: 1.35;
+		line-height: var(--leading-ui);
 	}
 	.legal-page__content :global(h2) {
 		margin: 0 0 var(--space-4);

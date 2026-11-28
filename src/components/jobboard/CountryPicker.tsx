@@ -47,6 +47,7 @@ export function CountryPicker({ id, label = 'Eligible countries', value, onChang
 			<details
 				ref={detailsRef}
 				className="jb-country-picker__disclosure"
+				data-invalid={invalid || undefined}
 				onToggle={(event) => {
 					if (!event.currentTarget.open) setQuery('');
 				}}
@@ -59,8 +60,6 @@ export function CountryPicker({ id, label = 'Eligible countries', value, onChang
 						else if (inputRef) inputRef.current = node;
 					}}
 					className="jb-country-picker__summary"
-					aria-label={`${label}. ${selected.size} selected`}
-					aria-invalid={invalid}
 					aria-describedby={describedBy}
 				>
 					<span>Choose countries</span>
@@ -68,10 +67,11 @@ export function CountryPicker({ id, label = 'Eligible countries', value, onChang
 					<Icon name="chevron-down" size={16} />
 				</summary>
 				<div className="jb-country-picker__panel">
-					<label className="jb-country-picker__search">
-						<span className="jb-country-picker__sr-only">Search countries by name</span>
+					<label className="jb-country-picker__search control-with-icon">
+						<span className="sr-only">Search countries by name</span>
 						<Icon name="search" size={18} />
 						<input
+							className="ui-control"
 							type="search"
 							value={query}
 							onChange={(event) => setQuery(event.target.value)}

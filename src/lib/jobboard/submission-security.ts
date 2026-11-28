@@ -34,10 +34,10 @@ export function assertSameOrigin(
 		throw new SubmissionRequestError(415, "Use a JSON request.");
 }
 
-export async function readBoundedJson(
+export async function readBoundedBody(
 	request: Request,
-	maximum = 40_000,
-): Promise<unknown> {
+	maximum: number,
+): Promise<string> {
 	const length = Number(request.headers.get("content-length"));
 	if (Number.isFinite(length) && length > maximum)
 		throw new SubmissionRequestError(413, "The listing is too long.");
@@ -63,12 +63,21 @@ export async function readBoundedJson(
 			bytes.set(chunk, offset);
 			offset += chunk.length;
 		}
-		return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
+		return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
 	} catch (error) {
 		if (error instanceof SubmissionRequestError) throw error;
 		throw new SubmissionRequestError(400, "The form could not be read.");
 	} finally {
 		reader.releaseLock();
+	}
+}
+
+export async function readBoundedJson(request: Request, maximum = 40_000): Promise<unknown> {
+	const body = await readBoundedBody(request, maximum);
+	try {
+		return JSON.parse(body);
+	} catch {
+		throw new SubmissionRequestError(400, "The form could not be read.");
 	}
 }
 

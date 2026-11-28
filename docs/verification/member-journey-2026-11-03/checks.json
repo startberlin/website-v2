@@ -1,0 +1,1360 @@
+{
+ "date": "2026-11-03",
+ "node": "v22.23.3",
+ "route": "/member-journey",
+ "builds": {
+  "preview": ".astro/member-journey-build",
+  "indexable": ".astro/member-journey-indexable",
+  "gameFlag": ".astro/member-journey-game",
+  "vercel": ".astro/vercel-build",
+  "pageHeroBaseline": ".astro/pagehero-baseline (built from main before this branch)"
+ },
+ "commands": {
+  "check:design": "pass",
+  "check:seo": "pass (12 HTML route templates)",
+  "test:seo": "9 pass",
+  "typecheck": "115 files, 0 errors, 0 warnings, 6 existing hints",
+  "test:jobboard": "47 pass",
+  "test:release": "28 pass",
+  "test": "95 pass",
+  "test:dependencies": "6 pass",
+  "build (isolated)": "pass",
+  "smoke:local": "pass, 9 pages; Jobs controlled 503",
+  "build:vercel": "pass",
+  "build (indexable)": "pass",
+  "pnpm audit --prod": "17 existing advisories (1 low, 10 moderate, 6 high) in undici, vite/launch-editor, zod, glob, minimatch; lockfile unchanged"
+ },
+ "indexable": {
+  "canonical": "https://www.start-berlin.com/member-journey",
+  "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  "inSitemapPages": true,
+  "sitemapPagesUrls": 15
+ },
+ "preview": {
+  "robots": "noindex, follow",
+  "sitemapPagesUrls": 0,
+  "robotsTxt": "Disallow: /"
+ },
+ "pageHeroConsumers": {
+  "checked": 45,
+  "identical": 45,
+  "different": [],
+  "overflow": []
+ },
+ "gameSlotEnabled": [
+  {
+   "vp": "320x640",
+   "present": true,
+   "between": true,
+   "sameEdges": true,
+   "height": 320,
+   "overflow": false,
+   "h1": 1,
+   "headings": 13,
+   "iframes": 0
+  },
+  {
+   "vp": "390x844",
+   "present": true,
+   "between": true,
+   "sameEdges": true,
+   "height": 320,
+   "overflow": false,
+   "h1": 1,
+   "headings": 13,
+   "iframes": 0
+  },
+  {
+   "vp": "768x1024",
+   "present": true,
+   "between": true,
+   "sameEdges": true,
+   "height": 320,
+   "overflow": false,
+   "h1": 1,
+   "headings": 13,
+   "iframes": 0
+  },
+  {
+   "vp": "1024x768",
+   "present": true,
+   "between": true,
+   "sameEdges": true,
+   "height": 320,
+   "overflow": false,
+   "h1": 1,
+   "headings": 13,
+   "iframes": 0
+  },
+  {
+   "vp": "1280x800",
+   "present": true,
+   "between": true,
+   "sameEdges": true,
+   "height": 320,
+   "overflow": false,
+   "h1": 1,
+   "headings": 13,
+   "iframes": 0
+  },
+  {
+   "vp": "1440x900",
+   "present": true,
+   "between": true,
+   "sameEdges": true,
+   "height": 320,
+   "overflow": false,
+   "h1": 1,
+   "headings": 13,
+   "iframes": 0
+  },
+  {
+   "vp": "1920x1080",
+   "present": true,
+   "between": true,
+   "sameEdges": true,
+   "height": 320,
+   "overflow": false,
+   "h1": 1,
+   "headings": 13,
+   "iframes": 0
+  },
+  {
+   "vp": "844x390",
+   "present": true,
+   "between": true,
+   "sameEdges": true,
+   "height": 320,
+   "overflow": false,
+   "h1": 1,
+   "headings": 13,
+   "iframes": 0
+  },
+  {
+   "vp": "1180x820",
+   "present": true,
+   "between": true,
+   "sameEdges": true,
+   "height": 320,
+   "overflow": false,
+   "h1": 1,
+   "headings": 13,
+   "iframes": 0
+  }
+ ],
+ "matrix": [
+  {
+   "viewport": "320x640",
+   "js": true,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": false,
+    "railSticky": false,
+    "stagesSideBySide": 0,
+    "photoTopDeltas": [
+     594,
+     758,
+     877,
+     582,
+     693
+    ],
+    "tablistVisible": true,
+    "visiblePanels": 1,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "cuuuu",
+    "current": "01Application",
+    "gameSection": false
+   },
+   "midStates": "rrcuu",
+   "midCurrent": "03Departments",
+   "midSticky": false,
+   "endStates": "rrrrc",
+   "endCurrent": "05START Alumni",
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "320x640-nojs",
+   "js": false,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": false,
+    "railSticky": false,
+    "stagesSideBySide": 0,
+    "photoTopDeltas": [
+     594,
+     758,
+     877,
+     582,
+     693
+    ],
+    "tablistVisible": false,
+    "visiblePanels": 5,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "-----",
+    "current": null,
+    "gameSection": false
+   },
+   "midStates": "-----",
+   "midCurrent": null,
+   "midSticky": false,
+   "endStates": "-----",
+   "endCurrent": null,
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "390x844",
+   "js": true,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": false,
+    "railSticky": false,
+    "stagesSideBySide": 0,
+    "photoTopDeltas": [
+     547,
+     652,
+     771,
+     594,
+     617
+    ],
+    "tablistVisible": true,
+    "visiblePanels": 1,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "cuuuu",
+    "current": "01Application",
+    "gameSection": false
+   },
+   "midStates": "rrcuu",
+   "midCurrent": "03Departments",
+   "midSticky": false,
+   "endStates": "rrrrc",
+   "endCurrent": "05START Alumni",
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "390x844-nojs",
+   "js": false,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": false,
+    "railSticky": false,
+    "stagesSideBySide": 0,
+    "photoTopDeltas": [
+     547,
+     652,
+     771,
+     594,
+     617
+    ],
+    "tablistVisible": false,
+    "visiblePanels": 5,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "-----",
+    "current": null,
+    "gameSection": false
+   },
+   "midStates": "-----",
+   "midCurrent": null,
+   "midSticky": false,
+   "endStates": "-----",
+   "endCurrent": null,
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "768x1024",
+   "js": true,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": false,
+    "stagesSideBySide": 0,
+    "photoTopDeltas": [
+     463,
+     455,
+     550,
+     425,
+     425
+    ],
+    "tablistVisible": true,
+    "visiblePanels": 1,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "cuuuu",
+    "current": "01Application",
+    "gameSection": false
+   },
+   "midStates": "rrcuu",
+   "midCurrent": "03Departments",
+   "midSticky": false,
+   "endStates": "rrrrc",
+   "endCurrent": "05START Alumni",
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "768x1024-nojs",
+   "js": false,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": false,
+    "stagesSideBySide": 0,
+    "photoTopDeltas": [
+     463,
+     455,
+     550,
+     425,
+     425
+    ],
+    "tablistVisible": false,
+    "visiblePanels": 5,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "-----",
+    "current": null,
+    "gameSection": false
+   },
+   "midStates": "-----",
+   "midCurrent": null,
+   "midSticky": false,
+   "endStates": "-----",
+   "endCurrent": null,
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1024x768",
+   "js": true,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": true,
+    "visiblePanels": 1,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "cuuuu",
+    "current": "01Application",
+    "gameSection": false
+   },
+   "midStates": "rrcuu",
+   "midCurrent": "03Departments",
+   "midSticky": true,
+   "endStates": "rrrrc",
+   "endCurrent": "05START Alumni",
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1024x768-nojs",
+   "js": false,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": false,
+    "visiblePanels": 5,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "-----",
+    "current": null,
+    "gameSection": false
+   },
+   "midStates": "-----",
+   "midCurrent": null,
+   "midSticky": true,
+   "endStates": "-----",
+   "endCurrent": null,
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1280x800",
+   "js": true,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": true,
+    "visiblePanels": 1,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "cuuuu",
+    "current": "01Application",
+    "gameSection": false
+   },
+   "midStates": "rrcuu",
+   "midCurrent": "03Departments",
+   "midSticky": true,
+   "endStates": "rrrrc",
+   "endCurrent": "05START Alumni",
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1280x800-nojs",
+   "js": false,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": false,
+    "visiblePanels": 5,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "-----",
+    "current": null,
+    "gameSection": false
+   },
+   "midStates": "-----",
+   "midCurrent": null,
+   "midSticky": true,
+   "endStates": "-----",
+   "endCurrent": null,
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1440x900",
+   "js": true,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": true,
+    "visiblePanels": 1,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "cuuuu",
+    "current": "01Application",
+    "gameSection": false
+   },
+   "midStates": "rrcuu",
+   "midCurrent": "03Departments",
+   "midSticky": true,
+   "endStates": "rrrrc",
+   "endCurrent": "05START Alumni",
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1440x900-nojs",
+   "js": false,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": false,
+    "visiblePanels": 5,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "-----",
+    "current": null,
+    "gameSection": false
+   },
+   "midStates": "-----",
+   "midCurrent": null,
+   "midSticky": true,
+   "endStates": "-----",
+   "endCurrent": null,
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1920x1080",
+   "js": true,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": true,
+    "visiblePanels": 1,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "cuuuu",
+    "current": "01Application",
+    "gameSection": false
+   },
+   "midStates": "rrcuu",
+   "midCurrent": "03Departments",
+   "midSticky": true,
+   "endStates": "rrrrc",
+   "endCurrent": "05START Alumni",
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1920x1080-nojs",
+   "js": false,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": false,
+    "visiblePanels": 5,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "-----",
+    "current": null,
+    "gameSection": false
+   },
+   "midStates": "-----",
+   "midCurrent": null,
+   "midSticky": true,
+   "endStates": "-----",
+   "endCurrent": null,
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "844x390",
+   "js": true,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": false,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": true,
+    "visiblePanels": 1,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "cuuuu",
+    "current": "01Application",
+    "gameSection": false
+   },
+   "midStates": "rrcuu",
+   "midCurrent": "03Departments",
+   "midSticky": false,
+   "endStates": "rrrrc",
+   "endCurrent": "05START Alumni",
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "844x390-nojs",
+   "js": false,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": false,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": false,
+    "visiblePanels": 5,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "-----",
+    "current": null,
+    "gameSection": false
+   },
+   "midStates": "-----",
+   "midCurrent": null,
+   "midSticky": false,
+   "endStates": "-----",
+   "endCurrent": null,
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1180x820",
+   "js": true,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": true,
+    "visiblePanels": 1,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "cuuuu",
+    "current": "01Application",
+    "gameSection": false
+   },
+   "midStates": "rrcuu",
+   "midCurrent": "03Departments",
+   "midSticky": true,
+   "endStates": "rrrrc",
+   "endCurrent": "05START Alumni",
+   "overflowAny": false,
+   "errors": []
+  },
+  {
+   "viewport": "1180x820-nojs",
+   "js": false,
+   "top": {
+    "overflow": false,
+    "wideElements": 0,
+    "h1": 1,
+    "railVisible": true,
+    "railSticky": true,
+    "stagesSideBySide": 5,
+    "photoTopDeltas": [
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "tablistVisible": false,
+    "visiblePanels": 5,
+    "stories": 7,
+    "imagesLoaded": 14,
+    "images": 14,
+    "states": "-----",
+    "current": null,
+    "gameSection": false
+   },
+   "midStates": "-----",
+   "midCurrent": null,
+   "midSticky": true,
+   "endStates": "-----",
+   "endCurrent": null,
+   "overflowAny": false,
+   "errors": []
+  }
+ ],
+ "enlargedText": [
+  {
+   "width": 320,
+   "js": true,
+   "overflow": false,
+   "wideElements": 0,
+   "clippedText": 0,
+   "railVisible": false,
+   "railSticky": false,
+   "visiblePanels": 1
+  },
+  {
+   "width": 320,
+   "js": false,
+   "overflow": false,
+   "wideElements": 0,
+   "clippedText": 0,
+   "railVisible": false,
+   "railSticky": false,
+   "visiblePanels": 5
+  },
+  {
+   "width": 768,
+   "js": true,
+   "overflow": false,
+   "wideElements": 0,
+   "clippedText": 0,
+   "railVisible": false,
+   "railSticky": false,
+   "visiblePanels": 1
+  },
+  {
+   "width": 768,
+   "js": false,
+   "overflow": false,
+   "wideElements": 0,
+   "clippedText": 0,
+   "railVisible": false,
+   "railSticky": false,
+   "visiblePanels": 5
+  },
+  {
+   "width": 1280,
+   "js": true,
+   "overflow": false,
+   "wideElements": 0,
+   "clippedText": 0,
+   "railVisible": false,
+   "railSticky": false,
+   "visiblePanels": 1
+  },
+  {
+   "width": 1280,
+   "js": false,
+   "overflow": false,
+   "wideElements": 0,
+   "clippedText": 0,
+   "railVisible": false,
+   "railSticky": false,
+   "visiblePanels": 5
+  }
+ ],
+ "anchors": [
+  {
+   "viewport": "1440x900",
+   "allClear": true,
+   "landing": [
+    {
+     "id": "stage-application",
+     "clear": 72
+    },
+    {
+     "id": "stage-start-sprint",
+     "clear": 73
+    },
+    {
+     "id": "stage-departments",
+     "clear": 73
+    },
+    {
+     "id": "stage-active-member",
+     "clear": 73
+    },
+    {
+     "id": "stage-start-alumni",
+     "clear": 73
+    }
+   ]
+  },
+  {
+   "viewport": "1440x900-nojs",
+   "allClear": true,
+   "landing": [
+    {
+     "id": "stage-application",
+     "clear": 72
+    },
+    {
+     "id": "stage-start-sprint",
+     "clear": 73
+    },
+    {
+     "id": "stage-departments",
+     "clear": 73
+    },
+    {
+     "id": "stage-active-member",
+     "clear": 73
+    },
+    {
+     "id": "stage-start-alumni",
+     "clear": 73
+    }
+   ]
+  },
+  {
+   "viewport": "1024x768",
+   "allClear": true,
+   "landing": [
+    {
+     "id": "stage-application",
+     "clear": 72
+    },
+    {
+     "id": "stage-start-sprint",
+     "clear": 73
+    },
+    {
+     "id": "stage-departments",
+     "clear": 73
+    },
+    {
+     "id": "stage-active-member",
+     "clear": 73
+    },
+    {
+     "id": "stage-start-alumni",
+     "clear": 73
+    }
+   ]
+  },
+  {
+   "viewport": "390x844",
+   "allClear": true,
+   "landing": [
+    {
+     "id": "stage-application",
+     "clear": 36
+    },
+    {
+     "id": "stage-start-sprint",
+     "clear": 36
+    },
+    {
+     "id": "stage-departments",
+     "clear": 36
+    },
+    {
+     "id": "stage-active-member",
+     "clear": 36
+    },
+    {
+     "id": "stage-start-alumni",
+     "clear": 36
+    }
+   ]
+  },
+  {
+   "viewport": "390x844-nojs",
+   "allClear": true,
+   "landing": [
+    {
+     "id": "stage-application",
+     "clear": 36
+    },
+    {
+     "id": "stage-start-sprint",
+     "clear": 36
+    },
+    {
+     "id": "stage-departments",
+     "clear": 36
+    },
+    {
+     "id": "stage-active-member",
+     "clear": 36
+    },
+    {
+     "id": "stage-start-alumni",
+     "clear": 36
+    }
+   ]
+  }
+ ],
+ "keyboard": {
+  "mainStops": [
+   {
+    "inMain": true,
+    "label": "01Application",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "02START Sprint",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "03Departments",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "04Active Member",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "05START Alumni",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "Events",
+    "role": "tab",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "EventsThe Events department is the engin",
+    "role": "tabpanel",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "01Application",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "02START Sprint",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "03Departments",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "04Active Member",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "05START Alumni",
+    "role": "a",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "Events",
+    "role": "tab",
+    "focusVisible": true,
+    "obscured": false
+   },
+   {
+    "inMain": true,
+    "label": "EventsThe Events department is the engin",
+    "role": "tabpanel",
+    "focusVisible": true,
+    "obscured": false
+   }
+  ],
+  "allVisible": true,
+  "anyObscured": false
+ },
+ "departmentsKeyboard": {
+  "1:ArrowDown": {
+   "focused": "department-tab-growth",
+   "selected": "department-tab-growth",
+   "visible": "department-growth"
+  },
+  "2:ArrowDown": {
+   "focused": "department-tab-operations-digital",
+   "selected": "department-tab-operations-digital",
+   "visible": "department-operations-digital"
+  },
+  "3:ArrowUp": {
+   "focused": "department-tab-growth",
+   "selected": "department-tab-growth",
+   "visible": "department-growth"
+  },
+  "4:End": {
+   "focused": "department-tab-partnerships",
+   "selected": "department-tab-partnerships",
+   "visible": "department-partnerships"
+  },
+  "5:Home": {
+   "focused": "department-tab-events",
+   "selected": "department-tab-events",
+   "visible": "department-events"
+  },
+  "6:ArrowUp": {
+   "focused": "department-tab-partnerships",
+   "selected": "department-tab-partnerships",
+   "visible": "department-partnerships"
+  },
+  "tabToPanel": {
+   "focused": "department-partnerships",
+   "role": "tabpanel",
+   "labelledBy": "department-tab-partnerships"
+  },
+  "tabStops": 1
+ },
+ "reducedMotion": {
+  "samples": 26,
+  "distinct": [
+   0,
+   0.25,
+   0.5,
+   0.75,
+   1
+  ],
+  "wholeStagesOnly": true,
+  "elementsWithTransitions": 0
+ },
+ "targets": {
+  "railLinks": [
+   [
+    56,
+    56
+   ],
+   [
+    56,
+    56
+   ],
+   [
+    56,
+    56
+   ],
+   [
+    56,
+    56
+   ],
+   [
+    56,
+    56
+   ]
+  ],
+  "tabs": [
+   [
+    507,
+    84
+   ],
+   [
+    507,
+    84
+   ],
+   [
+    507,
+    84
+   ],
+   [
+    507,
+    84
+   ],
+   [
+    507,
+    84
+   ]
+  ]
+ },
+ "contrast": [
+  {
+   "selector": ".stage__eyebrow",
+   "prop": "color",
+   "ratio": 9.52,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".stage__title",
+   "prop": "color",
+   "ratio": 20.26,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".stage__intro",
+   "prop": "color",
+   "ratio": 9.72,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".stage__point",
+   "prop": "color",
+   "ratio": 20.26,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".rail__node[data-state=\"upcoming\"] .rail__label",
+   "prop": "color",
+   "ratio": 9.72,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".rail__node[data-state=\"current\"] .rail__label",
+   "prop": "color",
+   "ratio": 9.52,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".rail__node[data-state=\"reached\"] .rail__label",
+   "prop": "color",
+   "ratio": 9.72,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".rail__node[data-state=\"upcoming\"] .rail__number",
+   "prop": "color",
+   "ratio": 20.26,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".rail__node[data-state=\"reached\"] .rail__number",
+   "prop": "color",
+   "ratio": 9.52,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".rail__node[data-state=\"current\"] .rail__number",
+   "prop": "color",
+   "ratio": 9.52,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".rail__node[data-state=\"upcoming\"] .rail__link",
+   "prop": "borderTopColor",
+   "ratio": 3.65,
+   "need": 3,
+   "pass": true
+  },
+  {
+   "selector": ".section-heading__lead",
+   "prop": "color",
+   "ratio": 9.72,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".departments__tab[aria-selected=\"false\"] .departments__name",
+   "prop": "color",
+   "ratio": 20.26,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".departments__tab[aria-selected=\"true\"] .departments__name",
+   "prop": "color",
+   "ratio": 9.52,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".department:not([hidden]) .department__name",
+   "prop": "color",
+   "ratio": 9.52,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".department:not([hidden]) .department__text",
+   "prop": "color",
+   "ratio": 9.52,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".testimonial__quote p",
+   "prop": "color",
+   "ratio": 20.26,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".testimonial__name",
+   "prop": "color",
+   "ratio": 20.26,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".testimonial__role",
+   "prop": "color",
+   "ratio": 9.72,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".testimonial--featured .testimonial__quote p",
+   "prop": "color",
+   "ratio": 20.26,
+   "need": 4.5,
+   "pass": true
+  },
+  {
+   "selector": ".testimonial--featured .testimonial__role",
+   "prop": "color",
+   "ratio": 9.72,
+   "need": 4.5,
+   "pass": true
+  }
+ ],
+ "html": {
+  "bytes": 45951,
+  "h1": 1,
+  "htmlComments": 0,
+  "dataAttributes": [
+   "data-accordion",
+   "data-astro-cid-",
+   "data-astro-cid-e",
+   "data-astro-cid-jo",
+   "data-astro-cid-ju",
+   "data-astro-cid-mcqnfqiz",
+   "data-astro-cid-nen",
+   "data-astro-cid-p",
+   "data-astro-cid-wndhlqnz",
+   "data-astro-cid-ypavld",
+   "data-department-panel",
+   "data-department-tablist",
+   "data-department-tabs",
+   "data-dropdown",
+   "data-dropdown-panel",
+   "data-hero-accent",
+   "data-hero-line",
+   "data-hero-outline",
+   "data-journey",
+   "data-journey-rail",
+   "data-menu-close",
+   "data-menu-open",
+   "data-mobile-menu",
+   "data-nav-bar",
+   "data-outline",
+   "data-page-hero",
+   "data-rail-node",
+   "data-stage"
+  ],
+  "blankWithoutRel": 0,
+  "imagesMissingAttrs": 0,
+  "images": 14,
+  "externalScripts": [],
+  "iframes": 0,
+  "applyCta": false,
+  "stageTextInHtml": true,
+  "storiesInHtml": 7
+ },
+ "outline": [
+  "H1:Your START Berlin Journey",
+  "H2:Application",
+  "H2:START Sprint",
+  "H2:Departments",
+  "H2:Active Member",
+  "H2:START Alumni",
+  "H2:Our Departments",
+  "H3:Events",
+  "H3:Growth",
+  "H3:Operations & Digital",
+  "H3:People",
+  "H3:Partnerships",
+  "H2:Member Stories"
+ ]
+}

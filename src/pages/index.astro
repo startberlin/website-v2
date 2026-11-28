@@ -2,13 +2,99 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import PartnerStrip from '../components/PartnerStrip.astro';
-import News from '../components/News.astro';
 import Network from '../components/Network.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CommunityStats from '../components/CommunityStats.astro';
+import HomeAudiences from '../components/HomeAudiences.astro';
+import FeaturedPartner from '../components/FeaturedPartner.astro';
+import MembershipBenefits from '../components/MembershipBenefits.astro';
+import HomeEvents from '../components/HomeEvents.astro';
+import HomeDepartments from '../components/HomeDepartments.astro';
+import MemberStories from '../components/MemberStories.astro';
+import Icon from '../components/icons/Icon.astro';
+import memberGroup from '../assets/member-journey/start-berlin-member-journey-group.jpg';
+import workingTogether from '../assets/home/working-together.jpg';
+import langdockVisit from '../assets/member-journey/langdock-visit.jpg';
+import { pageSeo } from '../lib/seo/pages';
+
+const stats = [
+	{ count: 13, label: 'Years in Berlin' },
+	{ count: 500, suffix: '+', label: 'Members in Berlin' },
+	{ count: 20, suffix: '+', label: 'Nationalities' },
+	{ count: 12, suffix: '+', label: 'Universities' },
+];
+
+const benefits = [
+	{
+		title: 'Make friends across Berlin',
+		text: 'Get to know students outside your own university. At our internal events and the START Hut Weekend, you get to spend time together away from project meetings.',
+		photo: memberGroup,
+		alt: 'START Berlin members making the START hand sign in a group photo',
+		position: '50% 45%',
+	},
+	{
+		title: 'Coworking and member perks',
+		text: 'Use coworking space to work alongside other STARTies. Members also get selected subscriptions for free.',
+		photo: workingTogether,
+		alt: 'Students working on laptops around a shared table',
+		position: '50% 48%',
+		accent: true,
+	},
+	{
+		title: 'Meet founders and investors',
+		text: 'On startup and VC visits, ask founders how they got started or find out what investors look for in a pitch.',
+		photo: langdockVisit,
+		alt: 'Two guests on stage talking with an audience of students',
+		position: '50% 20%',
+	},
+];
 ---
 
-<Layout>
+<Layout seo={pageSeo('/')}>
 	<Hero />
 	<PartnerStrip />
-	<News />
-	<Network />
+	<div class="section-stack home-content">
+		<section class="page-container" aria-labelledby="home-about-heading">
+			<SectionHeading id="home-about-heading">
+				Berlin's student <span data-outline>entrepreneurs</span>
+				<Fragment slot="lead">
+					START Berlin is the city's largest student-run entrepreneurship non-profit. Since 2013, we
+					connect ambitious students from every university across Berlin with founders, investors, and
+					the startup ecosystem — helping the next generation turn bold ideas into action.
+				</Fragment>
+			</SectionHeading>
+
+			<CommunityStats id="home-stats" stats={stats} />
+		</section>
+
+		<HomeAudiences />
+
+		<FeaturedPartner />
+
+		<MembershipBenefits
+			id="membership-benefits"
+			headingId="home-why-join-heading"
+			title={['What you get as a', 'member']}
+			lead="Open to students at any university in Berlin or Potsdam."
+			benefits={benefits}
+		/>
+
+		<HomeEvents />
+
+		<HomeDepartments />
+
+		<Network />
+
+		<MemberStories>
+			<a slot="actions" class="text-action home-members-link" href="/members">
+				Browse members
+				<Icon name="arrow-right" />
+			</a>
+		</MemberStories>
+	</div>
 </Layout>
+
+<style>
+	.home-content { padding-block: var(--home-partner-gap) var(--space-section); }
+	.home-members-link { margin-block-start: var(--space-2); }
+</style>

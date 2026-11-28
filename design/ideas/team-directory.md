@@ -10,9 +10,12 @@ These are implemented controls, not remaining design tasks. The data is a dated 
 
 ## Remaining from Jannik's idea
 
+Update, 10 October 2026: the Board has President, Vice President and Head of Finance in a separate first row, followed by the department heads. All eight current Board members have linked detail pages with contacts, an introduction and selected plain CV/project entries. Normal members have no detail routes. Public facts were researched from LinkedIn. After Jannik's corrections, quotes and CV descriptions are removed, the left category labels remain and the sticky portrait releases before Experience. [Design comparison](../../docs/verification/board-profiles-2026-10-10/README.md), [current verification](../../docs/verification/board-profiles-2026-10-10/sidebar-update/README.md).
+
 - A separate batch selector, including an all-batches option, plus a clear filter reset. Batch-aware text search does not replace the requested control.
 - Approved historical seasons so the existing season switch has more than one team to browse.
 - The remaining portrait and profile assignment, plus ongoing maintenance of the public roster snapshot. Confirm the current roster before publishing.
-- Optional profile extensions: a short introduction or mini CV and completed projects. LinkedIn links are implemented.
+- Missing selected CV facts or periods for the implemented Board profiles. Keep the public facts current.
+- Optional profile extensions for normal members, plus completed-project history. Board-only introductions/CVs and existing LinkedIn links are already implemented.
 
 Keep board term and joining batch distinct. Reuse the existing season layout and preserve historical role assignments as the data grows. Decide whether the long-term source is a maintained file, a public Cockpit interface or an approved Notion export before adding an integration. Do not infer public membership from private attendance notes.

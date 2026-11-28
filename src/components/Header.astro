@@ -3,8 +3,7 @@ import Icon from './icons/Icon.astro';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 
-// Navigation structure mirrors startmunich.de. Entries whose START Berlin page
-// doesn't exist yet are left out until it does.
+// Unbuilt destinations remain reserved until their pages are implemented.
 interface NavLink {
 	label: string;
 	href: string;
@@ -24,8 +23,14 @@ const nav: NavEntry[] = [
 	{ label: 'Home', href: '/' },
 	{
 		label: 'Community',
-		items: [{ label: 'Our Members', href: '/members' }],
+		items: [
+			{ label: 'About Us', href: '/about-us' },
+			{ label: 'Our Members', href: '/members' },
+			{ label: 'Member Journey', href: '/member-journey' },
+		],
 	},
+	{ label: 'Events', href: '/events' },
+	{ label: 'Partners', href: '/partners' },
 ];
 
 const ctas: NavLink[] = [
@@ -34,12 +39,17 @@ const ctas: NavLink[] = [
 ];
 
 const isGroup = (entry: NavEntry): entry is NavGroup => 'items' in entry;
+const panelId = (entry: NavGroup, mobile = false) =>
+	`${mobile ? 'mobile-' : ''}nav-${entry.label.toLowerCase()}-panel`;
 const linkAttrs = (link: NavLink) =>
 	link.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const current = (href: string) => path === href ? 'page' : href !== '/' && path.startsWith(`${href}/`) ? 'location' : undefined;
+const allLinks = [...nav.flatMap((entry) => isGroup(entry) ? [...entry.items, ...(entry.secondary ?? [])] : [entry]), ...ctas];
 ---
 
-<nav class="nav">
-	<div class="nav__bar page-container">
+<nav class="nav" aria-label="Main">
+	<div class="nav__bar page-container" data-nav-bar>
 		<a href="/" class="logo">
 			<Image src={logo} alt="START Berlin" class="logo__image" loading="eager" />
 		</a>
@@ -49,20 +59,20 @@ const linkAttrs = (link: NavLink) =>
 				nav.map((entry) =>
 					isGroup(entry) ? (
 						<div class="dropdown" data-dropdown>
-							<button class="nav__link dropdown__toggle" aria-expanded="false" aria-haspopup="menu">
+							<button type="button" class="nav__link dropdown__toggle" aria-expanded="false" aria-controls={panelId(entry)}>
 								<span>{entry.label}</span>
 								<Icon name="chevron-down" class="chevron" />
 							</button>
-							<div class="dropdown__panel" data-dropdown-panel hidden>
+							<div id={panelId(entry)} class="dropdown__panel" data-dropdown-panel hidden>
 								{entry.items.map((item) => (
-									<a href={item.href} {...linkAttrs(item)} class="dropdown__item">
+									<a href={item.href} {...linkAttrs(item)} class="dropdown__item" aria-current={current(item.href)}>
 										<Icon name="chevron-right" />
 										{item.label}
 									</a>
 								))}
 								{entry.secondary && <div class="dropdown__divider" />}
 								{entry.secondary?.map((item) => (
-									<a href={item.href} {...linkAttrs(item)} class="dropdown__item dropdown__item--secondary">
+									<a href={item.href} {...linkAttrs(item)} class="dropdown__item dropdown__item--secondary" aria-current={current(item.href)}>
 										<Icon name="chevron-right" />
 										{item.label}
 									</a>
@@ -70,7 +80,7 @@ const linkAttrs = (link: NavLink) =>
 							</div>
 						</div>
 					) : (
-						<a href={entry.href} {...linkAttrs(entry)} class="nav__link">
+						<a href={entry.href} {...linkAttrs(entry)} class="nav__link" aria-current={current(entry.href)}>
 							{entry.label}
 						</a>
 					),
@@ -78,21 +88,28 @@ const linkAttrs = (link: NavLink) =>
 			}
 		</div>
 
-		<div class="cta-group cta-group--desktop">
-			{ctas.map((cta) => <a href={cta.href} {...linkAttrs(cta)} class="cta">{cta.label}</a>)}
+		<div class="cta-group cta-group--header">
+			{ctas.map((cta) => <a href={cta.href} {...linkAttrs(cta)} class="button cta" aria-current={current(cta.href)}>{cta.label}</a>)}
 		</div>
 
-		<button class="menu-button" aria-label="Open menu" aria-expanded="false" data-menu-open>
+		<button type="button" class="menu-button icon-action" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu" data-menu-open>
 			<Icon name="menu" />
 		</button>
+
+		<details class="nav-fallback">
+			<summary class="nav__link">Menu <Icon name="chevron-down" class="chevron" /></summary>
+			<div class="nav-fallback__links">
+				{allLinks.map((item) => <a href={item.href} {...linkAttrs(item)} class="dropdown__item" aria-current={current(item.href)}>{item.label}</a>)}
+			</div>
+		</details>
 	</div>
 
-	<div class="mobile-menu" data-mobile-menu hidden>
+	<div class="mobile-menu" id="main-menu" role="dialog" aria-label="Main menu" aria-modal="true" data-mobile-menu hidden>
 		<div class="mobile-menu__bar page-container">
 			<a href="/" class="logo">
 				<Image src={logo} alt="START Berlin" class="logo__image" loading="eager" />
 			</a>
-			<button class="menu-button" aria-label="Close menu" data-menu-close>
+			<button type="button" class="menu-button icon-action" aria-label="Close menu" data-menu-close>
 				<Icon name="close" />
 			</button>
 		</div>
@@ -102,13 +119,13 @@ const linkAttrs = (link: NavLink) =>
 				nav.map((entry) =>
 					isGroup(entry) ? (
 						<div class="mobile-menu__group">
-							<button class="mobile-menu__link mobile-menu__toggle" aria-expanded="false" data-accordion>
+							<button type="button" class="mobile-menu__link mobile-menu__toggle" aria-expanded="false" aria-controls={panelId(entry, true)} data-accordion>
 								<span>{entry.label}</span>
 								<Icon name="chevron-down" class="chevron" />
 							</button>
-							<div class="mobile-menu__sublinks" hidden>
+							<div id={panelId(entry, true)} class="mobile-menu__sublinks" hidden>
 								{entry.items.map((item) => (
-									<a href={item.href} {...linkAttrs(item)} class="mobile-menu__sublink">
+									<a href={item.href} {...linkAttrs(item)} class="mobile-menu__sublink" aria-current={current(item.href)}>
 										{item.label}
 									</a>
 								))}
@@ -117,6 +134,7 @@ const linkAttrs = (link: NavLink) =>
 										href={item.href}
 										{...linkAttrs(item)}
 										class="mobile-menu__sublink mobile-menu__sublink--secondary"
+										aria-current={current(item.href)}
 									>
 										{item.label}
 									</a>
@@ -124,7 +142,7 @@ const linkAttrs = (link: NavLink) =>
 							</div>
 						</div>
 					) : (
-						<a href={entry.href} {...linkAttrs(entry)} class="mobile-menu__link">
+						<a href={entry.href} {...linkAttrs(entry)} class="mobile-menu__link" aria-current={current(entry.href)}>
 							{entry.label}
 						</a>
 					),
@@ -132,7 +150,7 @@ const linkAttrs = (link: NavLink) =>
 			}
 
 			<div class="cta-group cta-group--mobile">
-				{ctas.map((cta) => <a href={cta.href} {...linkAttrs(cta)} class="cta">{cta.label}</a>)}
+				{ctas.map((cta) => <a href={cta.href} {...linkAttrs(cta)} class="button cta" aria-current={current(cta.href)}>{cta.label}</a>)}
 			</div>
 		</div>
 	</div>
@@ -146,21 +164,36 @@ const linkAttrs = (link: NavLink) =>
 		const toggle = dropdown.querySelector('button')!;
 		const panel = dropdown.querySelector<HTMLElement>('[data-dropdown-panel]')!;
 		let closeTimer: ReturnType<typeof setTimeout> | undefined;
+		let openedByHover = false;
 
-		const setOpen = (open: boolean) => {
+		const setOpen = (open: boolean, fromHover = false) => {
 			clearTimeout(closeTimer);
+			openedByHover = open && fromHover;
 			panel.hidden = !open;
 			toggle.setAttribute('aria-expanded', String(open));
 		};
 
-		toggle.addEventListener('click', () => setOpen(Boolean(panel.hidden)));
+		// A pointer's first click keeps a menu opened by hover available.
+		toggle.addEventListener('click', (event) => {
+			setOpen(Boolean(panel.hidden) || (openedByHover && event.detail > 0));
+		});
 
 		// The short delay lets the pointer cross the gap between button and panel.
-		dropdown.addEventListener('mouseenter', () => canHover.matches && setOpen(true));
+		dropdown.addEventListener('mouseenter', () => {
+			if (!canHover.matches) return;
+			clearTimeout(closeTimer);
+			if (panel.hidden) setOpen(true, true);
+		});
 		dropdown.addEventListener('mouseleave', () => {
 			if (!canHover.matches) return;
 			clearTimeout(closeTimer);
-			closeTimer = setTimeout(() => setOpen(false), 150);
+			closeTimer = setTimeout(() => {
+				if (openedByHover && !dropdown.matches(':focus-within')) setOpen(false);
+			}, 150);
+		});
+
+		dropdown.addEventListener('focusout', (event) => {
+			if (event.relatedTarget instanceof Node && !dropdown.contains(event.relatedTarget)) setOpen(false);
 		});
 
 		panel.addEventListener('click', (event) => {
@@ -175,18 +208,23 @@ const linkAttrs = (link: NavLink) =>
 	const mobileMenu = document.querySelector<HTMLElement>('[data-mobile-menu]')!;
 	const menuOpen = document.querySelector<HTMLElement>('[data-menu-open]')!;
 	const menuClose = mobileMenu.querySelector<HTMLElement>('[data-menu-close]')!;
+	const navBar = document.querySelector<HTMLElement>('[data-nav-bar]')!;
 	const pageMain = document.querySelector<HTMLElement>('main');
 	const pageFooter = document.querySelector<HTMLElement>('footer');
+	const skipLink = document.querySelector<HTMLElement>('#skip-navigation');
 	const originalOverflow = document.body.style.overflow;
 
 	const setMenuOpen = (open: boolean) => {
 		mobileMenu.hidden = !open;
 		menuOpen.setAttribute('aria-expanded', String(open));
+		navBar.inert = open;
 		if (pageMain) pageMain.inert = open;
 		if (pageFooter) pageFooter.inert = open;
+		if (skipLink) skipLink.inert = open;
 		document.body.style.overflow = open ? 'hidden' : originalOverflow;
 		if (open) menuClose.focus();
-		else menuOpen.focus();
+		else if (menuOpen.getClientRects().length) menuOpen.focus();
+		else navBar.querySelector<HTMLElement>('.logo')?.focus();
 	};
 
 	menuOpen.addEventListener('click', () => setMenuOpen(true));
@@ -217,9 +255,9 @@ const linkAttrs = (link: NavLink) =>
 			first?.focus();
 		}
 	});
-	window.matchMedia('(min-width: 1024px)').addEventListener('change', (event) => {
-		if (event.matches && !mobileMenu.hidden) setMenuOpen(false);
-	});
+	new ResizeObserver(() => {
+		if (getComputedStyle(menuOpen).display === 'none' && !mobileMenu.hidden) setMenuOpen(false);
+	}).observe(navBar);
 	mobileMenu.addEventListener('click', (event) => {
 		if ((event.target as Element).closest('a')) setMenuOpen(false);
 	});
@@ -231,6 +269,7 @@ const linkAttrs = (link: NavLink) =>
 			toggle.setAttribute('aria-expanded', String(!sublinks.hidden));
 		});
 	});
+	navBar.closest('.nav')?.setAttribute('data-enhanced', '');
 </script>
 
 <style>
@@ -239,6 +278,7 @@ const linkAttrs = (link: NavLink) =>
 		top: 0;
 		z-index: var(--z-navigation);
 		background: var(--color-dark-blue);
+		container-type: inline-size;
 	}
 
 	.nav__bar {
@@ -262,7 +302,7 @@ const linkAttrs = (link: NavLink) =>
 	.logo__image {
 		width: auto;
 		max-width: 100%;
-		height: 3rem;
+		height: var(--control-height);
 		object-fit: contain;
 	}
 
@@ -275,9 +315,10 @@ const linkAttrs = (link: NavLink) =>
 	.nav__link {
 		display: flex;
 		align-items: center;
+		min-height: var(--target-min);
 		gap: var(--space-1);
 		font-size: var(--text-base);
-		line-height: 1.5rem;
+		line-height: var(--leading-ui);
 		font-weight: var(--weight-bold);
 		text-transform: uppercase;
 		letter-spacing: var(--tracking-label);
@@ -288,13 +329,23 @@ const linkAttrs = (link: NavLink) =>
 		color: var(--color-accent);
 	}
 
+	.nav[data-enhanced] .nav-fallback,
+	.nav__bar > .menu-button {
+		display: none;
+	}
+
+	.nav[data-enhanced] .nav__bar > .menu-button { display: inline-flex; }
+
+	.nav-fallback > summary { cursor: pointer; }
+
 	.chevron {
 		width: 1rem;
 		height: 1rem;
 		transition: transform var(--duration-fast);
 	}
 
-	[aria-expanded='true'] > .chevron {
+	[aria-expanded='true'] > .chevron,
+	.nav-fallback[open] .chevron {
 		transform: rotate(180deg);
 	}
 
@@ -302,7 +353,8 @@ const linkAttrs = (link: NavLink) =>
 		position: relative;
 	}
 
-	.dropdown__panel {
+	.dropdown__panel,
+	.nav-fallback__links {
 		position: absolute;
 		top: 100%;
 		left: 0;
@@ -313,16 +365,25 @@ const linkAttrs = (link: NavLink) =>
 		background: var(--color-dark-blue);
 		border: var(--border-width) solid var(--border-strong);
 		border-radius: var(--radius-card);
-		box-shadow: var(--shadow-dropdown);
+		box-shadow: var(--shadow-overlay);
 		animation: fade-in var(--duration-panel) ease-out;
+	}
+
+	.nav-fallback__links {
+		inset-inline: auto var(--page-gutter);
+		width: min(18rem, calc(100% - 2 * var(--page-gutter)));
+		max-height: calc(100svh - var(--header-height) - var(--space-4));
+		margin-top: 0;
+		overflow: auto;
 	}
 
 	.dropdown__item {
 		display: flex;
 		align-items: center;
-		padding: 0.875rem var(--space-6);
+		min-block-size: var(--target-min);
+		padding: var(--space-3) var(--space-card);
 		font-size: var(--text-base);
-		line-height: 1.5rem;
+		line-height: var(--leading-ui);
 		font-weight: var(--weight-bold);
 		transition: background-color var(--duration-ui), color var(--duration-ui);
 	}
@@ -331,6 +392,8 @@ const linkAttrs = (link: NavLink) =>
 		background: var(--color-accent);
 		color: var(--color-dark-blue);
 	}
+
+	.dropdown__item:focus-visible { outline-offset: calc(-1 * var(--focus-offset)); }
 
 	.dropdown__item svg {
 		width: 1rem;
@@ -345,9 +408,9 @@ const linkAttrs = (link: NavLink) =>
 	}
 
 	.dropdown__item--secondary {
-		padding-block: 0.625rem;
+		padding-block: var(--space-2);
 		font-size: var(--text-sm);
-		line-height: 1.25rem;
+		line-height: var(--leading-ui);
 		font-weight: var(--weight-semibold);
 		color: var(--text-muted);
 	}
@@ -364,50 +427,38 @@ const linkAttrs = (link: NavLink) =>
 
 	.cta-group {
 		display: flex;
-		gap: 2px;
-		overflow: hidden;
-		border-radius: var(--radius-control);
-		background: var(--color-dark-blue);
+		gap: var(--nav-cta-divider);
 	}
 
-	.cta-group--desktop {
+	.cta-group--header {
 		display: none;
 	}
 
+	/* The paired header links use the filled button treatment with shared outer corners. */
 	.cta {
-		padding: 0.375rem var(--space-4);
-		background: var(--color-white);
-		color: var(--color-dark-blue);
-		font-size: var(--text-sm);
-		line-height: 1.25rem;
-		font-weight: var(--weight-bold);
+		min-block-size: var(--target-min);
+		padding-inline: var(--space-4);
+		border-radius: 0;
 		text-transform: uppercase;
 		letter-spacing: var(--tracking-label);
 		transition: background-color var(--duration-panel), color var(--duration-panel);
 	}
 
-	.cta:hover {
-		background: var(--color-accent);
-		color: var(--color-dark-blue);
+	.cta:first-child {
+		border-start-start-radius: var(--radius-control);
+		border-end-start-radius: var(--radius-control);
 	}
 
-	.cta:focus-visible,
-	.nav__link:focus-visible,
-	.menu-button:focus-visible,
-	.mobile-menu a:focus-visible,
-	.mobile-menu button:focus-visible {
-		outline: var(--focus-width) solid var(--color-accent);
-		outline-offset: var(--focus-offset);
+	.cta:last-child {
+		border-start-end-radius: var(--radius-control);
+		border-end-end-radius: var(--radius-control);
 	}
 
-	.menu-button {
-		padding: var(--space-2);
-		line-height: 0;
-	}
+	.cta:focus-visible { outline-offset: calc(-1 * var(--focus-offset)); }
 
 	.menu-button svg {
-		width: 1.5rem;
-		height: 1.5rem;
+		width: var(--space-6);
+		height: var(--space-6);
 	}
 
 	.mobile-menu {
@@ -417,6 +468,7 @@ const linkAttrs = (link: NavLink) =>
 		display: flex;
 		flex-direction: column;
 		overflow-y: auto;
+		overscroll-behavior: contain;
 		background: var(--color-dark-blue);
 	}
 
@@ -446,7 +498,7 @@ const linkAttrs = (link: NavLink) =>
 		display: block;
 		padding-block: var(--space-4);
 		font-size: var(--text-lg);
-		line-height: 1.75rem;
+		line-height: var(--leading-ui);
 		font-weight: var(--weight-bold);
 		text-transform: uppercase;
 		letter-spacing: var(--tracking-label);
@@ -479,9 +531,10 @@ const linkAttrs = (link: NavLink) =>
 	}
 
 	.mobile-menu__sublink {
-		padding: 0.625rem 0 0.625rem var(--space-4);
+		min-block-size: var(--target-min);
+		padding: var(--space-2) 0 var(--space-2) var(--space-4);
 		font-size: var(--text-base);
-		line-height: 1.5rem;
+		line-height: var(--leading-ui);
 		font-weight: var(--weight-semibold);
 		color: var(--text-copy);
 		transition: color var(--duration-fast);
@@ -494,7 +547,7 @@ const linkAttrs = (link: NavLink) =>
 	.mobile-menu__sublink--secondary {
 		padding-block: var(--space-2);
 		font-size: var(--text-sm);
-		line-height: 1.25rem;
+		line-height: var(--leading-ui);
 		font-weight: var(--weight-medium);
 		color: var(--text-subtle);
 	}
@@ -506,20 +559,19 @@ const linkAttrs = (link: NavLink) =>
 	.cta-group--mobile .cta {
 		flex: 1;
 		padding: var(--space-4) var(--space-6);
-		text-align: center;
 		font-size: var(--text-base);
-		line-height: 1.5rem;
 		font-weight: var(--weight-display);
 		letter-spacing: normal;
 	}
 
-	@media (min-width: 1024px) {
-		.nav__links,
-		.cta-group--desktop {
+	/* The font-relative threshold keeps enlarged navigation in the compact layout. */
+	@container (min-width: 64rem) {
+		.nav[data-enhanced] .nav__links,
+		.nav[data-enhanced] .cta-group--header {
 			display: flex;
 		}
 
-		.nav__bar > .menu-button,
+		.nav[data-enhanced] .nav__bar > .menu-button,
 		.mobile-menu {
 			display: none;
 		}
@@ -535,6 +587,6 @@ const linkAttrs = (link: NavLink) =>
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.dropdown__panel { animation: none; }
+		.dropdown__panel, .nav-fallback__links { animation: none; }
 	}
 </style>

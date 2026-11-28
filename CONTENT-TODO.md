@@ -46,8 +46,7 @@ from the current live site and marked **verified**. Two things to settle:
 ## 3 · Testimonials — owner: Growth + Community
 `DATA.testimonials`
 
-Three real ones are in place (Mahir Isikli, Anouar Springer, Polina Shcheglova) with their
-real portraits from the current site.
+Polina Shcheglova's testimonial and portrait are in place in the first draft.
 
 **Two slots are empty** — both need an *active batch member*, to hit the brainstorming's
 70% alumni / 30% active mix and to cover the Entrepreneurship and Social dimensions,

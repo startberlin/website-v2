@@ -2,43 +2,59 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
-interface Props {
-	image?: ImageMetadata;
+type Props = {
+	title: readonly [string, string];
+	titleId?: string;
+	accentFirst?: boolean;
+	compactTitle?: boolean;
 	alt?: string;
 	imagePosition?: string;
 	mobileImagePosition?: string;
-	landing?: boolean;
-}
+} & (
+	| { image: ImageMetadata; landing?: false; widePhoto?: boolean }
+	| { image?: never; landing: true; widePhoto?: never }
+);
 
 const {
+	title,
+	titleId,
+	accentFirst = false,
+	compactTitle = false,
 	image,
 	alt = '',
 	imagePosition = '50% 50%',
 	mobileImagePosition = imagePosition,
 	landing = false,
+	widePhoto = false,
 } = Astro.props;
 // Reuse the original resolution rather than generating enlarged image files.
 const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < image.width), Math.min(image.width, 2400)] : [];
 ---
 
 <section
-	class:list={['page-hero', { 'page-hero--landing': landing }]}
+	class:list={['page-hero', {
+		'page-hero--landing': landing,
+		'page-hero--accent-first': accentFirst,
+		'page-hero--compact-title': compactTitle,
+		'page-hero--wide-photo': widePhoto,
+	}]}
 	style={`--hero-image-position: ${imagePosition}; --hero-mobile-image-position: ${mobileImagePosition};`}
 	data-page-hero
 >
 	{image ? (
 		<Image src={image} alt={alt} widths={imageWidths} sizes="100vw" format="webp" loading="eager" fetchpriority="high" class="page-hero__image" />
 	) : <slot name="background" />}
-	<div class="page-hero__shade page-hero__shade--left" aria-hidden="true"></div>
-	<div class="page-hero__shade page-hero__shade--bottom" aria-hidden="true"></div>
-	<div class="page-hero__content page-container">
-		<div class="page-hero__copy">
-			<slot name="status" />
-			<h1 class="page-hero__title"><slot name="title" /></h1>
-			<p class="page-hero__text"><slot name="description" /></p>
-			<slot name="actions" />
+	<div class="page-hero__shade" aria-hidden="true"></div>
+	<div class="page-hero__foreground">
+		<div class="page-hero__content page-container">
+			<div class="page-hero__copy">
+				<slot name="status" />
+				<h1 class="page-hero__title" id={titleId}><span>{title[0]}</span>{' '}<span>{title[1]}</span></h1>
+				{Astro.slots.has('description') && <p class="page-hero__text"><slot name="description" /></p>}
+				<slot name="actions" />
+			</div>
+			<slot name="aside" />
 		</div>
-		{Astro.slots.has('aside') && <div class="page-hero__aside"><slot name="aside" /></div>}
 	</div>
 </section>
 
@@ -47,13 +63,10 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 		position: relative;
 		display: flex;
 		align-items: end;
-		min-height: 22.5rem;
+		min-height: var(--hero-height-mobile);
+		padding-top: var(--hero-photo-space-mobile);
 		overflow: hidden;
 		isolation: isolate;
-	}
-
-	.page-hero--landing {
-		min-height: calc(100svh - var(--header-height));
 	}
 
 	.page-hero__image,
@@ -70,12 +83,20 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 		object-position: var(--hero-mobile-image-position);
 	}
 
-	.page-hero__shade { z-index: -1; }
-	.page-hero__shade--left {
-		background: var(--gradient-hero);
+	.page-hero__shade {
+		z-index: -1;
+		background: var(--gradient-hero-bottom);
 	}
-	.page-hero__shade--bottom {
-		background: linear-gradient(to top, var(--color-dark-blue), transparent 75%);
+
+	.page-hero__foreground { position: relative; width: 100%; }
+
+	/* Anchor the mobile shade to the copy, even when zoom makes the hero grow. */
+	.page-hero__foreground::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background: var(--gradient-hero-mobile);
 	}
 
 	.page-hero__content {
@@ -93,27 +114,73 @@ const imageWidths = image ? [...[640, 1080, 1600].filter((width) => width < imag
 		font-size: var(--type-hero);
 		font-weight: var(--weight-display);
 		letter-spacing: -0.035em;
-		line-height: 1;
+		line-height: var(--leading-display);
 		text-transform: uppercase;
+		text-wrap: balance;
 	}
-	.page-hero__title :global([data-hero-line]) { display: block; }
-	.page-hero__title :global([data-hero-accent]) { color: var(--color-accent); }
+	.page-hero__title span { display: block; }
+	.page-hero__title span + span {
+		color: var(--color-accent);
+		-webkit-text-stroke: var(--border-width-accent) currentColor;
+		-webkit-text-fill-color: transparent;
+		paint-order: stroke fill;
+	}
+	.page-hero--accent-first .page-hero__title span:first-child { color: var(--color-accent); }
+	.page-hero--accent-first .page-hero__title span + span { color: var(--color-white); }
+	.page-hero--compact-title .page-hero__title { font-size: var(--type-hero-detail); }
 	.page-hero--landing .page-hero__title { font-size: var(--type-hero-landing); }
 	.page-hero__text {
-		max-width: 32rem;
+		max-width: var(--layout-lead);
 		margin: var(--space-4) 0 0;
 		color: var(--text-copy);
 		font-size: var(--text-base);
-		line-height: 1.65;
+		line-height: var(--leading-copy);
 	}
-	.page-hero__aside { flex-shrink: 0; }
+	.page-hero--wide-photo .page-hero__image { filter: saturate(1.07) brightness(1.03); }
 
 	@media (min-width: 640px) {
-		.page-hero { min-height: 25rem; }
-		.page-hero--landing { min-height: calc(100svh - var(--header-height)); }
+		.page-hero { min-height: var(--hero-height); padding-top: 0; }
 		.page-hero__image { object-position: var(--hero-image-position); }
-		.page-hero__content { padding-block: var(--space-14) 2.75rem; }
+		.page-hero__shade { background: var(--gradient-hero-bottom), var(--gradient-hero); }
+		.page-hero__foreground::before { display: none; }
+		.page-hero__content { padding-block: var(--space-14) var(--space-10); }
 		.page-hero__text { font-size: var(--text-lg); }
+
+		.page-hero--wide-photo {
+			--gradient-hero-bottom: linear-gradient(to top,
+				var(--color-dark-blue) 1%,
+				color-mix(in srgb, var(--color-dark-blue) 86%, transparent) 22%,
+				color-mix(in srgb, var(--color-dark-blue) 26%, transparent) 53%,
+				transparent 78%);
+			--gradient-hero: linear-gradient(to right,
+				color-mix(in srgb, var(--color-dark-blue) 73%, transparent),
+				color-mix(in srgb, var(--color-dark-blue) 24%, transparent) 47%,
+				transparent 76%);
+		}
 	}
 
+	.page-hero--landing { min-height: calc(100svh - var(--header-height) - var(--announcement-height)); }
+	.page-hero--landing .page-hero__content { padding-block-end: var(--home-partner-gap); }
+
+	@media (max-width: 639.98px) {
+		.page-hero--landing .page-hero__title { font-size: var(--type-hero-landing-mobile); }
+
+		.page-hero--wide-photo {
+			--wide-hero-photo-height: min(61vw, 19rem);
+			--gradient-hero-bottom: linear-gradient(to top, var(--color-dark-blue), transparent 33%);
+			--gradient-hero-mobile: none;
+			padding-top: calc(var(--wide-hero-photo-height) - var(--space-16));
+		}
+
+		.page-hero--wide-photo :is(.page-hero__image, .page-hero__shade) {
+			height: var(--wide-hero-photo-height);
+		}
+	}
+
+	@media (forced-colors: active) {
+		.page-hero__title span + span {
+			-webkit-text-stroke: 0;
+			-webkit-text-fill-color: CanvasText;
+		}
+	}
 </style>

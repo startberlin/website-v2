@@ -1,0 +1,81 @@
+---
+// Pages can replace the general contact through Layout's footer-contact slot, for
+// example Partners with its Partnerships contact. The default slot adds content,
+// such as a contact person, above the button.
+interface Props {
+	heading?: string;
+	text?: string;
+	action?: { label: string; href: string };
+}
+
+const contactUrl = 'https://forms.start-berlin.com/contact';
+const { heading = 'Get in touch', text = 'We are happy to talk!', action = { label: 'Contact us', href: contactUrl } } = Astro.props;
+---
+
+<section class="footer-contact" id="get-in-touch" aria-labelledby="footer-contact-heading">
+	<div class="page-container">
+		<div class="footer-contact__card">
+			<div class="footer-contact__copy">
+				<h2 id="footer-contact-heading">{heading}</h2>
+				<p>{text}</p>
+				{Astro.slots.has('default') && <div class="footer-contact__extra"><slot /></div>}
+				<a class="button" href={action.href}>{action.label}</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.footer-contact {
+		padding-block: var(--space-page-start);
+		background: var(--color-white);
+	}
+
+	.footer-contact__card {
+		position: relative;
+		isolation: isolate;
+		display: grid;
+		place-items: center;
+		min-block-size: 20rem;
+		padding: var(--space-page-start) var(--space-card);
+		background: var(--surface-footer-contact);
+		color: var(--color-white);
+	}
+
+	.footer-contact__card::before {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		background: url('../assets/home/polygon-bottom-left.svg') bottom left / clamp(var(--space-24), 22%, 16rem) no-repeat;
+		opacity: 0.35;
+		pointer-events: none;
+	}
+
+	.footer-contact__copy h2 {
+		margin: 0;
+		font-size: var(--type-home-panel);
+		font-weight: var(--weight-display);
+		line-height: var(--leading-display);
+		text-transform: uppercase;
+	}
+
+	.footer-contact__copy p {
+		margin: var(--space-4) 0 var(--space-6);
+		line-height: var(--leading-copy);
+	}
+
+	.footer-contact__extra {
+		margin-bottom: var(--space-6);
+	}
+
+	.footer-contact__copy .button {
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+	}
+
+	@media (forced-colors: active) {
+		.footer-contact__card { border: var(--border-width) solid CanvasText; }
+		.footer-contact__card::before { display: none; }
+	}
+</style>

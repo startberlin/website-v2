@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import JourneyStages from '../components/member-journey/JourneyStages.astro';
+import DepartmentTabs from '../components/member-journey/DepartmentTabs.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import MemberStories from '../components/MemberStories.astro';
+import { pageSeo } from '../lib/seo/pages';
+import { departments, departmentsSection, game, hero, stages } from '../data/member-journey';
+
+// No call to action while applications are closed.
+
+---
+
+<Layout seo={pageSeo('/member-journey')}>
+	<PageHero
+		title={hero.title}
+		accentFirst
+		image={hero.photo.src}
+		alt={hero.photo.alt}
+		imagePosition={hero.imagePosition}
+		mobileImagePosition={hero.mobileImagePosition}
+	/>
+
+	<div class="section-stack page-flow">
+		<JourneyStages stages={stages} />
+
+		<section class="page-container" id="departments" aria-labelledby="departments-heading">
+			<SectionHeading id="departments-heading">
+				{departmentsSection.headingSolid}{' '}<span data-outline>{departmentsSection.headingOutline}</span>
+				<Fragment slot="lead">{departmentsSection.subheading}</Fragment>
+			</SectionHeading>
+			<DepartmentTabs departments={departments} />
+		</section>
+
+		{/* Rendered only once the shared game is integrated; see game in src/data/member-journey.ts. */}
+		{game.enabled && <section id={game.id} class="game page-container"></section>}
+
+		<MemberStories />
+	</div>
+</Layout>
+
+<style>
+	.game {
+		min-height: 20rem;
+	}
+
+</style>

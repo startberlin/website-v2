@@ -37,6 +37,7 @@ const filterParsers = {
 function JobBrowser({ jobs, initialSource }: Omit<JobBrowserIslandProps, 'serverSearch'>) {
 	const [{ page: requestedPage, ...filters }, setFilters] = useQueryStates(filterParsers, { history: 'replace', shallow: true });
 	const resultsHeading = useRef<HTMLParagraphElement>(null);
+	const searchInput = useRef<HTMLInputElement>(null);
 	const active = jobs.filter((job) => isActive(job));
 	const locations = [...new Set(active.flatMap((job) => job.content.locations))].sort();
 	const query = filters.q.toLocaleLowerCase().trim();
@@ -56,6 +57,7 @@ function JobBrowser({ jobs, initialSource }: Omit<JobBrowserIslandProps, 'server
 	};
 	const reset = () => {
 		void setFilters(null);
+		searchInput.current?.focus();
 	};
 
 	const changePage = (page: number) => {
@@ -63,19 +65,22 @@ function JobBrowser({ jobs, initialSource }: Omit<JobBrowserIslandProps, 'server
 			resultsHeading.current?.focus({ preventScroll: true });
 			resultsHeading.current?.scrollIntoView({
 				block: 'start',
-				behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+				behavior: document.documentElement.dataset.motion === 'running' ? 'smooth' : 'instant',
 			});
 		});
 	};
 
 	return (
-		<section className="jb-board" aria-label="Open jobs">
+		<section className="jb-board" aria-labelledby="jobs-list-heading">
+			<h2 className="sr-only" id="jobs-list-heading">Open jobs</h2>
 			<div className="jb-filters" role="search" aria-label="Filter jobs">
 				<label className="jb-filter-field jb-filter-search">
 					<span>Search</span>
-					<span className="jb-search-input">
+					<span className="control-with-icon">
 						<Icon name="search" size={18} />
 						<input
+							className="ui-control"
+							ref={searchInput}
 							name="q"
 							autoComplete="off"
 							spellCheck={false}
@@ -89,21 +94,21 @@ function JobBrowser({ jobs, initialSource }: Omit<JobBrowserIslandProps, 'server
 				</label>
 				<label className="jb-filter-field">
 					<span>Role type</span>
-					<select name="type" value={filters.type} onChange={(event) => update('type', event.target.value)}>
+					<select className="ui-control" name="type" value={filters.type} onChange={(event) => update('type', event.target.value)}>
 						<option value="">Any role type</option>
 						{employmentTypes.map((type) => <option key={type} value={type}>{employmentLabels[type]}</option>)}
 					</select>
 				</label>
 				<label className="jb-filter-field">
 					<span>Location</span>
-					<select name="location" value={filters.location} onChange={(event) => update('location', event.target.value)}>
+					<select className="ui-control" name="location" value={filters.location} onChange={(event) => update('location', event.target.value)}>
 						<option value="">Anywhere</option>
 						{locations.map((location) => <option key={location}>{location}</option>)}
 					</select>
 				</label>
 				<label className="jb-filter-field">
 					<span>Working setup</span>
-					<select name="mode" value={filters.mode} onChange={(event) => update('mode', event.target.value)}>
+					<select className="ui-control" name="mode" value={filters.mode} onChange={(event) => update('mode', event.target.value)}>
 						<option value="">Any setup</option>
 						<option value="onsite">On-site</option>
 						<option value="hybrid">Hybrid</option>
@@ -116,14 +121,13 @@ function JobBrowser({ jobs, initialSource }: Omit<JobBrowserIslandProps, 'server
 					{matches.length} {matches.length === 1 ? 'open role' : 'open roles'}{filtered ? ' matching your filters' : ''}
 					{range.pageCount > 1 ? ` · Page ${range.page} of ${range.pageCount}` : ''}
 				</p>
-				{filtered ? <button className="jb-text-button" type="button" onClick={reset}>Clear filters</button> : null}
+				{filtered ? <button className="text-action" type="button" onClick={reset}>Clear filters</button> : null}
 			</div>
 			<div className="jb-results" id="job-results">
 				{matches.length ? matches.slice(range.offset, range.offset + range.limit).map((job) => <JobRow key={job.id} job={job} source={sourceFrom(initialSource)} />) : (
 					<div className="jb-empty-state">
-						<h2>{filtered ? 'No roles match your search.' : 'No open roles right now.'}</h2>
+						<h3>{filtered ? 'No roles match your search.' : 'No open roles right now.'}</h3>
 						<p>{filtered ? 'Try a broader search or clear the filters.' : 'Check back for new opportunities from the START network.'}</p>
-						{filtered ? <button className="jb-button jb-button-outline" type="button" onClick={reset}>Clear filters</button> : <a className="jb-link" href="/jobs/submit">Post a role <span aria-hidden="true">↗</span></a>}
 					</div>
 				)}
 			</div>

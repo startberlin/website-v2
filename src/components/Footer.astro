@@ -1,5 +1,7 @@
 ---
 import Icon from './icons/Icon.astro';
+import NewsletterSignup from './NewsletterSignup.astro';
+import homeNewsletterPhoto from '../assets/member-journey/start-x-sap-crowd.jpg';
 
 interface Props {
 	donationUrl?: string;
@@ -19,23 +21,25 @@ const socials = [
 ---
 
 <footer class="footer">
-	<div class="page-container">
+	<slot />
+	<NewsletterSignup photo={currentPath === '' ? homeNewsletterPhoto : undefined} />
+	<div class="footer__details page-container">
 		<div class="footer__row">
 			<div class="footer__donation" id="footer-donation-status">
 				{donationUrl ? (
-					<a class="footer__text-link" href={donationUrl} target="_blank" rel="noopener noreferrer">Donate</a>
+					<a class="text-action footer__text-link" href={donationUrl} target="_blank" rel="noopener noreferrer">Donate</a>
 				) : (
-					<button class="footer__text-link" type="button" disabled>Donate</button>
+					<button class="text-action footer__text-link" type="button" disabled>Donate</button>
 				)}
 			</div>
 			<nav class="footer__legal" aria-label="Legal">
 				{legalLinks.map(({ label, href }) => (
-					<a class="footer__text-link" href={href} aria-current={currentPath === href ? 'page' : undefined}>{label}</a>
+					<a class="text-action footer__text-link" href={href} aria-current={currentPath === href ? 'page' : undefined}>{label}</a>
 				))}
 			</nav>
 			<nav class="footer__socials" aria-label="START Berlin social media">
 				{socials.map(({ label, icon, href }) => (
-					<a class="footer__social-link" href={href} target="_blank" rel="noopener noreferrer" aria-label={`START Berlin on ${label}`}>
+					<a class="icon-action" href={href} target="_blank" rel="noopener noreferrer" aria-label={`START Berlin on ${label} (opens in a new tab)`}>
 						<Icon name={icon} />
 					</a>
 				))}
@@ -47,14 +51,14 @@ const socials = [
 
 <style>
 	.footer {
-		padding-block: var(--space-10) var(--space-4);
 		background: var(--color-dark-blue);
 	}
+	.footer__details { padding-block: var(--space-10) var(--space-4); }
 	.footer__row {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: var(--space-6);
+		gap: var(--space-grid);
 	}
 	.footer__row > * { min-width: 0; max-width: 100%; }
 	.footer__donation {
@@ -63,27 +67,15 @@ const socials = [
 		align-items: center;
 	}
 	.footer__text-link {
-		display: inline-flex;
-		align-items: center;
 		justify-content: center;
-		min-height: var(--target-min);
-		max-width: 100%;
-		color: var(--color-white);
-		font-size: var(--text-sm);
-		font-weight: var(--weight-bold);
-		line-height: var(--leading-ui);
 		letter-spacing: var(--tracking-wide);
 		text-transform: uppercase;
+		text-decoration: none;
 		text-align: center;
-		transition: color var(--duration-fast);
 	}
-	.footer__text-link:disabled { cursor: not-allowed; }
-	.footer__text-link[href]:hover,
-	.footer__text-link[href]:focus-visible,
-	.footer__text-link[aria-current='page'],
-	.footer__social-link:hover,
-	.footer__social-link:focus-visible {
+	.footer__text-link[aria-current='page'] {
 		color: var(--color-accent);
+		text-decoration: underline;
 	}
 	.footer__legal {
 		display: flex;
@@ -92,14 +84,6 @@ const socials = [
 		gap: var(--space-2) var(--space-6);
 	}
 	.footer__socials { display: flex; gap: var(--space-1); }
-	.footer__social-link {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: var(--target-min);
-		height: var(--target-min);
-		transition: color var(--duration-fast);
-	}
 	.footer__copyright {
 		margin: var(--space-4) 0 0;
 		color: var(--text-subtle);

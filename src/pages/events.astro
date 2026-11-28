@@ -1,0 +1,336 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import PageIntroduction from '../components/PageIntroduction.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import LumaEvents from '../components/LumaEvents.astro';
+import { pageSeo } from '../lib/seo/pages';
+import { lumaCalendar } from '../lib/luma';
+import { calendarSection, formats, formatsSection, hero, introduction, membersOnly, pastEventList, pastEvents } from '../data/events';
+
+// Never request more pixels than the source has.
+const photoWidths = (photo: ImageMetadata) => [...[400, 800].filter((width) => width < photo.width), Math.min(photo.width, 1200)];
+const pastByDate = [...pastEventList].sort((a, b) => b.date.localeCompare(a.date));
+const dateLabel = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const formatDate = (isoDate: string) => dateLabel.format(new Date(`${isoDate}T00:00:00Z`));
+---
+
+<Layout seo={pageSeo('/events')}>
+	<PageHero
+		title={hero.title}
+		image={hero.photo.src}
+		alt={hero.photo.alt}
+		imagePosition={hero.imagePosition}
+		mobileImagePosition={hero.mobileImagePosition}
+	/>
+
+	<div class="section-stack page-flow">
+		<PageIntroduction flush>{introduction}</PageIntroduction>
+
+		<section class="formats-section page-container" id="formats" aria-labelledby="formats-heading">
+			<SectionHeading id="formats-heading">
+				{formatsSection.headingSolid}{' '}<span data-outline>{formatsSection.headingOutline}</span>
+			</SectionHeading>
+			<div class="formats-rail" data-event-formats>
+				<div class="formats" tabindex="0" role="group" aria-label="Event format cards">
+					{formats.map((format) => (
+						<article class="format" id={format.id}>
+							<Image
+								src={format.photo.src}
+								alt={format.photo.alt}
+								widths={photoWidths(format.photo.src)}
+								sizes="(min-width: 68rem) min(29vw, 24rem), (min-width: 43rem) min(42vw, 24rem), min(82vw, 24rem)"
+								format="webp"
+								loading="lazy"
+								class="format__photo"
+							/>
+							<div class="format__body">
+								<h3 class="format__title">{format.title}</h3>
+								<p class="format__text">{format.text}</p>
+							</div>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<div class="events-access page-container">
+			<LumaEvents id={calendarSection.id} heading={calendarSection.heading} layout="panel" />
+
+			<section class="members-card" id="members-only" aria-labelledby="members-only-heading">
+				<SectionHeading id="members-only-heading" compact flush>
+					{membersOnly.heading}
+					<Fragment slot="lead">{membersOnly.text}</Fragment>
+				</SectionHeading>
+				<a class="button" data-accent href={membersOnly.link.href}>{membersOnly.link.label}</a>
+			</section>
+		</div>
+
+		<section class="past-section page-container" id="past-events" aria-labelledby="past-events-heading">
+			<SectionHeading id="past-events-heading">
+				{pastEvents.heading}
+				<Fragment slot="lead">{pastEvents.lead}</Fragment>
+			</SectionHeading>
+			<ol class="past-list" role="list">
+				{pastByDate.map((event) => (
+					<li class="past-list__item">
+						<a class="past-card" href={event.url} target="_blank" rel="noopener noreferrer">
+							{event.graphic && (
+								<Image
+									src={event.graphic}
+									alt=""
+									widths={photoWidths(event.graphic)}
+									sizes="(min-width: 68rem) 14rem, (min-width: 43rem) 30vw, (min-width: 29rem) 45vw, 100vw"
+									format="webp"
+									loading="lazy"
+									class="past-card__graphic"
+								/>
+							)}
+							<span class="past-card__body">
+								<h3 class="past-card__title">{event.title}</h3>
+								<time class="past-card__date" datetime={event.date}>{formatDate(event.date)}</time>
+								<span class="sr-only"> (opens in a new tab)</span>
+							</span>
+						</a>
+					</li>
+				))}
+			</ol>
+			<a class="button button--outline" href={lumaCalendar.pastEventsUrl} target="_blank" rel="noopener noreferrer">
+				{pastEvents.linkLabel}<span class="sr-only"> (opens in a new tab)</span>
+			</a>
+		</section>
+	</div>
+</Layout>
+
+<style>
+	.formats-section {
+		container: formats / inline-size;
+	}
+
+	.formats-rail {
+		position: relative;
+	}
+
+	.formats-rail::before,
+	.formats-rail::after {
+		content: '';
+		position: absolute;
+		z-index: 1;
+		inset-block: 0 var(--space-6);
+		inline-size: var(--space-8);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity var(--duration-fast);
+	}
+
+	.formats-rail::before {
+		inset-inline-start: 0;
+		background: linear-gradient(to right, var(--color-dark-blue), transparent);
+	}
+
+	.formats-rail::after {
+		inset-inline-end: 0;
+		background: linear-gradient(to left, var(--color-dark-blue), transparent);
+	}
+
+	.formats-rail[data-scroll-start]::before,
+	.formats-rail[data-scroll-end]::after {
+		opacity: 1;
+	}
+
+	.formats {
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: min(82%, 24rem);
+		gap: var(--space-grid);
+		overflow-x: auto;
+		padding-block-end: var(--space-5);
+		scroll-snap-type: x proximity;
+		color-scheme: dark;
+	}
+
+	.format {
+		display: grid;
+		gap: var(--space-grid);
+		align-content: start;
+		min-width: 0;
+		scroll-snap-align: start;
+	}
+
+	.format:last-child {
+		scroll-snap-align: end;
+	}
+
+	/* One 16:10 frame for every format photo, matching the Member Journey photo frame. */
+	.format__photo {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--ratio-photo);
+		object-fit: cover;
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+	}
+
+	.format__body {
+		min-width: 0;
+	}
+
+	.format__title {
+		margin: 0 0 var(--space-4);
+		font-size: var(--text-3xl);
+		font-weight: var(--weight-display);
+		letter-spacing: -0.025em;
+		line-height: var(--leading-display);
+		text-transform: uppercase;
+		hyphens: auto;
+	}
+
+	.format__text {
+		max-width: var(--layout-reading);
+		margin: 0;
+		color: var(--text-muted);
+		font-size: var(--text-lg);
+		line-height: var(--leading-copy);
+	}
+
+	@container formats (min-width: 40rem) {
+		.formats { grid-auto-columns: 42%; }
+	}
+
+	@container formats (min-width: 64rem) {
+		.formats {
+			grid-auto-columns: 29%;
+			scroll-snap-type: none;
+		}
+	}
+
+	@media (forced-colors: none) {
+		.formats::-webkit-scrollbar { height: var(--space-3); }
+
+		.formats::-webkit-scrollbar-track,
+		.formats::-webkit-scrollbar-thumb { border-radius: var(--radius-pill); }
+
+		.formats::-webkit-scrollbar-track { background: var(--surface-control); }
+		.formats::-webkit-scrollbar-thumb { background: var(--border-control); }
+	}
+
+	@media (forced-colors: active) {
+		.formats-rail::before,
+		.formats-rail::after { display: none; }
+	}
+
+	.past-section {
+		container: past / inline-size;
+	}
+
+	.past-list {
+		display: grid;
+		gap: var(--space-grid);
+		margin: 0 0 var(--space-heading);
+		padding: 0;
+		list-style: none;
+	}
+
+	.past-list__item {
+		display: flex;
+		min-width: 0;
+	}
+
+	/* The whole card is one link; the shared focus outline surrounds it. */
+	.past-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-4);
+		width: 100%;
+		padding: var(--space-card);
+		border: var(--border-width) solid var(--border-subtle);
+		border-radius: var(--radius-card);
+		background: var(--surface-card);
+		transition: background-color var(--duration-fast), border-color var(--duration-fast);
+	}
+
+	.past-card:hover {
+		border-color: var(--border-strong);
+		background: var(--surface-control);
+	}
+
+	/* Square graphics at their native 800 px stay sharp up to 400 px wide at 2x; the
+	   columns below keep every card near or below that width. */
+	.past-card__graphic {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--ratio-square);
+		border-radius: var(--radius-field);
+	}
+
+	.past-card__body {
+		display: grid;
+		gap: var(--space-1);
+		padding: 0;
+	}
+
+	.past-card__title {
+		margin: 0;
+		font-size: var(--text-lg);
+		font-weight: var(--weight-bold);
+		line-height: var(--leading-ui);
+	}
+
+	.past-card__date {
+		color: var(--text-muted);
+		font-size: var(--text-sm);
+		line-height: var(--leading-ui);
+	}
+
+	@container past (min-width: 26rem) {
+		.past-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	}
+
+	@container past (min-width: 40rem) {
+		.past-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	}
+
+	@container past (min-width: 64rem) {
+		.past-list { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+	}
+
+	.events-access {
+		display: grid;
+		align-items: start;
+		gap: var(--space-grid);
+	}
+
+	.members-card {
+		display: grid;
+		justify-items: start;
+		gap: var(--space-grid);
+		min-width: 0;
+		padding: var(--space-card);
+		border: var(--border-width) solid var(--border-accent);
+		border-inline-start: var(--border-width-accent) solid var(--color-accent);
+		border-radius: var(--radius-card);
+		background: var(--surface-accent);
+	}
+
+</style>
+
+<script>
+	const rail = document.querySelector('[data-event-formats]');
+	const formats = rail?.querySelector<HTMLElement>('.formats');
+
+	if (rail && formats) {
+		const updateFades = () => {
+			// Scroll positions can be fractional even when the measured widths are integers.
+			rail.toggleAttribute('data-scroll-start', formats.scrollLeft > 1);
+			rail.toggleAttribute('data-scroll-end', formats.scrollWidth - formats.clientWidth - formats.scrollLeft > 1);
+		};
+
+		formats.addEventListener('scroll', updateFades, { passive: true });
+		new ResizeObserver(updateFades).observe(formats);
+		updateFades();
+	}
+</script>

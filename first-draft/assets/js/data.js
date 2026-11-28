@@ -77,26 +77,6 @@ const DATA = {
   testimonials: [
     {
       quote:
-        "START was the best learning environment I've ever been in. At 23, I led a team, made mistakes, and actually learned how to get things done — not just alone, but with others.",
-      name: "Mahir Isikli",
-      role: "President 23/24",
-      status: "Alumnus",
-      dimension: "Social",
-      photo: "assets/img/p-mahir.jpg",
-      verified: true,
-    },
-    {
-      quote:
-        "START Berlin changed everything. I found a community of driven, like-minded people who inspired me to grow both personally and professionally. START opened doors I didn't know existed.",
-      name: "Anouar Springer",
-      role: "Head of Partnerships 23/24",
-      status: "Alumnus",
-      dimension: "Career",
-      photo: "assets/img/p-anouar.png",
-      verified: true,
-    },
-    {
-      quote:
         "START Berlin gave me so much value — not just during my time as a member, but long after. Through the community, I landed my first job and built lasting friendships here in Berlin.",
       name: "Polina Shcheglova",
       role: "Member 19/20",

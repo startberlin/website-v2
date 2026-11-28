@@ -1,0 +1,118 @@
+---
+import { Image, getImage } from 'astro:assets';
+import artwork from '../assets/brand/start-star.webp';
+
+// Decorative START star: the real artwork. Once it is near the viewport,
+// src/lib/start-star.ts takes over with a WebGL canvas that adds a slight depth
+// parallax while the page scrolls. The still artwork shows first and stays without
+// JavaScript or WebGL, with reduced motion, or if loading fails. The parallax follows
+// the system motion setting, including changes while the page is open.
+interface Props {
+	/** Sizes hint for the still artwork. */
+	sizes?: string;
+	class?: string;
+}
+
+const { sizes = '(min-width: 64rem) 32rem, 80vw', class: className } = Astro.props;
+// The WebGL texture uses the full 960-px artwork.
+const texture = await getImage({ src: artwork, width: 960, format: 'webp' });
+---
+
+<div class:list={['star', className]} data-start-star data-texture={texture.src}>
+	<Image src={artwork} alt="" widths={[480, 960]} sizes={sizes} format="webp" loading="lazy" decoding="async" class="star__still" data-star-still />
+	<canvas class="star__canvas" aria-hidden="true" hidden></canvas>
+</div>
+
+<style>
+	.star {
+		position: relative;
+		width: 100%;
+		aspect-ratio: var(--ratio-square);
+	}
+
+	.star :global(.star__still),
+	.star__canvas {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	/* The artwork is drawn at 88.5 % in the canvas; match it for the still image. */
+	.star :global(.star__still) {
+		padding: 5.75%;
+		object-fit: contain;
+	}
+
+	.star :global(.star__still[hidden]),
+	.star__canvas[hidden] { display: none; }
+</style>
+
+<script>
+	import { motionEnabled, onMotionChange } from '../lib/motion';
+	import type { StarControl } from '../lib/start-star';
+
+	interface Star {
+		root: HTMLElement;
+		still: HTMLImageElement | null;
+		canvas: HTMLCanvasElement;
+		near: boolean;
+		loading: boolean;
+		failed: boolean;
+		control?: StarControl;
+	}
+
+	function webglAvailable() {
+		try {
+			return Boolean(document.createElement('canvas').getContext('webgl'));
+		} catch {
+			return false;
+		}
+	}
+
+	const webgl = webglAvailable();
+	const stars: Star[] = [...document.querySelectorAll<HTMLElement>('[data-start-star]')].map((root) => ({
+		root,
+		still: root.querySelector<HTMLImageElement>('[data-star-still]'),
+		canvas: root.querySelector<HTMLCanvasElement>('.star__canvas')!,
+		near: false,
+		loading: false,
+		failed: false,
+	}));
+
+	// Use the parallax canvas when possible; otherwise keep the still artwork. Loads the
+	// module the first time a star comes near the viewport, and swaps to the canvas
+	// only once it has drawn, so the star never disappears in between.
+	function update(star: Star) {
+		const animate = webgl && motionEnabled() && !star.failed;
+		const ready = animate && Boolean(star.control);
+		if (star.still) star.still.hidden = ready;
+		star.canvas.hidden = !ready;
+		star.control?.setActive(animate);
+		if (!animate || !star.near || star.control || star.loading) return;
+		star.loading = true;
+		import('../lib/start-star')
+			.then(({ mountStar }) => mountStar(star.root))
+			.then((control) => {
+				star.control = control;
+				update(star);
+			})
+			.catch(() => {
+				star.failed = true;
+				update(star);
+			});
+	}
+
+	const loader = new IntersectionObserver((entries) => {
+		for (const entry of entries) {
+			const star = stars.find((candidate) => candidate.root === entry.target);
+			if (!star || !entry.isIntersecting) continue;
+			loader.unobserve(entry.target);
+			star.near = true;
+			update(star);
+		}
+	}, { rootMargin: '200px' });
+
+	stars.forEach((star) => loader.observe(star.root));
+	onMotionChange(() => stars.forEach(update));
+</script>

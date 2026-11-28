@@ -1,0 +1,151 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './icons/Icon.astro';
+import { memberEmailUrl, memberLinkedinUrl } from '../lib/member-profiles';
+
+// Compact person row: round portrait (initials fallback), name and role. The name
+// links to a profile when one exists; `email` shows the START address as visible
+// text, `linkedin` adds an icon link. Used where MemberCard would be too large.
+interface Props {
+	name: string;
+	role: string;
+	portrait?: ImageMetadata;
+	profileUrl?: string;
+	email?: string;
+	linkedin?: string;
+	size?: 'small' | 'large';
+}
+
+const { name, role, portrait, profileUrl, email, linkedin, size = 'small' } = Astro.props;
+const pixels = size === 'large' ? 80 : 48;
+// Never request more pixels than the source has.
+const widths = portrait ? [pixels, pixels * 2].filter((width) => width <= portrait.width) : [];
+const parts = name.split(/\s+/);
+const initials = (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
+---
+
+<div class:list={['person', `person--${size}`, { 'person--contact': email || linkedin }]}>
+	<span class="person__avatar">
+		{portrait ? (
+			<Image src={portrait} alt="" width={pixels} height={pixels} widths={widths.length ? widths : undefined} sizes={`${pixels}px`} format="webp" loading="lazy" decoding="async" class="person__portrait" />
+		) : <span aria-hidden="true">{initials}</span>}
+	</span>
+	<span class="person__meta">
+		<span class="person__heading">
+			{profileUrl ? <a class="person__name" href={profileUrl}>{name}</a> : <span class="person__name">{name}</span>}
+			{linkedin && (
+				<a class="person__icon" href={memberLinkedinUrl(linkedin, name)} target="_blank" rel="noopener noreferrer">
+					<Icon name="linkedin" size={18} /><span class="sr-only">{name} on LinkedIn (opens in a new tab)</span>
+				</a>
+			)}
+		</span>
+		<span class="person__role">{role}</span>
+		{email && <a class="person__email" href={memberEmailUrl(email, name)}>{email}</a>}
+	</span>
+</div>
+
+<style>
+	.person {
+		--avatar-size: 3rem;
+		display: flex;
+		align-items: center;
+		gap: var(--space-4);
+		min-width: 0;
+	}
+
+	.person--large {
+		--avatar-size: 5rem;
+		gap: var(--space-5);
+	}
+
+	/* With contact lines the text runs longer than the avatar; align both to the top. */
+	.person--contact {
+		align-items: start;
+	}
+
+	.person__avatar {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: var(--avatar-size);
+		aspect-ratio: 1;
+		overflow: hidden;
+		border: var(--border-width-accent) solid var(--color-accent);
+		border-radius: var(--radius-pill);
+		background: var(--gradient-avatar);
+		font-weight: var(--weight-display);
+	}
+
+	.person__portrait {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.person__meta {
+		display: grid;
+		gap: var(--space-1);
+		min-width: 0;
+	}
+
+	.person__name {
+		font-weight: var(--weight-bold);
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+	}
+
+	a.person__name {
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.2em;
+		transition: text-decoration-color var(--duration-fast);
+	}
+
+	a.person__name:hover {
+		text-decoration-color: currentColor;
+	}
+
+	.person__role {
+		color: var(--text-muted);
+		font-size: var(--text-sm);
+	}
+
+	.person__heading {
+		display: flex;
+		align-items: center;
+		gap: var(--space-1);
+	}
+
+	.person__email {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--target-min);
+		color: var(--color-accent);
+		font-weight: var(--weight-bold);
+		overflow-wrap: anywhere;
+	}
+
+	/* A 44-px target; the negative margin keeps it from pushing the name row apart. */
+	.person__icon {
+		display: inline-flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: var(--target-min);
+		height: var(--target-min);
+		margin-block: calc(-1 * var(--space-3));
+		color: var(--text-copy);
+		transition: color var(--duration-fast);
+	}
+
+	.person__icon:hover {
+		color: var(--color-accent);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		a.person__name,
+		.person__icon { transition: none; }
+	}
+</style>
