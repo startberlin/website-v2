@@ -88,16 +88,9 @@ export const network = {
 	voice: story('Rhema Tamunoiyowuna'),
 };
 
-// Closing call to action: joining is the page's main goal; the other links are the
-// remaining destinations the About Us task asks for.
 export const join = {
 	heading: 'Join START Berlin',
 	// Approved Member Journey copy: "Apply in April or October".
 	text: 'Applications open twice a year, in April and October. Find out what membership involves and how to apply.',
 	primary: { label: 'How to join', href: '/join' },
-	links: [
-		{ label: 'Meet the members', href: '/members' },
-		{ label: 'Follow the member journey', href: '/member-journey' },
-		{ label: 'Come to an event', href: '/events' },
-	],
 };
