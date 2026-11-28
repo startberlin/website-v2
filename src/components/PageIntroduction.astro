@@ -1,0 +1,23 @@
+---
+interface Props {
+	flush?: boolean;
+}
+
+const { flush = false } = Astro.props;
+---
+
+<div class:list={['page-container', 'page-introduction', { 'page-introduction--flush': flush }]}>
+	<p class="readable"><slot /></p>
+</div>
+
+<style>
+	.page-introduction { padding-block-start: var(--space-page-start); }
+	.page-introduction--flush { padding-block-start: 0; }
+
+	p {
+		margin: 0;
+		color: var(--text-copy);
+		font-size: var(--text-lg);
+		line-height: var(--leading-copy);
+	}
+</style>

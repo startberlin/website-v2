@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import PageIntroduction from '../components/PageIntroduction.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import LumaEvents from '../components/LumaEvents.astro';
 import { pageSeo } from '../lib/seo/pages';
@@ -26,9 +27,7 @@ const formatDate = (isoDate: string) => dateLabel.format(new Date(`${isoDate}T00
 	/>
 
 	<div class="section-stack page-flow">
-		<div class="events-introduction page-container">
-			<p>{introduction}</p>
-		</div>
+		<PageIntroduction flush>{introduction}</PageIntroduction>
 
 		<section class="formats-section page-container" id="formats" aria-labelledby="formats-heading">
 			<SectionHeading id="formats-heading">
@@ -106,14 +105,6 @@ const formatDate = (isoDate: string) => dateLabel.format(new Date(`${isoDate}T00
 </Layout>
 
 <style>
-	.events-introduction p {
-		max-width: var(--layout-reading);
-		margin: 0;
-		color: var(--text-copy);
-		font-size: var(--text-lg);
-		line-height: var(--leading-copy);
-	}
-
 	.formats-section {
 		container: formats / inline-size;
 	}

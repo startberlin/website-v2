@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
+import PageIntroduction from '../components/PageIntroduction.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import PersonChip from '../components/PersonChip.astro';
 import Marquee from '../components/Marquee.astro';
@@ -40,13 +41,8 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 ---
 
 <Layout seo={pageSeo('/partners')}>
-	<PageHero title={hero.title} image={hero.photo.src} alt={hero.photo.alt} imagePosition="50% 40%">
-		<Fragment slot="description">{hero.description}</Fragment>
-		<div slot="actions" class="hero-actions">
-			<a class="button" href="#get-in-touch">Talk to us</a>
-			<a class="button button--outline" href="#offers">See ways to work together</a>
-		</div>
-	</PageHero>
+	<PageHero title={hero.title} image={hero.photo.src} alt={hero.photo.alt} imagePosition="50% 40%" />
+	<PageIntroduction>{hero.description}</PageIntroduction>
 
 	<section class="logo-banner page-container" aria-label="Some of our partners">
 		<Marquee label="Partner logos, scrolling" duration={70}>
@@ -151,14 +147,7 @@ const cardSizes = '(min-width: 68rem) 25rem, (min-width: 43rem) 45vw, 100vw';
 		background: var(--surface-band);
 	}
 
-	.hero-actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-3);
-		margin-top: var(--space-6);
-	}
-
-	/* Scrolling partner logos directly under the hero. */
+	/* Scrolling partner logos below the introduction. */
 	.logo-banner {
 		padding-block: var(--space-8);
 	}
