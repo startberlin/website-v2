@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Icon from './icons/Icon.astro';
 import SectionHeading from './SectionHeading.astro';
 import communityPhoto from '../assets/join/legacy-community-evening.jpg';
+import socialPhoto from '../assets/join/legacy-community-gathering.jpg';
 import summitPhoto from '../assets/join/legacy-road-to-start-summit.jpg';
 
 const trips = [
@@ -18,6 +19,12 @@ const trips = [
 		photo: summitPhoto,
 		alt: 'Attendees talking in a blue-lit event space',
 		href: 'https://www.startglobal.org/start-summit',
+	},
+	{
+		title: 'Social Trips',
+		text: 'Every now and then, we get together for a day out in the countryside around Berlin or a visit to another city.',
+		photo: socialPhoto,
+		alt: 'Three people posing together indoors',
 	},
 ];
 ---
@@ -64,14 +71,25 @@ const trips = [
 	const controls = trips?.querySelector<HTMLElement>('[data-trip-controls]');
 	if (rail && controls) {
 		const [previous, next] = controls.querySelectorAll('button');
+		const cards = rail.querySelectorAll<HTMLElement>('.trip');
 		const updateControls = () => {
 			const maxScroll = rail.scrollWidth - rail.clientWidth;
 			previous.setAttribute('aria-disabled', String(rail.scrollLeft < 1));
 			next.setAttribute('aria-disabled', String(rail.scrollLeft >= maxScroll - 1));
 		};
+		const move = (direction: -1 | 1) => {
+			const maxScroll = rail.scrollWidth - rail.clientWidth;
+			const firstCardLeft = cards[0].getBoundingClientRect().left;
+			const positions = Array.from(cards, (card) => Math.min(card.getBoundingClientRect().left - firstCardLeft, maxScroll));
+			const current = rail.scrollLeft;
+			const target = direction === 1
+				? positions.find((left) => left > current + 1)
+				: positions.findLast((left) => left < current - 1);
+			if (target !== undefined) rail.scrollTo({ left: target });
+		};
 
-		previous.addEventListener('click', () => rail.scrollTo({ left: 0 }));
-		next.addEventListener('click', () => rail.scrollTo({ left: rail.scrollWidth - rail.clientWidth }));
+		previous.addEventListener('click', () => move(-1));
+		next.addEventListener('click', () => move(1));
 		rail.addEventListener('scroll', updateControls, { passive: true });
 		new ResizeObserver(updateControls).observe(rail);
 		updateControls();
