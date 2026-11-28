@@ -7,6 +7,7 @@ export const legacyCampaignRedirects = [
   ['/index.html', '/'],
   ['/for-students.html', '/member-journey'],
   ['/join-start-berlin.html', '/join'],
+  ['/for-partners.html', '/partners'],
 ].map(([path, destination]) => [`${path}${campaign}`, `${destination}${campaign}`]);
 
 export function assertRedirectLocation(response, origin, path, destination) {

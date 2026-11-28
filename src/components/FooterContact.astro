@@ -1,14 +1,25 @@
 ---
+// Pages can replace the general contact through Layout's footer-contact slot, for
+// example Partners with its Partnerships contact. The default slot adds content,
+// such as a contact person, above the button.
+interface Props {
+	heading?: string;
+	text?: string;
+	action?: { label: string; href: string };
+}
+
 const contactUrl = 'https://forms.start-berlin.com/contact';
+const { heading = 'Get in touch', text = 'We are happy to talk!', action = { label: 'Contact us', href: contactUrl } } = Astro.props;
 ---
 
 <section class="footer-contact" id="get-in-touch" aria-labelledby="footer-contact-heading">
 	<div class="page-container">
 		<div class="footer-contact__card">
 			<div class="footer-contact__copy">
-				<h2 id="footer-contact-heading">Get in touch</h2>
-				<p>We are happy to talk!</p>
-				<a class="button" href={contactUrl}>Contact us</a>
+				<h2 id="footer-contact-heading">{heading}</h2>
+				<p>{text}</p>
+				{Astro.slots.has('default') && <div class="footer-contact__extra"><slot /></div>}
+				<a class="button" href={action.href}>{action.label}</a>
 			</div>
 		</div>
 	</div>
@@ -52,6 +63,10 @@ const contactUrl = 'https://forms.start-berlin.com/contact';
 	.footer-contact__copy p {
 		margin: var(--space-4) 0 var(--space-6);
 		line-height: var(--leading-copy);
+	}
+
+	.footer-contact__extra {
+		margin-bottom: var(--space-6);
 	}
 
 	.footer-contact__copy .button {
