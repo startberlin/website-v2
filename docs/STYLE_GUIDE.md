@@ -82,7 +82,7 @@ Use SectionHeading for ordinary section titles and the shared reading width for 
 
 Join uses the PageHero aside slot for the application link during an open round. The band below the hero shows the next application month when applications are closed. Each section opens with its title. The annual fee sits below the benefits heading, and the shared statistic tiles follow the cards before eligibility.
 
-The trip section follows onboarding. The cards use native horizontal scrolling, with arrow controls when JavaScript is available. The START Summit card links to the organizer's St. Gallen event page. The Events callout and trip cards use photos from the legacy START Berlin website, including the Berlin Road to START Summit event.
+The trip section follows onboarding. The cards use native horizontal scrolling. The arrow controls move one card at a time when JavaScript is available. The START Summit card links to the organizer's St. Gallen event page. The Events callout and the two original trip cards use photos from the legacy START Berlin website, including the Berlin Road to START Summit event. Social Trips uses a group photo from a START Berlin bowling event.
 
 The Members board uses two separate card rows: President, Vice President and Head of Finance first, then the remaining board members. The rows use the same card sizing as the departments and wrap independently on narrow screens. No additional leadership label is shown. An optional `profileUrl` gives Board members a stretched card link with a visible focus outline; contact links remain independent targets above it. Only current Board members receive profile routes, including links from their department cards.
 
